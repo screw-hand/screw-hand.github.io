@@ -4,12 +4,13 @@
 
 # Site
 title: 巫术师
-subtitle: 
+subtitle: 双手充满魔力
 description:
 keywords:
 author: Chris Chen
-language:
-timezone:
+language: zh-CN, es
+timezone: Asia/Shanghai
+
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
