@@ -78,4 +78,6 @@ theme: yilia
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
-  type:
+  type: git
+  repo: git@github.com:Fifth-Patient/Fifth-Patient.github.io.git
+  branch: master
