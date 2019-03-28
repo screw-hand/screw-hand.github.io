@@ -11,9 +11,15 @@ date: 2013/7/13 20:46:25
 "date": "2013/7/13 20:46:25"
 ;;;
 ```
+<!-- more -->
+---
+
+
+
 
 {% blockquote %}
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque hendrerit lacus ut purus iaculis feugiat. Sed nec tempor elit, quis aliquam neque. Curabitur sed diam eget dolor fermentum semper at eu lorem.
+别号： quote
 {% endblockquote %}
 
 {% codeblock %}
