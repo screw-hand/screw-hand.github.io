@@ -12,28 +12,30 @@ tags: 通用
 
 Cookie 是服务器保存在浏览器的一小段文本信息。浏览器每次向服务器发出请求，就会自动附上这段信息，是前端的一种常见而又传统的缓存机制。
 
-作用：
-1、用于保存页面信息：如自动登录，记住用户名
-2、 以域名为单位，数量大小有4k-10k，有过期时间
-3、js中通过doucment.cookie调用
-     设置：doucument.cookie="name=value;max-age=seconds;Path=path;HttpOnly;"等；一次设置一个值，同名参数会进行覆盖
-    指定过期时间的cookie会存储在本地，没有指定时为session Cookie，会话结束后cookie删除，设置domain和paath可指定cookie的作用域。httponly指定cookie必须用http或https传输，该属性可限制js访问操作此cookie。secure可指定cookie只能使用https传输。
-    读取：document.cookie会返回cookie的名和值，其他参数不会返回，如：a=1;b=2; 每个cookie的名值通过分号分割。
-    删除：将max-age设置为-1
-4、cookie的传递
+### 作用
+1. 用于保存页面信息：如自动登录，记住用户名
+2. 以域名为单位，数量大小有4k-10k，有过期时间
+3. js中通过`doucment.cookie`调用
+4. cookie的传递
 从服务器端，发送cookie给客户端，是对应的Set-Cookie头信息。包括了对应的cookie的名称，值，以及各个属性。
 从客户端发送cookie给服务器，对应Cookie头信息，不发送cookie的各个属性，只发送对应的名称和值。
 
 <!-- more -->
 
-cookie优点
+### 使用方式
+1. 设置：`doucument.cookie="name=value;max-age=seconds;Path=path;HttpOnly;"`等；一次设置一个值，同名参数会进行覆盖
+2. 指定过期时间的cookie会存储在本地，没有指定时为session Cookie，会话结束后cookie删除，设置domain和paath可指定cookie的作用域。httponly指定cookie必须用http或https传输，该属性可限制js访问操作此cookie。secure可指定cookie只能使用https传输。
+3. 读取：document.cookie会返回cookie的名和值，其他参数不会返回，如：a=1;b=2; 每个cookie的名值通过分号分割。
+4. 删除：将max-age设置为-1
+
+### cookie优点
 
 可配置性和可扩展性
-1、可以在客户端上保存用户数据，起到简单的缓存和用户身份识别等作用
-2、 保存用户的偏好，比如网页的字体大小、背景色等等。
-3、记录用户的行为
+1. 可以在客户端上保存用户数据，起到简单的缓存和用户身份识别等作用
+2. 保存用户的偏好，比如网页的字体大小、背景色等等。
+3. 记录用户的行为
 
-cookie的缺陷
+### cookie的缺陷
 
 数据数量：每个cookie的大小限制在4k，不同的浏览器对同一个域下的cookie的数量有限制，IE6 20，IE7+ 50，Firefox 50，Safari ∞，Chrome 53。数量超出时， IE和Opera 会清理近期最少使用的cookie，Firefox会随机清理cookie。保险起见cookie的数量应控制在20个，单个cookie大小应小于4KB。
 
