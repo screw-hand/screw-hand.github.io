@@ -8,7 +8,7 @@ subtitle: 双手充满魔力
 description:
 keywords:
 author: Chris Chen
-language: zh-CN, es
+language: zh-Hans
 timezone: Asia/Shanghai
 
 
@@ -74,7 +74,7 @@ pagination_dir: page
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: yilia
+theme: next
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
