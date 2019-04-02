@@ -1,5 +1,7 @@
 title: 用信鸽来解释 HTTPS
 date: 2019-03-03
+tags: 转载
+categories: 转载
 ---
 
 2019/01/09 | 分类： 基础技术 | 2 条评论 | 标签： https
