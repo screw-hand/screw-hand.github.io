@@ -1,5 +1,7 @@
 title: 不再性感，不再赚钱，数据科学的时代变了
 date: 2019-01-09
+tags: 转载
+categories: 转载
 ---
 
 > 作者：Vicki Boykis | 译者：阿拉丁 
