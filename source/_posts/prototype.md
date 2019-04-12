@@ -37,6 +37,8 @@ console.log(obj_1.valueOf === Object.valueOf); // true
 console.log(obj_1.attr); // myarr
 {% endcodeblock %}
 
+<!-- more -->
+
 ![空对象属性的prototype](./obj_attr.jpg)
 <p align="center">*firefox控制台中空对象仍然有`prototype`属性*</p>
 
@@ -286,4 +288,98 @@ innerBox_2.addMethod('click', function (e) {
 
 PS：面向过程也并非一无是处，比面向对象更直观化，也更理解。若不需要考虑太多的因素，使用面向过程开发反而效率会更快。
 
-# 下文还在更新中，继续续写精彩...
+## 创建对象
+
+把大象关进冰箱需要几步在下并不清楚,不过要想进行面向对象开发，第一步是先创建一个对象，js中有6种方法可创建对象：
+1. new 操作符
+2. 字面量
+3. 工厂模式
+4. 构造函数
+5. 原型模式
+6. 混合模式（构造+原型）
+
+### 工厂模式
+
+前两种方法在开头已使用，这里不再复述。如果要创建多个相同的对象，使用前两种方法，会产生大量重复的代码，而工厂模式解决了这个问题..
+
+{% codeblock lang:js %}
+function factoryMode(name, age) {
+  var obj = new Object();
+  obj.name = name;
+  obj.age = age;
+  obj.say = function () {
+    return this.name + ' has ' + this.age + ' years old!';
+  }
+  return obj;
+}
+
+var guest = factoryMode('Gentleman', 25);
+var Chris = factoryMode('Chris', 20);
+console.log(guest.say()) // Gentleman has 25 years old!
+console.log(Chris.say()) // Chris has 20 years old!
+
+console.log(guest instanceof Object);  // true
+console.log(Chris instanceof Object);  // ture
+...
+{% endcodeblock %}
+
+有点赞哦，这样**重复实例化多个对象**也不怕了，**对象识别**问题仍然没解决
+
+PS:`new Object()`已决定了工厂模式的实例是由`Object`实例化而来的，其对象类型是`Object`，`Date` `Array`有对应的对象类型，这里读者可以试试`new Array instanceof Array`等原生数据类型。
+
+> 工厂模式是面向对象中常见的一种设计模式，是一个可以重复实例化多个对象的函数，但识别对象无能为力。
+
+### 构造函数
+
+我们可以把工厂模式修改一下，就可以写出一个构造函数..
+
+{% codeblock lang:js %}
+function ConstructorMode(name, age) {
+  this.name = name;
+  this.age = age;
+  this.say = function () {
+    return this.name + ' has ' + this.age + ' years old!';
+  }
+}
+
+var guest = new ConstructorMode('Gentleman', 25);
+var Chris = new ConstructorMode('Chris', 20);
+console.log(guest.say()) // Gentleman has 25 years old!
+console.log(Chris.say()) // Chris has 20 years old!
+
+console.log(guest instanceof Object); // true
+console.log(guest instanceof ConstructorMode);  // true
+console.log(ConstructorMode instanceof Object); // true
+{% endcodeblock %}
+
+有几个地方不太一样：
+1. 没有显示创建对象
+2. 属性/方法赋值给`this`
+3. 使用`new`关键字调用
+4. 无`return`
+
+可以看出实现了跟工厂模式一样的功能，那么什么是构造函数呢？
+- 构造函数也是一个函数，跟工厂模式一样可重复实例化对象。为了跟普通函数区分，函数名首字母一般是大写的。
+- 使用该函数时需要使用`new`关键字实例化；不使用`new`实例化，该构造函数表现如同普通的函数。
+- 虽然没有显示创建对象，但在`new`实例化时，后台执行了`new Object()`
+- 使用`this`是因为，构造函数的作用域指向实例化对象，即：两次实例化，`ConstructorMode`中的`this`分别指向`Guest`, `Chris`。
+
+通过上面的`instanceof`判断，我们能识别出`guest`是由`ConstructoreMode`实例化的，与此同时 `guest` 也是 `Object` 的实例对象。
+构造函数也有其弊端，声明在构造函数内的属性叫“构造属性”，问题就在于：构造属性若是引用类型（以函数为例），实例化后的函数执行的动作虽然是相同的，但引用地址不同，我们并不需要两份同样的函数。
+
+{% codeblock lang:js %}
+console.log(Chris.say == guest.say); // false
+{% endcodeblock %}
+
+> 构造函数模式：构造函数是一个需要实例化调用的函数，内部作用域指向实例对象，无须return。构造函数模式，也可实例化大量重复对象，也可识别实例化后的对象是由哪个构造函数实例化而来。其缺点是：若在构造属性中声明函数，实例化后的各个对象引用地址保持独立。
+
+### 原型模式
+
+原型模式靠原型对象发挥作用，原型对象的介绍，开头已有介绍。
+
+
+### 混合模式
+
+混合模式是组合构造函数和原型模式一起使用。
+
+**未完待续**
