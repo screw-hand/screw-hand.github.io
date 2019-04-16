@@ -375,11 +375,136 @@ console.log(Chris.say == guest.say); // false
 
 ### 原型模式
 
-原型模式靠原型对象发挥作用，原型对象的介绍，开头已有介绍。
+原型模式靠原型对象发挥作用，**原型对象**开头已有介绍。
 
+{% codeblock lang:js %}
+function PrototypeMdoe() {
+
+}
+// 直接在原型对象声明，直面量形式
+PrototypeMdoe.prototype.mode = 'prototype';
+PrototypeMdoe.prototype.do = function (name) {
+  return 'we do the something same, ' + name + '.';
+}
+
+var guest = new PrototypeMdoe();
+var Chris = new PrototypeMdoe();
+
+console.log(guest.do('guest')) // we do the something same, guest.
+console.log(Chris.do('Chris')) // we do the something same, Chris.
+console.log(guest.do === Chris.do) // true，相同的引用指针
+console.log(guest.do('guest') === Chris.do('Chirs')) // false， 返回值不相等
+
+console.log(guest.prototype === Chris.prototype) // 指向相同的原型对象
+{% endcodeblock %}
+
+实例化对象`do`方法引用指针是相同的，所以如果是需要给所有实例化对象**共享**的方法，可在原型上直接声明。`guest`和`Chris`都由**同一个构造函数的实例化**，**原型对象的指针地址相同**。
+
+也可以使用对象字面量的方法，两者有点的区别：对象字面量声明的原型`constructor`会指向`Object`，我们也可以手动设置。
+
+{% codeblock lange:js %}
+function PrototypeMdoe() {
+
+}
+// 对象字面量，原型赋值为对象
+PrototypeMdoe.prototype = {
+  // 手动设置构造函数指针
+  // constructor: PrototypeMdoe,
+  run: function () {
+    return 'I;m running!'
+  }
+}
+
+var proto = new PrototypeMdoe()
+
+// 打开constructor的注释对比运行结果
+console.log(
+  proto.constructor === PrototypeMdoe,
+  proto.constructor === Object 
+)
+{% endcodeblock %}
+
+> 原型模式：**共享**是原型对象的特点，所有声明在原型上的属性和方法都会**被所有实例化对象继承**，且指向同一个引用地址。
+
+原型属性是基本类型的数据，共享很方便；如果是**引用类型**的数据，共享将带来麻烦。由于**引用地址相同**，**更改其中一个**实例的原型属性，其他实例的原型也**随之改变**。
+
+{% codeblock lang:js %}
+function PrototypeMdoe() {
+
+}
+PrototypeMdoe.prototype.arr = [1, 2, 3, 4, 5];
+
+var proto_1 = new PrototypeMdoe();
+var proto_2 = new PrototypeMdoe();
+
+console.log(proto_1.arr)  // [1,2,3,4,5]
+proto_1.arr.splice(1, 2)  // [2,3,4]
+console.log(proto_2.arr)  // [1,5]
+{% endcodeblock %}
+
+
+**Object.definedPeroperty**：ES5语法，可定义新属性或修改现有属性并返回改对象；第三个参数为属性描述符，能精确添加或修改对象的属性：枚举性、属性值、可写性、存取设置。
+
+{% codeblock lang:js %}
+var Obj = {
+  attr: 'obj'
+}
+
+Obj.prototype = {
+  run: function (name) {
+    return name + ' run!';
+  }
+}
+
+// 使用Object.definedPeroperty设置constructor的特性
+Object.defineProperty(Obj.prototype, 'constructor', {
+  configurable: true,     // 设置为ture下面的设置才能生效
+  // enumerable: false,   // 枚举性
+  // writable: false,     // 可写性
+  // get: undefined,      // 取值器
+  // set: undefined,      // 设置器
+  value: Obj              // 属性值
+})
+{% endcodeblock %}
+
+`isPrototypeOf`函数可以判断**原型对象**是否为某个**实例**的原型对象。
+
+{% codeblock lang:js %}
+console.log(
+  PrototypeMdoe.prototype.isPrototypeOf(proto_1), // true
+  Array.prototype.isPrototypeOf(proto_1)          // false
+)
+{% endcodeblock %}
 
 ### 混合模式
 
-混合模式是组合构造函数和原型模式一起使用。
+混合模式是组合构造函数和原型模式使用，这是最常用的一种设计模式了。
+
+构造函数模式用于定义实例属性，而原型模式用于定义方法和共享的属性。
+所以每个实例都会有自己的一份实例属性的副本，但同时共享着对方法的引用。
+最大限度的节省了内存。同时支持向构造函数传递参数。
+
+{% codeblock lang:js %}
+function createObject (name, age) {
+  this.name = name;
+  this.age = age;
+}
+
+createObject.prototype.say = function () {
+  return this.name + ' has ' + this.age + ' years old!';
+}
+
+var guest = new createObject('Gentleman', 25);
+var Chris = new createObject('Chris', 20);
+console.log(guest.say()) // Gentleman has 25 years old!
+console.log(Chris.say()) // Chris has 20 years old!
+{% endcodeblock %}
+
+### 动态原型
+
+
+
+### 寄生构造
+
 
 **未完待续**
