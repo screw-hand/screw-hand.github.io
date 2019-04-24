@@ -70,7 +70,7 @@ obj_1.__proto__.constructor === Object // true
 正是因为`obj_1`的`__proto__`指向`Object.prototype`，obj_1继承了父类原型对象，使之拥有了`attr`属性。
 而子类的`__proto__.constructor`直接指向父类。
 
-> **原型继承：每声明一个对象，其本身拥有用两个对象：原型对象(`prototype`)，与`__proto__`对象，原型对象即可供自身使用，子类继承后也可调用；自身的`__proto__`对象指向父类的原型对象，其`constructor`属性指向父类的构造函数**。通过原型对象的方法实现继承，叫原型继承。**
+> **原型继承：每声明一个对象，其本身拥有用两个对象：原型对象(`prototype`)，与`__proto__`对象，原型对象即可供自身使用，子类继承后也可调用；自身的`__proto__`对象指向父类的原型对象，其`constructor`属性指向父类的构造函数**。通过原型对象的方法实现继承，叫原型继承。
 
 ## 双对象与原型链
 
@@ -290,7 +290,7 @@ PS：面向过程也并非一无是处，比面向对象更直观化，也更理
 
 ## 创建对象
 
-把大象关进冰箱需要几步在下并不清楚,不过要想进行面向对象开发，第一步是先创建一个对象，js中有6种方法可创建对象：
+把大象关进冰箱需要几步在下并不清楚。不过要想进行面向对象开发，第一步是先创建一个对象，js中有6种方法可创建对象：
 1. new 操作符
 2. 字面量
 3. 工厂模式
@@ -402,7 +402,7 @@ console.log(guest.prototype === Chris.prototype) // 指向相同的原型对象
 
 也可以使用对象字面量的方法，两者有点的区别：对象字面量声明的原型`constructor`会指向`Object`，我们也可以手动设置。
 
-{% codeblock lange:js %}
+{% codeblock lang:js %}
 function PrototypeMdoe() {
 
 }
@@ -485,20 +485,93 @@ console.log(
 最大限度的节省了内存。同时支持向构造函数传递参数。
 
 {% codeblock lang:js %}
-function createObject (name, age) {
+function CreateObject (name, age) {
   this.name = name;
   this.age = age;
 }
 
-createObject.prototype.say = function () {
+CreateObject.prototype.say = function () {
   return this.name + ' has ' + this.age + ' years old!';
 }
 
-var guest = new createObject('Gentleman', 25);
-var Chris = new createObject('Chris', 20);
+var guest = new CreateObject('Gentleman', 25);
+var Chris = new CreateObject('Chris', 20);
 console.log(guest.say()) // Gentleman has 25 years old!
 console.log(Chris.say()) // Chris has 20 years old!
 {% endcodeblock %}
+
+`hasOwnProperty`可检测一个属性是否为实例属性。
+而`in`可判断属性是否存在本对象中，包括实例属性或者原型属性。
+
+{% codeblock lang:js %}
+
+console.log(guest.hasOwnProperty('name')) // true
+console.log(guest.hasOwnProperty('say'))  // false
+
+console.log('name' in guest)  // true
+console.log('say' in guest)   // true
+
+// 判断是否为原型属性
+function isProperty(object, property) {
+  debugger
+  return !object.hasOwnProperty(property) &&  property in object;
+}
+
+console.log(isProperty(guest, 'name'))
+console.log(isProperty(guest, 'say'))
+{% endcodeblock %}
+
+创建对象的六种方法就到这里了，另外还有**动态原型**、**寄生构造**、**稳妥构造函数**。 这三种模式都是基于混合模式的改良，感兴趣的可以随便看看：<a id="create-object">点我查看</a>
+<div id="other-create" style="display:block;">
+  **动态原型**
+  原型模式中，不管我们是否调用原型的方法，都会初始化原型中的方法，并且声明一个构造函数时，构造函数和原型对象是分开声明的，略显怪异。我们可以使用动态原型模式，把构造函数和原型对象封装到一起。
+  {% codeblock lang:js %}
+function CreateObject (name,age) {
+  this.name = name;
+  this.age = age;
+  // 动态创建原型属性，仅在第一次调用时初始化
+  if (typeof this.say !== 'function') {
+    CreateObject.prototype.say = function () {
+      return this.name + ' has ' + this.age + ' years old!';
+    }
+  }
+}
+
+var guest = new CreateObject('Gentleman', 25);
+var Chris = new CreateObject('Chris', 20);
+console.log(guest)
+console.log(guest.say()) // Gentleman has 25 years old!
+console.log(Chris.say()) // Chris has 20 years old!
+  {% endcodeblock %}
+  <h4>寄生构造</h4>
+  <h4>稳妥构造函数</h4>
+</div>
+
+<style>
+#other-create {
+  border: 5px solid #aaa;
+}
+</style>
+
+<script>
+(function(){
+  var showOtherCreate = true;
+  var creatObject = document.getElementById('create-object');
+
+  creatObject.addEventListener('click', function() {
+    var otherCreate = document.getElementById('other-create');
+    if (showOtherCreate) {
+      otherCreate.style.display = 'block';
+      creatObject.innerText = '不想看了';
+    } else {
+      otherCreate.style.display = 'none';
+      creatObject.innerText = '点我查看';
+    }
+    showOtherCreate = !showOtherCreate;
+  })
+})()
+</script>
+
 
 ### 动态原型
 
