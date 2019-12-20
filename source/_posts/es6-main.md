@@ -30,7 +30,7 @@ template string：用反引号（ &#96; ）来标识起始，用`${}`来引用�
 
 destructuring：从数组和对象中提取值，对变量进行赋值，这被称为解构（Destructuring）。
 
-{% codeblock lang:js %}
+```js
 // 解构
 let cat = 'ken'
 let dog = 'lili'
@@ -41,40 +41,40 @@ console.log(zoo)  //Object {cat: "ken", dog: "lili"}
 let dog = {type: 'animal', many: 2}
 let { type, many} = dog
 console.log(type, many)  //animal 2
-{% endcodeblock %}
+```
 
 default：变量未赋值时给该变量一个默认值
 
-{% codeblock lang:js %}
+```js
 function animal(type = 'cat') {
   console.log(type)
 }
 animal()  //cat
-{% endcodeblock %}
+```
 
 rest：过滤变量
 
-{% codeblock lang:js %}
+```js
 function animals(once, ...types){
   console.log(types)
 }
 animals('cat', 'dog', 'fish')   //[ "dog", "fish"]
-{% endcodeblock %}
+```
 
 import export：es6的模块化机制， import用于导入模块，可以选择性导入模块中的一部戏属性/方法，也可给导入的模块重命名；export用于导出模块，也多次导出，任何数据类型都可导出（变量、函数、类等..）。
 
 基本使用
-{% codeblock lang:js %}
+```js
 //index.js
 import animal from './content'
 console.log(animal) // A cat
 
 //content.js
 export default 'A cat'
-{% endcodeblock %}
+```
 
 多次导出，导入模块时使用 `as` 重命名 `type` 为 `animalType`
-{% codeblock lang:js %}
+```js
 //content.js
 export default 'A cat'
 export function say(){
@@ -87,4 +87,4 @@ import animal, { say, type as animalType } from './content'
 let says = say()
 console.log(`The ${animalType} says ${says} to ${animal}`)
 //The dog says Hello to A cat
-{% endcodeblock %}
+```
