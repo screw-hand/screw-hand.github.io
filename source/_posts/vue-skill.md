@@ -123,7 +123,7 @@ emitClick (emitEvent, $event) {
 emitParamClick (val, $event) {
   console.log({
     val,        // 'val'
-    $event     // { emitParams: '子组件的$event', emitValue: 'dispatch emit-event'
+    $event     // { emitParams: '子组件的$event', emitValue: 'dispatch emit-event' }
   })
 }
 </script>
