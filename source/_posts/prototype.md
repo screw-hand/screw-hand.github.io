@@ -16,7 +16,7 @@ js的原型链难以避免要牵扯到面向对象，这里我们先简单说说
 
 首先，我们要明白，声明一个对象，哪怕是空属性，js也生成一些内置的属性和方法。
 
-{% codeblock lang:js %}
+```js
 /* 两种方法声明对象 */
 // 对象直接量
 var obj_1 = {};
@@ -36,7 +36,7 @@ console.log(obj_1.valueOf === Object.valueOf); // true
 
 // obj_1并未声明attr属性，通过Object.prototype继承得到attr属性
 console.log(obj_1.attr); // myarr
-{% endcodeblock %}
+```
 
 <!-- more -->
 
@@ -57,10 +57,10 @@ console.log(obj_1.attr); // myarr
 ![obj_1的__proto__](./obj_1__proto__.jpg)
 <p align="center">*`obj_1`的`__proto__`对象, 该属性下又有`__proto__`和`constructor`属性*</p>
 
-{% codeblock lang:js %}
+```js
 obj_1.__proto__ === Object.prototype  // true
 obj_1.__proto__.constructor === Object // true
-{% endcodeblock %}
+```
 
 这里有三个概念先行抛出
 - 继承：继承使子类（超类）可拥有父类的属性和方法，子类也可添加属性和方法
@@ -77,7 +77,7 @@ obj_1.__proto__.constructor === Object // true
 
 综合以上，我们知道了使用原型对象`prototype`和`__proto__`对象可以实现继承的功能。那么我们是不是可以一直继承下去呢？
 
-{% codeblock lang:js %}
+```js
 function People(name) {
   this.name = name;
 }
@@ -101,7 +101,7 @@ var me = new Programmer('js');
 
 console.log(me); // Object { skill: "js", showMsg: showMsg() }
 console.log(me.showMsg()); // Hi, my name is Chris Chen, I am a front-end engineer, I can write js code!
-{% endcodeblock %}
+```
 
 代码看完，我们从子类开始解释，也就是从下往上的顺序：
 1. `me`是`Programmer`的实例化对象
@@ -133,7 +133,7 @@ console.log(me.showMsg()); // Hi, my name is Chris Chen, I am a front-end engine
 首先我们先来概述面向过程编程（opp）与面向对象（oop）。这是JS的两种编程范式，也可以理解为编程思想。
 顾名思义，两者的重心不同。下面我们使用两种方法创建dom并挂载于页面。
 
-{% codeblock lang:js %}
+```js
 /* 面向过程 */
 // 1. 定义dom
 var dom = document.createElement('div');
@@ -166,13 +166,13 @@ CreateElement.prototype = {
 var innerBox = new CreateElement('div', 'oop', '面向对象', 'color: pink;');
 // 调用原型方法
 innerBox.render('container');
-{% endcodeblock %}
+```
 
 > 面向过程比较流水线，更注重程序的实现过程，面向对象的程序由一个又一个的单位————对象组成，不关心对象的内部属性和方法，只需实例化，调用方法即可使用。
 
 或许上面的例子，还不是很有力得体现出两者的区别，那么如果现在，需要挂载多个元素呢？
 
-{% codeblock lang:js %}
+```js
 /* 面向过程 */
 // var dom_1 = document.createElement('div');
 // dom_1.innerHTML = '面向过程_1';
@@ -225,14 +225,14 @@ innerBox_1.render('container');
 // 这里只需再实例化一个对象调用render方法即可
 var innerBox_2 = new CreateElement('div', 'oop-2', '面向对象_2', 'color: pink;');
 innerBox_2.render('container');
-{% endcodeblock %}
+```
 
 重复调用同样的方法，面向过程如果不包装一个函数，显得代码很冗余且愚蠢，而面向对象只需再次实例化即可。
 这里也提醒我们平时写代码的时候要考虑复用性。
 
 好的，那我们现在需要给dom元素添加一些交互功能，又要怎么做？
 
-{% codeblock lang:js %}
+```js
 /* 面向过程 */
 function createElement(tagName, id, innerText, style, event, fn) {
   var dom = document.createElement(tagName);
@@ -281,7 +281,7 @@ innerBox_2.render('container');
 innerBox_2.addMethod('click', function (e) {
   alert(e.target.innerHTML);
 })
-{% endcodeblock %}
+```
 
 从这里可以我们看出两者的扩展方法截然不同，面向过程模式需要直接在函数中修改，而面向对像在原型对象上直接追加方法。
 
@@ -303,7 +303,7 @@ PS：面向过程也并非一无是处，比面向对象更直观化，也更理
 
 前两种方法在开头已使用，这里不再复述。如果要创建多个相同的对象，使用前两种方法，会产生大量重复的代码，而工厂模式解决了这个问题..
 
-{% codeblock lang:js %}
+```js
 function factoryMode(name, age) {
   var obj = new Object();
   obj.name = name;
@@ -322,7 +322,7 @@ console.log(Chris.say()) // Chris has 20 years old!
 console.log(guest instanceof Object);  // true
 console.log(Chris instanceof Object);  // ture
 ...
-{% endcodeblock %}
+```
 
 有点赞哦，这样**重复实例化多个对象**也不怕了，**对象识别**问题仍然没解决
 
@@ -334,7 +334,7 @@ PS:`new Object()`已决定了工厂模式的实例是由`Object`实例化而来�
 
 我们可以把工厂模式修改一下，就可以写出一个构造函数..
 
-{% codeblock lang:js %}
+```js
 function ConstructorMode(name, age) {
   this.name = name;
   this.age = age;
@@ -351,7 +351,7 @@ console.log(Chris.say()) // Chris has 20 years old!
 console.log(guest instanceof Object); // true
 console.log(guest instanceof ConstructorMode);  // true
 console.log(ConstructorMode instanceof Object); // true
-{% endcodeblock %}
+```
 
 有几个地方不太一样：
 1. 没有显示创建对象
@@ -368,9 +368,9 @@ console.log(ConstructorMode instanceof Object); // true
 通过上面的`instanceof`判断，我们能识别出`guest`是由`ConstructoreMode`实例化的，与此同时 `guest` 也是 `Object` 的实例对象。
 构造函数也有其弊端，声明在构造函数内的属性叫“构造属性”，问题就在于：构造属性若是引用类型（以函数为例），实例化后的函数执行的动作虽然是相同的，但引用地址不同，我们并不需要两份同样的函数。
 
-{% codeblock lang:js %}
+```js
 console.log(Chris.say == guest.say); // false
-{% endcodeblock %}
+```
 
 > 构造函数模式：构造函数是一个需要实例化调用的函数，内部作用域指向实例对象，无须return。构造函数模式，也可实例化大量重复对象，也可识别实例化后的对象是由哪个构造函数实例化而来。其缺点是：若在构造属性中声明函数，实例化后的各个对象引用地址保持独立。
 
@@ -378,7 +378,7 @@ console.log(Chris.say == guest.say); // false
 
 原型模式靠原型对象发挥作用，**原型对象**开头已有介绍。
 
-{% codeblock lang:js %}
+```js
 function PrototypeMdoe() {
 
 }
@@ -397,13 +397,13 @@ console.log(guest.do === Chris.do) // true，相同的引用指针
 console.log(guest.do('guest') === Chris.do('Chirs')) // false， 返回值不相等
 
 console.log(guest.prototype === Chris.prototype) // 指向相同的原型对象
-{% endcodeblock %}
+```
 
 实例化对象`do`方法引用指针是相同的，所以如果是需要给所有实例化对象**共享**的方法，可在原型上直接声明。`guest`和`Chris`都由**同一个构造函数的实例化**，**原型对象的指针地址相同**。
 
 也可以使用对象字面量的方法，两者有点的区别：对象字面量声明的原型`constructor`会指向`Object`，我们也可以手动设置。
 
-{% codeblock lang:js %}
+```js
 function PrototypeMdoe() {
 
 }
@@ -423,13 +423,13 @@ console.log(
   proto.constructor === PrototypeMdoe,
   proto.constructor === Object 
 )
-{% endcodeblock %}
+```
 
 > 原型模式：**共享**是原型对象的特点，所有声明在原型上的属性和方法都会**被所有实例化对象继承**，且指向同一个引用地址。
 
 原型属性是基本类型的数据，共享很方便；如果是**引用类型**的数据，共享将带来麻烦。由于**引用地址相同**，**更改其中一个**实例的原型属性，其他实例的原型也**随之改变**。
 
-{% codeblock lang:js %}
+```js
 function PrototypeMdoe() {
 
 }
@@ -441,12 +441,12 @@ var proto_2 = new PrototypeMdoe();
 console.log(proto_1.arr)  // [1,2,3,4,5]
 proto_1.arr.splice(1, 2)  // [2,3,4]
 console.log(proto_2.arr)  // [1,5]
-{% endcodeblock %}
+```
 
 
 **Object.definedPeroperty**：ES5语法，可定义新属性或修改现有属性并返回改对象；第三个参数为属性描述符，能精确添加或修改对象的属性：枚举性、属性值、可写性、存取设置。
 
-{% codeblock lang:js %}
+```js
 var Obj = {
   attr: 'obj'
 }
@@ -466,16 +466,16 @@ Object.defineProperty(Obj.prototype, 'constructor', {
   // set: undefined,      // 设置器
   value: Obj              // 属性值
 })
-{% endcodeblock %}
+```
 
 `isPrototypeOf`函数可以判断**原型对象**是否为某个**实例**的原型对象。
 
-{% codeblock lang:js %}
+```js
 console.log(
   PrototypeMdoe.prototype.isPrototypeOf(proto_1), // true
   Array.prototype.isPrototypeOf(proto_1)          // false
 )
-{% endcodeblock %}
+```
 
 ### 混合模式
 
@@ -485,7 +485,7 @@ console.log(
 所以每个实例都会有自己的一份实例属性的副本，但同时共享着对方法的引用。
 最大限度的节省了内存。同时支持向构造函数传递参数。
 
-{% codeblock lang:js %}
+```js
 function CreateObject (name, age) {
   this.name = name;
   this.age = age;
@@ -499,12 +499,12 @@ var guest = new CreateObject('Gentleman', 25);
 var Chris = new CreateObject('Chris', 20);
 console.log(guest.say()) // Gentleman has 25 years old!
 console.log(Chris.say()) // Chris has 20 years old!
-{% endcodeblock %}
+```
 
 `hasOwnProperty`可检测一个属性是否为实例属性。
 而`in`可判断属性是否存在本对象中，包括实例属性或者原型属性。
 
-{% codeblock lang:js %}
+```js
 
 console.log(guest.hasOwnProperty('name')) // true
 console.log(guest.hasOwnProperty('say'))  // false
@@ -520,13 +520,14 @@ function isProperty(object, property) {
 
 console.log(isProperty(guest, 'name'))
 console.log(isProperty(guest, 'say'))
-{% endcodeblock %}
+```
 
 创建对象的六种方法就到这里了，另外还有**动态原型**、**寄生构造**、**稳妥构造函数**。 这三种模式都是基于混合模式的改良，感兴趣的可以随便看看：<a id="create-object">点我查看</a>
-<div id="other-create" style="display:block;">
+<div id="other-create" style="display:none;">
   **动态原型**
   原型模式中，不管我们是否调用原型的方法，都会初始化原型中的方法，并且声明一个构造函数时，构造函数和原型对象是分开声明的，略显怪异。我们可以使用动态原型模式，把构造函数和原型对象封装到一起。
-  {% codeblock lang:js %}
+
+  ```js
 function CreateObject (name,age) {
   this.name = name;
   this.age = age;
@@ -543,7 +544,7 @@ var Chris = new CreateObject('Chris', 20);
 console.log(guest)
 console.log(guest.say()) // Gentleman has 25 years old!
 console.log(Chris.say()) // Chris has 20 years old!
-  {% endcodeblock %}
+  ```
   <h4>寄生构造</h4>
   <h4>稳妥构造函数</h4>
 </div>
@@ -555,7 +556,7 @@ console.log(Chris.say()) // Chris has 20 years old!
 </style>
 
 <script>
-(function(){
+;(function() {
   var showOtherCreate = true;
   var creatObject = document.getElementById('create-object');
 
@@ -570,7 +571,7 @@ console.log(Chris.say()) // Chris has 20 years old!
     }
     showOtherCreate = !showOtherCreate;
   })
-})()
+})();
 </script>
 
 
