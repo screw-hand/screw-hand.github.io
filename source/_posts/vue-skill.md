@@ -7,15 +7,14 @@ tags: vue
 ## `v-if` 获取 `refs` 问题
 
 先简单介绍下这两个指令：
+
 - `v-if` 条件渲染
 - `ref` 返回组件实例或DOM元素
 
 有时候我们需要在条件渲染的DOM节点上返回一个DOM对象或组件实例，可`this.$refs.child` 返回的是`undefined`。通过查阅文档得知:
 
 > v-if 是“真正”的条件渲染，因为它会确保在切换过程中条件块内的事件监听器和子组件适当地被销毁和重建。
-
 > v-if 也是惰性的：如果在初始渲染时条件为假，则什么也不做——直到条件第一次变为真时，才会开始渲染条块。
-
 > $refs 只会在组件渲染完成之后生效，并且它们不是响应式的。这仅作为一个用于直接操作子组件的“逃生舱”——你应该避免在模板或计算属性中访问 $refs。
 
 如此可得：
@@ -64,7 +63,7 @@ handleClick ($event) {
 <script>
 handleParamClick (value, $event) {
   console.log({
-    value,  // 'clcik'
+    value,  // 'click'
     $event  // 原生dom对象
   })
 }
@@ -132,5 +131,6 @@ emitParamClick (val, $event) {
 示例代码：[dollar-event](https://github.com/Fifth-Patient/vue-skill/tree/master/src/views/skill/dollar-event)
 
 总结：
+
 - 基本使用时函数无其他实参，可以不用传`$event`实参，有其他实参的时候，`$event`必须作为最后一个参数传入
 - 自定义事件时使用，`$event`作为`$emit`的实参，若`$emit`不带参数，`$event`的值为`undefined`
