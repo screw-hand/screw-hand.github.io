@@ -6,7 +6,7 @@ tags:
 
 工作中实操过的项目部署记录，使用的是Ubuntu系统，nignx 和 C# 的运行环境均已安装。
 
-# 前期配置文件准备
+## 前期配置文件准备
 
 ```bash
 # 以acs.HOST.cn举例 （HOST）为主域名
@@ -29,7 +29,7 @@ usr/local/nginx/conf/nginx.conf
 
 <!-- more -->
 
-# 配置nginx
+## 配置nginx
 
 ```bash
 # 创建项目目录
@@ -62,7 +62,7 @@ sudo ./nginx -t # 测试
 sudo ./nginx -s reload # 重载
 ```
 
-# 项目部署、守护进程
+## 项目部署、守护进程
 
 ```bash
 # 上传已打包的项目到服务器
@@ -88,14 +88,16 @@ sudo systemctl start apps.acs.service
 sudo systemctl status apps.acs.service
 ```
 
-# 备注
+## 备注
+
 web服务器只需部署nginx
+
 - sso
 - boss
 - mgt
 
-
 部署成功，对外开放三个地址
-- https://sso.HOST.cn  单点登录
-- https://boss.HOST.cn 门户网站
-- https://mgt.HOST.cn  一体化管理中心
+
+- `https://sso.HOST.cn`  单点登录
+- `https://boss.HOST.cn` 门户网站
+- `https://mgt.HOST.cn`  一体化管理中心
