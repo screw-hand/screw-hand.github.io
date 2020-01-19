@@ -1,7 +1,7 @@
 ---
 title: vue的一些技巧
 date: 2019-12-20 22:49:04
-tags: vue技巧系列
+tags: vue-skill
 ---
 
 ## `v-if` 获取 `refs` 问题
