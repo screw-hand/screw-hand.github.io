@@ -156,7 +156,7 @@ export default {
     },
     position: {
       type: String,
-      validator: (val) => ['left', 'right'].indexOf(val) !== 0,
+      validator: (val) => ['left', 'right'].indexOf(val) !== -1,
       default: 'left'
     }
   },
