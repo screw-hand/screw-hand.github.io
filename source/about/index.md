@@ -1,12 +1,12 @@
 ---
-title: about
+title: 关于
 date: 2019-04-02 17:48:17
 types: "about"
 ---
 
 # 个人简介
 
-hi，很高兴您来到了这里，首先自我介绍一下，我叫陈钦武（Chirs Chen），97年，是一名前端工程师。
+hi，很高兴您来到了这里，首先自我介绍一下，我叫陈钦武（Chris Chen），97年，是一名前端工程师。
 技术栈以`vue`全家桶为主，基本功H5+CSS3+ES6；开发环境是`git`+`node`+`vscode`等，除此之外。
 其他的主流技术：小程序、`typescript`、`hybrid app`也有玩过一些啦~
 
