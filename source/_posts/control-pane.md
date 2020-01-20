@@ -190,10 +190,8 @@ export default {
     :class="[
       { 'position-left': position === 'left' },
       { 'position-right': position === 'right' }
-    ]">
-    <slot>
-      {{ defaultProps }}
-    </slot>
+    ]"><slot>{{ defaultProps }}</slot>
+    <!-- 这里不换行是为了消除首行缩进 -->
   </pre>
 </template>
 ```
