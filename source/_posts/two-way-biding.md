@@ -1,5 +1,5 @@
 ---
-title: vue技巧篇："two-way-biding"
+title: vue技巧篇：自定义双向绑定
 categories: vue
 tags: vue-skill
 date: 2020-01-20 17:57:01
