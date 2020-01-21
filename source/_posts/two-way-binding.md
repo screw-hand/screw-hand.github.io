@@ -21,6 +21,8 @@ date: 2020-01-20 17:57:01
 <base-components v-model="fieldValue"></base-components>
 ```
 
+<!-- more -->
+
 ## `v-model` 浅析
 
 > v-model 本质上不过是语法糖。它负责监听用户的输入事件以更新数据，并对一些极端场景进行一些特殊处理。
