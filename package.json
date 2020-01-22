@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "serve": "hexo clean && hexo g && hexo s",
+    "start": "hexo clean && hexo g && hexo s",
+    "serve": "hexo s",
     "deploy": "hexo g -d"
   },
   "hexo": {

@@ -49,7 +49,7 @@ rss:
 
 footer:
   # Specify the date when the site was setup. If not defined, current year will be used.
-  #since: 2015
+  since: 2019
 
   # Icon between year and copyright info.
   icon:
@@ -199,6 +199,7 @@ site_state: true
 social:
   GitHub: https://github.com/Fifth-Patient || github
   E-Mail: mailto:1923407743@qq.com || envelope
+  #WeChat: /avatar.jpg || wechat
   #Weibo: https://weibo.com/yourname || weibo
   #Google: https://plus.google.com/yourname || google
   #Twitter: https://twitter.com/yourname || twitter
@@ -350,8 +351,8 @@ codeblock:
 # Wechat Subscriber
 wechat_subscriber:
   enable: false
-  #qcode: /path/to/your/wechatqcode e.g. /uploads/wechat-qcode.jpg
-  #description: e.g. subscribe to my blog by scanning my public wechat account
+  qcode: /images/wechat-qcode.jpg # e.g. /uploads/wechat-qcode.jpg
+  description: subscribe to my blog by scanning my public wechat account
 
 # Reward (Donate)
 reward_settings:
@@ -359,12 +360,12 @@ reward_settings:
   # You can show or hide reward in a specific article throuth `reward: true | false` in Front Matter.
   enable: false
   animation: false
-  #comment: Donate comment here
+  comment: 对你有帮助，对我有帮助的反馈。
 
 reward:
-  #wechatpay: /images/wechatpay.png
-  #alipay: /images/alipay.png
-  #bitcoin: /images/bitcoin.png
+  wechatpay: /images/wechatpay.png
+  alipay: /images/alipay.png
+  bitcoin: /images/bitcoin.png
 
 # Related popular posts
 # Dependencies: https://github.com/tea3/hexo-related-popular-posts
@@ -603,7 +604,7 @@ calendar:
 # Disqus
 disqus:
   enable: false
-  shortname:
+  shortname: Chris
   count: true
   lazyload: false
 
