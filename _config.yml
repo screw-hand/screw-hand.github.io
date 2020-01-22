@@ -16,7 +16,7 @@ timezone: Asia/Shanghai
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
 url: https://fifth-patient.github.io
 root: /
-permalink: :year/:month/:day/:title/
+permalink: /:title/
 permalink_defaults:
 
 # Directory
@@ -82,3 +82,12 @@ deploy:
   type: git
   repo: git@github.com:Fifth-Patient/Fifth-Patient.github.io.git
   branch: master
+
+# hexo-symbols-count-time Config
+## Docs:  https://github.com/theme-next/hexo-symbols-count-time
+symbols_count_time:
+  symbols: true
+  time: false
+  total_symbols: false
+  total_time: false
+  exclude_codeblock: true
