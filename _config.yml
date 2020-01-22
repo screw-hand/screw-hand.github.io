@@ -82,23 +82,3 @@ deploy:
   type: git
   repo: git@github.com:Fifth-Patient/Fifth-Patient.github.io.git
   branch: master
-
-# yilla主题依赖
-jsonContent:
-    meta: false
-    pages: false
-    posts:
-      title: true
-      date: true
-      path: true
-      text: false
-      raw: false
-      content: false
-      slug: false
-      updated: false
-      comments: false
-      link: false
-      permalink: false
-      excerpt: false
-      categories: false
-      tags: true
