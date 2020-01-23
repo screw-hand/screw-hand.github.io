@@ -91,3 +91,11 @@ symbols_count_time:
   total_symbols: false
   total_time: false
   exclude_codeblock: true
+
+# hexo-generator-searchdb Config
+## Docs: https://github.com/theme-next/hexo-generator-searchdb
+search:
+  path: search.xml
+  field: post
+  format: html
+  limit: 10000
