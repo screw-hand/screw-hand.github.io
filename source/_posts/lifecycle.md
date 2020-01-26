@@ -20,29 +20,21 @@ date: 2020-01-25 22:17:01
 
 ## 生命周期图示
 
-![b3251a15e5779fcfec925b78a149f5c8.png](en-resource://database/2632:1)
 ![lifecycle](./lifecycle.png)
 
 生命周期钩子函数可以分成6个类型，除了一个最少用的子孙组件错误钩子函数。
 每个类型都有 "beforeXX" "XXed"，总共有11个生命周期钩子函数。
 
-1. 创建： beforeCreate     created
-2. 挂载：beforeMount     mounted
-3. 更新：beforeUpdate     updated
-4. 销毁：beforeDestroy     destroyed
-5. 激活：activated     deactivated
-6. 错误：errorCaptured
-
-TODO： markdown表格合并单元格
-
-| 序 | 类型 | 钩子函数名 | 钩子函数名 |
+| 序 | 类型 | 钩子函数名 - 1 | 钩子函数名 - 2 |
 | --- | --- | :--- | :--- |
 | 1 | 创建 | beforeCreate  | created |
 | 2 | 挂载 | beforeMount  | mounted |
 | 3 | 更新 | beforeUpdate | updated |
 | 4 | 销毁 | beforeDestroy | destroyed |
 | 5 | 激活 | activated | deactivated |
-| 6 | 错误 | errorCaptured |  |
+| 6 | 错误 | errorCaptured | \ |
+
+
 
 生命周期钩子官方api [传送门](https://cn.vuejs.org/v2/api/#%E9%80%89%E9%A1%B9-%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E9%92%A9%E5%AD%90)
 
@@ -55,22 +47,39 @@ TODO： markdown表格合并单元格
 
 这一章基本是在翻译生命周期图示的内容。
 不过很多开发者都对完整的生命周期流程一知半解。
-虽然此文提供源码，还是**建议每个人按照自己的理解写一下实例。**
+虽然提供源码，还是**建议每个人按照自己的理解写一下实例。**
 
-**定义一个lifecycle.vue**
+新建`lifecycle`目录，定义`lifecycle.vue`，导入`process.vue`
+
+```html
+<!-- lifecycle.vue -->
+<template>
+  <lifecycle-process></lifecycle-process>
+</template>
+
+<script>
+import LifecycleProcess from './process'
+
+export default {
+  components: {
+    LifecycleProcess
+  }
+}
+</script>
+```
+
+**我们在process.vue体现完整的生命周期。**
 
 虽然官网的示例都是`new Vue()` 初始化vue实例。
-单文件组件(*.vue)使用`export default`也同样时初始化vue实例。
-
+单文件组件(*.vue)使用`export default`也同样是初始化vue实例。
 
 这里有几个概念：
 
 1. 数据观测 (data observer) : prop， data， computed
 2. 事件机制 (event / watcher)： methods 函数， watch侦听器
 
-
-~~我们只简单搞清楚每个阶段发生了什么事情。其他还没有开始做的事情不想提及。~~
-~~毕竟未开始也未完成，默认就是还没初始化嘛，有什么好说的呢？~~
+我们只简单搞清楚每个阶段发生了什么事情。其他还没有开始做的事情不想提及。
+毕竟未开始也未完成，默认就是还没初始化嘛，有什么好说的呢？
 
 ### create
 
@@ -89,9 +98,11 @@ TODO： markdown表格合并单元格
 然后使用beforeCreate， created前后对比一下。
 
 ```js
+// process.vue
+
 export default {
   // prop， data， computed methods watch
-  // 自行定义，这里不浪费
+  // 自行定义，这里不浪费篇幅
   props: {},
   data () {
     return {
@@ -118,9 +129,9 @@ export default {
   }
 }
 ```
+
 ![beforeCreate-created.jpg](./beforeCreate-created.jpg)
 
-![1d689a094485391ea176016382505f6a.jpeg](en-resource://database/2634:1)
 
 prop， data， computed， methods， watch。
 除了watch比较特殊，其他都得到了验证效果。
@@ -132,10 +143,9 @@ prop， data， computed， methods， watch。
 
 >  el 被新创建的 vm.$el 替换。 如果根实例挂载到了一个文档内的元素上，当mounted被调用时vm.$el也在文档内。
 
-
 ```html
 <template>
-  <div class="skill-lifecycle">
+  <div class="skill-lifecycle-process">
     {{ msg }}
   </div>
 </template>
@@ -155,7 +165,6 @@ export default {
 ```
 
 ![beforeMount-mounted.jpg](./beforeMount-mounted.jpg)
-![26f28459d5202d95b053fd05384d27d2.jpeg](en-resource://database/2636:1)
 
 mount阶段，由于vue支持多种方式挂载DOM。
 而vue实例在created之后，beforeMounted之前这一阶段，
@@ -163,21 +172,197 @@ mount阶段，由于vue支持多种方式挂载DOM。
 
 多种挂载DOM的方式。
 
-* render
+* el / $mout
 * template
-* $mount
+* render
 
-<!--
+这里打算分别使用n个组件对着这几种挂载方式。
+你可以选择暂时跳过，先走完整个周期流程再回来。
 
-#### render
+**create mount是每个组件都必须经历的生命周期，但接下来的生命周期就比较有选择性了。**
+
+下一实例阶段 [update](#update)
+
+* * *
+
+这里会按照判断机制的顺序介绍不同的挂载方式。
+
+#### el / $mount
+
+首先会判断有无[el选项](https://cn.vuejs.org/v2/api/#el)声明实例要挂载的DOM。
+
+> el选项：提供一个在页面上已存在的 DOM 元素作为 Vue 实例的挂载目标。
+
+> 如果在实例化时存在这个选项，实例将立即进入编译过程，否则，需要显式调用 vm.$mount() 手动开启编译。
+
+el选项需要使用显示使用`new`创建的实例才生效。
+为了方便，这里新建了`skill-lifecycle-el.html`放在publi（[静态资源目录](https://cli.vuejs.org/zh/guide/html-and-static-assets.html#public-%E6%96%87%E4%BB%B6%E5%A4%B9)）下。
+
+~~本来想用俄罗斯套娃的方式在vue组件套一个`new Vue()`，结果行不通。~~
+
+
+```html
+<!-- skill-lifecycle-el.html -->
+<body>
+  <div id="app">
+    <p>{{ msg }}</p>
+    <p v-text="msg"></p>
+  </div>
+
+  <script src="https://cdn.bootcss.com/vue/2.6.10/vue.min.js"></script>
+
+  <script>
+    window.onload = function() {
+      var vm = new Vue({
+        el: '#app',
+        props: {},
+        data () {
+          return {
+            msg: 'Hey Jude!'
+          }
+        },
+        computed: {},
+        methods: {},
+        watch: {},
+        beforeMount () {
+          console.log("%c%s", "color:orangeRed", 'beforeMount--挂载之前的状态')
+          console.log("%c%s", "color:skyblue", "$el  :",this.$el)
+          console.log("%c%s", "color:skyblue", "el  :" + this.$el.innerHTML)
+          // debugger
+        },
+        mounted () {
+          console.log("%c%s", "color:orangeRed", 'mounted--已经挂载的状态')
+          console.log("%c%s", "color:skyblue", "$el  :", this.$el)
+          console.log("%c%s", "color:skyblue", "el  :" + this.$el.innerHTML)
+        }
+      })
+      // vm.$mount('#app')
+    }
+  </script>
+  
+</bdoy>
+```
+
+**el 还有 [vm.$mount](https://cn.vuejs.org/v2/api/#vm-mount) 必须要有一个，不然vue的声明周期就停止，beforeMount不触发。**
+
+> vm.$mount 手动地挂载一个未挂载的实例。
+
+两种挂载方式的效果是一样的。
+
+![beforeMount-mounted-el.jpg](beforeMount-mounted-el.jpg)
+
+**值得注意的是，`beforeMount`真实的DOM确实是会渲染双花括号还有指定的，`mounted`之后会被替换成真正的数据。**
 
 #### template
 
-#### $mount
+判断完el选项，接下来会判断有无[template选项](https://cn.vuejs.org/v2/api/#template)
 
--->
+> 一个字符串模板作为 Vue 实例的标识使用。模板将会替换挂载的元素。
 
-**create mount是每个组件都必须经历的生命周期，但接下来的生命周期就比较有选择性了。**
+如此说来，作用跟el选项差不多，都是挂载元素的。
+
+那我们声明template选项，写上html tag string，然后把`#app` DOM里面的内容注释掉。（DOM保留）
+
+```html
+<!-- skill-lifecycle-template.html -->
+
+  <!-- 这个就叫 "#app" DOM -->
+  <div id="app">
+    <!--
+    <p v-text="msg"></p>
+    <p>{{ msg }}</p>
+    -->
+  </div>
+
+  <script>
+    new Vue({
+      el: '#app',
+      template: '<b> {{ msg }}</b>', // 这个就叫 template 选项
+      beforeMount () {
+        console.log("%c%s", "color:orangeRed", 'beforeMount--挂载之前的状态')
+        console.log("%c%s", "color:skyblue", "$el  :",this.$el)
+        // debugger
+      },
+      mounted () {
+        console.log("%c%s", "color:orangeRed", 'mounted--已经挂载的状态')
+        console.log("%c%s", "color:skyblue", "$el  :", this.$el)
+        console.log("%c%s", "color:skyblue", "#app :", document.querySelector('#app'))
+      }
+    })
+  </script>
+```
+
+我们在挂载后找一下`#app`还在不在。
+
+![beforeMount-mounted-template.jpg](beforeMount-mounted-template.jpg)
+
+从这图，我们可以知道：
+* `vm.$el`在`beforeMount`反应的是el选项的`#app DOM`（此时`#app DOM`还是模板状态）
+* 很明显，`template`选项把el选择的#app给替换掉了，故**`template选项`的优先级比`el选项`/`vm.$mount()`高**。
+
+el选项：比较温和，只是霸占人家的屋子自己住在里面。
+template选项：直接端掉人家的老窝，自己筑新巢。
+
+#### render
+
+[render选项](https://cn.vuejs.org/v2/api/#render)是一个渲染函数，返回**虚拟节点 (virtual node）**，又名**VNode**。
+
+render函数的用法稍微复杂，又牵扯到虚拟DOM、JSX等技术点，之后会另写一篇详细讲解。
+
+假设我们现在并不明白render的用法，只知道它会返回虚拟节点，就够了。
+
+```html
+<!-- skill-lifecycle-template.html -->
+  <script>
+    new Vue({
+      el: '#app',
+        template: '<b> {{ msg }}</b>', // 这个就叫 template 选项
+        render: function (createElement, context) {
+          return createElement('b', this.msg + ' from render')
+        }, // render函数
+    })
+  </script>
+```
+
+可以看到这里template选项我们不注释，就算我们把注释掉template选项， 输出结果也还是一样。
+
+![beforeMount-mounted-render.jpg](beforeMount-mounted-render.jpg)
+
+可以粗暴理解为：render是template的升级版，template字符串模板，render返回的是由函数创建生成的VNode。
+
+所以通过判断机制的流程，我们也很清楚了这几种方式挂载DOM的区别。
+
+1. 判断有无挂载DOM：`el选项`或者 `vm.mount()`， 无则停止。
+2. 判断有无template选项，有则替换掉挂载DOM元素。
+3. 判断有无render函数，有则替换掉挂载DOM元素/template选项。
+
+这几种挂载方式是有优先级的，不过因为按照顺序分析，也不用特意去记，后面的会覆盖前面的。
+
+#### vue不同构建版本的区别（编译器、运行时）
+
+vuejs有不同的[构建版本](https://cn.vuejs.org/v2/guide/installation.html#%E5%AF%B9%E4%B8%8D%E5%90%8C%E6%9E%84%E5%BB%BA%E7%89%88%E6%9C%AC%E7%9A%84%E8%A7%A3%E9%87%8A)，他们按照两个维度来分类，**模块化**及**完整性**。
+
+模块化容易理解，这取决于使用环境的模块化机制决定。
+
+完整性的话，引用官网资料。
+
+> * 完整版：同时包含编译器和运行时的版本。
+> * 编译器：用来将模板字符串编译成为 JavaScript 渲染函数的代码。
+> * 运行时：用来创建 Vue 实例、渲染并处理虚拟 DOM 等的代码。基本上就是除去编译器的其它一切。
+
+[什么时候必须使用完整版\(编译器+运行时\)？](https://cn.vuejs.org/v2/guide/installation.html#%E8%BF%90%E8%A1%8C%E6%97%B6-%E7%BC%96%E8%AF%91%E5%99%A8-vs-%E5%8F%AA%E5%8C%85%E5%90%AB%E8%BF%90%E8%A1%8C%E6%97%B6)
+
+`template 选项`、挂载DOM（`el选项`/`vm.$mount`)，需要依赖编译器编译，这时必须使用完整版。
+
+> 当使用 vue-loader 或 vueify 的时候，*.vue 文件内部的模板会在构建时预编译成 JavaScript。你在最终打好的包里实际上是不需要编译器的，所以只用运行时版本即可。
+
+可以看看三个html文件的源码引用的vue版本。
+
+* [skill-lifecycle-el.html](https://github.com/Fifth-Patient/stardust/blob/master/public/skill-lifecycle-el.html)
+* [skill-lifecycle-template.html](https://github.com/Fifth-Patient/stardust/blob/master/public/skill-lifecycle-template.html)
+* [skill-lifecycle-render.html](https://github.com/Fifth-Patient/stardust/blob/master/public/skill-lifecycle-render.html)
+
+* * *
 
 ### update
 
@@ -227,8 +412,6 @@ export default {
   }
 }
 ```
-![a247a783b4284e526598230142173caf.jpeg](en-resource://database/2642:1)
-
 
 ![beforeUpdate-updated.jpg](beforeUpdate-updated.jpg)
 
@@ -256,8 +439,11 @@ DOM与vue切断了联系。
 
 > 被 keep-alive 缓存的组件激活/停用时调用
 
+这里需要在`lifecycle.vue`引用`process.vue`的地方包裹一层`keepa-alive`
+
 ```html
-<p><button @click="handleClick">toggle click</button></p>
+<!-- lifecycle.vue -->
+<p><button @click="handleClick">toggle show</button></p>
 <keep-alive>
   <lifecycle-process v-if="isShow"></lifecycle-process>
 </keep-alive>
@@ -280,9 +466,8 @@ export default {
 ```
 
 有意思的是，**页面初始化的时候，activated会在mounted之后触发。**
-而 `v-if`又会初始化组件实例，让组件从头到尾再走一遍生命周期。
 
-有意思的是，单纯的切换组件的挂载/移除状态，activated / deactivated 会触发；
+单纯的切换组件的挂载/移除状态，activated / deactivated 会触发；
 组件不会重新实例化走一遍生命周期，尽管这里用是的`v-if`。
 
 **而当我们destroy组件，之后的每一次切换挂载/移除，组件都会重新实例化，我们只是第一次destroy而已。**
@@ -293,22 +478,52 @@ export default {
 
 这个钩子函数是用来捕获错误的，而且只应用于子孙组件，实际开发中并不常用。 [传送门](https://cn.vuejs.org/v2/api/#errorCaptured)
 
+那么整个周期流程已经介绍完毕了，同样的提供了process.vue[源码](https://github.com/Fifth-Patient/stardust/blob/master/src/views/skill/lifecycle/process.vue)。也可以选择重新回头深入了解[mount机制](#mount)了。 
+
 ## 常用生命周期函数
 
-11个钩子函数就这样介绍完了。
+11个钩子函数就这样介绍完了，常用的钩子函数并不多。
 
 ### created
 
+此时数据/事件可用，可以在此**动态创建数据或者定义自定义事件。**
+
+```js
+export default {
+  created () {
+    this.$data.staticString = 'static' // 定义变量
+    this.$on('on-created', () => { // 定义自定义事件
+      console.log(this.$data.staticString)
+    })
+  }
+}
+```
+
+注意：**created创建的变量，更新不会被vue所监听。** 在此处定义变量数据，是为了提升性能，如果这个变量更新与view层无关的话。
+
 ### mounted
 
-### activated
+DOM渲染完毕，可以执行页面的初始化操作（移除遮罩），获取DOM（如果有必要的话）。
 
+```js
+export default {  
+  mounted () {
+    this.init()
+    console.log(this.$refs.controlPanel.$options.name)
+  }
+}
+```
+
+**vue 并不推荐直接操作DOM，不过还是提供了`$ref`作为应急解决方案。**
+
+[useful.vue](https://github.com/Fifth-Patient/stardust/blob/master/src/views/skill/lifecycle/useful.vue)写的比较简单。
 
 ## 结语
 
-
-推荐阅读
+然而， 本篇的内容仅仅讨论的是**vue组件的生命周期**相关钩子函数。
+路由守卫，自定义指令，多个组件引用的钩子函数这些并未提及，推荐几篇文章。
+看完相信能收获得更多。
 
 * [vue 生命周期深入](https://juejin.im/entry/5aee8fbb518825671952308c) 针对多个组件引用情况（父子、兄弟组件）等情况生命周期的执行顺序
-* [vue生命周期探究（一）](https://segmentfault.com/a/1190000008879966) 包括组件、路由、指令等共计28个的生命周期
+* [vue生命周期探究（一）](https://segmentfault.com/a/1190000008879966) 包括组件、路由、自定义指令等共计28个的生命周期
 * [vue生命周期探究（二）](https://segmentfault.com/a/1190000008923105) 路由导航守卫的钩子函数执行顺序
