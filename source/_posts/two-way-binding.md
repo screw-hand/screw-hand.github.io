@@ -84,7 +84,7 @@ export default {
 4. 外部更新，触发 `value`监听函数
 
 - base-input 源码 [传送门](https://github.com/Fifth-Patient/stardust/blob/master/src/views/skill/two-way-binding-base-type/base-input/base-input.vue)
-- 示例 [传送门](https://github.com/Fifth-Patient/stardust/blob/master/src/views/skill/two-way-binding-base-type/two-way-binding-base-type.vue)
+- 示例 [传送门](https://fifth-patient.github.io/stardust/#/skill/two-way-binding-base-type)
 
 ### **`:value` 与`v-model`**
 
@@ -123,6 +123,7 @@ JSON.stringify(obj1) === JSON.stringify(obj2);
 技术点已经准备够了，我们足够实现用`v-model`绑定一个对象了。
 
 ```js
+export default {
   props: {
     value: {
       type: [ Object, Array]
@@ -170,10 +171,11 @@ JSON.stringify(obj1) === JSON.stringify(obj2);
       }
     }
   }
+}
 ```
 
 - base-div 源码 [传送门](https://github.com/Fifth-Patient/stardust/blob/master/src/views/skill/two-way-binding-reference-type/base-div/base-div.vue)
-- 示例 [传送门](https://github.com/Fifth-Patient/stardust/blob/master/src/views/skill/two-way-binding-reference-type/two-way-binding-reference-type.vue)
+- 示例 [传送门](https://fifth-patient.github.io/stardust/#/skill/two-way-binding-reference-type)
 
 接下来我们不使用 `prop value` `$emit input`了，我们使用 `prop insert` `$emit output`。
 
