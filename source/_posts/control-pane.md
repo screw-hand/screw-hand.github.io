@@ -242,7 +242,7 @@ vue-html.json中增加这一段
 
 ![vue-pre](./vue-pre.jpg)
 
-也直接直接拿我的 vue-html.json（[传送门](./vue-html.txt)），使用任何文本编辑器打开，另存为：%APPData%\Code\User\snippets\vue-html.json
+也直接直接拿我的 vue-html.json（[传送门](/download/vue-html.txt)），使用任何文本编辑器打开，另存为：%APPData%\Code\User\snippets\vue-html.json
 
 ## 最后
 
