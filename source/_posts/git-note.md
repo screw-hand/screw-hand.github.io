@@ -144,36 +144,47 @@ Changes not staged for commit:
 git checkout其实是用版本库里的版本替换工作区的版本，
 无论工作区是修改还是删除，都可以“一键还原”。
 
-
 ## 常用命令
 
+个人常用命令，整理到一块，以后忘记了就直接复制，省事也方便。
+
+### 工作区暂存区文件管理
+
 ```bash
-# 清除工作区指定路径(<paths>)下的所有文件修改
-$ git checkout -- <paths>
+# 清除工作区指定路径(<path>)下的所有文件修改（重置文件）
+$ git checkout -- <path>
 
-# 清空暂存区指定路径(<paths>)文件（不重置修改）
-$ git reset -- <paths>
+# 清空暂存区指定路径(<path>)文件（不重置修改）
+$ git reset -- <path>
 
-# 清空工作和暂存区的所有更改（重置本次提交）
+# 清空工作和暂存区的所有更改（重置本次提交，不会处理untracked files）
 $ git reset HEAD --hard
 
-# 删除 untracked files(-f) 包括目录-d
+# 删除 untracked files(-f) 包括目录(-d)
 $ git clean -fd
+```
 
-# 比对指定路径（<path>）文件
+### 比对文件
+
+```bash
+# 比对指定路径（<path>）文件和暂存区的区别
 $ git diff <commit> -- <path>
 
-# 查看已经暂存起来的文件(staged)和上次提交时的快照之间(HEAD)的差异
+# 比对已经暂存起来的文件(staged)和上次提交时的快照之间(HEAD)的差异
 $ git diff --cached
 $ git diff --staged
 
-# 比对两次提交
-$ git diff <hash1> hash2 -- <path>
+# 比对指定路径（<path>）两次提交
+$ git diff <hash1> <hash2> -- <path>
 
 # 比对行改动，不显示具体内容
 $ git diff --stat
+```
 
-# 全部提交
+### 提交文件
+
+```bash
+# 全部暂存并提交
 $ git commit -am "commit log"
 
 # 多行插入空行提交
@@ -184,19 +195,27 @@ $ git commit -m '
 1. line-1
 2. line-2
 '
+```
 
+### 工作日志
+
+```bash
 # 简化工作日志
 $ git log --pretty=oneline
 
-# 查看分支合并图
+# 查看分支合并情况
 $ git log --graph
 
-# 查看分支的合并情况，简化提交信息、hash简写
+# 查看分支合并情况，简化提交信息、hash简写
 $ git log --graph --pretty=oneline --abbrev-commit
 
-#命令历史
-$ git reflog
+# 美化输出、查看分支合并情况、简化提交信息、hash简写
+$ git log --color --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'  --graph  --abbrev-commit
+```
 
+### 分支
+
+```bash
 # 重命令分支
 $ git branch -m <old_name> <new_name>
 
@@ -205,7 +224,11 @@ $ git checkout <branch>
 
 # 合并分支
 $ git merge <branch>
+```
 
+### 远端
+
+```bash
 # 远端版本信息
 $ git remote -v
 
@@ -220,6 +243,27 @@ $ git push origin master
 
 # 拉取远端分支到本地新分支
 $ git checkout -b <new_branch> <remote> <branch>
+```
+
+### 配置
+
+```bash
+# 查看全局配置列表
+$ git config --global --list
+
+# 查看本地仓库配置列表
+$ git config --local --list
+```
+
+### 其他
+
+```bash
+# 命令历史
+$ git reflog
+
+# 变基
+$ git rebase -i
+
 ```
 
 ## skill
@@ -250,9 +294,39 @@ windows系统需使用命令行创建，打开cmd，定位。
 # Except this file !.gitkeep 
 ```
 
+### 别名
+
+GIt 支持为命令自定义别名，比如我们希望**全局设置** `git br` 映射为 `git branch`，**仓库设置** `git st` 映射为 `git status`，我们可以在终端这样配置。
+
+```bash
+# 配置别名
+git config --global alias.br branch
+git config --local alias.st status
+```
+
+现在就可以使用`git br` 、`git st`了，不过`git st`是**仓库级别**的设置，切换到其他仓库就无效了。我不需要省敲几个键，这样子的映射对我无效，我需要映射的是一些很长难输入又实用的命令。我们先删除它，再配置我自己偏好的别名。
+
+```bash
+# 删除别名
+git config --global --unset alias.br
+git config --local --unset alias.st
+```
+我们本地还有全部的别名都被删除了，当然你也可以直接修改配置文件，但是不推荐。
+
+```bash
+git config --global alias.logs "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+git config --global alias.detail-log "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+```
+
+现在`git logs` 还有`git detail-log`都可以输出漂亮的git日志 :-)
+
+## 速查表
+
 ![git-guide.jpg](git-guide.jpg)
 
 <!--
 - [Git log 高级用法](https://www.cnblogs.com/zhangjianbin/p/7778625.html)
+- [Git config 配置](https://www.cnblogs.com/fireporsche/p/9359130.html)
 - [Git diff](https://www.cnblogs.com/qianqiannian/p/6010219.html)
+- [Git使用中的一些奇技淫巧](https://mp.weixin.qq.com/s?__biz=MzIxMjE5MTE1Nw==&mid=2653194157&idx=2&sn=dca9f9c61f064f508c3c17824e0c6b13&chksm=8c99f577bbee7c61d5eb51d26f007f724197435b80006b05e17381d0a11eb7b5347b58a92a05&mpshare=1)
 -->
