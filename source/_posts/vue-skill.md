@@ -1,6 +1,7 @@
 ---
 title: vue的一些技巧
 date: 2019-12-20 22:49:04
+categories: vue
 tags: vue-skill
 ---
 
@@ -134,3 +135,19 @@ emitParamClick (val, $event) {
 
 - 基本使用时函数无其他实参，可以不用传`$event`实参，有其他实参的时候，`$event`必须作为最后一个参数传入
 - 自定义事件时使用，`$event`作为`$emit`的实参，若`$emit`不带参数，`$event`的值为`undefined`
+
+## 静态资源
+
+vue的静态资源分两种方式处理，区别就是经不经过webpack处理，或者说——是否为webpack模块:
+
+- webpack模块：js中`import`进来的，或用相对路径在`template/css`引入的
+- 非webpack模块：`public`目录下，或绝对路径引用的，将被直接拷贝
+
+官方推荐使用资源作为模块引入，理由如下：
+
+    脚本和样式表会被压缩且打包在一起，从而避免额外的网络请求。
+    文件丢失会直接在编译时报错，而不是到了用户端才产生 404 错误。
+    最终生成的文件名包含了内容哈希，因此你不必担心浏览器会缓存它们的老版本。
+
+- [处理静态资源](https://cli.vuejs.org/zh/guide/html-and-static-assets.html#%E5%A4%84%E7%90%86%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90)
+- [CSS引用静态资源](https://cli.vuejs.org/zh/guide/css.html#%E5%BC%95%E7%94%A8%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90)
