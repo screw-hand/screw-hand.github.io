@@ -222,6 +222,9 @@ $ git branch -m <old_name> <new_name>
 # 切换分支
 $ git checkout <branch>
 
+# 指定提交检出新分支
+$ git checkout <hash> -b <branch_name>
+
 # 合并分支
 $ git merge <branch>
 ```
