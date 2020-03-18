@@ -15,9 +15,9 @@
   "Print to pre dom": {
     "prefix": "vuepre",
     "body": [
-     "<pre style=\"position: fixed; top: 20px; left: 20px; bottom: 20px; width: 300px; overflow: auto; z-index: 9999; font-size: 16px; line-height: 20px; color: skyblue; background: rgba(0, 0, 0, .7)\">",
-     "  {{ $1 $2 }}",
-     "</pre>"
+      "<pre style=\"position: fixed; top: 20px; left: 20px; bottom: 20px; width: 300px; overflow: auto; z-index: 9999; font-size: 16px; line-height: 20px; color: skyblue; background: rgba(0, 0, 0, .7)\">",
+      "  {{ $$data$2 }}",
+      "</pre>"
     ]
   }
 }

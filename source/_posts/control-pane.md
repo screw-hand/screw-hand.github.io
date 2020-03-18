@@ -184,7 +184,7 @@ export default {
 
 ```html
 <template>
-  <pre 
+  <pre
     class="control-panel"
     :style="{ width: currentWidth }"
     :class="[
@@ -232,7 +232,7 @@ vue-html.json中增加这一段
     "prefix": "vuepre",
     "body": [
      "<pre style=\"position: fixed; top: 20px; left: 20px; bottom: 20px; width: 300px; overflow: auto; z-index: 9999; font-size: 16px; line-height: 20px; color: skyblue; background: rgba(0, 0, 0, .7)\">",
-     "  {{ $1 $2 }}",
+     "  {{ $$data$2 }}",
      "</pre>"
     ]
   }
@@ -242,7 +242,7 @@ vue-html.json中增加这一段
 
 ![vue-pre](./vue-pre.jpg)
 
-也直接直接拿我的 vue-html.json（[传送门](/download/vue-html.txt)），使用任何文本编辑器打开，另存为：%APPData%\Code\User\snippets\vue-html.json
+也直接直接拿我的 vue-html.json（[传送门](/download/vue-html.txt)），使用任何文本编辑器打开，另存为：```%APPData%\Code\User\snippets\vue-html.json```
 
 ## 最后
 
