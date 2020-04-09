@@ -26,7 +26,7 @@ date: 2020-01-25 22:17:01
 每个类型都有 "beforeXX" "XXed"，总共有11个生命周期钩子函数。
 
 | 序 | 类型 | 钩子函数名 - 1 | 钩子函数名 - 2 |
-| --- | --- | :--- | :--- |
+| :---: | :---: | :---: | :---: |
 | 1 | 创建 | beforeCreate  | created |
 | 2 | 挂载 | beforeMount  | mounted |
 | 3 | 更新 | beforeUpdate | updated |
@@ -196,10 +196,7 @@ mount阶段，由于vue支持多种方式挂载DOM。
 > 如果在实例化时存在这个选项，实例将立即进入编译过程，否则，需要显式调用 vm.$mount() 手动开启编译。
 
 el选项需要使用显示使用`new`创建的实例才生效。
-为了方便，这里新建了`skill-lifecycle-el.html`放在publi（[静态资源目录](https://cli.vuejs.org/zh/guide/html-and-static-assets.html#public-%E6%96%87%E4%BB%B6%E5%A4%B9)）下。
-
-~~本来想用俄罗斯套娃的方式在vue组件套一个`new Vue()`，结果行不通。~~
-
+为了方便，这里新建了`skill-lifecycle-el.html`放在public（[静态资源目录](https://cli.vuejs.org/zh/guide/html-and-static-assets.html#public-%E6%96%87%E4%BB%B6%E5%A4%B9)）下。
 
 ```html
 <!-- skill-lifecycle-el.html -->
@@ -251,7 +248,7 @@ el选项需要使用显示使用`new`创建的实例才生效。
 
 ![beforeMount-mounted-el.jpg](beforeMount-mounted-el.jpg)
 
-**值得注意的是，`beforeMount`真实的DOM确实是会渲染双花括号还有指定的，`mounted`之后会被替换成真正的数据。**
+**值得注意的是，`beforeMount`真实的DOM确实是会渲染双花括号还有指令的，`mounted`之后会被替换成真正的数据。**
 
 #### template
 
@@ -266,7 +263,7 @@ el选项需要使用显示使用`new`创建的实例才生效。
 ```html
 <!-- skill-lifecycle-template.html -->
 
-  <!-- 这个就叫 "#app" DOM -->
+  <!-- "#app" DOM -->
   <div id="app">
     <!--
     <p v-text="msg"></p>
@@ -277,7 +274,7 @@ el选项需要使用显示使用`new`创建的实例才生效。
   <script>
     new Vue({
       el: '#app',
-      template: '<b> {{ msg }}</b>', // 这个就叫 template 选项
+      template: '<b> {{ msg }}</b>', // template 选项
       beforeMount () {
         console.log("%c%s", "color:orangeRed", 'beforeMount--挂载之前的状态')
         console.log("%c%s", "color:skyblue", "$el  :",this.$el)
@@ -316,7 +313,7 @@ render函数的用法稍微复杂，又牵扯到虚拟DOM、JSX等技术点，�
   <script>
     new Vue({
       el: '#app',
-        template: '<b> {{ msg }}</b>', // 这个就叫 template 选项
+        template: '<b> {{ msg }}</b>', // template 选项
         render: function (createElement, context) {
           return createElement('b', this.msg + ' from render')
         }, // render函数
@@ -354,13 +351,19 @@ vuejs有不同的[构建版本](https://cn.vuejs.org/v2/guide/installation.html#
 
 `template 选项`、挂载DOM（`el选项`/`vm.$mount`)，需要依赖编译器编译，这时必须使用完整版。
 
-> 当使用 vue-loader 或 vueify 的时候，*.vue 文件内部的模板会在构建时预编译成 JavaScript。你在最终打好的包里实际上是不需要编译器的，所以只用运行时版本即可。
+> 当使用 `vue-loader` 或 `vueify` 的时候，*.vue 文件内部的模板会在构建时预编译成 JavaScript。你在最终打好的包里实际上是不需要编译器的，所以只用运行时版本即可。
 
 可以看看三个html文件的源码引用的vue版本。
 
 * [skill-lifecycle-el.html](https://github.com/Fifth-Patient/stardust/blob/master/public/skill-lifecycle-el.html)
 * [skill-lifecycle-template.html](https://github.com/Fifth-Patient/stardust/blob/master/public/skill-lifecycle-template.html)
 * [skill-lifecycle-render.html](https://github.com/Fifth-Patient/stardust/blob/master/public/skill-lifecycle-render.html)
+
+如何选择？
+
+推荐运行时，拥有预编功能，性能比完整版的要好，打包资源也小；
+一个小代价就是不能使用template选项。
+完整版是在运行的时候编译，性能相对一般，而且也需要把编译器一起打包。
 
 * * *
 
