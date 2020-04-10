@@ -203,7 +203,7 @@ export default {
 
 美哉美哉。以后可以抛弃`*.vue`文件直接使用`*.js`编写组件了，可把自己高兴坏了。我也不喜欢`*.vue`的格式。
 
-![vue-component.png](vue-component.png)
+![vue-component.png](/render-JSX/vue-component.png)
 
 经常要考虑当前行的作用域问题，是vue示例呢，还是原生js的作用域呢。
 

@@ -102,7 +102,7 @@ mutation：更改store状态，必须是同步操作
 getter：从state派生状态，返回值会根据依赖缓存
 modules：将store分割成模块
 
-![vuex-Flux](./vuex-Flux.png)
+![vuex-Flux](/component-communication/vuex-Flux.png)
 
 简单分析下这张图：
 

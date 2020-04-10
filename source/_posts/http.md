@@ -73,7 +73,7 @@ PS：我们说的“网址”、“域名”都属于url的范畴。
 - 首部字段：由关键字/值对组成，每行一对，关键字和值用英文冒号“:”分隔，关于请求/响应的信息
 - 主体：要发送给服务器的请求数据，或是服务器回复的响应数据
 
-![d7c0e5cfe6eb9ced302d14b50422caaf.png](./image1.jpg)
+![d7c0e5cfe6eb9ced302d14b50422caaf.png](/http/image1.jpg)
 
 *一个简单的HTTP实例 图源于《HTTP权威指南》*
 
@@ -92,7 +92,7 @@ PS：我们说的“网址”、“域名”都属于url的范畴。
 即使是同一个url，如果使用了其他的请求方法，服务器没有为url设置相对应的响应方法，那浏览器也不会拿到正确的资源，可能会出现的是几个数字（状态吗）和一句短语（原因短语）；
 
 
-![](./image2.jpg)
+![](/http/image2.jpg)
 
 *[https://fifth-patient.github.io/_](https://fifth-patient.github.io/_) 404代表了什么？*
 
@@ -182,7 +182,7 @@ PS：互联网、因特网、万维网的概念之后再讨论，本篇文章的
 
 > 五层模型将互联网分成了5个层，每一个层都定应了很多协议，所有的协议都是互联网协议。
 
-![f2eedd2ab72134dfe7c5350f9837b39d.png](./image3.jpg)
+![f2eedd2ab72134dfe7c5350f9837b39d.png](/http/image3.jpg)
 
 应用层(Application Layer): 规定应用程序的数据格式。 应用程序协议
 传输层(Transport Layer): 建立"端口到端口"的通信      UDP协议    TCP协议
@@ -219,7 +219,7 @@ HTTP属于应用层的一种互联网协议，基于TCP/IP协议，是两者的�
 
 **如何建立TCP连接？**
 
-![6c4f9604d0f4cc83eb0293c6659d646a.png](./image4.jpg)
+![6c4f9604d0f4cc83eb0293c6659d646a.png](/http/image4.jpg)
 
 **三次握手**：建立一个TCP连接时，需要客户端和服务器总共发送3个包
 1. 首先，请求新的TCP 连接，客户端向服务器发送一个小的 TCP 分组这个分组中，包含的**SYN**标记说明这是一个连接请求。（a ）。 
@@ -257,7 +257,7 @@ PS：事务结束连接后，TCP可使连接保持打开状态，这种技术叫
 
 <!-- 龙舌兰是墨西哥的一种烈酒，它的传统喝法是配上柠檬和盐。 -->
 
-![c04dbca7e19b08519ebf1ad2df2fd090.png](./image5.jpg)
+![c04dbca7e19b08519ebf1ad2df2fd090.png](/http/image5.jpg)
 
 *还记得之前一笔带过的TCP/IP分层（4层）吗？*
 
@@ -289,8 +289,8 @@ HTTPS在安全的传输层上发送HTTP，在这里先加密后发送报文给TC
 
 SSL不检测站点服务器的证书，现代浏览器会自行检查，若没有证书，浏览器会警告用户连接并不安全。
 
-![](./image6.jpg)
-![](./image7.jpg)
+![](/http/image6.jpg)
+![](/http/image7.jpg)
 
 *浏览器检测证书*
 

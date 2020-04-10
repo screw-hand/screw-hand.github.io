@@ -12,7 +12,7 @@ tags: vue
 
 <!-- more -->
 
-![vue生态圈](vue-ecosystem.png)
+![vue生态圈](/vue-ecosystem/vue-ecosystem.png)
 
 mind文件下载地址：<a class="btn" href="/download/vue-ecosystem.xmind">传送门</a>
 

@@ -20,7 +20,7 @@ date: 2020-01-25 22:17:01
 
 ## 生命周期图示
 
-![lifecycle](./lifecycle.png)
+![lifecycle](/lifecycle/lifecycle.png)
 
 生命周期钩子函数可以分成6个类型，除了一个最少用的子孙组件错误钩子函数。
 每个类型都有 "beforeXX" "XXed"，总共有11个生命周期钩子函数。
@@ -130,7 +130,7 @@ export default {
 }
 ```
 
-![beforeCreate-created.jpg](./beforeCreate-created.jpg)
+![beforeCreate-created.jpg](/lifecycle/beforeCreate-created.jpg)
 
 
 prop， data， computed， methods， watch。
@@ -164,7 +164,7 @@ export default {
 }
 ```
 
-![beforeMount-mounted.jpg](./beforeMount-mounted.jpg)
+![beforeMount-mounted.jpg](/lifecycle/beforeMount-mounted.jpg)
 
 mount阶段，由于vue支持多种方式挂载DOM。
 而vue实例在created之后，beforeMounted之前这一阶段，

@@ -60,7 +60,7 @@ export default {
 
 可能比官网入门实例还要简单，唯一有疑问的可能也就是 `import` 一个 `json` 文件进来， 这在`es6 Modules`中是允许的，相关资料请自行查阅。
 
-![pre-$data](./pre-$data.jpg)
+![pre-$data](/control-pane/pre-$data.jpg)
 
 ok，先看html部分，再看css。
 
@@ -104,7 +104,7 @@ html中，把`data`的属性都渲染到DOM上，并且html实体不会被转义
 
 模拟pre真实使用场景，完整代码：[传送门](https://github.com/Fifth-Patient/stardust/blob/master/src/views/skill/control-panel/control-panel.vue)
 
-![pre-panel](./pre-panel.jpg)
+![pre-panel](/control-pane/pre-panel.jpg)
 
 即使在色彩强烈，内容纷乱的布局上，pre-panel仍然不影响阅读。
 
@@ -221,9 +221,9 @@ export default {
 
 **vs code 菜单： 文件 => 首选项 => 用户代码片段 => vue-html.json**
 
-![user_snippets](./user_snippets.jpg)
+![user_snippets](/control-pane/user_snippets.jpg)
 
-![user_snippets_lang](./user_snippets_lang.jpg)
+![user_snippets_lang](/control-pane/user_snippets_lang.jpg)
 
 vue-html.json中增加这一段
 
@@ -240,7 +240,7 @@ vue-html.json中增加这一段
 
 这样在`*.vue`的文件格式中，vs code 就支持对`vuepre`的代码提示了。
 
-![vue-pre](./vue-pre.jpg)
+![vue-pre](/control-pane/vue-pre.jpg)
 
 也直接直接拿我的 vue-html.json（[传送门](/download/vue-html.txt)），使用任何文本编辑器打开，另存为：```%APPData%\Code\User\snippets\vue-html.json```
 
