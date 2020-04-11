@@ -151,10 +151,10 @@ git checkout其实是用版本库里的版本替换工作区的版本，
 ### 工作区暂存区文件管理
 
 ```bash
-# 清除工作区指定路径(<path>)下的所有文件修改（重置文件）
+# 清除工作区指定路径(<path>)下的所有文件修改（重置文件） / 重置未暂存的文件
 $ git checkout -- <path>
 
-# 清空暂存区指定路径(<path>)文件（不重置修改）
+# 清空暂存区指定路径(<path>)文件（不重置修改）/ 取消已暂存文件
 $ git reset -- <path>
 
 # 清空工作和暂存区的所有更改（重置本次提交，不会处理untracked files）
@@ -195,6 +195,9 @@ $ git commit -m '
 1. line-1
 2. line-2
 '
+
+# 修改上一次提交信息
+$ git commit --amend -m "New commit message"
 ```
 
 ### 工作日志
