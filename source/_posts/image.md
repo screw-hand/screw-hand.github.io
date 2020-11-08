@@ -24,7 +24,7 @@ tags: web
 
 `HTML`的`img`标签、`css`的`background-image`样式是最原始的使用图片方式，在H5时代前，相当长的一段时间都是用这两方式引用图片资源的。
 
-`<img>`标签，将图片作为**内容主体**引入web页面，姑其是**占位**；而`background-image`样式，起**修饰**作用，其是**不占位**。
+`<img>`标签，将图片作为**内容主体**引入web页面，故其是**占位**的；而`background-image`样式，起**修饰**作用，**不占位**。
 
 ### 基本用法
 
@@ -115,9 +115,9 @@ img {
 }
 ```
 
-没想吧？居然是加在img的容器标签上，虽然绝对居中（水平、垂直都同时居中）还有其他的方法，常见的`margin auto`居中还有绝对定位50。不过个人觉得这是最值得开发着去记住的。除此之外，也建议给容器设置`font-size: 0;`，这可以解决两个相邻的img标签之间的空隙问题。
+没想吧？居然是加在img的容器标签上，虽然绝对居中（水平、垂直都同时居中）还有其他的方法，常见的`margin auto`居中还有绝对定位50%。不过个人觉得这是最值得开发着去记住的。除此之外，也建议给容器设置`font-size: 0;`，这可以解决两个相邻的img标签之间的空隙问题。
 
-说了那么多的img，现在得回过头来谈论`background-image`了，
+说了那么多的img，现在得回过头来谈论`background-image`了。
 
 ### background-image之位置、尺寸及重复
 
@@ -195,25 +195,120 @@ body {
 
 ![](/image/element-ui-css.png)
 
- 独立的开源图标库有很多，名气比较大的有[Font Awesome](https://fontawesome.com/)。使用方法也是类比UI库，引入相关的css源文件即可，css源文件也是类似`element-ui-*.css`的格式，引用外部资源、定义web字体、使用web字体，内置定义了`class`，直接在相关dom中使用class即可。
+ 独立的开源图标库有很多，名气比较大的有[Font Awesome](https://fontawesome.com/)。使用方法也是类比UI库，引入相关的css源文件即可。css源文件也是类似`element-ui-*.css`的格式，引用外部资源、定义web字体、使用web字体，内置定义了`class`。直接在相关dom中使用class即可。
 
-实际项目中，这种开源的集成图表库往往不能满足需求设计稿，我们需要使用一些自定义图标。这个时候开源
+实际项目中，这种开源的集成图标库往往不能满足需求设计稿，我们需要使用一些自定义图标。我们可以使用一些工具：[iconfont](https://www.iconfont.cn/)、[fontello](https://fontello.com/)、[icomoon](https://icomoon.io/)，都是很优秀的在线生成图标库，具体使用方式网站也有介绍，不再累述。教程中引入的`css`，也是跟`element-ui-*.css`的格式类似。
 
-- [iconfont](https://www.iconfont.cn/)
-- [fontello](https://fontello.com/)
-- [icomoon](https://icomoon.io/)
+### 特性
 
-### 样式
+icon-font最大的特性就是样式有更多的灵活性。**我们可以像处理文字一样处理图标的样式。**使用`font-size`控制图标的尺寸，`text-align`、`line-height`控制其居中方式，甚至是`color`为图标设置不同的样式。
 
-...
+一般使用icon-font都是一套一套的使用，而不是一个一个独立使用，所以这对减少网络请求次数也有优势。
+
+矢量图形也意味着我们可以随意调整图标大小而不用担心其失真。
+
+不过icon-font只适用于纯色图标，当然渐变效果也可以使用css样式编写。
 
 ## svg
 
-...
+[svg](https://en.wikipedia.org/wiki/Scalable_Vector_Graphics)——可缩放矢量图形(Scalable Vector Graphics)，是一种文件格式， 用XML 的格式定义图像。我们可以使用代码编辑器编辑svg文件，使用浏览器可直接预览。
+
+```html
+<svg version="1.1"
+  baseProfile="full"
+  width="300" height="200"
+  xmlns="http://www.w3.org/2000/svg">
+  <rect width="100%" height="100%" fill="red" />
+  <circle cx="150" cy="100" r="80" fill="green" />
+  <text x="150" y="125" font-size="60" text-anchor="middle" fill="white">SVG</text>
+</svg>
+```
+
+> 可以先将其拷贝保存为x.svg，待会用到的 。
+
+将在浏览器中呈现...
+
+![](/image/svg.png)
+
+### 基本使用
+
+有几种使用方式，第一种是直接作为标签嵌入`HTML`源码中。
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+
+  <svg version="1.1"
+    baseProfile="full"
+    width="300" height="200"
+    xmlns="http://www.w3.org/2000/svg">
+    <rect width="100%" height="100%" fill="red" />
+    <circle cx="150" cy="100" r="80" fill="green" />
+    <text x="150" y="125" font-size="60" text-anchor="middle" fill="white">SVG</text>
+  </svg>
+
+</body>
+</html>
+```
+
+第二种是将svg代码保存为一个单独的文件，如同png，jpg，git等图片资源一样使用。
+
+```html
+<h1>img svg</h1>
+<img src="x.svg" alt="">
+<h1>object svg</h1>
+<object data="x.svg" type=""></object>
+<h1>iframe svg</h1>
+<iframe src="x.svg" frameborder="0"></iframe>
+```
+
+背景图片也是可以的。
+
+```html
+<div id="div-svg"></div>
+<style>
+  #div-svg {
+    width: 300px;
+    height: 200px;
+    background: url('./x.svg');
+  }
+</style>
+```
+
+### 特性
+
+svg基于`XML`语法实现，可以用DOM选择器获取该DOM对象。前提是用第一种方式直接将svg嵌入`HTML`。
+
+```html
+<!-- 先给刚才的svg加上id属性 -->
+  <svg
+    id="dom-svg"
+    ...>
+    ...   
+  </svg>
+```
+
+```javascript
+const domSvg = document.querySelector('#dom-svg')
+console.log(domSvg) // <svg id="dom-svg" version="1.1" baseProfile="full" width="300" height="200" xmlns="http://www.w3.org/2000/svg">
+console.log(domSvg.childNodes) // NodeList(7) [ #text, rect, #text, circle, #text, text, #text ]
+const divSvg = document.querySelector('#div-svg')
+```
+
+如果有用过`icon-font`，会知道我们可以用多个svg制作成一套字体图标库。虽然字体图标然比传统的`img`，`background`方式有着更好的css样式灵活性，可终究直接使用的时候是纯色的。而svg有着更好的色彩表现能力，同样也是矢量图形，且可以进行DOM操作，这也意味着我们可以**随时动态地改变图片的结构**。而且svg不仅仅可以制作成字体图标库，也可以转换成png、jpg等传统图片格式甚至是`canvas`。
+
+>  svg文件格式现在已经是主流web开发图片使用方案了，而且是目前最灵活的图片文件格式。
 
 ## webpack 与 img
 
-...
+1. webpack  require img
+2. 小图片转成database64
 
 ## database64
 
