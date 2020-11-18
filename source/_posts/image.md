@@ -32,8 +32,6 @@ tags: web
 <img src="https://mdn.mozillademos.org/files/7693/catfront.png" />
 ```
 
-<img src="https://mdn.mozillademos.org/files/7693/catfront.png" />
-
 **background-image**
 
 ```html
@@ -50,6 +48,7 @@ tags: web
 ```
 
 <div class="background"></div>
+
 <style>
 .background {
   width: 30px;
@@ -149,9 +148,53 @@ img {
 
 > 不建议使用css简写属性`background`一次性设置背景特性。
 
-### css雪碧图
+### CSS Sprites
 
+CSS Sprite(CSS 精灵), 又名雪碧图，是一种图片合并技术，我们可以把一些小图，整合放在一张大图中，每次单独使用小图的时候，裁剪出指定位置，尺寸即可正常显示。
 
+![CSS-Sprites.gif](/image/CSS-Sprites.gif)
+
+像上图就可以作为雪碧图的素材使用，以实现改方案。
+
+简单分析一下这张图片：
+
+1. 尺寸：134 * 44
+2. 小图数量：3
+3. 规范：固定大小，水平排列
+
+那我们可以定义一个通用的`class`，设置小图的尺寸；再定义一个`class`，设置图片裁剪位置即可。
+
+```css
+.css-sprite {
+    width: 44px;
+    height: 44px;
+    background: url("./CSS-Sprites.gif");
+    background-repeat: no-repeat;
+}
+
+.hourse {
+    background-position-x: 0;
+}
+.left-arrow {
+    background-position-x: -44px;
+}
+.right-arrow {
+    background-position-x: -88px;
+}
+```
+
+#### 特性
+
+1. 减少服务器压力：多图合并成一张，只发送一次HTTP请求，并且可以被缓存，有助于提升页面加载性能
+2. 维护困难： 后期维护成本较高，添加一张图片需要重新制作。
+3. 应用麻烦：每应用一张图片都需要调整位置，误差要求严格。
+4. 局限：只能用在背景图片`background-image`上，不能用`<img>`标签来使用。
+
+#### 不同方式实现CSS Sprites
+
+- gulp  [spritesmith](https://www.npmjs.com/package/spritesmith)
+- webpack [webpack-spritesmith](https://www.npmjs.com/package/webpack-spritesmith) 
+- svg [svg-sprite-loader](https://www.npmjs.com/package/svg-sprite-loader)
 
 ## icon-font
 
