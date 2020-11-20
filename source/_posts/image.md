@@ -47,6 +47,8 @@ tags: web
 }
 ```
 
+<img src="https://mdn.mozillademos.org/files/7693/catfront.png" />
+
 <div class="background"></div>
 
 <style>
@@ -57,6 +59,7 @@ tags: web
   background-image: url('https://mdn.mozillademos.org/files/7693/catfront.png');
 }
 </style>
+
 *虽然呈现的效果一致，意义却不一样。*
 
 <!-- - [<img>：图像嵌入元素](https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/img) -->
