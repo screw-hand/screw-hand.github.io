@@ -190,10 +190,14 @@ CSS Sprite(CSS 精灵), 又名雪碧图，是一种图片合并技术，我们�
 3. 应用麻烦：每应用一张图片都需要调整位置，误差要求严格。
 4. 局限：只能用在背景图片`background-image`上，不能用`<img>`标签来使用。
 
-#### 不同方式实现CSS Sprites
+#### 不同方式实现 CSS Sprites
 
-- gulp  [spritesmith](https://www.npmjs.com/package/spritesmith)
-- webpack [webpack-spritesmith](https://www.npmjs.com/package/webpack-spritesmith) 
+如果会使用`gulp`、`webkack` 等构建工具，可以借助工具自动生成雪碧图。
+
+[spritesmith](https://github.com/twolfson/spritesmith)，是一个node工具，可以将多张图片合成一张图片——雪碧图，也提供了`grup`和 `gulp`插件，甚至是命令行工具。
+
+- `gulp` 结合[spritesmith](https://www.npmjs.com/package/spritesmith)的插件 [gulp.spritesmith](https://www.npmjs.com/package/gulp.spritesmith)
+- `webpack`结合对应的loader [webpack-spritesmith](https://www.npmjs.com/package/webpack-spritesmith) 
 - svg [svg-sprite-loader](https://www.npmjs.com/package/svg-sprite-loader)
 
 ## icon-font
@@ -469,4 +473,4 @@ js创建`base64`的方法：
 
 ## 结尾
 
-...
+1. 比较
