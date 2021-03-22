@@ -7,7 +7,7 @@ tags:
 
 ## 前言
 
-介绍浏览器如何生成、下载与上传文件，以及js的文件流处理。
+浏览器/服务器如何生成、下载与上传文件，以及js的文件处理。
 
 <!-- more -->
 
@@ -15,7 +15,9 @@ tags:
 
 **下载一个文件前，要先确定文件是从哪里生成的，一种是由浏览器生成，另一种是服务端生成文件。**生成文件之后，方可供用户下载到本地设备（计算机/移动设备）的存储空间。
 
-我们先讨论浏览器的，再来讨论服务端。  
+实例代码：[001-file](https://github.com/Fifth-Patient/demo-fragment/tree/main/001-file)
+
+我们先讨论浏览器的，再来讨论服务端。   
 
 接下来我们会分别用几种方式生成同一个文件——文件名为`hello-world.json`，内容为`{"hello":"world"}`。
 
@@ -339,12 +341,6 @@ app.get('/api/file/download', (req, res) => {
 
 最方便处理的莫过于直接响应文件了。
 
-响应文件内容——
-
-[XMLHttpRequest.responseType](https://developer.mozilla.org/zh-CN/docs/Web/API/XMLHttpRequest/responseType)
-
-
-
 ## 结尾
 
-...
+这次我们主要介绍了浏览器和服务器的生成、下载、上传文件，还介绍了浏览器中的`<a download="fileName" href="content">`，以及 `new File`，`Blob`和`Data URLs`三种方式表达一个文件。前此文还有未提及的`Array Buffer`、[XMLHttpRequest.responseType](https://developer.mozilla.org/zh-CN/docs/Web/API/XMLHttpRequest/responseType)需要我们后续自行了解。
