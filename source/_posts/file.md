@@ -144,7 +144,206 @@ function downloadFile(fileName, file) {
 
 ## 服务端生成文件
 
-...
+这一章开始会涉及到服务端，将使用`express`——一个`node`的`web`框架搭建一个`api`服务，拥有**文件上传与下载**的功能，具体实现不会讲得太详细，因为我们的重心还在放在浏览器。
+
+我们先设计一个上传文件的api——`POST`方法，使用`form-data`传递参数，这个接口接收文件后保存在服务器。
+
+### 上传文件
+
+
+api 文档
+```
+POT localhot:3000/api/file/upload 文件上传
+form-data - { file: <文件> }
+```
+
+接口实现
+```javascript
+// ... 省略部分express代码
+
+// 配置上传功能
+const multer = require('multer')
+const uploadPath = path.join(__dirname, './uploads/') // 上传目录
+const upload = multer({
+  dest: uploadPath,
+  storage: multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, uploadPath)
+    },
+    filename: function (req, file, cb) {
+      cb(null, file.originalname)
+    }
+  })
+})
+
+//初始化 uploadPath
+fs.exists(uploadPath, exists => {
+  if (!exists) {
+    fs.mkdir(uploadPath, e => {
+      e && console.error(e)
+    })
+  }
+})
+
+
+// 上传文件
+app.post('/api/file/upload', upload.fields([{ name: 'file', maxCount: 1 }]), (req, res) => {
+  res.json({
+    code: 1,
+    msg: 'success',
+    data: null
+  })
+})
+
+app.listen(port, () => console.log(`Example app listening on port ${port}!`))
+```
+
+前端上传实现
+```html
+    <form action="/api/file/upload" method="POST" enctype="multipart/form-data">
+      <input type="file" name="file" />
+      <button type="submit">上传</button>
+    </form>
+```
+
+这里提供三个文件，作为测试文件依次上传：
+1. [html](/download/file/html) (事实上这个一个html文件，只是文件名为`html`而已)
+2. [logo.png](/download/file/logo.png)
+2. [style.css](/download/file/style.css)
+
+![](file/image-20210321223537208.png)
+
+`ls`查看上传目录有相应的文件且`Length`大于0，则表示以上代码能正常运行功能。
+
+### 下载文件
+
+由服务端生成的文件，`api`可能响应以下三种类型的数据：
+
+1. 直接响应文件，供浏览器直接下载
+2. 响应文件内容，由浏览器生成匹配的文件格式后方可下载
+3. 响应文件路径，由浏览器自行处理（参考1，2）
+
+直接响应文件，浏览器可以使用`window.open()` 或者 `<a downlaod href=""></a>`直接下载。响应内容稍微比较麻烦，如果是直接响应文件内容（不是base64），浏览器需要转成base64（存在不知道其文件格式转换失败的场景），如果是直接响应base64字符串则可以用`URL.createObjectURL`处理。响应文件路径一般浏览器直接打开此路径即可下载。
+
+我们还是先设计一个`api`，让其拥有下载功能，这个api应该接收两个参数，一个是指定的文件，另一个是指定响应的数据类型
+
+```
+GET /api/file/download
+query fileName [String] 文件名称
+query type     [String] 数据类型 content - 文件内容、base64-base64、path-文件路径、file-返回文件
+```
+
+```javascript
+// 下载文件
+app.get('/api/file/download', (req, res) => {
+  const { type, fileName } = req.query
+
+  // 是否缺失必填参数
+  if (!type) {
+    return res.status(200).json({
+      code: -1,
+      msg: 'query type is must need!'
+    })
+  } else if (!fileName) {
+    return res.status(200).json({
+      code: -1,
+      msg: 'fileName type is must need!'
+    })
+  }
+
+  if (type === 'file') { // 返回文件
+    let fileURL = path.join(uploadPath, fileName)
+    res.download(fileURL)
+  } else if (type === 'content') { // 返回文件内容
+    let fileURL = path.join(uploadPath, fileName)
+    let fileData = fs.readFileSync(fileURL)
+    let bufferData = Buffer.from(fileData).toString()
+    res.json({
+      code: 1,
+      msg: 'success',
+      data: bufferData
+    })
+  } else if (type === 'base64') { // 返回base64
+    let fileURL = path.join(uploadPath, fileName)
+    let fileData = fs.readFileSync(fileURL)
+    let bufferData = Buffer.from(fileData).toString('base64')
+    let base64 = 'data:' + mineType.lookup(fileURL) + ';base64,' + bufferData.toString('base64')
+    res.json({
+      code: 1,
+      msg: 'success',
+      data: base64
+    })
+  } else if (type === 'path') { // 返回路径
+    res.json({
+      code: 1,
+      msg: 'success',
+      data: `/api/uploads/${fileName}`
+    })
+  }
+})
+
+
+```
+
+```html
+<p>
+  <input id="file-name" name="fileName" />
+  <select id="download-type">
+    <option value="file">file</option>
+    <option value="content">content</option>
+    <option value="base64">base64</option>
+    <option value="path">path</option>
+  </select>
+  <button id="download-api-btn">下载</button>
+</p>
+```
+
+```javascript
+  const downloadApiBtn = document.querySelector('#download-api-btn')
+  downloadApiBtn.onclick = function () {
+    const fileName = document.querySelector('#file-name').value
+    const type = document.querySelector('#download-type').value
+
+    fetch(`/api/file/download?fileName=${fileName}&type=${type}`)
+      .then(async response => {
+        if (type === 'file') {
+          let blob = await response.blob()
+          downloadFile(fileName, blob)
+          // 也可以使用window.open
+          // window.open(`/api/file/download?fileName=${fileName}&type=${type}`, '_blank')
+          return
+        }
+
+        let json = await response.json()
+
+        if (json && json.code === 1) {
+          const data = json.data
+          if (type === 'content') {
+            const blob = new Blob([data.toString()])
+            downloadFile(fileName, blob)
+          } else if (type === 'base64') {
+            downloadFile(fileName, data)
+          } else if (type === 'path') {
+            window.open(data, '_blank')
+          }
+        }
+      })
+  }
+```
+
+其实当这里type为file的时候直接返回文件，是可以不需要发起http请求，直接`window.open()`就可以的，这里只是为了演示，实际开发中建议返回文件直接`window.open()` 或者 `<a downlaod href=""></a>`。
+
+其次`/api/file/download?fileName=logo.png&type=content` 可以下载图片，不过无法打开。为什么呢，首先这是一张图片，`type=content`只是返回了图片文件的内容，浏览器接收到了文件的内容，可是并不知道用什么格式去解析，所以这里导致图片下载下来了，然后并不能预览。所以**服务器返回文件内容需要双端约定好文件格式**。然而就算如此，浏览器也需要将起转成`Blob`或者是其他文件对象再下载下来。
+
+相对于`base64`字符串，也是要使用`URL.createObjectURL`将其转成`Data URLs`，相对来讲`base64`浏览器就无需关注文件格式了。
+
+最方便处理的莫过于直接响应文件了。
+
+响应文件内容——
+
+[XMLHttpRequest.responseType](https://developer.mozilla.org/zh-CN/docs/Web/API/XMLHttpRequest/responseType)
+
+
 
 ## 结尾
 
