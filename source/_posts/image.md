@@ -443,6 +443,8 @@ data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAABACAIAAACC1lByAAAABnRSTlMAAA
 data:[<mediatype>][;base64],<data>
 ```
 
+**再次区别：base64是一种编码方法。Data URL表示一个文件，可以是图片，也可以是其他格式的文件。base64对其来说更是一种可选的编码方法。** 
+
 ### 特性
 
 1. 体积会比原来大1/3
