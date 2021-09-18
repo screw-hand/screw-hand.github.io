@@ -23,7 +23,7 @@ tags: git
 1. 打开Git Bash，配置用户名字和邮件地址
 
 ```bash
-$ git config --global user.name "Your Name"![Uploading 图片.png…]()
+$ git config --global user.name "Your Name"
 
 $ git config --global user.email "email@example.com"
 ```
