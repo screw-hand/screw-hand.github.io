@@ -273,7 +273,10 @@ $ git merge <branch>
 $ git remote -v
 
 # 添加git远端仓库
-$ git remote add <url>
+$ git remote add <name> <url>
+
+# 更改远端地址
+$ git remote set-url <name> <new_url>
 
 # 拉取远端分支提交
 $ git pull origin master
