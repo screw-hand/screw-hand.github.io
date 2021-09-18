@@ -14,6 +14,7 @@ tags: git
 - branch
 - remote
 - tag
+- repo
 
 <!-- more -->
 
@@ -22,7 +23,8 @@ tags: git
 1. 打开Git Bash，配置用户名字和邮件地址
 
 ```bash
-$ git config --global user.name "Your Name"
+$ git config --global user.name "Your Name"![Uploading 图片.png…]()
+
 $ git config --global user.email "email@example.com"
 ```
 
@@ -129,7 +131,7 @@ Changes not staged for commit:
 ```bash
 [master 2918d65] 1
  1 file changed, 1 insertion(+)
- 
+
 # ===== 翻译分割线 =====
 
  [master 2918d65] 1
@@ -147,6 +149,19 @@ git checkout其实是用版本库里的版本替换工作区的版本，
 ## 常用命令
 
 个人常用命令，整理到一块，以后忘记了就直接复制，省事也方便。
+
+### 克隆仓库
+
+```shell
+# 克隆仓库
+$ git clone <remote_repo>
+
+# 克隆仓库到指定path（path推荐相对目录）
+$ git clone <remote_repo> -- <path>
+#
+# 克隆仓库指定源
+$ git clone -b <branch> <remote_repo>
+```
 
 ### 工作区暂存区文件管理
 
@@ -219,6 +234,22 @@ $ git log --color --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgree
 ### 分支
 
 ```bash
+# 查看本地分支
+$ git branch
+
+# 查看本地分支简单信息（分支名 最后一次commit id， commit message）
+$ git branch -v
+
+# 查看所有分支信息（本地还有远端)
+$ git branch -a
+
+# 查看本地跟踪远端分支情况
+$ git branch -vv
+
+# 组合使用 -vv -v -a
+$ git branch -vv -v -a
+$ git branch -vvav
+
 # 重命令分支
 $ git branch -m <old_name> <new_name>
 
@@ -227,6 +258,9 @@ $ git checkout <branch>
 
 # 指定提交检出新分支
 $ git checkout <hash> -b <branch_name>
+
+# 拉取远端分支到本地新分支
+$ git checkout -b <new_branch> <remote> <branch>
 
 # 合并分支
 $ git merge <branch>
@@ -239,7 +273,10 @@ $ git merge <branch>
 $ git remote -v
 
 # 添加git远端仓库
-$ git remote add <url>
+$ git remote add <name> <url>
+
+# 更改远端地址
+$ git remote set-url <name> <new_url>
 
 # 拉取远端分支提交
 $ git pull origin master
@@ -248,7 +285,7 @@ $ git pull origin master
 $ git push origin master
 
 # 拉取远端分支到本地新分支
-$ git checkout -b <new_branch> <remote> <branch>
+$ git checkout -b <new_branch> <remote>/<branch>
 ```
 
 ### 配置
@@ -295,9 +332,9 @@ windows系统需使用命令行创建，打开cmd，定位。
 创建 .gitkeep 文件，内容如下
 
 ```
-# Ignore everything in this directory 
-* 
-# Except this file !.gitkeep 
+# Ignore everything in this directory
+*
+# Except this file !.gitkeep
 ```
 
 ### 别名
