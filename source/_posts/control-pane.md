@@ -102,7 +102,7 @@ html中，把`data`的属性都渲染到DOM上，并且html实体不会被转义
 
 **以上css样式都是在多次实践中一行行增加，现已能适应大多数页面。**
 
-模拟pre真实使用场景，完整代码：[传送门](https://github.com/Fifth-Patient/stardust/blob/master/src/views/skill/control-panel/control-panel.vue)
+模拟pre真实使用场景，完整代码：[传送门](https://github.com/screw-hand/stardust/blob/master/src/views/skill/control-panel/control-panel.vue)
 
 ![pre-panel](/control-pane/pre-panel.jpg)
 
@@ -198,9 +198,9 @@ export default {
 
 `props`只定义了3个，也有插槽，可以自定义，使用起来也不繁琐，方便了很多，不是吗？
 
--  组件源码：[传送门](https://github.com/Fifth-Patient/stardust/blob/master/src/components/control-panel/control-panel.vue)
-- 复用-1：[传送门](hhttps://fifth-patient.github.io/stardust/#/skill/multi-index-1)
-- 复用-2：[传送门](https://fifth-patient.github.io/stardust/#/skill/multi-index-2)
+-  组件源码：[传送门](https://github.com/screw-hand/stardust/blob/master/src/components/control-panel/control-panel.vue)
+- 复用-1：[传送门](hhttps://screw-hand.github.io/stardust/#/skill/multi-index-1)
+- 复用-2：[传送门](https://screw-hand.github.io/stardust/#/skill/multi-index-2)
 
 当然还可以再进行扩展，只是没什么必要，如：随机color，交互设置样式和插槽内容；
 ~~最好可以跟程序窗口一样可以最小化最大化关闭拖曳改变宽高..~~

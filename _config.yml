@@ -3,18 +3,18 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: 巫术师
-subtitle: 双手充满魔力
+title: 螺丝手
+subtitle: 
 description:
 keywords:
-author: Chris Chen
+author: screw-hand
 language: zh-CN
 timezone: Asia/Shanghai
 
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: https://fifth-patient.github.io
+url: https://screw-hand.github.io
 root: /
 permalink: /post/:title/
 permalink_defaults:
@@ -80,7 +80,7 @@ theme: next
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: git@github.com:Fifth-Patient/Fifth-Patient.github.io.git
+  repo: git@github.com:screw-hand/screw-hand.github.io.git
   branch: master
 
 # hexo-symbols-count-time Config

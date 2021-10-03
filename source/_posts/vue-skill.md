@@ -129,7 +129,7 @@ emitParamClick (val, $event) {
 </script>
 ```
 
-示例代码：[dollar-event](https://github.com/Fifth-Patient/vue-skill/tree/master/src/views/skill/dollar-event)
+示例代码：[dollar-event](https://github.com/screw-hand/vue-skill/tree/master/src/views/skill/dollar-event)
 
 总结：
 

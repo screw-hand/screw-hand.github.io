@@ -83,8 +83,8 @@ export default {
 3. 内部更新，触发 `fieldValue` 监听函数
 4. 外部更新，触发 `value`监听函数
 
-- base-input 源码 [传送门](https://github.com/Fifth-Patient/stardust/blob/master/src/views/skill/two-way-binding-base-type/base-input/base-input.vue)
-- 示例 [传送门](https://fifth-patient.github.io/stardust/#/skill/two-way-binding-base-type)
+- base-input 源码 [传送门](https://github.com/screw-hand/stardust/blob/master/src/views/skill/two-way-binding-base-type/base-input/base-input.vue)
+- 示例 [传送门](https://screw-hand.github.io/stardust/#/skill/two-way-binding-base-type)
 
 ### **`:value` 与`v-model`**
 
@@ -174,8 +174,8 @@ export default {
 }
 ```
 
-- base-div 源码 [传送门](https://github.com/Fifth-Patient/stardust/blob/master/src/views/skill/two-way-binding-reference-type/base-div/base-div.vue)
-- 示例 [传送门](https://fifth-patient.github.io/stardust/#/skill/two-way-binding-reference-type)
+- base-div 源码 [传送门](https://github.com/screw-hand/stardust/blob/master/src/views/skill/two-way-binding-reference-type/base-div/base-div.vue)
+- 示例 [传送门](https://screw-hand.github.io/stardust/#/skill/two-way-binding-reference-type)
 
 接下来我们不使用 `prop value` `$emit input`了，我们使用 `prop insert` `$emit output`。
 

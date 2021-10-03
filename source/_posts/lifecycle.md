@@ -355,9 +355,9 @@ vuejs有不同的[构建版本](https://cn.vuejs.org/v2/guide/installation.html#
 
 可以看看三个html文件的源码引用的vue版本。
 
-* [skill-lifecycle-el.html](https://github.com/Fifth-Patient/stardust/blob/master/public/skill-lifecycle-el.html)
-* [skill-lifecycle-template.html](https://github.com/Fifth-Patient/stardust/blob/master/public/skill-lifecycle-template.html)
-* [skill-lifecycle-render.html](https://github.com/Fifth-Patient/stardust/blob/master/public/skill-lifecycle-render.html)
+* [skill-lifecycle-el.html](https://github.com/screw-hand/stardust/blob/master/public/skill-lifecycle-el.html)
+* [skill-lifecycle-template.html](https://github.com/screw-hand/stardust/blob/master/public/skill-lifecycle-template.html)
+* [skill-lifecycle-render.html](https://github.com/screw-hand/stardust/blob/master/public/skill-lifecycle-render.html)
 
 如何选择？
 
@@ -481,7 +481,7 @@ export default {
 
 这个钩子函数是用来捕获错误的，而且只应用于子孙组件，实际开发中并不常用。 [传送门](https://cn.vuejs.org/v2/api/#errorCaptured)
 
-那么整个周期流程已经介绍完毕了，同样的提供了process.vue[源码](https://github.com/Fifth-Patient/stardust/blob/master/src/views/skill/lifecycle/process.vue)。也可以选择重新回头深入了解[mount机制](#mount)了。 
+那么整个周期流程已经介绍完毕了，同样的提供了process.vue[源码](https://github.com/screw-hand/stardust/blob/master/src/views/skill/lifecycle/process.vue)。也可以选择重新回头深入了解[mount机制](#mount)了。 
 
 ## 常用生命周期函数
 
@@ -519,7 +519,7 @@ export default {  
 
 **vue 并不推荐直接操作DOM，不过还是提供了`$ref`作为应急解决方案。**
 
-[useful.vue](https://github.com/Fifth-Patient/stardust/blob/master/src/views/skill/lifecycle/useful.vue)写的比较简单。
+[useful.vue](https://github.com/screw-hand/stardust/blob/master/src/views/skill/lifecycle/useful.vue)写的比较简单。
 
 ## 结语
 

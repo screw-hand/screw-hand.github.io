@@ -15,7 +15,7 @@ tags:
 
 **下载一个文件前，要先确定文件是从哪里生成的，一种是由浏览器生成，另一种是服务端生成文件。**生成文件之后，方可供用户下载到本地设备（计算机/移动设备）的存储空间。
 
-实例代码：[001-file](https://github.com/Fifth-Patient/demo-fragment/tree/main/001-file)
+实例代码：[001-file](https://github.com/screw-hand/demo-fragment/tree/main/001-file)
 
 我们先讨论浏览器的，再来讨论服务端。   
 

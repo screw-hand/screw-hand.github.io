@@ -188,7 +188,7 @@ export default {
 }
 ```
 
-bus.vue [源码](https://github.com/Fifth-Patient/stardust/blob/master/src/views/skill/bus/bus.vue)
+bus.vue [源码](https://github.com/screw-hand/stardust/blob/master/src/views/skill/bus/bus.vue)
 
 然而总线模式还是有带来一定的作用域问题，由于非父子组件的事件统一集中到空Vue实例，这导致了这些被空vue实例监听的自定义事件，在所有的组件是共享的，这种情况下，很容易产生副作用。
 
@@ -311,7 +311,7 @@ export default {
 }
 ```
 
-emitter.vue [源码](https://github.com/Fifth-Patient/stardust/blob/master/src/views/skill/emitter/emitter.vue)
+emitter.vue [源码](https://github.com/screw-hand/stardust/blob/master/src/views/skill/emitter/emitter.vue)
 
 派发/广播机制对比总线模式，限制了事件必须是具体的某个组件的，使得事件的传递更加精确可控。
 
