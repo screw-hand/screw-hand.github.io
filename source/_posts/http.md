@@ -94,7 +94,7 @@ PS：我们说的“网址”、“域名”都属于url的范畴。
 
 ![](/http/image2.jpg)
 
-*[https://screw-hand.github.io/_](https://screw-hand.github.io/_) 404代表了什么？*
+*[https://screw-hand.com/_](https://screw-hand.com/_) 404代表了什么？*
 
 因此最后小节我们有必要学习HTTP的请求方法和状态码。
 
@@ -134,7 +134,7 @@ PS：我们说的“网址”、“域名”都属于url的范畴。
 * 500 Internal Server Error //服务器发生不可预期的错误
 * 503 Server Unavailable  //服务器当前不能处理客户端的请求，一段时间后可能恢复正常
 
-以该url - [https://screw-hand.github.io/_](https://screw-hand.github.io/_) 为例，这个地址是没有任何资源的，故服务器返回了404提示我们Not Found，原因可能是：之前的资源被删除了，所以这里没有资源了亦或者根本就没有资源。这里我们只是单纯网址最后打多了一个`_`而已。
+以该url - [https://screw-hand.com/_](https://screw-hand.com/_) 为例，这个地址是没有任何资源的，故服务器返回了404提示我们Not Found，原因可能是：之前的资源被删除了，所以这里没有资源了亦或者根本就没有资源。这里我们只是单纯网址最后打多了一个`_`而已。
 
 唧唧歪歪了那么多，我们再结合开头的故事小结一下。
 
@@ -313,11 +313,11 @@ SSL握手发生在HTTP传输加密报文前，它们会完成以下工作：
 
 **兼容HTTP**
 
-如果自己的网站从HTTP升级到了HTTPS，那么需要考虑用户可能会按照之前的习惯[http://screw-hand.github.io/](http://screw-hand.github.io/)，而不是输入[https://screw-hand.github.io/](https://screw-hand.github.io/)，这导致用户并不能使用该网站的HTTPS协议。所幸，http和https使用的默认端口(port)不同。http的默认端口是80或者8080，https默认端口是443。我们可以在http的默认端口设置代理使之跳转到https的443。
+如果自己的网站从HTTP升级到了HTTPS，那么需要考虑用户可能会按照之前的习惯[http://screw-hand.com/](http://screw-hand.com/)，而不是输入[https://screw-hand.com/](https://screw-hand.com/)，这导致用户并不能使用该网站的HTTPS协议。所幸，http和https使用的默认端口(port)不同。http的默认端口是80或者8080，https默认端口是443。我们可以在http的默认端口设置代理使之跳转到https的443。
 
-[http://screw-hand.github.io/](http://screw-hand.github.io/) = [http://screw-hand.github.io:80/](http://screw-hand.github.io:80/)
+[http://screw-hand.com/](http://screw-hand.com/) = [http://screw-hand.com:80/](http://screw-hand.com:80/)
 
-[https://screw-hand.github.io/](https://screw-hand.github.io/) = [http://screw-hand.github.io:443/](https://screw-hand.github.io:443/)
+[https://screw-hand.com/](https://screw-hand.com/) = [http://screw-hand.com:443/](https://screw-hand.com:443/)
 
 以上四个超链接都可正确打开此博客主页。
 
