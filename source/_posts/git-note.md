@@ -158,8 +158,8 @@ $ git clone <remote_repo>
 
 # 克隆仓库到指定path（path推荐相对目录）
 $ git clone <remote_repo> -- <path>
-#
-# 克隆仓库指定源
+
+# 克隆仓库指定分支
 $ git clone -b <branch> <remote_repo>
 ```
 
