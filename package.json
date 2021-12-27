@@ -16,7 +16,6 @@
     "version": "3.9.0"
   },
   "dependencies": {
-    "eslint": "4.18.2",
     "hexo": "^3.8.0",
     "hexo-asset-image": "^0.0.3",
     "hexo-deployer-git": "^1.0.0",
