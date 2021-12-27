@@ -5,7 +5,12 @@
   "scripts": {
     "start": "hexo clean && hexo g && hexo s",
     "serve": "hexo s",
-    "deploy": "hexo g -d"
+    "deploy": "hexo g -d",
+    "pm2:start": "pm2 start --name blog --log ./blog.log npm -- run start",
+    "pm2:stop": "pm2 stop blog",
+    "pm2:restart": "pm2 restart blog",
+    "pm2:log": "pm2 logs blog",
+    "pm2:delete": "pm2 detele blog"
   },
   "hexo": {
     "version": "3.9.0"
@@ -27,6 +32,7 @@
     "hexo-server": "^0.3.3",
     "hexo-symbols-count-time": "^0.7.0",
     "lodash": "4.17.21",
+    "pm2": "^5.1.2",
     "set-value": "4.0.1"
   }
 }
