@@ -1,7 +1,9 @@
+---
 title: vim小结
-tags: web
-
-
+# date: 
+categories: vim
+tags:
+---
 
 ## 前言
 

@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "hexo clean && hexo g && hexo s",
+    "start": "hexo clean && hexo g && hexo s --draft",
     "serve": "hexo s",
     "deploy": "hexo g -d",
     "pm2:start": "pm2 start --name blog --log ./blog.log npm -- run start",
