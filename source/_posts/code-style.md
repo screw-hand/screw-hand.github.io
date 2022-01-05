@@ -178,12 +178,12 @@ npm install eslint --save-dev
 # 初始化eslint，根据实际情况选择
 ./node_moudles/.bin/eslint --init
 
-? How would you like to use ESLint? ... 
+? How would you like to use ESLint? ...
   To check syntax only
 > To check syntax and find problems
   To check syntax, find problems, and enforce code style
 
-? What type of modules does your project use? ... 
+? What type of modules does your project use? ...
 > JavaScript modules (import/export)
   CommonJS (require/exports)
   None of these
@@ -199,7 +199,7 @@ npm install eslint --save-dev
 √ Browser √
 √ Node
 
-? What format do you want your config file to be in? ... 
+? What format do you want your config file to be in? ...
   JavaScript
   YAML
 > JSON
@@ -279,6 +279,15 @@ npm install --save-dev eslint-config-prettier
 }
 ```
 
+`.eslintignore`忽略掉一些不需要格式化的目录。
+
+```
+.vscode
+dist
+build
+node_modules
+```
+
 ### 配置文件中的`extends`、`plugins`字段
 
 [Plugins](https://eslint.org/docs/user-guide/configuring/plugins)——针对解析器的相关的，配置解析器以解析不同文件。
@@ -304,7 +313,7 @@ npm install --save-dev eslint-config-prettier
 
 安装[ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)，如果有这个弹窗，选“Allow”即可。
 
-![](https://github.com/Microsoft/vscode-eslint/raw/HEAD/images/2_1_10/eslint-dialog.png)
+![](/code-style/eslint-dialog.png)
 
 ```json
 {
@@ -426,35 +435,6 @@ $ npm run stylelint-check
 No conflicting rules detected in your stylelint configuration!
 ```
 
-现在好了。
-
-1. init
-
-2. config
-
-3. npm script
-
-4. 插件、配置
-
-5. 集成
-
-6. PostCSS
-
-```
-  "stylelint": "^13.13.1",
-  "stylelint-config-css-modules": "^2.2.0",
-  "stylelint-config-rational-order": "^0.1.2",
-  "stylelint-config-standard": "^21.0.0",
-  "stylelint-declaration-block-no-ignored-properties": "^2.3.0",
-  "stylelint-order": "^4.1.0",
-```
-
-- [PostCSS plugin](https://stylelint.io/user-guide/usage/postcss-plugin/)
-
-- [rules](https://stylelint.io/user-guide/configure#rules)
-
-- [plugins](https://stylelint.io/user-guide/configure#plugins)
-
 编辑器的集成同样是安装相应的插件[Stylelint](https://marketplace.visualstudio.com/items?itemName=stylelint.vscode-stylelint)，插件的配置，只需要设置默认格式化方案即可。如果想手动修复错误，可使用编辑器命令`stylelint.executeAutofix`（针对当前文件，一次性修复）。
 
 ```json
@@ -467,6 +447,12 @@ No conflicting rules detected in your stylelint configuration!
   }
 }
 ```
+
+- [PostCSS plugin](https://stylelint.io/user-guide/usage/postcss-plugin/)
+
+- [rules](https://stylelint.io/user-guide/configure#rules)
+
+- [plugins](https://stylelint.io/user-guide/configure#plugins)
 
 ## 自动整理代码
 
@@ -585,4 +571,4 @@ npm run prettier
 
 - 规范是一个很灵活且主观的问题，最重要的是团队的成员都能接受，工具应该是有加成效果，而不是限制所有人的枷锁。
 
-- 工具去保持代码格式的下限，团队的意识形态去突破上限。
+- 工具去保持代码格式的下限，团队的意识形态去突破代码质量的上限。
