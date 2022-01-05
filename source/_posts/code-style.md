@@ -23,15 +23,15 @@ tags:
 4. 下载扩展，设置对应的配置项以集成编辑器
 5. git hooks 配置文件类型
 
-1、2是为了基本的正常使用；
+1、2 是为了基本的正常使用；
 
-3是方便团队成员正确地使用工具；
+3 是方便团队成员正确地使用工具；
 
-4是在编写代码的过程，能即使获得工具的检测反馈，以及在配置文件中拥有一定的代码提示，也能提供相应的编辑器命令以完成快捷操作。
+4 是在编写代码的过程，能即使获得工具的检测反馈，以及在配置文件中拥有一定的代码提示，也能提供相应的编辑器命令以完成快捷操作。
 
-5是为了保证提交的代码格式都是正常的，团队成员的本地代码，随便折腾。这是最后的底线。
+5 是为了保证提交的代码格式都是正常的，团队成员的本地代码，随便折腾。这是最后的底线。
 
-*这是一个基于`umijs`构建的项目，有些工具已经配置好的，检查已有的，补充需要的工具即可。*
+_这是一个基于`umijs`构建的项目，有些工具已经配置好的，检查已有的，补充需要的工具即可。_
 
 ## 准备工作
 
@@ -153,22 +153,21 @@ _让 CI/CD 去执行脚本也行。_
 
 **`prettier`与`eslint`联系与区别。**
 
+|      | eslint                                                                                                          | prettier                                                                         |
+| ---- | --------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| 文件 | 检测 js 语法，针对的是 js(x),ts(x)的文件。（非 js(x),ts(x)的文件，eslint 也是能检测的，只是这完全是愚蠢的做法） | 除了能前者，还支持 html/xml/VUe/Angular、css/less/scss/、Markdown 等一系列文件。 |
+| 定位 | 格式化与代码质量检测                                                                                            | 只格式化代码，**无代码质量检测能力**                                             |
+| 生态 | 很多规则，很多插件、扩展……                                                                                      | 少量的规则，极少的插件和扩展                                                     |
 
-|    | eslint  | prettier  |
-| --- | --- | --- |
-| 文件 | 检测js语法，针对的是js(x),ts(x)的文件。（非js(x),ts(x)的文件，eslint也是能检测的，只是这完全是愚蠢的做法） | 除了能前者，还支持html/xml/VUe/Angular、css/less/scss/、Markdown等一系列文件。 |
-| 定位 | 格式化与代码质量检测 | 只格式化代码，**无代码质量检测能力** |
-| 生态 | 很多规则，很多插件、扩展…… | 少量的规则，极少的插件和扩展 |
+不管怎么看，eslint 除了兼容文件这一块，似乎都完爆 prettier。那么我们为什么还需要 prettier 呢？
 
-不管怎么看，esint除了兼容文件这一块，似乎都完爆prettier。那么我们为什么还需要prettier呢？
-
-事实上，eslint比prettier还早出现，问题在于，eslint关于格式化的规则太多了，开发者都在吵到底应该怎么配置格式化的规则。这在我看来完全是被工具给限制住了。后来就prettier就站出来：你们别吵了，我这边就提供这些关于格式化的配置给你们，你们就这么配置就行了， eslint也继续用。
+事实上，eslint 比 prettier 还早出现，问题在于，eslint 关于格式化的规则太多了，开发者都在吵到底应该怎么配置格式化的规则。这在我看来完全是被工具给限制住了。后来就 prettier 就站出来：你们别吵了，我这边就提供这些关于格式化的配置给你们，你们就这么配置就行了， eslint 也继续用。
 
 现在更多的是流行`prettier`组合`eslint`一起使用，前者负责代码格式化，后者负责质量检测，互不打扰。
 
 [Prettier vs. Linters · Prettier](https://prettier.io/docs/en/comparison.html)
 
-*事实上prettier跟eslint结合使用会有一小部分冲突的，但是这也是能通过安装扩展、配置去解决。*
+_事实上 prettier 跟 eslint 结合使用会有一小部分冲突的，但是这也是能通过安装扩展、配置去解决。_
 
 ### 基本使用
 
@@ -176,7 +175,7 @@ _让 CI/CD 去执行脚本也行。_
 # 安装
 npm install eslint --save-dev
 # 初始化eslint，根据实际情况选择
-./node_moudles/.bin/eslint --init
+./node_modules/.bin/eslint --init
 
 ? How would you like to use ESLint? ...
   To check syntax only
@@ -214,20 +213,17 @@ eslint-plugin-react@latest @typescript-eslint/eslint-plugin@latest @typescript-e
 
 ### 结合 prettier
 
-先别急着使用eslint，使用之前还需要eslint结合prettier——禁用eslint中关于代码格式的规则，让prettier去接管即可——[eslint-config-prettier](https://github.com/prettier/eslint-config-prettier/)
+先别急着使用 eslint，使用之前还需要 eslint 结合 prettier——禁用 eslint 中关于代码格式的规则，让 prettier 去接管即可——[eslint-config-prettier](https://github.com/prettier/eslint-config-prettier/)
 
 ```bash
 npm install --save-dev eslint-config-prettier
 ```
 
-更新eslint配置。
+更新 eslint 配置。
 
 ```json
 {
-  "extends": [
-    "some-other-config-you-use",
-    "prettier"
-  ]
+  "extends": ["some-other-config-you-use", "prettier"]
 }
 ```
 
@@ -329,7 +325,7 @@ node_modules
   "[typescript]": { "editor.defaultFormatter": "dbaeumer.vscode-eslint" },
   "[typescriptreact]": { "editor.defaultFormatter": "dbaeumer.vscode-eslint" },
   // eslint格式化修复错误
-  "eslint.codeActionsOnSave.mode": "all",
+  "eslint.codeActionsOnSave.mode": "all"
   // 保存时自动修复错误， 不建议
   // "editor.codeActionsOnSave": {
   //   "source.fixAll.eslint": true
@@ -342,7 +338,7 @@ node_modules
 
 ## Stylelint
 
-“脚本家族”——`js(x)|ts(x)`有eslint，“样式家族”——`css/less/sass/scss/SugarSS`等就由`stylelint`去保证代码质量，代码格式仍然是由`prettier`去接管。（也可以选择不结合使用prettier）同样是需要安装，配置，然后使用合适的工具。
+“脚本家族”——`js(x)|ts(x)`有 eslint，“样式家族”——`css/less/sass/scss/SugarSS`等就由`stylelint`去保证代码质量，代码格式仍然是由`prettier`去接管。（也可以选择不结合使用 prettier）同样是需要安装，配置，然后使用合适的工具。
 
 ```
 stylelint
@@ -400,7 +396,7 @@ npm i -D stylelint postcss-less stylelint-config-standard stylelint-config-css-m
   "scripts": {
     "stylelint-check": "stylelint-config-prettier-check",
     "stylelint": "stylelint --fix **/*.{css,less}",
-    "stylelint:check": "stylelint **/*.{css,less}",
+    "stylelint:check": "stylelint **/*.{css,less}"
   }
 }
 ```
@@ -440,10 +436,10 @@ No conflicting rules detected in your stylelint configuration!
 ```json
 {
   "[css]": {
-   "editor.defaultFormatter": "stylelint.vscode-stylelint"
+    "editor.defaultFormatter": "stylelint.vscode-stylelint"
   },
   "[less]": {
-   "editor.defaultFormatter": "stylelint.vscode-stylelint"
+    "editor.defaultFormatter": "stylelint.vscode-stylelint"
   }
 }
 ```
@@ -462,21 +458,23 @@ No conflicting rules detected in your stylelint configuration!
 
 在禁用保存时自定格式化的时候，也可以选择手动格式化修复错误。
 
-**强烈推荐使用`Format Document With...`命令。（起码自己知道是这次操作是按照哪种格式化方案运行的。）**
+`Formatting Toggle`需要设置`editor.defaultFormatter`配置，否则不生效！
+
+**手动格式化推荐使用`Format Document With...`命令。（起码自己知道是这次操作是按照哪种格式化方案运行的。）**
 
 ## git hooks
 
-工具经全部安装并配置完成，开发者的编辑器也有了相应的配置。这些只能保证目前还有以后，自己编写的代码规范是没问题的。团队开发中，还有其他成员的代码规范也要保证。这时候就需要使用git hooks才解决了，这是最后的一个把关。（或者团队成员会不配置编辑器、不装相应的扩展。但是只要有git hooks，就一定能保证代码提交的格式没毛病。）
+工具经全部安装并配置完成，开发者的编辑器也有了相应的配置。这些只能保证目前还有以后，自己编写的代码规范是没问题的。团队开发中，还有其他成员的代码规范也要保证。这时候就需要使用 git hooks 才解决了，这是最后的一个把关。（或者团队成员会不配置编辑器、不装相应的扩展。但是只要有 git hooks，就一定能保证代码提交的格式没毛病。）
 
 延续项目已经有的[lint-staged](https://github.com/okonet/lint-staged)、[yorkie](https://github.com/yyx990803/yorkie)，继续配置即可。
 
-[lint-staged](https://github.com/okonet/lint-staged)可以对git暂存的文件进行shell操作，在提交代码前触发。相当于我们自己手动`npm run eslint/pretter/styleint`一次，只不过仅作用于即将要提交的文件。相比手动运行命令行格式化工具，`lint-staged`的速度会更快。
+[lint-staged](https://github.com/okonet/lint-staged)可以对 git 暂存的文件进行 shell 操作，在提交代码前触发。相当于我们自己手动`npm run eslint/pretter/styleint`一次，只不过仅作用于即将要提交的文件。相比手动运行命令行格式化工具，`lint-staged`的速度会更快。
 
 [Husky - Git hooks](https://typicode.github.io/husky/#/)是一个`git hooks`库，会在代码提交的时候触发一些动作。
 
 > You can use it to **lint your commit messages**, **run tests**, **lint code**, etc... when you commit or push. Husky supports
 
-`yorkie`fork了`husky`，使用更加简单。
+`yorkie`fork 了`husky`，使用更加简单。
 
 `package.json` 添加相应的配置。
 
@@ -490,18 +488,13 @@ No conflicting rules detected in your stylelint configuration!
       "eslint --fix",
       "prettier --parser=typescript --write"
     ],
-    "*.{css,*.less}": [
-      "stylelint --fix",
-      "prettier --write"
-    ],
-    "*.{md,json}": [
-      "prettier --write"
-    ]
-  },
+    "*.{css,*.less}": ["stylelint --fix", "prettier --write"],
+    "*.{md,json}": ["prettier --write"]
+  }
 }
 ```
 
-使用命令行提交代码, `running pre-commit hook: lint-staged`表示运行了git hooks，使用了`lint-staged，如此代码提交的时候，会自动格式化。
+使用命令行提交代码, `running pre-commit hook: lint-staged`表示运行了 git hooks，使用了`lint-staged，如此代码提交的时候，会自动格式化。
 
 ```bash
 $ git commit -m 1
@@ -529,23 +522,23 @@ $ git commit -m 1
  create mode 100644 src/a.jsx
 ```
 
-**lint和prettier的执行顺序？**
+**lint 和 prettier 的执行顺序？**
 
 个人理解应处理完错误后，再来整理代码，所以这里是先`lint`后`prettier`。
 
 ## 行尾结束符问题（LF/CRLF）
 
-结论，使用LF，配置好git还有prettier的规则就行。
+结论，使用 LF，配置好 git 还有 prettier 的规则就行。
 
 添加`* text=auto eol=lf`到`gitattributes`文件。
 
-prettier设置`endOfLine`规则为`"lf"`或者干脆不设置。
+prettier 设置`endOfLine`规则为`"lf"`或者干脆不设置。
 
-v2.0.0起默认值从`auto`更改为的`lf`。
+v2.0.0 起默认值从`auto`更改为的`lf`。
 
 执行`prettier --write`。
 
-提交代码，然后让团队的所有(windows)成员删除代码仓库，重新clone，以保证所有的文件都以正常更新为`LF`。
+提交代码，然后让团队的所有(windows)成员删除代码仓库，重新 clone，以保证所有的文件都以正常更新为`LF`。
 
 [Options · Prettier](https://prettier.io/docs/en/options.html#end-of-line)
 
@@ -555,20 +548,22 @@ v2.0.0起默认值从`auto`更改为的`lf`。
 
 ```bash
 npm run lint
-npm run styleint
+npm run stylelint
 npm run prettier
 ```
 
-如果有格式问题，处理完再提交。通知其他团队成员拉取最新代码。（重新clone也行，“行尾结束符问题”相关有讲过。）
+如果有格式问题，处理完再提交。通知其他团队成员拉取最新代码。（重新 clone 也行，“行尾结束符问题”相关有讲过。）
 
 [示例源码](https://github.com/screw-hand/demo-fragment/tree/dev/004-code-style)
 
 ## 感悟
 
-- 每个项目的lint工具跟编辑的插件都不太一样，建议是使用VS Code[Workspaces](https://code.visualstudio.com/docs/editor/workspaces)特性，分别配置项目的设置、还有插件的使用状态，以提升开发体验。
+- 每个项目的 lint 工具跟编辑的插件都不太一样，建议是使用 VS Code[Workspaces](https://code.visualstudio.com/docs/editor/workspaces)特性，分别配置项目的设置、还有插件的使用状态，以提升开发体验。
 
-- 规范是为了统一风格，是为了在追溯日志（git diff)、code review的时候，能少一点关系格式的问题。
+- 规范是为了统一风格，是为了在追溯日志（git diff)、code review 的时候，能少一点关系格式的问题。
 
 - 规范是一个很灵活且主观的问题，最重要的是团队的成员都能接受，工具应该是有加成效果，而不是限制所有人的枷锁。
+
+- 想要获得比较省事的开发体验，前提还是要折腾编辑器和插件以及合理设置好他们的配置项。
 
 - 工具去保持代码格式的下限，团队的意识形态去突破代码质量的上限。
