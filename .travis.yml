@@ -1,18 +1,42 @@
 sudo: false
 language: node_js
 node_js:
-  - 14 # use nodejs v14 LTS
-cache: npm
+  - stable
+cache:
+  apt: true
+  directories:
+    - node_modules
 branches:
   only:
-    - hexo # build hexo branch only
+    - hexo
+env:
+  global:
+    - GIT_USER: screw-hand
+    - GIT_EMAIL: screwhand0@gmail.com
+    - GH_PAGES_REPO: github.com/screw-hand/screw-hand.github.io.git
+
+before_install:
+  - export TZ='Asia/Shanghai'
+  - npm install hexo -g
+
+install:
+  - npm install
+
 script:
-  - hexo generate # generate static files
-deploy:
-  provider: pages
-  skip-cleanup: true
-  github-token: $GH_TOKEN
-  keep-history: true
-  on:
-    branch: hexo
-  local-dir: public
+  - hexo clean
+  - hexo g
+
+after_script:
+  - git config --global user.name ${GIT_USER}
+  - git config --global user.email ${GIT_EMAIl}
+  - cd ./public
+  - git init
+  - git add .
+  - git commit -m "Travis CI Auto Builder"
+  - git push --force --quiet "https://${GIT_USER}:${GH_TOKEN}@${GH_PAGES_REPO}" master:master
+
+notifications:
+  email:
+    - ${GIT_EMAIl}
+  on_success: change
+  on_failure: always
