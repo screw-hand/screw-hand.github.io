@@ -554,7 +554,7 @@ npm run prettier
 
 如果有格式问题，处理完再提交。通知其他团队成员拉取最新代码。（重新 clone 也行，“行尾结束符问题”相关有讲过。）
 
-[示例源码](https://github.com/screw-hand/demo-fragment/tree/dev/004-code-style)
+[示例源码](https://github.com/screw-hand/demo-fragment/tree/main/004-code-style)
 
 ## 感悟
 

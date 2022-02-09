@@ -12,7 +12,7 @@ tags:
 - 基本语法
   1. 基本类型
   2. export、类型推断、类型定义 √
-  3. 类型层级 void unkown any never null、类型检测 
+  3. 类型层级 void unkown any never null、类型检测
   4. 构造函数
   - type 联合类型 具体值
 - 进阶
@@ -57,7 +57,7 @@ https://www.typescriptlang.org/download
 我们可以用node的包管理工具（npm、yarn、pnpm）安装ts。
 
 
-示例源码：[003-ts-fast](https://github.com/screw-hand/demo-fragment/tree/dev/003-ts-fast)
+示例源码：[003-ts-fast](https://github.com/screw-hand/demo-fragment/tree/main/003-ts-fast)
 
 
 ### 准备
@@ -141,7 +141,7 @@ Version 4.5.4
 let n = null
 let udf = undefined
 let num = NaN
-let str = ''  
+let str = ''
 let bool = true
 let obj = {}
 let arr = []
@@ -171,7 +171,7 @@ console.log({
 
 ```bash
 Chris@DARK-FLAME /d/source_code/_github/demo-fragment/003-ts-fast (dev)
-λ ./node_modules/.bin/tsc 1-base.ts 
+λ ./node_modules/.bin/tsc 1-base.ts
 Chris@DARK-FLAME /d/source_code/_github/demo-fragment/003-ts-fast (dev)
 λ node 1-base.ts
 { n: null,
