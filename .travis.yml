@@ -15,12 +15,18 @@ env:
     - GIT_EMAIL: screwhand0@gmail.com
     - GH_PAGES_REPO: github.com/screw-hand/screw-hand.github.io.git
 
+addons:
+  ssh_known_hosts:
+  - ${ALI_IP}
+
 before_install:
+  - openssl aes-256-cbc -K $encrypted_e6cc0fb2b8da_key -iv $encrypted_e6cc0fb2b8da_iv -in travis.enc -out ~/.ssh/id_rsa -d
+  - chmod 600 ~/.ssh/id_rsachmod 600
   - export TZ='Asia/Shanghai'
-  - npm install hexo -g
+  - npm install hexo-cli -g
 
 install:
-  - npm install
+  - yarn
 
 script:
   - hexo clean
@@ -34,6 +40,7 @@ after_script:
   - git add .
   - git commit -m "Travis CI Auto Builder"
   - git push --force --quiet "https://${GIT_USER}:${GH_TOKEN}@${GH_PAGES_REPO}" master:master
+  - ssh root@${ALI_IP} "cd ~/screw-hand && ./update.sh && ./start.sh"
 
 notifications:
   email:
