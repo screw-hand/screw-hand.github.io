@@ -188,7 +188,7 @@ Chris@DARK-FLAME /d/source_code/_github/demo-fragment/003-ts-fast (dev)
 
 用`./node_modules/.bin/tsc`编译`1-base.ts`，结果输出`1-base.js`使用node运行此代码。
 
-![1-base.ts](/ts-fast/1-base.ts.png)
+![1-base.ts](./ts-fast/1-base.ts.png)
 
 对比：压缩空行（line: 2）， `let`编译成了`var`。*`let`编译成`var`是因为`tsc`编译器默认使用的是低版本的`javascript`，之后会设置一下。*
 
@@ -215,7 +215,7 @@ let/var/const [function name] = ([arguments]: [date type], ...[arguments]: [date
 
 事实上，在声明变量的时候，typescript会根据变量值的初始值推断变量的数据类型，故此ts中所有的变量/函数/类，都是有声明数据类型的。
 
-![类型推断](/ts-fast/1-base.ts-hover.png)
+![类型推断](./ts-fast/1-base.ts-hover.png)
 
 事实上`1-base.ts`，就已经有了类型检测。**当开发者没有显性指定数据类型，ts会根据变量初始值的数据类型推断此变量的数据类型， 这也称之为类型推断。**
 
@@ -246,7 +246,7 @@ let arrowFn = (a: any): any => typeof a
 
 *如果在这里发生了变量重名，回去`1-base.ts` 追加`export {}`。ts默认是全局脚本，没有模块化。当使用了`export`语法后，此脚本才会成为一个模块。建议编写ts代码，就算不导出任何东西，也追加`export {}`，以免出现不必要的错误。*
 
-![2-type.png](/ts-fast/2-type.png)
+![2-type.png](./ts-fast/2-type.png)
 
 明知故犯： num、str、bool、arr、故意赋值错误，**虽然编译错误，但是也会输出`2-type.js`**。
 
@@ -261,9 +261,9 @@ ts除了提供js的六大基本类型（null undefined number string boolean obj
 
 
 
-![any_unknown](/ts-fast/any_unknown.png)
+![any_unknown](./ts-fast/any_unknown.png)
 
-![viod_never](/ts-fast/viod_never.png)
+![viod_never](./ts-fast/viod_never.png)
 
 `null`、`undefined` 默认可以互相赋值，不严格区分，除非启动了--strictNullChecks选项，
 

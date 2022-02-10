@@ -60,7 +60,7 @@ export default {
 
 可能比官网入门实例还要简单，唯一有疑问的可能也就是 `import` 一个 `json` 文件进来， 这在`es6 Modules`中是允许的，相关资料请自行查阅。
 
-![pre-$data](/control-pane/pre-$data.jpg)
+![pre-$data](./control-pane/pre-$data.jpg)
 
 ok，先看html部分，再看css。
 

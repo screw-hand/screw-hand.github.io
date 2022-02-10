@@ -102,7 +102,7 @@ mutation：更改store状态，必须是同步操作
 getter：从state派生状态，返回值会根据依赖缓存
 modules：将store分割成模块
 
-![vuex-Flux](/component-communication/vuex-Flux.png)
+![vuex-Flux](./component-communication/vuex-Flux.png)
 
 简单分析下这张图：
 
@@ -144,7 +144,7 @@ Vue.prototype.bus = new Vue()
 _备注：如果是大规模使用，可以在`main.js`直接定义原型bus属性。局部使用可以包装成一个js模块，需要时引入即可。_
 
 再看实例事件
-- [vm.$on](https://cn.vuejs.org/v2/api/#vm-on) 
+- [vm.$on](https://cn.vuejs.org/v2/api/#vm-on)
 - [vm.$emit](https://cn.vuejs.org/v2/api/#vm-emit)
 
 我们可以知晓：$emit 会触发 $on 就可以了。

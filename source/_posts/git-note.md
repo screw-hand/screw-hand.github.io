@@ -45,7 +45,7 @@ $ ssh-keygen -t rsa -C "youremail@example.com"
 
 添加SSH密钥 [传送门](https://github.com/settings/keys/new)
 
-![github-new-ssh.png](/git-note/github-new-ssh.png)
+![github-new-ssh.png](./git-note/github-new-ssh.png)
 
 3. 测试配置
 
@@ -365,7 +365,7 @@ git config --global alias.detail-log "log --color --graph --pretty=format:'%Cred
 
 ## 速查表
 
-![git-guide.jpg](/git-note/git-guide.jpg)
+![git-guide.jpg](./git-note/git-guide.jpg)
 
 <!--
 - [Git log 高级用法](https://www.cnblogs.com/zhangjianbin/p/7778625.html)

@@ -129,7 +129,7 @@ _让 CI/CD 去执行脚本也行。_
 
 安装 vscode 的 prettier 插件，[Prettier - Code formatter](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)，并检查。
 
-![](/code-style/prettier.png)
+![](./code-style/prettier.png)
 
 格式化代码：使用**编辑器命令（F1 / Ctrl + Shift + p)**，输入`Format Document`或者使用快捷键(Alt + Shift + F)。安装完插件后第一次格式化，编辑器会因为有**多种格式化方案**（编辑器内置、prettier 共两种）而让用户配置默认的方案。需要选择`prettier`。代码正确格式化时，会在上图的`OUTPUT` > `Prettier` 打印日志。
 
@@ -309,7 +309,7 @@ node_modules
 
 安装[ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)，如果有这个弹窗，选“Allow”即可。
 
-![](/code-style/eslint-dialog.png)
+![](./code-style/eslint-dialog.png)
 
 ```json
 {

@@ -40,7 +40,7 @@ console.log(obj_1.attr); // myarr
 
 <!-- more -->
 
-![空对象属性的prototype](/prototype/obj_attr.jpg)
+![空对象属性的prototype](./prototype/obj_attr.jpg)
 <p align="center">*firefox控制台中空对象仍然有`prototype`属性*</p>
 
   误区：每个浏览器的控制台输出都不太一样，Chrome和Edge并不显示`prototype`属性，因为我们并没有给obj_1的`prototype`属性定义任何属性和方法。
@@ -54,7 +54,7 @@ console.log(obj_1.attr); // myarr
 我们还需要另一个对象：`__proto__`，该属性能指向构造函数的原形属性`constructor`。
 一些老版本浏览器不识别，有些无法识别其内部信息，但不影响程序的正常运行。
 
-![obj_1的__proto__](/prototype/obj_1__proto__.jpg)
+![obj_1的__proto__](./prototype/obj_1__proto__.jpg)
 <p align="center">*`obj_1`的`__proto__`对象, 该属性下又有`__proto__`和`constructor`属性*</p>
 
 ```js
@@ -110,7 +110,7 @@ console.log(me.showMsg()); // Hi, my name is Chris Chen, I am a front-end engine
 
 我们再来一张图说明其关系
 
-![proto_egg](/prototype/proto_egg.jpg)
+![proto_egg](./prototype/proto_egg.jpg)
 *这个.. 一盘煎蛋？？*
 
 好伐，煎蛋就煎蛋，来，我们继续。
@@ -120,7 +120,7 @@ console.log(me.showMsg()); // Hi, my name is Chris Chen, I am a front-end engine
 
 说到底属性搜索机制就是原型链的一种具体体现，我们再上一张图。
 
-![proto_link](/prototype/proto_link.jpg)
+![proto_link](./prototype/proto_link.jpg)
 
 所以原型链的关键字是**继承**和**原型对象**！！
 
@@ -421,7 +421,7 @@ var proto = new PrototypeMdoe()
 // 打开constructor的注释对比运行结果
 console.log(
   proto.constructor === PrototypeMdoe,
-  proto.constructor === Object 
+  proto.constructor === Object
 )
 ```
 
