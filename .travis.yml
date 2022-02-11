@@ -17,7 +17,7 @@ env:
 
 addons:
   ssh_known_hosts:
-    - "${ALI_IP}"
+    - $ALI_IP
 
 before_install:
   - openssl aes-256-cbc -K $encrypted_e6cc0fb2b8da_key -iv $encrypted_e6cc0fb2b8da_iv -in travis.enc -out ~/.ssh/id_rsa -d
@@ -47,6 +47,6 @@ after_script:
 notifications:
   email:
     recipients:
-      - "${GIT_EMAIl}"
+      - $GIT_EMAIL
   on_success: change
   on_failure: always
