@@ -48,5 +48,5 @@ notifications:
   email:
     recipients:
       - $GIT_EMAIL
-  on_success: change
+  on_success: always
   on_failure: always
