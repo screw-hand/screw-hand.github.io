@@ -2,6 +2,8 @@
 
 > 一个以`hexo`框架搭建的个人博客
 
+[![Build Status](https://app.travis-ci.com/screw-hand/screw-hand.github.io.svg?branch=hexo)](https://app.travis-ci.com/screw-hand/screw-hand.github.io)
+
 ## hexo目录
 ```
 .
