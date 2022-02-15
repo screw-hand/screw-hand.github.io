@@ -40,7 +40,7 @@ after_script:
   - git commit -m "Travis CI Auto Builder"
   - git push --force --quiet "https://${GIT_USER}:${GH_TOKEN}@${GH_PAGES_REPO}" master:master
   - ssh root@${ALI_IP} "cd ~/screw-hand && rm -r ./old-blog/ && mv ./blog/ ./old-blog/ && mkdir blog/"
-  - scp -r ./* root@${ALI_IP}:/root/screw-hand/blog/
+  - scp -r -v ./* root@${ALI_IP}:/root/screw-hand/blog/
   - ssh root@${ALI_IP} "cd ~/screw-hand && ./start.sh"
 
 notifications:
