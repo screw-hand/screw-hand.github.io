@@ -1,8 +1,8 @@
 ---
 title: 代码规范整改的项目实践
 date: 2021-12-27 17:10:18
-categories:
-tags:
+categories: 工程化
+tags: 规范
 ---
 
 ## 背景
