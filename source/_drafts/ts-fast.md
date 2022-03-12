@@ -26,7 +26,7 @@ tags:
 - 项目工程
   - js版本问Z题
   - 类型定义文件
-  - delcare能在d.ts文件之外使用吗？
+  - declare能在d.ts文件之外使用吗？
   - typescript/lib
   - @types
   - tsconfig
