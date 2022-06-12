@@ -190,7 +190,7 @@ Chris@DARK-FLAME /d/source_code/_github/demo-fragment/003-ts-fast (dev)
 
 ![1-base.ts](./ts-fast/1-base.ts.png)
 
-对比：压缩空行（line: 2）， `let`编译成了`var`。*`let`编译成`var`是因为`tsc`编译器默认使用的是低版本的`javascript`，之后会设置一下。*
+对比：压缩空行（line: 2）， `let`编译成了`var`。`let`编译成`var`是因为`tsc`编译器默认使用的是低版本的`javascript`，之后会设置一下。
 
 
 ### 类型定义
@@ -248,7 +248,7 @@ let arrowFn = (a: any): any => typeof a
 
 ![2-type.png](./ts-fast/2-type.png)
 
-明知故犯： num、str、bool、arr、故意赋值错误，**虽然编译错误，但是也会输出`2-type.js`**。
+明知故犯： num、str、bool、arr、故意赋值错误，**虽然编译错误，但是也会输出`2-type.js`。**
 
 ### 数据类型
 
@@ -383,6 +383,39 @@ oneToThre = 3
 描述对象，最灵活的特性之一。
 
 跟类型别名的区别。
+
+### 泛型
+
+泛型可以理解为——**动态的函数实参类型**，类似于声明一个变量。定义函数的时候，使用变量对实参的数据类型进行占位，在调用的函数的时候，传入实际的数据类型，赋值给此变量，此时变量才拥有真正的数据类型。
+
+使用场景：在使用某个函数的时候，函数实参的数据类型是没办法在定义函数的时候确定的，只有在使用函数的时候，才能确定函数实参的数据。
+
+泛型的定义语法为尖括号内使用大写母————`<T>`，然后放在函数名后面，这样我们就声明了一个“动态的数据类型变量”，这个变量T可以在此函数区域内任意使用。
+
+```ts
+function fn<T>(arg: T): T {
+  return arg
+}
+```
+
+***fn函数使用了泛型T，希望形参arg的数据类型也是T，以及fn返回的结果数据类型也是T。**
+
+使用泛型是在调用函数的时候，在尖括号内给泛型赋予真正的数据类型即可。
+
+```ts
+fn<number>(1)
+fn<string>('')
+fn<null>(null)
+fn<undefined>(undefined)
+```
+
+```ts
+fn<boolean>(NaN)
+/**
+ * Argument of type 'number' is not assignable to parameter of type 'boolean'.ts(2345)
+ */
+```
+
 
 ## 项目工程
 
