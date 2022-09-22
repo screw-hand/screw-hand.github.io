@@ -286,6 +286,9 @@ $ git push origin master
 
 # 拉取远端分支到本地新分支
 $ git checkout -b <new_branch> <remote>/<branch>
+
+# 删除远端分支
+$ git push <remote> -d <branch>
 ```
 
 ### 配置
