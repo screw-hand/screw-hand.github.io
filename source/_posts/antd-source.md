@@ -174,7 +174,7 @@ _`高级配置` 暂时用不上，跳过。_
 clone下来后，当前的分支(branch)是默认分支，建议是把HEAD切换到最新的release那份代码，这里的最新release是[4.21.7](https://github.com/ant-design/ant-design/releases/tag/4.21.7)。也是此章节蓝框点进去的链接。
 **如果是业务项目出问题了，对项目依赖库进行问题排查，建议切换到项目实际使用的版本。**
 
-![](./antd-source/github.com_ant-design_ant-design_release 2.png)
+![](./antd-source/github.com_ant-design_ant-design_release_2.png)
 
 - 绿：这次的发布是从master发布的
 - 红：此次发布的代码标签
@@ -486,15 +486,15 @@ components下有个我们熟悉的`index.tsx`，[components/index.tsx](https://g
 可以得知这个文件时组件的入口文件；
 我们用最简单的`Button`示例， [http://localhost:8001/components/button-cn/](http://localhost:8001/components/button-cn/)
 这个页面有“按钮用于开始一个即时操作。”的文本，用vscode全局搜索，得知这段话来源于——
-[components/button/index.zh-CN.md](https://github.com/ant-design/ant-design/blob/10b153f65d/components/button/index.zh-CN.md ，试着修改这段文本，在本地的官网项目查看效果。
+[components/button/index.zh-CN.md](https://github.com/ant-design/ant-design/blob/10b153f65d/components/button/index.zh-CN.md) ，试着修改这段文本，在本地的官网项目查看效果。
 
-![](./antd-source/github.com_ant-design_ant-design_button 1.png)
+![](./antd-source/github.com_ant-design_ant-design_button_1.png)
 
 然而页面下面的“代码演示”的源码内容并没有包含在此文件里；
 通过bisheng的主题配置去找“生成规则”太浪费时间了（还是得注意我们的关注点在antd，其他都不关注）；
 用VScode搜索`Primary Button`字段，尝试修改[components/button/demo/basic.md](https://github.com/ant-design/ant-design/blob/10b153f65d/components/button/demo/basic.md)
 
-![](./antd-source/Pasted image 20220720174853.png)
+![](./antd-source/ant.design_button.png)
 
 小结：
 1. [components/index.tsx](https://github.com/ant-design/ant-design/blob/10b153f65d/acomponents/index.tsx) 组件的总入口文件
