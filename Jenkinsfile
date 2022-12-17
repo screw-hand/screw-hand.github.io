@@ -28,6 +28,7 @@ pipeline {
 
             git config --global user.email "screwhand0@gmail.com"
             git config --global user.name "jenkins-boot"
+            git config --local user.timezone Asia/Shanghai
 
             yarn deploy;
             
