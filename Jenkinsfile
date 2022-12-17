@@ -28,7 +28,6 @@ pipeline {
 
             git config --global user.email "screwhand0@gmail.com"
             git config --global user.name "jenkins-boot"
-            git config --local user.timezone Asia/Shanghai
 
             yarn deploy;
             
@@ -63,7 +62,6 @@ pipeline {
     always {
       emailext(
         body: '${FILE,path="email.html"}',
-        recipientProviders: [buildUser()],
         subject: '${BUILD_STATUS}:${ENV, var="JOB_NAME"}-第${BUILD_NUMBER}次构建日志',
         to: 'wuwu_chen0@163.com'
       )
