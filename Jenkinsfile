@@ -25,8 +25,9 @@ pipeline {
             eval `ssh-agent -s`
             ssh-add /var/jenkins_home/.ssh/jenkins_docker_ssh;
             ssh-add /var/jenkins_home/.ssh/screwhand;
+
             git config --global user.email "screwhand0@gmail.com"
-            git config --global user.name "screw-hand"
+            git config --global user.name "jenkins-boot"
 
             yarn deploy;
             
@@ -55,6 +56,9 @@ pipeline {
           rm -rf public;
           ls -last;''', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '/root/screw-hand', remoteDirectorySDF: false, removePrefix: '', sourceFiles: 'blog.tar.gz')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
       }
+    }
+    stage('email') {
+
     }
   }
 }
