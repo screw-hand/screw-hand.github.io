@@ -58,7 +58,14 @@ pipeline {
       }
     }
     stage('email') {
-
+      post {
+        alawys {
+          emailext 
+            body: '${FILE,path="email.html"}',
+            recipientProviders: [buildUser()],
+            subject: '${BUILD_STATUS}:${ENV, var="JOB_NAME"}-第${BUILD_NUMBER}次构建日志'
+        }
+      }
     }
   }
 }
