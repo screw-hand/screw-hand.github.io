@@ -57,14 +57,14 @@ pipeline {
           ls -last;''', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '/root/screw-hand', remoteDirectorySDF: false, removePrefix: '', sourceFiles: 'blog.tar.gz')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
       }
     }
-    post {
-      alawys {
-        emailext(
-          body: '${FILE,path="email.html"}',
-          recipientProviders: [buildUser()],
-          subject: '${BUILD_STATUS}:${ENV, var="JOB_NAME"}-第${BUILD_NUMBER}次构建日志'
-        )
-      }
+  }
+  post {
+    alawys {
+      emailext(
+        body: '${FILE,path="email.html"}',
+        recipientProviders: [buildUser()],
+        subject: '${BUILD_STATUS}:${ENV, var="JOB_NAME"}-第${BUILD_NUMBER}次构建日志'
+      )
     }
   }
 }
