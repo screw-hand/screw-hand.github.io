@@ -63,7 +63,8 @@ pipeline {
       emailext(
         body: '${FILE,path="email.html"}',
         recipientProviders: [buildUser()],
-        subject: '${BUILD_STATUS}:${ENV, var="JOB_NAME"}-第${BUILD_NUMBER}次构建日志'
+        subject: '${BUILD_STATUS}:${ENV, var="JOB_NAME"}-第${BUILD_NUMBER}次构建日志',
+        to: 'wuwu_chen0@163.com'
       )
     }
   }
