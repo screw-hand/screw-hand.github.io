@@ -59,7 +59,7 @@ pipeline {
     }
   }
   post {
-    alawys {
+    always {
       emailext(
         body: '${FILE,path="email.html"}',
         recipientProviders: [buildUser()],
