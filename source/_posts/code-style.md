@@ -530,7 +530,7 @@ $ git commit -m 1
 
 结论，使用 LF，配置好 git 还有 prettier 的规则就行。
 
-添加`* text=auto eol=lf`到`gitattributes`文件。
+添加`* text=auto eol=lf`到`.gitattributes`文件。
 
 prettier 设置`endOfLine`规则为`"lf"`或者干脆不设置。
 
@@ -555,6 +555,10 @@ npm run prettier
 如果有格式问题，处理完再提交。通知其他团队成员拉取最新代码。（重新 clone 也行，“行尾结束符问题”相关有讲过。）
 
 [示例源码](https://github.com/screw-hand/demo-fragment/tree/main/004-code-style)
+
+## 未提及的
+
+- [ ] 提交规范
 
 ## 感悟
 
