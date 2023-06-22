@@ -269,10 +269,13 @@ https://github-profile-trophy.screw-hand.vercel.app/?username=screw-hand&rank=SE
 ## 在fork之前clone上游仓库并commit了，怎么提pr
 
 可能大多数人都是有了pr的想法，就第一时间fork仓库。我更喜欢clone上游仓库到本地。
-为什么要先clone上游仓库到本地呢？因为不知道能不能改得动代码，我更喜欢先看看项目的代码。
-如果先fork了，改不动代码了，这时候除了删本地的文件夹，还需要在删掉github的fork仓库。
+为什么要先clone上游仓库到本地呢？有时候我们只是想随意看看其他人的代码，跑一跑。
+然后发现一些地方可以新增功能，修复bug，我们本来没有提pr的意思，现在代码也改了。
+也不想再去fork之后，再cc cv代码到新的fork repo。
 当然github也可以在线浏览代码，clone到本地的话，除了看代码，也可以直接把项目先跑起来，改着玩玩。
 这时候也可以直接修改代码然后commit，只是因为远端的仓库我们没有权限无法push。
+
+还有一种情况是： 如果一开始就是冲着提pr，先fork了，改不动代码了，这时候除了删本地的文件夹，还需要在删掉github的fork仓库。
 
 比如我们想给[haozi/New-Bing-Anywhere](https://github.com/haozi/New-Bing-Anywhere)提一个pr。
 
@@ -284,8 +287,6 @@ cd New-Bing-Anywhere
 # 2. 浏览代码 / 启动项目 / 更改代码 / commit
 touch pr-file
 git add .
-# 其实这里并不建议先提交代码，因为这里的提交后续还是要撤回的
-# 如果担心自己丢代码或者误改动，可以先提交，后面再撤回
 git commit -m "feat: pr-file"
 # 因为没有仓库的权限，无法直接push到haozi/New-Bing-Anywhere
 # fatal: Authentication failed for 'https://github.com/haozi/New-Bing-Anywhere.git/'
@@ -326,18 +327,16 @@ git fetch --all
 # 1. 检出新分支
 git checkout -b pr-example
 
-# 2. 如果在管理远端之前做了commit操作
-# 此时需要就需要reset了
-git reset HEAD~1
-
-# 3. 重新commit
-git commit -m "feat: pr-file (recommit)"
-
-# 4. 推送到指定分支
+# 2. 推送到指定分支
 git push --set-upstream origin pr-example
+
+# 3. 删除之前commit的main分支
+git branch -D main
 ```
 
-[pr-example](https://github.com/screw-hand/New-Bing-Anywhere/tree/pr-example)
+[pr-example](https://github.com/screw-hand/New-Bing-Anywhere/commits/pr-example)
+
+这一顿操作下来，会比第一时间fork更麻烦，可以当做没fork之后的补救措施吧。
 
 ## 结尾
 
