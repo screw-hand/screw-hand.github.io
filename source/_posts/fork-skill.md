@@ -324,11 +324,20 @@ git fetch --all
 
 ```shell
 # 1. 检出新分支
-git checkout pr-example
+git checkout -b pr-example
 
-# 2. 如果在远端分支
+# 2. 如果在管理远端之前做了commit操作
+# 此时需要就需要reset了
+git reset HEAD~1
+
+# 3. 重新commit
+git commit -m "feat: pr-file (recommit)"
+
+# 4. 推送到指定分支
+git push --set-upstream origin pr-example
 ```
 
+[pr-example](https://github.com/screw-hand/New-Bing-Anywhere/tree/pr-example)
 
 ## 结尾
 
