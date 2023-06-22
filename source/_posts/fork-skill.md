@@ -17,7 +17,7 @@ tags: github
 
 - 如何将fork类型仓库转成自己的仓库
 - 如何同步多个上游仓库
-- 在fork之前clone, commit了，怎么提pr
+- 在fork之前clone上游仓库并commit了，怎么提pr
 
 <!-- more -->
 
@@ -265,6 +265,70 @@ https://github-profile-trophy.screw-hand.vercel.app/?username=screw-hand&rank=-U
 # 只展示所有秘密奖杯，并且全部无条件获得
 https://github-profile-trophy.screw-hand.vercel.app/?username=screw-hand&rank=SECRET&wantAll=true
 ```
+
+## 在fork之前clone上游仓库并commit了，怎么提pr
+
+可能大多数人都是有了pr的想法，就第一时间fork仓库。我更喜欢clone上游仓库到本地。
+为什么要先clone上游仓库到本地呢？因为不知道能不能改得动代码，我更喜欢先看看项目的代码。
+如果先fork了，改不动代码了，这时候除了删本地的文件夹，还需要在删掉github的fork仓库。
+当然github也可以在线浏览代码，clone到本地的话，除了看代码，也可以直接把项目先跑起来，改着玩玩。
+这时候也可以直接修改代码然后commit，只是因为远端的仓库我们没有权限无法push。
+
+比如我们想给[haozi/New-Bing-Anywhere](https://github.com/haozi/New-Bing-Anywhere)提一个pr。
+
+```shell
+# 1. clone上游仓库到本地
+git clone https://github.com/haozi/New-Bing-Anywhere.git
+cd New-Bing-Anywhere
+
+# 2. 浏览代码 / 启动项目 / 更改代码 / commit
+touch pr-file
+git add .
+# 其实这里并不建议先提交代码，因为这里的提交后续还是要撤回的
+# 如果担心自己丢代码或者误改动，可以先提交，后面再撤回
+git commit -m "feat: pr-file"
+# 因为没有仓库的权限，无法直接push到haozi/New-Bing-Anywhere
+# fatal: Authentication failed for 'https://github.com/haozi/New-Bing-Anywhere.git/'
+```
+
+这个时候，我们再来fork也不迟，所以我们先到github执行fork操作，得到[screw-hand/New-Bing-Anywhere](https://github.com/screw-hand/New-Bing-Anywhere)
+
+```shell
+# 1. 查看远端
+git remote -v
+# origin	https://github.com/haozi/New-Bing-Anywhere.git (fetch)
+# origin	https://github.com/haozi/New-Bing-Anywhere.git (push)
+
+# 2. 将origin换成upstream
+git remote rename origin upstream
+
+# 3. 添加fork后的remote为origin
+git remote add origin https://github.com/screw-hand/New-Bing-Anywhere.git
+
+# 4.检查远端
+git remote -v
+# origin	https://github.com/screw-hand/New-Bing-Anywhere.git (fetch)
+# origin	https://github.com/screw-hand/New-Bing-Anywhere.git (push)
+# upstream	https://github.com/haozi/New-Bing-Anywhere.git (fetch)
+# upstream	https://github.com/haozi/New-Bing-Anywhere.git (push)
+
+# 5. 获取远端分支
+git fetch --all
+```
+
+接下来pr的常规流程：
+- 切分支
+- commit
+- push
+- pr
+
+```shell
+# 1. 检出新分支
+git checkout pr-example
+
+# 2. 如果在远端分支
+```
+
 
 ## 结尾
 
