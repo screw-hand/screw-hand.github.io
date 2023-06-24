@@ -87,27 +87,29 @@ https://github.com/lucthienphong1120/github-trophies.git  # super-upstream
 以下的命令是同步一个上游仓库，如果你对命令行多个远端操作比较熟悉，可以快速预览甚至跳过。
 
 ```shell
-# 我们已经有一个fork仓库，clone到本地
+# 1. 我们已经有一个fork仓库，clone到本地
 git clone https://github.com/screw-hand/github-profile-trophy.git
 cd github-profile-trophy
 
-# 检查远端分支，现在只有一个orgin，指向你自己的仓库（fork仓库）
+# 2. 检查远端分支，现在只有一个orgin，指向你自己的仓库（fork仓库）
 git remote -v
 
-# output
 # origin	https://github.com/screw-hand/github-profile-trophy.git (fetch)
 # origin	https://github.com/screw-hand/github-profile-trophy.git (push)
 
-# 回到当前分支的第一个commit
+# 3. 回到当前分支的第一个commit
+# 注:为了示例,让下面第7步有输出,特意回退了提交
+#    实际情况不需要回退,但如果上游仓库没新提交
+#    将是:`Already up to date.`
 git reset $(git rev-list --max-parents=0 HEAD) --hard
 
 # HEAD is now at 5a9cbef first commit
 
-# 添加多个远端仓库，分别为: upstream, super-upstream
+# 4. 添加多个远端仓库，分别为: upstream, super-upstream
 git remote add upstream https://github.com/ryo-ma/github-profile-trophy.git
 git remote add super-upstream https://github.com/lucthienphong1120/github-trophies.git
 
-# 检查远端仓库是否成功设置
+# 5. 检查远端仓库是否成功设置,将有3个远端仓库
 git remote -v
 
 # origin	https://github.com/screw-hand/github-profile-trophy.git (fetch)
@@ -117,8 +119,7 @@ git remote -v
 # upstream        https://github.com/ryo-ma/github-profile-trophy.git (fetch)
 # upstream        https://github.com/ryo-ma/github-profile-trophy.git (push)
 
-# 好了，现在我们有三个远端了
-# 更新远端分支的所有信息（分支、标签）
+# 6. 更新远端仓库的所有信息（分支、标签）
 git fetch --all
 
 # Fetching origin
@@ -134,12 +135,14 @@ git fetch --all
 # From https://github.com/lucthienphong1120/github-trophies
 #  * [new branch]      main       -> super-upstream/main
 
-# 执行远端合并, `git fech -all`，你可以看到remote upstream的默认分支是master
+# 7. 执行远端合并, `git fech --all`，你可以看到remote upstream的默认分支是master
 # 如果不知道怎么找默认分支，去github repo web找：https://github.com/ryo-ma/github-profile-trophy
 # github repo web当前的分支就是默认分支
 git merge upstream/master
+
 # 省略输出，此刻成功合并`upstream/master`的所有内容，无冲突
 ```
+
 
 到这里为止，其实我们的操作跟[Syncing a fork branch from the command line](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/syncing-a-fork#syncing-a-fork-branch-from-the-command-line)是完全一样的。但我们合并第二个远端分支，问题就来了。
 
@@ -231,7 +234,7 @@ git push --set-upstream origin fork-exapmle
 至此第一次同步多个上游仓库就结束了。后续如果想继续跟踪远端上游的变动并且合并，也是大概这样的思路。
 
 ```shell
-# 1. 获取远端信息，如果有的提交，此次终端会输出信息
+# 1. 获取远端信息，如果有新的变动，此次终端会输出信息
 git fetch --all
 # 2. 合并fork的上游，此时大概率需要解决冲突
 git merget upstream
@@ -288,6 +291,9 @@ cd New-Bing-Anywhere
 touch pr-file
 git add .
 git commit -m "feat: pr-file"
+
+# 3. 直接push
+git push
 # 因为没有仓库的权限，无法直接push到haozi/New-Bing-Anywhere
 # fatal: Authentication failed for 'https://github.com/haozi/New-Bing-Anywhere.git/'
 ```
@@ -332,6 +338,10 @@ git push --set-upstream origin pr-example
 
 # 3. 删除之前commit的main分支
 git branch -D main
+
+# 4. 恢复main分支到未commit的状态
+git checkout -b main origin/main
+
 ```
 
 [pr-example](https://github.com/screw-hand/New-Bing-Anywhere/commits/pr-example)
