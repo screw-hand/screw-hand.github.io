@@ -166,11 +166,18 @@ $ git clone -b <branch> <remote_repo>
 ### 工作区暂存区文件管理
 
 ```bash
+# `git restore` v2.23.0 支持
+
 # 清除工作区指定路径(<path>)下的所有文件修改（重置文件） / 重置未暂存的文件
 $ git checkout -- <path>
+# or
+$ git restore -- <path>
+
 
 # 清空暂存区指定路径(<path>)文件（不重置修改）/ 取消已暂存文件
 $ git reset -- <path>
+# or
+$ git restore --staged -- <path>
 
 # 清空工作和暂存区的所有更改（重置本次提交，不会处理untracked files）
 $ git reset HEAD --hard
@@ -190,7 +197,7 @@ $ git diff --cached
 $ git diff --staged
 
 # 比对指定路径（<path>）两次提交
-$ git diff <hash1> <hash2> -- <path>
+$ git diff <old_hash> <new_has> -- <path>
 
 # 比对行改动，不显示具体内容
 $ git diff --stat
