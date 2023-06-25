@@ -2,7 +2,7 @@
 
 SCRIPT_NAME=$(basename "$0")
 
-if [ -z "$1"] || [ -z "$2"]; then
+if [ -z "$1" ] || [ -z "$2" ]; then
   echo "请提供足够的命令行参数"
   echo "用法: $SCRIPT_NAME SOURCE_BRANCH TARGET_BRANCH"
   exit 1
