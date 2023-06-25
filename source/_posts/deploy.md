@@ -8,7 +8,7 @@ tags:
 
 ## 前期配置文件准备
 
-```bash
+```shell
 # 以acs.HOST.cn举例 （HOST）为主域名
 
 # 项目路径
@@ -31,7 +31,7 @@ usr/local/nginx/conf/nginx.conf
 
 ## 配置nginx
 
-```bash
+```shell
 # 创建项目目录
 sudo mkdir /home/wwwroot/acs.HOST.cn
 
@@ -64,7 +64,7 @@ sudo ./nginx -s reload # 重载
 
 ## 项目部署、守护进程
 
-```bash
+```shell
 # 上传已打包的项目到服务器
 .\pscp.exe E:\PATH\acs.HOST.cn\FILENAME.zip USERNAME@acs.HOST.cn:/home/wwwroot/acs.HOST.cn
 

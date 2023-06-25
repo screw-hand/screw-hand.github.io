@@ -342,7 +342,7 @@ webpack-dev-server： webpack开发服务，提供开发周期的服务
 
 以上三个包强烈建议全部安装
 
-```bash
+```shell
 mkdir 005-webpack-init
 npm init -y
 npm i -D webpack webpack-cli webpack-dev-server
@@ -481,7 +481,7 @@ module: {
 }
 ```
 
-总结：ES6+ / TypeScript / Flow / Scss Sass  / Less / Styl / Rect / Vue / Angular 的模块解析基本按照以上原则。 
+总结：ES6+ / TypeScript / Flow / Scss Sass  / Less / Styl / Rect / Vue / Angular 的模块解析基本按照以上原则。
 
 js/ts脚本分别只需要babel-loader 还有ts-loader，而一般样式模块（Scss Sass / Less / Styl ）需要使用多个loader，**loader的执行顺序是从右到左。**
 
@@ -664,7 +664,7 @@ webpack把源码编译后，浏览器的开发者工具看到的代码是编译�
 
 [source-map-loader](https://webpack.js.org/loaders/source-map-loader/) 可从现有的source-map文件提取出相应的映射文件。
 
-### 模块热替换(Hot Module Replacement)  
+### 模块热替换(Hot Module Replacement)
 
 live reload：源代码更新，webpack-dev-server自动构建并刷新web
 

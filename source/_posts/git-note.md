@@ -22,7 +22,7 @@ tags: git
 
 1. 打开Git Bash，配置用户名字和邮件地址
 
-```bash
+```shell
 $ git config --global user.name "Your Name"
 
 $ git config --global user.email "email@example.com"
@@ -32,7 +32,7 @@ $ git config --global user.email "email@example.com"
 
 一路回车
 
-```bash
+```shell
 $ ssh-keygen -t rsa -C "youremail@example.com"
 ```
 
@@ -79,7 +79,7 @@ $ ssh-keygen -t rsa -C "youremail@example.com"
 
 **实例分析**
 
-```bash
+```shell
 On branch master
 Your branch is ahead of 'origin/master' by 1 commit.
   (use "git push" to publish your local commits)
@@ -128,7 +128,7 @@ Changes not staged for commit:
 
 **实例分析**
 
-```bash
+```shell
 [master 2918d65] 1
  1 file changed, 1 insertion(+)
 
@@ -165,7 +165,7 @@ $ git clone -b <branch> <remote_repo>
 
 ### 工作区暂存区文件管理
 
-```bash
+```shell
 # `git restore` v2.23.0 支持
 
 # 清除工作区指定路径(<path>)下的所有文件修改（重置文件） / 重置未暂存的文件
@@ -188,7 +188,7 @@ $ git clean -fd
 
 ### 比对文件
 
-```bash
+```shell
 # 比对指定路径（<path>）文件和暂存区的区别
 $ git diff <commit> -- <path>
 
@@ -205,7 +205,7 @@ $ git diff --stat
 
 ### 提交文件
 
-```bash
+```shell
 # 全部暂存并提交
 $ git commit -am "commit log"
 
@@ -224,7 +224,7 @@ $ git commit --amend -m "New commit message"
 
 ### 工作日志
 
-```bash
+```shell
 # 简化工作日志
 $ git log --pretty=oneline
 
@@ -240,7 +240,7 @@ $ git log --color --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgree
 
 ### 分支
 
-```bash
+```shell
 # 查看本地分支
 $ git branch
 
@@ -275,7 +275,7 @@ $ git merge <branch>
 
 ### 远端
 
-```bash
+```shell
 # 远端版本信息
 $ git remote -v
 
@@ -300,7 +300,7 @@ $ git push <remote> -d <branch>
 
 ### 配置
 
-```bash
+```shell
 # 查看全局配置列表
 $ git config --global --list
 
@@ -310,7 +310,7 @@ $ git config --local --list
 
 ### 其他
 
-```bash
+```shell
 # 命令历史
 $ git reflog
 
@@ -351,7 +351,7 @@ windows系统需使用命令行创建，打开cmd，定位。
 
 GIt 支持为命令自定义别名，比如我们希望**全局设置** `git br` 映射为 `git branch`，**仓库设置** `git st` 映射为 `git status`，我们可以在终端这样配置。
 
-```bash
+```shell
 # 配置别名
 git config --global alias.br branch
 git config --local alias.st status
@@ -359,14 +359,14 @@ git config --local alias.st status
 
 现在就可以使用`git br` 、`git st`了，不过`git st`是**仓库级别**的设置，切换到其他仓库就无效了。我不需要省敲几个键，这样子的映射对我无效，我需要映射的是一些很长难输入又实用的命令。我们先删除它，再配置我自己偏好的别名。
 
-```bash
+```shell
 # 删除别名
 git config --global --unset alias.br
 git config --local --unset alias.st
 ```
 我们本地还有全部的别名都被删除了，当然你也可以直接修改配置文件，但是不推荐。
 
-```bash
+```shell
 git config --global alias.logs "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 git config --global alias.detail-log "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 ```

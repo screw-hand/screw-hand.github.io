@@ -64,7 +64,7 @@ https://www.typescriptlang.org/download
 
 新建目录，`npm init`以初始化`package.json`。
 
-```bash
+```shell
 Chris@DARK-FLAME /d/source_code/_github/demo-fragment (dev)
 λ mkdir 003-ts-fast
 Chris@DARK-FLAME /d/source_code/_github/demo-fragment (dev)
@@ -92,7 +92,7 @@ Wrote to D:\source_code\_github\demo-fragment\003-ts-fast\package.json:
 
 使用自己习惯包管理器安装typescript，这里我以**开发依赖**的性质安装在项目中。
 
-```bash
+```shell
 Chris@DARK-FLAME /d/source_code/_github/demo-fragment/003-ts-fast (dev)
 λ npm i typescript -D
 (node:11708) ExperimentalWarning: The fs.promises API is experimental
@@ -115,7 +115,7 @@ Version 4.5.4
 
 如果想把tsc安装在全局，也可以。
 
-```bash
+```shell
 Chris@DARK-FLAME /d/source_code/_github/demo-fragment/003-ts-fast (dev)
 λ npm i typescript@4.1.6 -g
 (node:10564) ExperimentalWarning: The fs.promises API is experimental
@@ -169,7 +169,7 @@ console.log({
 
 内容目前来跟`js`**一点区别都没有**，先将其编译成`js`, 然后查看编译后的代码是什么样的，再执行成代码。
 
-```bash
+```shell
 Chris@DARK-FLAME /d/source_code/_github/demo-fragment/003-ts-fast (dev)
 λ ./node_modules/.bin/tsc 1-base.ts
 Chris@DARK-FLAME /d/source_code/_github/demo-fragment/003-ts-fast (dev)
@@ -273,7 +273,7 @@ TODO: 截图 3-diff.ts n udf 互相赋值 开启--strictNullChecks选项。
 
 这里其实要讨论的是`new String()`、`String()`、`String`、`[string](''|'string')`的联系与区别，这四个分别代表实例、函数调用、构造函数、直面量。
 
-```bash
+```shell
 > typeof new String()
 'object'
 > new String() instanceof String

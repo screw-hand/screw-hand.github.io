@@ -43,7 +43,7 @@ _这是一个基于`umijs`构建的项目，有些工具已经配置好的，检
 4. vscode 禁用插件，还原用户设置
 5. 新增编辑器项目级别的配置文件
 
-```bash
+```shell
 mkdir .vscode
 # 新建vscdoe的项目文件
 touch .vscode/settings.json
@@ -80,7 +80,7 @@ indent_style = tab
 
 ### 安装
 
-```bash
+```shell
 npm install --save-dev prettier
 ```
 
@@ -171,7 +171,7 @@ _事实上 prettier 跟 eslint 结合使用会有一小部分冲突的，但是�
 
 ### 基本使用
 
-```bash
+```shell
 # 安装
 npm install eslint --save-dev
 # 初始化eslint，根据实际情况选择
@@ -215,7 +215,7 @@ eslint-plugin-react@latest @typescript-eslint/eslint-plugin@latest @typescript-e
 
 先别急着使用 eslint，使用之前还需要 eslint 结合 prettier——禁用 eslint 中关于代码格式的规则，让 prettier 去接管即可——[eslint-config-prettier](https://github.com/prettier/eslint-config-prettier/)
 
-```bash
+```shell
 npm install --save-dev eslint-config-prettier
 ```
 
@@ -351,7 +351,7 @@ stylelint-config-prettier // 结合prettier
 
 [stylelint-config-prettier](https://github.com/prettier/stylelint-config-prettier)是一个命令行工具，可以检测`stylelint`跟`prettier`的配置是否存在冲突。
 
-```bash
+```shell
 npm i -D stylelint postcss-less stylelint-config-standard stylelint-config-css-modules stylelint-config-rational-order stylelint-config-prettier
 ```
 
@@ -403,7 +403,7 @@ npm i -D stylelint postcss-less stylelint-config-standard stylelint-config-css-m
 
 `npm run stylelint-check`，先检测一下配置是否存在冲突。
 
-```bash
+```shell
 $ npm run stylelint-check
 
 > @ stylelint-check D:\source_code\hs-npm
@@ -422,7 +422,7 @@ npm ERR! This is probably not a problem with npm. There is likely additional log
 
 这里`stylelint`的 `block-closing-brace-empty-line` 跟`prettier`的规则冲突了，从配置中删除即可。
 
-```bash
+```shell
 $ npm run stylelint-check
 
 > @ stylelint-check D:\source_code\hs-npm
@@ -496,7 +496,7 @@ No conflicting rules detected in your stylelint configuration!
 
 使用命令行提交代码, `running pre-commit hook: lint-staged`表示运行了 git hooks，使用了`lint-staged，如此代码提交的时候，会自动格式化。
 
-```bash
+```shell
 $ git commit -m 1
  > running pre-commit hook: lint-staged
 [STARTED] Preparing...
@@ -546,7 +546,7 @@ v2.0.0 起默认值从`auto`更改为的`lf`。
 
 工具的配置也已经完成了， 应跟团队成员交流，并试用规则是否不太苛刻。确定都同意后，方可合并回主要的分支。并且执行相应的`npm script`。
 
-```bash
+```shell
 npm run lint
 npm run stylelint
 npm run prettier
