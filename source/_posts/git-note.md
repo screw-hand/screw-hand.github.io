@@ -197,7 +197,13 @@ $ git diff --cached
 $ git diff --staged
 
 # 比对指定路径（<path>）两次提交
-$ git diff <old_hash> <new_has> -- <path>
+$ git diff <old_hash> <new_hash> -- <path>
+
+# 比对指定路径（<path>）旧提交与已暂存的变动(未暂存的变动将忽略）
+$ git diff <old_hash> --staged -- <path>
+
+# 比对指定路径（<path>）旧提交与当前工作区的变动（包括已暂存未暂存）
+$ git diff <old_hash> -- <path>
 
 # 比对行改动，不显示具体内容
 $ git diff --stat
