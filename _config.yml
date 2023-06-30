@@ -45,11 +45,16 @@ marked:
   postAsset: true
 relative_link: true
 future: true
-highlight:
+# highlight:
+#   enable: false
+#   line_number: true
+#   auto_detect: false
+#   tab_replace:
+prismjs:
   enable: true
   line_number: true
   auto_detect: false
-  tab_replace:
+  tab_replace: ''
 
 # Home page setting
 # path: Root path for your blogs index page. (default = '')
