@@ -304,6 +304,34 @@ $ git checkout -b <new_branch> <remote>/<branch>
 $ git push <remote> -d <branch>
 ```
 
+### 贮藏
+
+```shell
+# 快速贮藏
+git stash
+
+# 指定信息贮藏
+git stash "..."
+
+# 查看贮藏列表
+git stash list
+
+# 查看指定贮藏改动（文件，行改动）
+git stash show [index]
+
+# 查看指定贮藏改动（文件具体内容）
+git stash show -p [index]
+
+# 应用并删除贮藏（不太建议使用）
+git stash pop [index]
+
+# 应用贮藏
+git stash apply [index]
+
+# 删除贮藏
+git stash drop [index]
+```
+
 ### 配置
 
 ```shell
