@@ -45,11 +45,11 @@ marked:
   postAsset: true
 relative_link: true
 future: true
-# highlight:
-#   enable: false
-#   line_number: true
-#   auto_detect: false
-#   tab_replace:
+highlight:
+  enable: false
+  line_number: true
+  auto_detect: false
+  tab_replace:
 prismjs:
   enable: true
   line_number: true
