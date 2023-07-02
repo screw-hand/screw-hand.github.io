@@ -29,6 +29,7 @@ pipeline {
             git config --global user.email "screwhand0@gmail.com"
             git config --global user.name "jenkins-boot"
 
+            yarn clean;
             yarn deploy;
             
             tar -zcvf docker.tar.gz docker;
