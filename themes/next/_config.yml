@@ -369,11 +369,14 @@ codeblock:
   # Code Highlight theme
   # All available themes: https://theme-next.js.org/highlight/
   theme:
-    light: default
-    dark: stackoverflow-dark
+  #  when using the `highlight.js` for highlight the code block
+  #  light: paraiso-light
+  #  dark: paraiso-dark
+    light: kimbie-light
+    dark: rainbow
   prism:
-    light: prism-solarizedlight.min
-    dark: prism-tomorrow.min
+    light: prism-solarizedlight
+    dark: prism-tomorrow
 
   # Add copy button on codeblock
   copy_button:

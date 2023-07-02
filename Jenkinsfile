@@ -9,7 +9,7 @@ pipeline {
     }
     stage('build') {
         steps {
-          nodejs('v14.19.3(mirror)') {
+          nodejs('v14.21.3(mirror)') {
             sh '''
                 npm config list;
                 yarn -v;
@@ -20,7 +20,7 @@ pipeline {
     }
     stage('deploy') {
       steps {
-        nodejs('v14.19.3(mirror)') {
+        nodejs('v14.21.3(mirror)') {
           sh '''
             eval `ssh-agent -s`
             ssh-add /var/jenkins_home/.ssh/jenkins_docker_ssh;
@@ -29,6 +29,7 @@ pipeline {
             git config --global user.email "screwhand0@gmail.com"
             git config --global user.name "jenkins-boot"
 
+            yarn clean;
             yarn deploy;
             
             tar -zcvf docker.tar.gz docker;
