@@ -60,7 +60,7 @@ exit
 ssh -T root@$SERVER
 ```
 
-## 结尾
+# 结尾
 
 - [Using the SSH Config File | Linuxize](https://linuxize.com/post/using-the-ssh-config-file/)
 - [ssh免密码登录-腾讯云开发者社区-腾讯云](https://cloud.tencent.com/developer/article/1456064)
