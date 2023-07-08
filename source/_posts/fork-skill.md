@@ -348,6 +348,94 @@ git checkout -b main origin/main
 
 这一顿操作下来，会比第一时间fork更麻烦，可以当做没fork之后的补救措施吧。
 
+## clone上游仓库后，创建自己的repo
+
+这是一种比
+[如何将fork类型仓库转成自己的仓库](#如何将fork类型仓库转成自己的仓库)、[#fork之前clone上游仓库并commit了，怎么提pr](#在fork之前clone上游仓库并commit了，怎么提pr)更简单的操作方式，效果是一样的。
+
+先clone想要的[上游仓库](https://github.com/snyk-snippets/modern-npm-package],然后在github[创建自己的新repo](https://github.com/new)。
+我觉得用[GitHub CLI](https://cli.github.com/)速度更快更方便，以下实例我用会GitHub CLI，跟在github web上操作是等效的。
+
+以下origin的github username，你需要换成自己的。
+
+1. 设计我们的远端仓库
+
+```
+https://github.com/snyk-snippets/modern-npm-package.git # upsteam
+https://github.com/screw-hand/modern-npm-package.git # origin
+```
+
+2. clone上游仓库
+
+```shell
+git clone https://github.com/snyk-snippets/modern-npm-package.git
+```
+
+3. \*此刻你**或许**会在这里提交代码，但是你无法推送到别人的远端(snyk-snippets/modern-npm-package)
+
+4. 更名远端仓库origin(snyk-snippets/modern-npm-package)为upsteam(snyk-snippets/modern-npm-package)
+
+```shell
+git remote -v
+# origin https://github.com/snyk-snippets/modern-npm-package.git (fetch)
+# origin https://github.com/snyk-snippets/modern-npm-package.git (push)
+
+git remote rename origin upsteam
+
+git remote -v
+# upsteam	https://github.com/snyk-snippets/modern-npm-package.git (fetch)
+# upsteam	https://github.com/snyk-snippets/modern-npm-package.git (push)
+```
+
+5. 使用[GitHub CLI](https://cli.github.com/)创建一个新repo
+
+```shell
+gh repo new
+
+? What would you like to do? Push an existing local repository to GitHub
+? Path to local repository .
+? Repository name modern-npm-package
+? Description fork from [snyk-snippets/modern-npm-package](https://github.com/snyk-snippets/modern-npm-package)
+? Visibility Public
+✓ Created repository screw-hand/modern-npm-package on GitHub
+? Add a remote? Yes
+? What should the new remote be called? origin
+✓ Added remote git@github.com:screw-hand/modern-npm-package.git
+? Would you like to push commits from the current branch to "origin"? Yes
+Enumerating objects: 77, done.
+Counting objects: 100% (77/77), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (40/40), done.
+Writing objects: 100% (77/77), 117.86 KiB | 458.00 KiB/s, done.
+Total 77 (delta 33), reused 67 (delta 27), pack-reused 0
+remote: Resolving deltas: 100% (33/33), done.
+To github.com:screw-hand/modern-npm-package.git
+ * [new branch]      HEAD -> main
+branch 'main' set up to track 'origin/main'.
+✓ Pushed commits to git@github.com:screw-hand/modern-npm-package.git
+```
+
+操作很简单，第一次选项选择`Push an existing local repository to GitHub`，一路回车即可。
+`Description`看你，复制upsteam的也行，我这里自己写了。
+其他选项是关于仓库的可见性、是否添加远端、添加远端后是否要push。
+
+跟在github web的操作其实是一样的，只是`GitHub CLI`的引导选项很方便。
+
+6. 再次检查远端仓库
+
+```shell
+git remote -v
+origin	git@github.com:screw-hand/modern-npm-package.git (fetch)
+origin	git@github.com:screw-hand/modern-npm-package.git (push)
+upsteam	https://github.com/snyk-snippets/modern-npm-package.git (fetch)
+upsteam	https://github.com/snyk-snippets/modern-npm-package.git (push)
+```
+
+7. 查看github web
+
+[https://github.com/screw-hand/modern-npm-package](https://github.com/screw-hand/modern-npm-package)
+
+
 ## 结尾
 
 为什么有时候提交了没contributions/绿点/绿墙： [Why are my contributions not showing up on my profile? - GitHub Docs](https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-github-profile/managing-contribution-settings-on-your-profile/why-are-my-contributions-not-showing-up-on-my-profile)
