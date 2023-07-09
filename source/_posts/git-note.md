@@ -272,8 +272,11 @@ $ git checkout <branch>
 # 指定提交检出新分支
 $ git checkout <hash> -b <branch_name>
 
+# 拉取远端分支到本地新分支，并自动切换到此分支
+$ git checkout -b <new_branch> <remote>/<branch>
+
 # 拉取远端分支到本地新分支
-$ git checkout -b <new_branch> <remote> <branch>
+$ git branch <new_branch> <remote>/<branch>
 
 # 合并分支
 $ git merge <branch>
