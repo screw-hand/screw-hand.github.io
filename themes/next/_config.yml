@@ -691,8 +691,8 @@ comments:
 # Disqus
 # For more information: https://disqus.com
 disqus:
-  enable: false
-  shortname: Chris
+  enable: true
+  shortname: screw-hand
   count: true
 
 # DisqusJS
