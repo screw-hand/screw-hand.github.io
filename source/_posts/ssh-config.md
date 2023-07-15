@@ -2,7 +2,9 @@
 title: ssh配置
 date: 2023-07-05 19:48:57
 categories: cli
-tags: cli, ssh
+tags:
+  - cli
+  - ssh
 ---
 
 - 多个账号配置ssh key
