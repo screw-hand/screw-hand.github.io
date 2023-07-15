@@ -29,6 +29,7 @@ git fetch
 
 git checkout $SOURCE_BRANCH
 git branch -u origin/$SOURCE_BRANCH
+git pull
 git push
 
 git checkout $TARGET_BRANCH
