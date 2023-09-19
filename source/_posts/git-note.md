@@ -189,6 +189,15 @@ $ git clean -fd
 ### 比对文件
 
 ```shell
+# 比较暂存区和工作区的差异
+$ git diff
+
+# 比较暂存区和工作区和的差异
+$ git diff --
+
+#比较上一次提交和工作区和的差异
+$ git diff HEAD --
+
 # 比对指定路径（<path>）文件和暂存区的区别
 $ git diff <commit> -- <path>
 
