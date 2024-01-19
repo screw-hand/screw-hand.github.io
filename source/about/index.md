@@ -6,6 +6,6 @@ types: "about"
 
 # 一个前端
 
-![my.jpg](/about/my.jpg)
+![my.jpg](./about/my.jpg)
 
-![我的印象笔记](/about/evernote.jpg)
+![我的印象笔记](./about/evernote.jpg)
