@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"screw-hand.com","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.17.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":"default","style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="前言进阶fork技巧，对初学者不是那么友好，建议拥有以下前置技能：  使用过github的fork&#x2F;pr操作 熟悉使用git命令的多个分支，多个远端操作 熟练使用git处理合并分支冲突  各个大标题内容独立，可根据自己需求跳读:  如何将fork类型仓库转成自己的仓库 如何同步多个上游仓库 在fork之前clone上游仓库并commit了，怎么提pr">
+<meta property="og:type" content="article">
+<meta property="og:title" content="github中的fork技巧">
+<meta property="og:url" content="https://screw-hand.com/post/fork-skill/index.html">
+<meta property="og:site_name" content="螺丝手">
+<meta property="og:description" content="前言进阶fork技巧，对初学者不是那么友好，建议拥有以下前置技能：  使用过github的fork&#x2F;pr操作 熟悉使用git命令的多个分支，多个远端操作 熟练使用git处理合并分支冲突  各个大标题内容独立，可根据自己需求跳读:  如何将fork类型仓库转成自己的仓库 如何同步多个上游仓库 在fork之前clone上游仓库并commit了，怎么提pr">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://screw-hand.com/post/fork-skill/detach_fork.png">
+<meta property="og:image" content="https://screw-hand.com/post/fork-skill/virtual_assistant_1.png">
+<meta property="og:image" content="https://screw-hand.com/post/fork-skill/virtual_assistant_2.png">
+<meta property="og:image" content="https://screw-hand.com/post/fork-skill/mail-received.png">
+<meta property="og:image" content="https://screw-hand.com/post/fork-skill/mail-done.png">
+<meta property="og:image" content="https://screw-hand.com/post/fork-skill/virtual_assistant_no.png">
+<meta property="article:published_time" content="2023-06-21T04:50:55.000Z">
+<meta property="article:modified_time" content="2024-03-14T16:49:44.806Z">
+<meta property="article:author" content="screw-hand">
+<meta property="article:tag" content="github">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://screw-hand.com/post/fork-skill/detach_fork.png">
+
+
+<link rel="canonical" href="https://screw-hand.com/post/fork-skill/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://screw-hand.com/post/fork-skill/","path":"/post/fork-skill/","title":"github中的fork技巧"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>github中的fork技巧 | 螺丝手</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="螺丝手" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">螺丝手</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E5%B0%86fork%E7%B1%BB%E5%9E%8B%E4%BB%93%E5%BA%93%E8%BD%AC%E6%88%90%E8%87%AA%E5%B7%B1%E7%9A%84%E4%BB%93%E5%BA%93"><span class="nav-number">2.</span> <span class="nav-text">如何将fork类型仓库转成自己的仓库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E5%90%8C%E6%AD%A5%E5%A4%9A%E4%B8%AA%E4%B8%8A%E6%B8%B8%E4%BB%93%E5%BA%93"><span class="nav-number">3.</span> <span class="nav-text">如何同步多个上游仓库</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E4%B8%AA%E4%B8%8A%E6%B8%B8%E4%BB%93%E5%BA%93"><span class="nav-number">3.1.</span> <span class="nav-text">一个上游仓库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%9A%E4%B8%AA%E4%B8%8A%E6%B8%B8%E4%BB%93%E5%BA%93"><span class="nav-number">3.2.</span> <span class="nav-text">多个上游仓库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%9A%E4%B8%AA%E4%B8%8A%E6%B8%B8%E4%BB%93%E5%BA%93%E7%9A%84%E7%89%B9%E6%AE%8A%E5%A4%84%E7%90%86"><span class="nav-number">3.3.</span> <span class="nav-text">多个上游仓库的特殊处理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B7%9F%E8%B8%AA%E5%A4%9A%E4%B8%AA%E4%B8%8A%E6%B8%B8%E4%BB%93%E5%BA%93%E7%9A%84%E6%9B%B4%E6%96%B0"><span class="nav-number">3.4.</span> <span class="nav-text">跟踪多个上游仓库的更新</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%B0%E5%BD%95%E4%B8%8A%E6%B8%B8%E4%BB%93%E5%BA%93%E4%BF%A1%E6%81%AF"><span class="nav-number">3.5.</span> <span class="nav-text">记录上游仓库信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E4%BE%8B%EF%BC%8C%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%90%8C%E6%AD%A5%E5%A4%9A%E4%B8%AA%E4%B8%8A%E6%B8%B8%E4%BB%93%E5%BA%93"><span class="nav-number">3.6.</span> <span class="nav-text">实例，为什么要同步多个上游仓库</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9C%A8fork%E4%B9%8B%E5%89%8Dclone%E4%B8%8A%E6%B8%B8%E4%BB%93%E5%BA%93%E5%B9%B6commit%E4%BA%86%EF%BC%8C%E6%80%8E%E4%B9%88%E6%8F%90pr"><span class="nav-number">4.</span> <span class="nav-text">在fork之前clone上游仓库并commit了，怎么提pr</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#clone%E4%B8%8A%E6%B8%B8%E4%BB%93%E5%BA%93%E5%90%8E%EF%BC%8C%E5%88%9B%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84repo"><span class="nav-number">5.</span> <span class="nav-text">clone上游仓库后，创建自己的repo</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%93%E5%B0%BE"><span class="nav-number">6.</span> <span class="nav-text">结尾</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="screw-hand"
+      src="/avatar.jpg">
+  <p class="site-author-name" itemprop="name">screw-hand</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">31</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/screw-hand" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;screw-hand" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:screwhand0@gmail.com" title="E-Mail → mailto:screwhand0@gmail.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml" rel="noopener me"><i class="fa fa-rss fa-fw"></i></a>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://screw-hand.com/post/fork-skill/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/avatar.jpg">
+      <meta itemprop="name" content="screw-hand">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="螺丝手">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="github中的fork技巧 | 螺丝手">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          github中的fork技巧
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-06-21 12:50:55" itemprop="dateCreated datePublished" datetime="2023-06-21T12:50:55+08:00">2023-06-21</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-03-15 00:49:44" itemprop="dateModified" datetime="2024-03-15T00:49:44+08:00">2024-03-15</time>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/post/fork-skill/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="/post/fork-skill/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>11k</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>进阶fork技巧，对初学者不是那么友好，建议拥有以下前置技能：</p>
+<ol>
+<li>使用过github的fork&#x2F;pr操作</li>
+<li>熟悉使用git命令的多个分支，多个远端操作</li>
+<li>熟练使用git处理合并分支冲突</li>
+</ol>
+<p>各个大标题内容独立，可根据自己需求跳读:</p>
+<ul>
+<li>如何将fork类型仓库转成自己的仓库</li>
+<li>如何同步多个上游仓库</li>
+<li>在fork之前clone上游仓库并commit了，怎么提pr</li>
+</ul>
+<span id="more"></span>
+
+<h2 id="如何将fork类型仓库转成自己的仓库"><a href="#如何将fork类型仓库转成自己的仓库" class="headerlink" title="如何将fork类型仓库转成自己的仓库"></a>如何将fork类型仓库转成自己的仓库</h2><p>有什么好处？</p>
+<ul>
+<li>可以将其设置成私有仓库：fork类型的仓库无法设置成私有仓库</li>
+<li>不打算提pr到上游仓库，并且想要有github的contributions（俗称：绿点&#x2F;绿墙）：fork类型的仓库，就算提交到了主分支，也不会有contributions.</li>
+</ul>
+<p><strong>使用github support的分离复刻。</strong></p>
+<p><a target="_blank" rel="noopener" href="https://support.github.com/request/fork">Forks - GitHub 支持</a></p>
+<p><img src="/post/fork-skill/detach_fork.png"></p>
+<p><img src="/post/fork-skill/virtual_assistant_1.png"></p>
+<p><img src="/post/fork-skill/virtual_assistant_2.png"></p>
+<p>自动弹出这个对话框，执行以下操作：</p>
+<ul>
+<li>选择Detach&#x2F;Extract</li>
+<li>输入<code>owner/repository-name</code></li>
+<li>选择<code>Yes</code> (committed to this fork) 、选<code>No</code>会让你自己手动复刻一遍</li>
+<li>选择<code>I need to use my own GitLFS data allowances and/or data-packs</code></li>
+</ul>
+<p>等待邮件。</p>
+<p>上图我选择了<a target="_blank" rel="noopener" href="https://github.com/screw-hand/layui">screw-hand&#x2F;layui</a>，作为例子。<br>其实之前我已经用过一次了，这是<a target="_blank" rel="noopener" href="https://github.com/screw-hand/github-profile-trophy">screw-hand&#x2F;github-profile-trophy</a>的邮箱通知：</p>
+<p><img src="/post/fork-skill/mail-received.png"><br><img src="/post/fork-skill/mail-done.png"></p>
+<p>转成自己的仓库，github官方需要时间去处理， 可以参考一下两封邮箱的相差时间。</p>
+<p>刚才选<code>No</code>的结果：</p>
+<p><img src="/post/fork-skill/virtual_assistant_no.png"></p>
+<h2 id="如何同步多个上游仓库"><a href="#如何同步多个上游仓库" class="headerlink" title="如何同步多个上游仓库"></a>如何同步多个上游仓库</h2><h3 id="一个上游仓库"><a href="#一个上游仓库" class="headerlink" title="一个上游仓库"></a>一个上游仓库</h3><p>来，<a target="_blank" rel="noopener" href="https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/syncing-a-fork">Syncing a fork - GitHub Docs</a>, 这里有教我们fork后的repo，如何与上游的repo保持同步。<br>但是只教我们同步一个，如果我们自己的repo是一个N合1（缝合怪），需要跟多个上游仓库保持同步。就需要再执行一些操作了。</p>
+<h3 id="多个上游仓库"><a href="#多个上游仓库" class="headerlink" title="多个上游仓库"></a>多个上游仓库</h3><p>比如我的<a target="_blank" rel="noopener" href="https://github.com/screw-hand/github-profile-trophy">screw-hand&#x2F;github-profile-trophy</a>，就有两个上游：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">https://github.com/ryo-ma/github-profile-trophy.git       <span class="token comment"># upstream</span>
+https://github.com/lucthienphong1120/github-trophies.git  <span class="token comment"># super-upstream</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>一个叫<code>upstream</code>，一个叫<code>super-upstream</code>，你喜欢叫其他的也行，就跟<code>origin</code>一样，这只是git的远端名称。</p>
+<p><em>我的<a target="_blank" rel="noopener" href="https://github.com/screw-hand/github-profile-trophy">screw-hand&#x2F;github-profile-trophy</a>经过上文的github support操作，已经不是fork的仓库了。不过以下操作，跟是否为fork类型的仓库无关，你可以假设此仓库还是fork类型的。但是跟commit tree有关，待会我们会遇到的。</em></p>
+<p>接下来的操作，你可以直接复制到你的命令行，随便拿我的<a target="_blank" rel="noopener" href="https://github.com/screw-hand/github-profile-trophy">screw-hand&#x2F;github-profile-trophy</a>去玩吧。<br>反正你push不了，哈哈。</p>
+<p><strong>本质上，同步多个上游仓库是用git命令行去添加多个remote，然后对remote branch进行合并的操作。</strong></p>
+<p>以下的命令是同步一个上游仓库，如果你对命令行多个远端操作比较熟悉，可以快速预览甚至跳过。</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 1. 我们已经有一个fork仓库，clone到本地</span>
+<span class="token function">git</span> clone https://github.com/screw-hand/github-profile-trophy.git
+<span class="token builtin class-name">cd</span> github-profile-trophy
+
+<span class="token comment"># 2. 检查远端分支，现在只有一个orgin，指向你自己的仓库（fork仓库）</span>
+<span class="token function">git</span> remote <span class="token parameter variable">-v</span>
+
+<span class="token comment"># origin	https://github.com/screw-hand/github-profile-trophy.git (fetch)</span>
+<span class="token comment"># origin	https://github.com/screw-hand/github-profile-trophy.git (push)</span>
+
+<span class="token comment"># 3. 回到当前分支的第一个commit</span>
+<span class="token comment"># 注:为了示例,让下面第7步有输出,特意回退了提交</span>
+<span class="token comment">#    实际情况不需要回退,但如果上游仓库没新提交</span>
+<span class="token comment">#    将是:`Already up to date.`</span>
+<span class="token function">git</span> reset <span class="token variable"><span class="token variable">$(</span><span class="token function">git</span> rev-list --max-parents<span class="token operator">=</span><span class="token number">0</span> HEAD<span class="token variable">)</span></span> <span class="token parameter variable">--hard</span>
+
+<span class="token comment"># HEAD is now at 5a9cbef first commit</span>
+
+<span class="token comment"># 4. 添加多个远端仓库，分别为: upstream, super-upstream</span>
+<span class="token function">git</span> remote <span class="token function">add</span> upstream https://github.com/ryo-ma/github-profile-trophy.git
+<span class="token function">git</span> remote <span class="token function">add</span> super-upstream https://github.com/lucthienphong1120/github-trophies.git
+
+<span class="token comment"># 5. 检查远端仓库是否成功设置,将有3个远端仓库</span>
+<span class="token function">git</span> remote <span class="token parameter variable">-v</span>
+
+<span class="token comment"># origin	https://github.com/screw-hand/github-profile-trophy.git (fetch)</span>
+<span class="token comment"># origin	https://github.com/screw-hand/github-profile-trophy.git (push)</span>
+<span class="token comment"># super-upstream  https://github.com/lucthienphong1120/github-trophies.git (fetch)</span>
+<span class="token comment"># super-upstream  https://github.com/lucthienphong1120/github-trophies.git (push)</span>
+<span class="token comment"># upstream        https://github.com/ryo-ma/github-profile-trophy.git (fetch)</span>
+<span class="token comment"># upstream        https://github.com/ryo-ma/github-profile-trophy.git (push)</span>
+
+<span class="token comment"># 6. 更新远端仓库的所有信息（分支、标签）</span>
+<span class="token function">git</span> fetch <span class="token parameter variable">--all</span>
+
+<span class="token comment"># Fetching origin</span>
+<span class="token comment"># Fetching upstream</span>
+<span class="token comment"># From https://github.com/ryo-ma/github-profile-trophy</span>
+<span class="token comment">#  * [new branch]      VegaDeftwing-master        -> upstream/VegaDeftwing-master</span>
+<span class="token comment">#  * [new branch]      juicyfresh                 -> upstream/juicyfresh</span>
+<span class="token comment">#  * [new branch]      master                     -> upstream/master</span>
+<span class="token comment">#  * [new branch]      pr-125                     -> upstream/pr-125</span>
+<span class="token comment">#  * [new branch]      radical                    -> upstream/radical</span>
+<span class="token comment">#  * [new branch]      spenserblack-theme/dracula -> upstream/spenserblack-theme/dracula</span>
+<span class="token comment"># Fetching super-upstream</span>
+<span class="token comment"># From https://github.com/lucthienphong1120/github-trophies</span>
+<span class="token comment">#  * [new branch]      main       -> super-upstream/main</span>
+
+<span class="token comment"># 7. 执行远端合并, `git fech --all`，你可以看到remote upstream的默认分支是master</span>
+<span class="token comment"># 如果不知道怎么找默认分支，去github repo web找：https://github.com/ryo-ma/github-profile-trophy</span>
+<span class="token comment"># github repo web当前的分支就是默认分支</span>
+<span class="token function">git</span> merge upstream/master
+
+<span class="token comment"># 省略输出，此刻成功合并`upstream/master`的所有内容，无冲突</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+<p>到这里为止，其实我们的操作跟<a target="_blank" rel="noopener" href="https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/syncing-a-fork#syncing-a-fork-branch-from-the-command-line">Syncing a fork branch from the command line</a>是完全一样的。但我们合并第二个远端分支，问题就来了。</p>
+<h3 id="多个上游仓库的特殊处理"><a href="#多个上游仓库的特殊处理" class="headerlink" title="多个上游仓库的特殊处理"></a>多个上游仓库的特殊处理</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 执行第二个远端分支合并，`git merge super-upstream/main`会成功吗？</span>
+<span class="token function">git</span> merge super-upstream/main
+<span class="token comment"># fatal: refusing to merge unrelated histories</span>
+<span class="token comment"># why ??</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>因为git觉得<code>super-upstream/main</code>跟我们现在的<code>origin/master</code>的分支毫无相干，你可以理解为没有一致的“commit tree”。<br>但是我们为什么可以执行<code>git merge upstream/master</code>呢？因为<code>origin</code>就是fork了<code>upsteam</code>的remote而来的。所以我们刚直接merge是有一定概率毫无冲突的。</p>
+<p>通过<a target="_blank" rel="noopener" href="https://stackoverflow.com/a/40107973">stackoverflow</a>的帮助，我们继续执行。</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> pull super-upstream main --allow-unrelated-histories
+<span class="token comment"># From https://github.com/lucthienphong1120/github-trophies</span>
+<span class="token comment">#  * branch            main       -> FETCH_HEAD</span>
+<span class="token comment"># hint: You have divergent branches and need to specify how to reconcile them.</span>
+<span class="token comment"># hint: You can do so by running one of the following commands sometime before</span>
+<span class="token comment"># hint: your next pull:</span>
+<span class="token comment"># hint:</span>
+<span class="token comment"># hint:   git config pull.rebase false  # merge</span>
+<span class="token comment"># hint:   git config pull.rebase true   # rebase</span>
+<span class="token comment"># hint:   git config pull.ff only       # fast-forward only</span>
+<span class="token comment"># hint:</span>
+<span class="token comment"># hint: You can replace "git config" with "git config --global" to set a default</span>
+<span class="token comment"># hint: preference for all repositories. You can also pass --rebase, --no-rebase,</span>
+<span class="token comment"># hint: or --ff-only on the command line to override the configured default per</span>
+<span class="token comment"># hint: invocation.</span>
+<span class="token comment"># fatal: Need to specify how to reconcile divergent branches.</span>
+
+<span class="token comment"># 出现这个是因为没有配置git如何处理冲突，建议使用`merge`,不建议配置成全局</span>
+<span class="token function">git</span> config pull.rebase <span class="token boolean">false</span>
+
+<span class="token comment"># 再次执行`git pull super-upstream main --allow-unrelated-histories`</span>
+<span class="token comment"># 现在是</span>
+<span class="token comment"># From https://github.com/lucthienphong1120/github-trophies</span>
+<span class="token comment">#  * branch            main       -> FETCH_HEAD</span>
+<span class="token comment"># Auto-merging LICENSE</span>
+<span class="token comment"># CONFLICT (add/add): Merge conflict in LICENSE</span>
+<span class="token comment"># Auto-merging README.md</span>
+<span class="token comment"># CONFLICT (add/add): Merge conflict in README.md</span>
+<span class="token comment"># Auto-merging index.ts</span>
+<span class="token comment"># CONFLICT (add/add): Merge conflict in index.ts</span>
+<span class="token comment"># Auto-merging src/card.ts</span>
+<span class="token comment"># CONFLICT (add/add): Merge conflict in src/card.ts</span>
+<span class="token comment"># Auto-merging src/github_api_client.ts</span>
+<span class="token comment"># CONFLICT (add/add): Merge conflict in src/github_api_client.ts</span>
+<span class="token comment"># Auto-merging src/theme.ts</span>
+<span class="token comment"># CONFLICT (add/add): Merge conflict in src/theme.ts</span>
+<span class="token comment"># Auto-merging src/trophy.ts</span>
+<span class="token comment"># CONFLICT (add/add): Merge conflict in src/trophy.ts</span>
+<span class="token comment"># Auto-merging src/trophy_list.ts</span>
+<span class="token comment"># CONFLICT (add/add): Merge conflict in src/trophy_list.ts</span>
+<span class="token comment"># Auto-merging src/user_info.ts</span>
+<span class="token comment"># CONFLICT (add/add): Merge conflict in src/user_info.ts</span>
+<span class="token comment"># Auto-merging src/utils.ts</span>
+<span class="token comment"># CONFLICT (add/add): Merge conflict in src/utils.ts</span>
+<span class="token comment"># Automatic merge failed; fix conflicts and then commit the result.</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>好了，现在已经是合并中的状态了，剩下的就是处理文件冲突了。就像我们平时一样：</p>
+<ul>
+<li>查看文件改动历史，比较差异</li>
+<li>根据自己需要，调整文件</li>
+<li>测试代码</li>
+<li><code>git add .</code></li>
+<li><code>git commit -m XXX</code></li>
+<li><code>git push</code></li>
+</ul>
+<p>为了节约时间，我不处理文件冲突，直接提交到<code>origin/fork-example</code>。<br><strong>因为这是个示范，这些事情我之前做过了，任何时候都不建议将未处理的冲突文件提交！！</strong></p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> <span class="token function">add</span> <span class="token builtin class-name">.</span>
+<span class="token function">git</span> commit <span class="token parameter variable">-m</span> <span class="token string">"chore: new branch of fork-exapmle"</span>
+<span class="token function">git</span> checkout <span class="token parameter variable">-b</span> fork-exapmle
+<span class="token function">git</span> push --set-upstream origin fork-exapmle<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><a target="_blank" rel="noopener" href="https://github.com/screw-hand/github-profile-trophy/commits/fork-exapmle">commit log - fork-example</a></p>
+<h3 id="跟踪多个上游仓库的更新"><a href="#跟踪多个上游仓库的更新" class="headerlink" title="跟踪多个上游仓库的更新"></a>跟踪多个上游仓库的更新</h3><p>至此第一次同步多个上游仓库就结束了。后续如果想继续跟踪远端上游的变动并且合并，也是大概这样的思路。</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 1. 获取远端信息，如果有新的变动，此次终端会输出信息</span>
+<span class="token function">git</span> fetch <span class="token parameter variable">--all</span>
+<span class="token comment"># 2. 合并fork的上游，此时大概率需要解决冲突</span>
+<span class="token function">git</span> merget upstream
+<span class="token comment"># 3. 合并非fork的上游，仍然需要注意冲突</span>
+<span class="token function">git</span> pull super-upstream main --allow-unrelated-histories<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="记录上游仓库信息"><a href="#记录上游仓库信息" class="headerlink" title="记录上游仓库信息"></a>记录上游仓库信息</h3><p><strong>建议把remote的信息记录在repo的<code>REAME.md</code>!!</strong>  <a target="_blank" rel="noopener" href="https://github.com/screw-hand/github-profile-trophy#init-project">README.md - Init Project</a><br>因为现在的仓库已经不是fork类型的，跟上游完全切断了联系，如果不记录的话。<br>后续更换开发设备，或者意外删除本地的git仓库，将会<strong>完全失去与上游的联系！</strong></p>
+<h3 id="实例，为什么要同步多个上游仓库"><a href="#实例，为什么要同步多个上游仓库" class="headerlink" title="实例，为什么要同步多个上游仓库"></a>实例，为什么要同步多个上游仓库</h3><p>为什么我的github-profile-trophy需要同步两个上游仓库呢？</p>
+<ul>
+<li>upsteam 两年内一直在更新</li>
+<li>super-upsteam 有upsteam没有的新功能，但是两年没更新了</li>
+<li>我也需要对其做一些定制化开发</li>
+</ul>
+<p>所以将两个上游仓库一起跟踪合并是最好的。</p>
+<p>如果对这个<a target="_blank" rel="noopener" href="https://github.com/screw-hand/github-profile-trophy">github-profile-trophy</a>感兴趣，你也可以将下面的两个链接添加到你的github profile page，别忘了将<code>screw-hand</code>换成自己的github username。</p>
+<pre class="line-numbers language-none"><code class="language-none"># 过滤掉指定等级(UNKNOWN，C)的奖杯
+https:&#x2F;&#x2F;github-profile-trophy.screw-hand.vercel.app&#x2F;?username&#x3D;screw-hand&amp;rank&#x3D;-UNKNOWN,-C
+
+# 只展示所有秘密奖杯，并且全部无条件获得
+https:&#x2F;&#x2F;github-profile-trophy.screw-hand.vercel.app&#x2F;?username&#x3D;screw-hand&amp;rank&#x3D;SECRET&amp;wantAll&#x3D;true<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="在fork之前clone上游仓库并commit了，怎么提pr"><a href="#在fork之前clone上游仓库并commit了，怎么提pr" class="headerlink" title="在fork之前clone上游仓库并commit了，怎么提pr"></a>在fork之前clone上游仓库并commit了，怎么提pr</h2><p>可能大多数人都是有了pr的想法，就第一时间fork仓库。我更喜欢clone上游仓库到本地。<br>为什么要先clone上游仓库到本地呢？有时候我们只是想随意看看其他人的代码，跑一跑。<br>然后发现一些地方可以新增功能，修复bug，我们本来没有提pr的意思，现在代码也改了。<br>也不想再去fork之后，再cc cv代码到新的fork repo。<br>当然github也可以在线浏览代码，clone到本地的话，除了看代码，也可以直接把项目先跑起来，改着玩玩。<br>这时候也可以直接修改代码然后commit，只是因为远端的仓库我们没有权限无法push。</p>
+<p>还有一种情况是： 如果一开始就是冲着提pr，先fork了，改不动代码了，这时候除了删本地的文件夹，还需要在删掉github的fork仓库。</p>
+<p>比如我们想给<a target="_blank" rel="noopener" href="https://github.com/haozi/New-Bing-Anywhere">haozi&#x2F;New-Bing-Anywhere</a>提一个pr。</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 1. clone上游仓库到本地</span>
+<span class="token function">git</span> clone https://github.com/haozi/New-Bing-Anywhere.git
+<span class="token builtin class-name">cd</span> New-Bing-Anywhere
+
+<span class="token comment"># 2. 浏览代码 / 启动项目 / 更改代码 / commit</span>
+<span class="token function">touch</span> pr-file
+<span class="token function">git</span> <span class="token function">add</span> <span class="token builtin class-name">.</span>
+<span class="token function">git</span> commit <span class="token parameter variable">-m</span> <span class="token string">"feat: pr-file"</span>
+
+<span class="token comment"># 3. 直接push</span>
+<span class="token function">git</span> push
+<span class="token comment"># 因为没有仓库的权限，无法直接push到haozi/New-Bing-Anywhere</span>
+<span class="token comment"># fatal: Authentication failed for 'https://github.com/haozi/New-Bing-Anywhere.git/'</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>这个时候，我们再来fork也不迟，所以我们先到github执行fork操作，得到<a target="_blank" rel="noopener" href="https://github.com/screw-hand/New-Bing-Anywhere">screw-hand&#x2F;New-Bing-Anywhere</a></p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 1. 查看远端</span>
+<span class="token function">git</span> remote <span class="token parameter variable">-v</span>
+<span class="token comment"># origin	https://github.com/haozi/New-Bing-Anywhere.git (fetch)</span>
+<span class="token comment"># origin	https://github.com/haozi/New-Bing-Anywhere.git (push)</span>
+
+<span class="token comment"># 2. 将origin换成upstream</span>
+<span class="token function">git</span> remote <span class="token function">rename</span> origin upstream
+
+<span class="token comment"># 3. 添加fork后的remote为origin</span>
+<span class="token function">git</span> remote <span class="token function">add</span> origin https://github.com/screw-hand/New-Bing-Anywhere.git
+
+<span class="token comment"># 4.检查远端</span>
+<span class="token function">git</span> remote <span class="token parameter variable">-v</span>
+<span class="token comment"># origin	https://github.com/screw-hand/New-Bing-Anywhere.git (fetch)</span>
+<span class="token comment"># origin	https://github.com/screw-hand/New-Bing-Anywhere.git (push)</span>
+<span class="token comment"># upstream	https://github.com/haozi/New-Bing-Anywhere.git (fetch)</span>
+<span class="token comment"># upstream	https://github.com/haozi/New-Bing-Anywhere.git (push)</span>
+
+<span class="token comment"># 5. 获取远端分支</span>
+<span class="token function">git</span> fetch <span class="token parameter variable">--all</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>接下来pr的常规流程：</p>
+<ul>
+<li>切分支</li>
+<li>commit</li>
+<li>push</li>
+<li>pr</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 1. 检出新分支</span>
+<span class="token function">git</span> checkout <span class="token parameter variable">-b</span> pr-example
+
+<span class="token comment"># 2. 推送到指定分支</span>
+<span class="token function">git</span> push --set-upstream origin pr-example
+
+<span class="token comment"># 3. 删除之前commit的main分支</span>
+<span class="token function">git</span> branch <span class="token parameter variable">-D</span> main
+
+<span class="token comment"># 4. 恢复main分支到未commit的状态</span>
+<span class="token function">git</span> checkout <span class="token parameter variable">-b</span> main origin/main
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><a target="_blank" rel="noopener" href="https://github.com/screw-hand/New-Bing-Anywhere/commits/pr-example">pr-example</a></p>
+<p>这一顿操作下来，会比第一时间fork更麻烦，可以当做没fork之后的补救措施吧。</p>
+<h2 id="clone上游仓库后，创建自己的repo"><a href="#clone上游仓库后，创建自己的repo" class="headerlink" title="clone上游仓库后，创建自己的repo"></a>clone上游仓库后，创建自己的repo</h2><p>这是一种比<br><a href="#%E5%A6%82%E4%BD%95%E5%B0%86fork%E7%B1%BB%E5%9E%8B%E4%BB%93%E5%BA%93%E8%BD%AC%E6%88%90%E8%87%AA%E5%B7%B1%E7%9A%84%E4%BB%93%E5%BA%93">如何将fork类型仓库转成自己的仓库</a>、<a href="#%E5%9C%A8fork%E4%B9%8B%E5%89%8Dclone%E4%B8%8A%E6%B8%B8%E4%BB%93%E5%BA%93%E5%B9%B6commit%E4%BA%86%EF%BC%8C%E6%80%8E%E4%B9%88%E6%8F%90pr">#fork之前clone上游仓库并commit了，怎么提pr</a>更简单的操作方式，效果是一样的。</p>
+<p>先clone想要的<a target="_blank" rel="noopener" href="https://github.com/snyk-snippets/modern-npm-package],%E7%84%B6%E5%90%8E%E5%9C%A8github[%E5%88%9B%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E6%96%B0repo](https://github.com/new">上游仓库</a>。<br>我觉得用<a target="_blank" rel="noopener" href="https://cli.github.com/">GitHub CLI</a>速度更快更方便，以下实例我用会GitHub CLI，跟在github web上操作是等效的。</p>
+<p>以下origin的github username，你需要换成自己的。</p>
+<ol>
+<li>设计我们的远端仓库</li>
+</ol>
+<pre class="line-numbers language-none"><code class="language-none">https:&#x2F;&#x2F;github.com&#x2F;snyk-snippets&#x2F;modern-npm-package.git # upsteam
+https:&#x2F;&#x2F;github.com&#x2F;screw-hand&#x2F;modern-npm-package.git # origin<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<ol start="2">
+<li>clone上游仓库</li>
+</ol>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> clone https://github.com/snyk-snippets/modern-npm-package.git<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<ol start="3">
+<li><p>*此刻你<strong>或许</strong>会在这里提交代码，但是你无法推送到别人的远端(snyk-snippets&#x2F;modern-npm-package)</p>
+</li>
+<li><p>更名远端仓库origin(snyk-snippets&#x2F;modern-npm-package)为upsteam(snyk-snippets&#x2F;modern-npm-package)</p>
+</li>
+</ol>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> remote <span class="token parameter variable">-v</span>
+<span class="token comment"># origin https://github.com/snyk-snippets/modern-npm-package.git (fetch)</span>
+<span class="token comment"># origin https://github.com/snyk-snippets/modern-npm-package.git (push)</span>
+
+<span class="token function">git</span> remote <span class="token function">rename</span> origin upsteam
+
+<span class="token function">git</span> remote <span class="token parameter variable">-v</span>
+<span class="token comment"># upsteam	https://github.com/snyk-snippets/modern-npm-package.git (fetch)</span>
+<span class="token comment"># upsteam	https://github.com/snyk-snippets/modern-npm-package.git (push)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<ol start="5">
+<li>使用<a target="_blank" rel="noopener" href="https://cli.github.com/">GitHub CLI</a>创建一个新repo</li>
+</ol>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">gh repo new
+
+? What would you like to do? Push an existing <span class="token builtin class-name">local</span> repository to GitHub
+? Path to <span class="token builtin class-name">local</span> repository <span class="token builtin class-name">.</span>
+? Repository name modern-npm-package
+? Description fork from <span class="token punctuation">[</span>snyk-snippets/modern-npm-package<span class="token punctuation">]</span><span class="token punctuation">(</span>https://github.com/snyk-snippets/modern-npm-package<span class="token punctuation">)</span>
+? Visibility Public
+✓ Created repository screw-hand/modern-npm-package on GitHub
+? Add a remote? Yes
+? What should the new remote be called? origin
+✓ Added remote git@github.com:screw-hand/modern-npm-package.git
+? Would you like to push commits from the current branch to <span class="token string">"origin"</span>? Yes
+Enumerating objects: <span class="token number">77</span>, done.
+Counting objects: <span class="token number">100</span>% <span class="token punctuation">(</span><span class="token number">77</span>/77<span class="token punctuation">)</span>, done.
+Delta compression using up to <span class="token number">8</span> threads
+Compressing objects: <span class="token number">100</span>% <span class="token punctuation">(</span><span class="token number">40</span>/40<span class="token punctuation">)</span>, done.
+Writing objects: <span class="token number">100</span>% <span class="token punctuation">(</span><span class="token number">77</span>/77<span class="token punctuation">)</span>, <span class="token number">117.86</span> KiB <span class="token operator">|</span> <span class="token number">458.00</span> KiB/s, done.
+Total <span class="token number">77</span> <span class="token punctuation">(</span>delta <span class="token number">33</span><span class="token punctuation">)</span>, reused <span class="token number">67</span> <span class="token punctuation">(</span>delta <span class="token number">27</span><span class="token punctuation">)</span>, pack-reused <span class="token number">0</span>
+remote: Resolving deltas: <span class="token number">100</span>% <span class="token punctuation">(</span><span class="token number">33</span>/33<span class="token punctuation">)</span>, done.
+To github.com:screw-hand/modern-npm-package.git
+ * <span class="token punctuation">[</span>new branch<span class="token punctuation">]</span>      HEAD -<span class="token operator">></span> main
+branch <span class="token string">'main'</span> <span class="token builtin class-name">set</span> up to track <span class="token string">'origin/main'</span><span class="token builtin class-name">.</span>
+✓ Pushed commits to git@github.com:screw-hand/modern-npm-package.git<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>操作很简单，第一次选项选择<code>Push an existing local repository to GitHub</code>，一路回车即可。<br><code>Description</code>看你，复制upsteam的也行，我这里自己写了。<br>其他选项是关于仓库的可见性、是否添加远端、添加远端后是否要push。</p>
+<p>跟在github web的操作其实是一样的，只是<code>GitHub CLI</code>的引导选项很方便。</p>
+<ol start="6">
+<li>再次检查远端仓库</li>
+</ol>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> remote <span class="token parameter variable">-v</span>
+origin	git@github.com:screw-hand/modern-npm-package.git <span class="token punctuation">(</span>fetch<span class="token punctuation">)</span>
+origin	git@github.com:screw-hand/modern-npm-package.git <span class="token punctuation">(</span>push<span class="token punctuation">)</span>
+upsteam	https://github.com/snyk-snippets/modern-npm-package.git <span class="token punctuation">(</span>fetch<span class="token punctuation">)</span>
+upsteam	https://github.com/snyk-snippets/modern-npm-package.git <span class="token punctuation">(</span>push<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<ol start="7">
+<li>查看github web</li>
+</ol>
+<p><a target="_blank" rel="noopener" href="https://github.com/screw-hand/modern-npm-package">https://github.com/screw-hand/modern-npm-package</a></p>
+<h2 id="结尾"><a href="#结尾" class="headerlink" title="结尾"></a>结尾</h2><p>为什么有时候提交了没contributions&#x2F;绿点&#x2F;绿墙： <a target="_blank" rel="noopener" href="https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-github-profile/managing-contribution-settings-on-your-profile/why-are-my-contributions-not-showing-up-on-my-profile">Why are my contributions not showing up on my profile? - GitHub Docs</a></p>
+<p>…</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>screw-hand
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://screw-hand.com/post/fork-skill/" title="github中的fork技巧">https://screw-hand.com/post/fork-skill/</a>
+  </li>
+  <li class="post-copyright-license">
+      <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="followme">
+  <span>欢迎关注我的其它发布渠道</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+      </div>
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/github/" rel="tag"># github</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/post/hope/" rel="prev" title="你的理想生活">
+                  <i class="fa fa-chevron-left"></i> 你的理想生活
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/post/ssh-config/" rel="next" title="ssh配置">
+                  ssh配置 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    
+  <div class="comments" id="disqus_thread">
+    <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+  </div>
+  
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2019 – 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">screw-hand</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/screw-hand" class="github-corner" title="在 GitHub 上关注我" aria-label="在 GitHub 上关注我" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.6.0/pjax.min.js" integrity="sha256-vxLn1tSKWD4dqbMRyv940UYw4sXgMtYcK6reefzZrao=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.0.8/medium-zoom.min.js" integrity="sha256-7PhEpEWEW0XXQ0k6kQrPKwuoIomz8R8IYyuU1Qew4P8=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pangu/4.0.7/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/pjax.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+  <script src="/js/third-party/fancybox.js"></script>
+
+
+
+  
+
+
+
+
+<script class="next-config" data-name="disqus" type="application/json">{"enable":true,"shortname":"screw-hand","count":true,"i18n":{"disqus":"disqus"}}</script>
+<script src="/js/third-party/comments/disqus.js"></script>
+
+</body>
+</html>

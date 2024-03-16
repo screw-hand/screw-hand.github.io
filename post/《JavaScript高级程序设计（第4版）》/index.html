@@ -1,0 +1,1306 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"screw-hand.com","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.17.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":"default","style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="JavaScript高级程序设计（第4版） 马特·弗里斯比278个想法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《JavaScript高级程序设计（第4版）》的笔记">
+<meta property="og:url" content="https://screw-hand.com/post/%E3%80%8AJavaScript%E9%AB%98%E7%BA%A7%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%EF%BC%88%E7%AC%AC4%E7%89%88%EF%BC%89%E3%80%8B/index.html">
+<meta property="og:site_name" content="螺丝手">
+<meta property="og:description" content="JavaScript高级程序设计（第4版） 马特·弗里斯比278个想法">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-03-20T12:37:34.000Z">
+<meta property="article:modified_time" content="2024-03-14T16:49:44.830Z">
+<meta property="article:author" content="screw-hand">
+<meta property="article:tag" content="js 读书笔记">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://screw-hand.com/post/%E3%80%8AJavaScript%E9%AB%98%E7%BA%A7%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%EF%BC%88%E7%AC%AC4%E7%89%88%EF%BC%89%E3%80%8B/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://screw-hand.com/post/%E3%80%8AJavaScript%E9%AB%98%E7%BA%A7%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%EF%BC%88%E7%AC%AC4%E7%89%88%EF%BC%89%E3%80%8B/","path":"/post/《JavaScript高级程序设计（第4版）》/","title":"《JavaScript高级程序设计（第4版）》的笔记"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>《JavaScript高级程序设计（第4版）》的笔记 | 螺丝手</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="螺丝手" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">螺丝手</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BA%8F"><span class="nav-number">1.</span> <span class="nav-text">序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-%E7%AE%80%E7%9F%AD%E7%9A%84%E5%8E%86%E5%8F%B2%E5%9B%9E%E9%A1%BE"><span class="nav-number">2.</span> <span class="nav-text">1.1 简短的历史回顾</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-JavaScript%E5%AE%9E%E7%8E%B0"><span class="nav-number">3.</span> <span class="nav-text">1.2 JavaScript实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-4-%E5%B0%8F%E7%BB%93"><span class="nav-number">4.</span> <span class="nav-text">1.4 小结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-lt-script-gt-%E5%85%83%E7%B4%A0"><span class="nav-number">5.</span> <span class="nav-text">2.1 &lt;script&gt;元素</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-5-%E5%B0%8F%E7%BB%93"><span class="nav-number">6.</span> <span class="nav-text">2.5 小结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC3%E7%AB%A0-%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80"><span class="nav-number">7.</span> <span class="nav-text">第3章 语言基础</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-%E8%AF%AD%E6%B3%95"><span class="nav-number">8.</span> <span class="nav-text">3.1 语法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-3-%E5%8F%98%E9%87%8F"><span class="nav-number">9.</span> <span class="nav-text">3.3 变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-4-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="nav-number">10.</span> <span class="nav-text">3.4 数据类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-5-%E6%93%8D%E4%BD%9C%E7%AC%A6"><span class="nav-number">11.</span> <span class="nav-text">3.5 操作符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-3-%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6"><span class="nav-number">12.</span> <span class="nav-text">4.3 垃圾回收</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-3-%E5%8E%9F%E5%A7%8B%E5%80%BC%E5%8C%85%E8%A3%85%E7%B1%BB%E5%9E%8B"><span class="nav-number">13.</span> <span class="nav-text">5.3 原始值包装类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-5-%E5%B0%8F%E7%BB%93"><span class="nav-number">14.</span> <span class="nav-text">5.5 小结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-2-Array"><span class="nav-number">15.</span> <span class="nav-text">6.2 Array</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-3-%E5%AE%9A%E5%9E%8B%E6%95%B0%E7%BB%84"><span class="nav-number">16.</span> <span class="nav-text">6.3 定型数组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-1-%E7%90%86%E8%A7%A3%E8%BF%AD%E4%BB%A3"><span class="nav-number">17.</span> <span class="nav-text">7.1 理解迭代</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-2-%E8%BF%AD%E4%BB%A3%E5%99%A8%E6%A8%A1%E5%BC%8F"><span class="nav-number">18.</span> <span class="nav-text">7.2 迭代器模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-3-%E7%94%9F%E6%88%90%E5%99%A8"><span class="nav-number">19.</span> <span class="nav-text">7.3 生成器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-1-%E7%90%86%E8%A7%A3%E5%AF%B9%E8%B1%A1"><span class="nav-number">20.</span> <span class="nav-text">8.1 理解对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-2-%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A1"><span class="nav-number">21.</span> <span class="nav-text">8.2 创建对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-4-%E7%B1%BB"><span class="nav-number">22.</span> <span class="nav-text">8.4 类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-1-%E4%BB%A3%E7%90%86%E5%9F%BA%E7%A1%80"><span class="nav-number">23.</span> <span class="nav-text">9.1 代理基础</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-2-%E4%BB%A3%E7%90%86%E6%8D%95%E8%8E%B7%E5%99%A8%E4%B8%8E%E5%8F%8D%E5%B0%84%E6%96%B9%E6%B3%95"><span class="nav-number">24.</span> <span class="nav-text">9.2 代理捕获器与反射方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-4-%E5%B0%8F%E7%BB%93"><span class="nav-number">25.</span> <span class="nav-text">9.4 小结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC10%E7%AB%A0-%E5%87%BD%E6%95%B0"><span class="nav-number">26.</span> <span class="nav-text">第10章 函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-1-%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0"><span class="nav-number">27.</span> <span class="nav-text">10.1 箭头函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-2-%E5%87%BD%E6%95%B0%E5%90%8D"><span class="nav-number">28.</span> <span class="nav-text">10.2 函数名</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-3-%E7%90%86%E8%A7%A3%E5%8F%82%E6%95%B0"><span class="nav-number">29.</span> <span class="nav-text">10.3 理解参数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-5-%E9%BB%98%E8%AE%A4%E5%8F%82%E6%95%B0%E5%80%BC"><span class="nav-number">30.</span> <span class="nav-text">10.5 默认参数值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-6-%E5%8F%82%E6%95%B0%E6%89%A9%E5%B1%95%E4%B8%8E%E6%94%B6%E9%9B%86"><span class="nav-number">31.</span> <span class="nav-text">10.6 参数扩展与收集</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-7-%E5%87%BD%E6%95%B0%E5%A3%B0%E6%98%8E%E4%B8%8E%E5%87%BD%E6%95%B0%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="nav-number">32.</span> <span class="nav-text">10.7 函数声明与函数表达式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-9-%E5%87%BD%E6%95%B0%E5%86%85%E9%83%A8"><span class="nav-number">33.</span> <span class="nav-text">10.9 函数内部</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-10-%E5%87%BD%E6%95%B0%E5%B1%9E%E6%80%A7%E4%B8%8E%E6%96%B9%E6%B3%95"><span class="nav-number">34.</span> <span class="nav-text">10.10 函数属性与方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-14-%E9%97%AD%E5%8C%85"><span class="nav-number">35.</span> <span class="nav-text">10.14 闭包</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11-1-%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B"><span class="nav-number">36.</span> <span class="nav-text">11.1 异步编程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11-2-%E6%9C%9F%E7%BA%A6"><span class="nav-number">37.</span> <span class="nav-text">11.2 期约</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11-3-%E5%BC%82%E6%AD%A5%E5%87%BD%E6%95%B0"><span class="nav-number">38.</span> <span class="nav-text">11.3 异步函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11-4-%E5%B0%8F%E7%BB%93"><span class="nav-number">39.</span> <span class="nav-text">11.4 小结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#12-1-window%E5%AF%B9%E8%B1%A1"><span class="nav-number">40.</span> <span class="nav-text">12.1 window对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#12-2-location%E5%AF%B9%E8%B1%A1"><span class="nav-number">41.</span> <span class="nav-text">12.2 location对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#14-1-%E8%8A%82%E7%82%B9%E5%B1%82%E7%BA%A7"><span class="nav-number">42.</span> <span class="nav-text">14.1 节点层级</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#15-1-Selectors-API"><span class="nav-number">43.</span> <span class="nav-text">15.1 Selectors API</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC16%E7%AB%A0-DOM2%E5%92%8CDOM3"><span class="nav-number">44.</span> <span class="nav-text">第16章 DOM2和DOM3</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#16-2-%E6%A0%B7%E5%BC%8F"><span class="nav-number">45.</span> <span class="nav-text">16.2 样式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#17-1-%E4%BA%8B%E4%BB%B6%E6%B5%81"><span class="nav-number">46.</span> <span class="nav-text">17.1 事件流</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#17-2-%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86%E7%A8%8B%E5%BA%8F"><span class="nav-number">47.</span> <span class="nav-text">17.2 事件处理程序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#17-3-%E4%BA%8B%E4%BB%B6%E5%AF%B9%E8%B1%A1"><span class="nav-number">48.</span> <span class="nav-text">17.3 事件对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#17-4-%E4%BA%8B%E4%BB%B6%E7%B1%BB%E5%9E%8B"><span class="nav-number">49.</span> <span class="nav-text">17.4 事件类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#17-5-%E5%86%85%E5%AD%98%E4%B8%8E%E6%80%A7%E8%83%BD"><span class="nav-number">50.</span> <span class="nav-text">17.5 内存与性能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#17-6-%E6%A8%A1%E6%8B%9F%E4%BA%8B%E4%BB%B6"><span class="nav-number">51.</span> <span class="nav-text">17.6 模拟事件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#18-1-%E4%BD%BF%E7%94%A8requestAnimationFrame"><span class="nav-number">52.</span> <span class="nav-text">18.1 使用requestAnimationFrame</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#19-5-%E5%AF%8C%E6%96%87%E6%9C%AC%E7%BC%96%E8%BE%91"><span class="nav-number">53.</span> <span class="nav-text">19.5 富文本编辑</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#20-1-Atomics%E4%B8%8ESharedArrayBuffer"><span class="nav-number">54.</span> <span class="nav-text">20.1 Atomics与SharedArrayBuffer</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#20-2-%E8%B7%A8%E4%B8%8A%E4%B8%8B%E6%96%87%E6%B6%88%E6%81%AF"><span class="nav-number">55.</span> <span class="nav-text">20.2 跨上下文消息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#20-3-Encoding-API"><span class="nav-number">56.</span> <span class="nav-text">20.3 Encoding API</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#20-4-File-API%E4%B8%8EBlob-API"><span class="nav-number">57.</span> <span class="nav-text">20.4 File API与Blob API</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#20-8-Page-Visibility-API"><span class="nav-number">58.</span> <span class="nav-text">20.8 Page Visibility API</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#20-9-Streams-API"><span class="nav-number">59.</span> <span class="nav-text">20.9 Streams API</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#20-10-%E8%AE%A1%E6%97%B6API"><span class="nav-number">60.</span> <span class="nav-text">20.10 计时API</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#20-11-Web%E7%BB%84%E4%BB%B6"><span class="nav-number">61.</span> <span class="nav-text">20.11 Web组件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#20-12-Web-Cryptography-API"><span class="nav-number">62.</span> <span class="nav-text">20.12 Web Cryptography API</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#21-2-%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86"><span class="nav-number">63.</span> <span class="nav-text">21.2 错误处理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#21-3-%E8%B0%83%E8%AF%95%E6%8A%80%E6%9C%AF"><span class="nav-number">64.</span> <span class="nav-text">21.3 调试技术</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#21-4-%E6%97%A7%E7%89%88IE%E7%9A%84%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF"><span class="nav-number">65.</span> <span class="nav-text">21.4 旧版IE的常见错误</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#22-2-%E6%B5%8F%E8%A7%88%E5%99%A8%E5%AF%B9XPath%E7%9A%84%E6%94%AF%E6%8C%81"><span class="nav-number">66.</span> <span class="nav-text">22.2 浏览器对XPath的支持</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC23%E7%AB%A0-JSON"><span class="nav-number">67.</span> <span class="nav-text">第23章 JSON</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#23-1-%E8%AF%AD%E6%B3%95"><span class="nav-number">68.</span> <span class="nav-text">23.1 语法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#23-2-%E8%A7%A3%E6%9E%90%E4%B8%8E%E5%BA%8F%E5%88%97%E5%8C%96"><span class="nav-number">69.</span> <span class="nav-text">23.2 解析与序列化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#24-1-XMLHttpRequest%E5%AF%B9%E8%B1%A1"><span class="nav-number">70.</span> <span class="nav-text">24.1 XMLHttpRequest对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#24-2-%E8%BF%9B%E5%BA%A6%E4%BA%8B%E4%BB%B6"><span class="nav-number">71.</span> <span class="nav-text">24.2 进度事件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#24-3-%E8%B7%A8%E6%BA%90%E8%B5%84%E6%BA%90%E5%85%B1%E4%BA%AB"><span class="nav-number">72.</span> <span class="nav-text">24.3 跨源资源共享</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#24-4-%E6%9B%BF%E4%BB%A3%E6%80%A7%E8%B7%A8%E6%BA%90%E6%8A%80%E6%9C%AF"><span class="nav-number">73.</span> <span class="nav-text">24.4 替代性跨源技术</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#24-5-Fetch-API"><span class="nav-number">74.</span> <span class="nav-text">24.5 Fetch API</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#24-6-Beacon-API"><span class="nav-number">75.</span> <span class="nav-text">24.6 Beacon API</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#24-7-Web-Socket"><span class="nav-number">76.</span> <span class="nav-text">24.7 Web Socket</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#25-1-cookie"><span class="nav-number">77.</span> <span class="nav-text">25.1 cookie</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#25-2-Web-Storage"><span class="nav-number">78.</span> <span class="nav-text">25.2 Web Storage</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#26-1-%E7%90%86%E8%A7%A3%E6%A8%A1%E5%9D%97%E6%A8%A1%E5%BC%8F"><span class="nav-number">79.</span> <span class="nav-text">26.1 理解模块模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#26-3-%E4%BD%BF%E7%94%A8ES6%E4%B9%8B%E5%89%8D%E7%9A%84%E6%A8%A1%E5%9D%97%E5%8A%A0%E8%BD%BD%E5%99%A8"><span class="nav-number">80.</span> <span class="nav-text">26.3 使用ES6之前的模块加载器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC27%E7%AB%A0-%E5%B7%A5%E4%BD%9C%E8%80%85%E7%BA%BF%E7%A8%8B"><span class="nav-number">81.</span> <span class="nav-text">第27章 工作者线程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#27-1-%E5%B7%A5%E4%BD%9C%E8%80%85%E7%BA%BF%E7%A8%8B%E7%AE%80%E4%BB%8B"><span class="nav-number">82.</span> <span class="nav-text">27.1 工作者线程简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#27-2-%E4%B8%93%E7%94%A8%E5%B7%A5%E4%BD%9C%E8%80%85%E7%BA%BF%E7%A8%8B"><span class="nav-number">83.</span> <span class="nav-text">27.2 专用工作者线程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#27-5-%E5%B0%8F%E7%BB%93"><span class="nav-number">84.</span> <span class="nav-text">27.5 小结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#28-1-%E5%8F%AF%E7%BB%B4%E6%8A%A4%E6%80%A7"><span class="nav-number">85.</span> <span class="nav-text">28.1 可维护性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#28-2-%E6%80%A7%E8%83%BD"><span class="nav-number">86.</span> <span class="nav-text">28.2 性能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#A-5-%E6%95%B0%E7%BB%84%E6%89%93%E5%B9%B3%E6%96%B9%E6%B3%95"><span class="nav-number">87.</span> <span class="nav-text">A.5 数组打平方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#A-6-Object-fromEntries"><span class="nav-number">88.</span> <span class="nav-text">A.6 Object.fromEntries()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#B-6-%E7%B1%BB%E4%B8%8E%E6%A8%A1%E5%9D%97"><span class="nav-number">89.</span> <span class="nav-text">B.6 类与模块</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="screw-hand"
+      src="/avatar.jpg">
+  <p class="site-author-name" itemprop="name">screw-hand</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">31</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/screw-hand" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;screw-hand" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:screwhand0@gmail.com" title="E-Mail → mailto:screwhand0@gmail.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml" rel="noopener me"><i class="fa fa-rss fa-fw"></i></a>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://screw-hand.com/post/%E3%80%8AJavaScript%E9%AB%98%E7%BA%A7%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%EF%BC%88%E7%AC%AC4%E7%89%88%EF%BC%89%E3%80%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/avatar.jpg">
+      <meta itemprop="name" content="screw-hand">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="螺丝手">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="《JavaScript高级程序设计（第4版）》的笔记 | 螺丝手">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          《JavaScript高级程序设计（第4版）》的笔记
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-03-20 20:37:34" itemprop="dateCreated datePublished" datetime="2022-03-20T20:37:34+08:00">2022-03-20</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-03-15 00:49:44" itemprop="dateModified" datetime="2024-03-15T00:49:44+08:00">2024-03-15</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/js/" itemprop="url" rel="index"><span itemprop="name">js</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/post/%E3%80%8AJavaScript%E9%AB%98%E7%BA%A7%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%EF%BC%88%E7%AC%AC4%E7%89%88%EF%BC%89%E3%80%8B/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="/post/《JavaScript高级程序设计（第4版）》/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>27k</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p><strong>JavaScript高级程序设计（第4版）</strong></p>
+<p>马特·弗里斯比<br>278个想法</p>
+<span id="more"></span>
+
+<h2 id="序"><a href="#序" class="headerlink" title="序"></a>序</h2><p><a target="_blank" rel="noopener" href="https://weread.qq.com/web/reader/751326d0720befab7514782k4e73277021a4e732ced3b55">https://weread.qq.com/web/reader/751326d0720befab7514782k4e73277021a4e732ced3b55</a></p>
+<blockquote>
+<p>工业革命是钢铁铸就的，互联网革命则是JavaScript造就的。25年的反复锻造与打磨，成就了JavaScript在今天的应用程序开发中毋庸置疑的统治地位，但并非一开始就是如此。<br>Brendan Eich只用10天就写出了JavaScript的第一版。初生的JavaScript看似弱不禁风，但历史表明，第一印象并不代表一切。今天，这门语言的每个细节，也就是这本书所涉及的方方面面，都是反复推敲的产物。并非所有决定都让人满意，也没有完美的编程语言，不过单从无所不在这方面看，JavaScript倒是很接近完美。它是目前唯一一个可以随处部署的语言：服务器、桌面浏览器、手机浏览器，甚至原生移动应用程序中都有它的身影。<br>JavaScript目前的使用者有不同层次的软件工程师，他们的背景各异。无论是以开发设计精良、优雅的软件为目标，还是仅仅为了完成业绩而简单堆砌一个系统，JavaScript都能派上用场。<br>怎么使用JavaScript完全取决于你。一切尽在你的掌握之中。<br>在我超过15年的软件开发生涯中，JavaScript工具和最佳实践已经发生了天翻地覆的变化。2004年，我开始接触这门语言，当时还是雅虎地球村（Geocities）、雅虎群组（Yahoo Groups）和Macromedia Flash播放器的天下。JavaScript给人感觉像个玩具，当时我在RSS、MySpace Profile Pages等流行的沙盒环境中开始使用它。后来我又帮助一些个人网站修改和自定义功能，那种感觉就像在狂野的西部拓荒，而我也因此喜欢上了它。<br>当初我创建第一家公司的时候，配置主机装个数据库要花几天时间，而JavaScript只要扔到HTML里就可以跑起来。“前端应用程序”是不存在的，主要是零七碎八的函数。后来Ajax因为jQuery火了而变得更加流行，这才打开了通向新世界的大门，可靠、稳定的应用程序应运而生。这股风潮愈演愈烈，直到有一天遇到了发展瓶颈，但突然间，强大的框架诞生了。前端模型、数据绑定、路由管理、反应式视图，全都爆发出来了。我就在这个时候搬到硅谷，帮人打理一家公司。很快，使用我代码的用户达到了几百万。置身硅谷这么长时间以来，我也为开源做了一些贡献，培训了不计其数的软件工程师，也走了一点儿运。我的上一家公司在2018年被Stripe收购，我现在就供职于这家公司，致力于为互联网构建其经济基础设施。<br>我很高兴在马特第一次到帕洛阿尔托的一家小型创业公司领导工程化时结识了他。那家公司叫Claco，当时我刚成为它的顾问。他追求伟大软件的活力和激情溢于言表，而这家羽翼未丰的公司很快就开发出一款漂亮的产品。一如为硅谷公司设立标杆的惠普，这家创业公司也诞生在一间平房里。但这可不是寻常的民房，而是一间“黑客屋”，里面十几位才华横溢的软件工程师经常通宵达旦地工作。虽然过的不是什么高档次生活——他们坐的都是别人扔在大街上的那种沙发床和旧椅子——他们在这间房子里每天所写代码的数量和质量却引人瞩目。连续工作几小时后，大多数人会把精力投入到公司的另一个子项目上，然后又是几个小时的工作。不太会写代码的人也常受启发，发现自己学习的渴望，然后仅仅几个星期后就变成了代码能手。<br>马特是促成这种开发效率的关键角色。他是“黑客屋”里经验最丰富的人，恰好也是思维最清晰、最专业的一个。拿到计算机工程学位并不能说明什么，只要在窗户或者白板上看到马特写的算法、性能计算以及代码，你就知道马特又在专注于他的下一个大项目。随着我对他了解的加深，我们成为了好朋友。他的领悟能力，他对培训工作的热爱，以及几乎可以把所有东西转化成笑话的能力，都是我所欣赏的品质。<br>虽然马特是一位极具才华的软件工程师和项目领导，但他之所以能成为本书作者独一无二的人选，还是凭借他独有的经验和知识。<br>他不仅仅花时间教别人，而且还把这本书写完了。<br>在Claco，他开发了多款整体性产品，端到端地帮助教师在课堂上提供更好的学习体验。在DoorDash，他是第一位工程师，开发了一个可靠的物流配送系统并实现了高速增长，目前公司估值超过了120亿美元。最后，在Google，马特写的软件已经被这个星球上的数十亿人使用了。<br>全情投入，快速增长，誉满天下——多数软件工程师终其一生也只能体验到其中一项，而且还得运气好。马特不仅体验到了全部，还成为了畅销书作者。除了本书，他还写了两本JavaScript和Angular的书。说实话，我就想知道他什么时候能写一本书，把自己管理时间的奥秘分享出来。<br>本书是一部翔实的工具书，满满的都是JavaScript知识和实用技术。我热切希望本书读者能够不断学习，并亲手打造属于自己的梦想。欢迎大家多多挑错，多记笔记，别忘了打开代码编辑器，毕竟互联网革命才刚刚开始！<br>Zach Tratar<br>Stripe软件工程师<br>Jobstart联合创始人、前CEO</p>
+</blockquote>
+<h2 id="1-1-简短的历史回顾"><a href="#1-1-简短的历史回顾" class="headerlink" title="1.1 简短的历史回顾"></a>1.1 简短的历史回顾</h2><blockquote>
+<p>两个版本的JavaScript:Netscape Navigator中的JavaScript，以及IE中的JScript。</p>
+</blockquote>
+<blockquote>
+<p>1997年，JavaScript 1.1作为提案被提交给欧洲计算机制造商协会（Ecma）。第39技术委员会（TC39）承担了“标准化一门通用、跨平台、厂商中立的脚本语言的语法和语义”的任务（参见TC39-ECMAScript）。TC39委员会由来自网景、Sun、微软、Borland、Nombas和其他对这门脚本语言有兴趣的公司的工程师组成。他们花了数月时间打造出ECMA-262，也就是ECMAScript（发音为“ek-ma-script”）这个新的脚本语言标准。</p>
+</blockquote>
+<h2 id="1-2-JavaScript实现"><a href="#1-2-JavaScript实现" class="headerlink" title="1.2 JavaScript实现"></a>1.2 JavaScript实现</h2><blockquote>
+<p>ECMA-262将这门语言作为一个基准来定义，以便在它之上再构建更稳健的脚本语言。</p>
+</blockquote>
+<p><a target="_blank" rel="noopener" href="https://es6.ruanyifeng.com/">https://es6.ruanyifeng.com/</a></p>
+<blockquote>
+<p>ECMA-262第6版，俗称ES6、ES2015或ES Harmony（和谐版），于2015年6月发布。这一版包含了大概这个规范有史以来最重要的一批增强特性。ES6正式支持了类、模块、迭代器、生成器、箭头函数、期约、反射、代理和众多新的数据类型。</p>
+</blockquote>
+<p><a target="_blank" rel="noopener" href="https://maninboat.gitbooks.io/you-dont-know-js-es6/content/ch8.3.html">https://maninboat.gitbooks.io/you-dont-know-js-es6/content/ch8.3.html</a></p>
+<blockquote>
+<p>ECMA-262第7版，也称为ES7或ES2016，于2016年6月发布。这次修订只包含少量语法层面的增强，如Array.prototype.includes和指数操作符。</p>
+</blockquote>
+<blockquote>
+<p>ECMA-262第7版，也称为ES7或ES2016，于2016年6月发布。这次修订只包含少量语法层面的增强，如Array.prototype.includes和指数操作符。</p>
+</blockquote>
+<blockquote>
+<p>ECMA-262第8版，也称为ES8、ES2017，完成于2017年6月。这一版主要增加了异步函数（async&#x2F;await）、SharedArrayBuffer及Atomics API，以及Object.values()&#x2F;Object.entries()&#x2F;Object. getOwnPropertyDescriptors()和字符串填充方法，另外明确支持对象字面量最后的逗号。</p>
+</blockquote>
+<blockquote>
+<p>ECMA-262第9版，也称为ES9、ES2018，发布于2018年6月。这次修订包括异步迭代、剩余和扩展属性、一组新的正则表达式特性、Promise finally()，以及模板字面量修订。</p>
+</blockquote>
+<blockquote>
+<p>ECMA-262第10版，也称为ES10、ES2019，发布于2019年6月。这次修订增加了Array.prototype. flat()&#x2F;flatMap()、String.prototype.trimStart()&#x2F;trimEnd()、Object.fromEntries()方法，以及Symbol.prototype.description属性，明确定义了Function.prototype.toString()的返回值并固定了Array.prototype.sort()的顺序。另外，这次修订解决了与JSON字符串兼容的问题，并定义了catch子句的可选绑定。</p>
+</blockquote>
+<blockquote>
+<p>万维网联盟（W3C, World Wide Web Consortium）开始了制定DOM标准的进程。</p>
+</blockquote>
+<blockquote>
+<p>目前，W3C不再按照Level来维护DOM了，而是作为DOM Living Standard来维护，其快照称为DOM4。</p>
+</blockquote>
+<h2 id="1-4-小结"><a href="#1-4-小结" class="headerlink" title="1.4 小结"></a>1.4 小结</h2><blockquote>
+<p>JavaScript是一门用来与网页交互的脚本语言，包含以下三个组成部分。<br>❑ ECMAScript：由ECMA-262定义并提供核心功能。<br>❑ 文档对象模型（DOM）：提供与网页内容交互的方法和接口。<br>❑ 浏览器对象模型（BOM）：提供与浏览器交互的方法和接口。<br>JavaScript的这三个部分得到了五大Web浏览器（IE、Firefox、Chrome、Safari和Opera）不同程度的支持。所有浏览器基本上对ES5（ECMAScript 5）提供了完善的支持，而对ES6（ECMAScript 6）和ES7（ECMAScript 7）的支持度也在不断提升。这些浏览器对DOM的支持各不相同，但对Level 3的支持日益趋于规范。HTML5中收录的BOM会因浏览器而异，不过开发者仍然可以假定存在很大一部分公共特性。</p>
+</blockquote>
+<h2 id="2-1-lt-script-gt-元素"><a href="#2-1-lt-script-gt-元素" class="headerlink" title="2.1 &lt;script&gt;元素"></a>2.1 <code>&lt;script&gt;</code>元素</h2><p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/script#%E5%B1%9E%E6%80%A7">https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/script#%E5%B1%9E%E6%80%A7</a></p>
+<blockquote>
+<p><code>&lt;script&gt;</code>元素有下列8个属性。</p>
+</blockquote>
+<blockquote>
+<p>把所有JavaScript文件都放在<code>&lt;head&gt;</code>里，也就意味着必须把所有JavaScript代码都下载、解析和解释完成后，才能开始渲染页面（页面在浏览器解析到<code>&lt;body&gt;</code>的起始标签时开始渲染）。对于需要很多JavaScript的页面，这会导致页面渲染的明显延迟，在此期间浏览器窗口完全空白。为解决这个问题，现代Web应用程序通常将所有JavaScript引用放在<code>&lt;body&gt;</code>元素中的页面内容后面</p>
+</blockquote>
+<blockquote>
+<p>defer的属性。这个属性表示脚本在执行的时候不会改变页面的结构。也就是说，脚本会被延迟到整个页面都解析完毕后再运行。因此，在<code>&lt;script&gt;</code>元素上设置defer属性，相当于告诉浏览器立即下载，但延迟执行。</p>
+</blockquote>
+<blockquote>
+<p>async属性与defer类似。当然，它们两者也都只适用于外部脚本，都会告诉浏览器立即开始下载。不过，与defer不同的是，标记为async的脚本并不保证能按照它们出现的次序执</p>
+</blockquote>
+<h2 id="2-5-小结"><a href="#2-5-小结" class="headerlink" title="2.5 小结"></a>2.5 小结</h2><blockquote>
+<p>JavaScript是通过<code>&lt;script&gt;</code>元素插入到HTML页面中的。这个元素可用于把JavaScript代码嵌入到HTML页面中，跟其他标记混合在一起，也可用于引入保存在外部文件中的JavaScript。本章的重点可以总结如下。<br>❑ 要包含外部JavaScript文件，必须将src属性设置为要包含文件的URL。文件可以跟网页在同一台服务器上，也可以位于完全不同的域。<br>❑ 所有<code>&lt;script&gt;</code>元素会依照它们在网页中出现的次序被解释。在不使用defer和async属性的情况下，包含在<code>&lt;script&gt;</code>元素中的代码必须严格按次序解释。<br>❑ 对不推迟执行的脚本，浏览器必须解释完位于<code>&lt;script&gt;</code>元素中的代码，然后才能继续渲染页面的剩余部分。为此，通常应该把<code>&lt;script&gt;</code>元素放到页面末尾，介于主内容之后及</body>标签之前。<br>❑ 可以使用defer属性把脚本推迟到文档渲染完毕后再执行。推迟的脚本原则上按照它们被列出的次序执行。<br>❑ 可以使用async属性表示脚本不需要等待其他脚本，同时也不阻塞文档渲染，即异步加载。异步脚本不能保证按照它们在页面中出现的次序执行。<br>❑ 通过使用<code>&lt;noscript&gt;</code>元素，可以指定在浏览器不支持脚本时显示的内容。如果浏览器支持并启用脚本，则<code>&lt;noscript&gt;</code>元素中的任何内容都不会被渲染。</p>
+</blockquote>
+<h2 id="第3章-语言基础"><a href="#第3章-语言基础" class="headerlink" title="第3章 语言基础"></a>第3章 语言基础</h2><blockquote>
+<p>语法<br>❑ 数据类型<br>❑ 流控制语句<br>❑ 理解函数任何语言的核心所描述的都是这门语言在最基本的层面上如何工作，涉及语法、操作符、数据类型以及内置功能，在此基础之上才可以构建复杂的解决方案。</p>
+</blockquote>
+<h2 id="3-1-语法"><a href="#3-1-语法" class="headerlink" title="3.1 语法"></a>3.1 语法</h2><blockquote>
+<p>ECMAScript中一切都区分大小写。无论是变量、函数名还是操作符，都区分大小写。</p>
+</blockquote>
+<blockquote>
+<p>所谓标识符，就是变量、函数、属性或函数参数的名称。标识符可以由一或多个下列字符组成：<br>❑ 第一个字符必须是一个字母、下划线（_）或美元符号（$）；<br>❑ 剩下的其他字符可以是字母、下划线、美元符号或数字。标识符中的字母可以是扩展ASCII（Extended ASCII）中的字母，也可以是Unicode的字母字符，如À和Æ（但不推荐使用）。</p>
+</blockquote>
+<blockquote>
+<p>按照惯例，ECMAScript标识符使用驼峰大小写形式，即第一个单词的首字母小写，后面每个单词的首字母大写</p>
+</blockquote>
+<h2 id="3-3-变量"><a href="#3-3-变量" class="headerlink" title="3.3 变量"></a>3.3 变量</h2><blockquote>
+<p>ECMAScript变量是松散类型的，意思是变量可以用于保存任何类型的数据。每个变量只不过是一个用于保存任意值的命名占位符。有3个关键字可以声明变量：var、const和let。</p>
+</blockquote>
+<blockquote>
+<p>let声明的范围是块作用域，而var声明的范围是函数作用域。</p>
+</blockquote>
+<blockquote>
+<p>let与var的另一个重要的区别，就是let声明的变量不会在作用域中被提升。</p>
+</blockquote>
+<blockquote>
+<p>在let声明之前的执行瞬间被称为“暂时性死区”（temporal dead zone），在此阶段引用任何后面才声明的变量都会抛出ReferenceError。</p>
+</blockquote>
+<blockquote>
+<p>使用let在全局作用域中声明的变量不会成为window对象的属性（var声明的变量则会）。</p>
+</blockquote>
+<blockquote>
+<p>let声明仍然是在全局作用域中发生的，相应变量会在页面的生命周期内存续。因此，为了避免SyntaxError，必须确保页面不会重复声明同一个变量。</p>
+</blockquote>
+<blockquote>
+<p>不能使用let进行条件式声明是件好事，因为条件声明是一种反模式，它让程序变得更难理解。如果你发现自己在使用这个模式，那一定有更好的替代方式。</p>
+</blockquote>
+<blockquote>
+<p>let出现之前，for循环定义的迭代变量会渗透到循环体外部</p>
+</blockquote>
+<blockquote>
+<p>改成使用let之后，这个问题就消失了，因为迭代变量的作用域仅限于for循环块内部</p>
+</blockquote>
+<blockquote>
+<p>const的行为与let基本相同，唯一一个重要的区别是用它声明变量时必须同时初始化变量，且尝试修改const声明的变量会导致运行时错误。</p>
+</blockquote>
+<blockquote>
+<p>const声明的限制只适用于它指向的变量的引用。换句话说，如果const变量引用的是一个对象，那么修改这个对象内部的属性并不违反const的限制。</p>
+</blockquote>
+<blockquote>
+<p>不能用const来声明迭代变量（因为迭代变量会自增）</p>
+</blockquote>
+<blockquote>
+<p>只想用const声明一个不会被修改的for循环变量，那也是可以的。</p>
+</blockquote>
+<blockquote>
+<p>ECMAScript 6增加let和const从客观上为这门语言更精确地声明作用域和语义提供了更好的支持。</p>
+</blockquote>
+<blockquote>
+<p>使用const声明可以让浏览器运行时强制保持变量不变，也可以让静态代码分析工具提前发现不合法的赋值操作。因此，很多开发者认为应该优先使用const来声明变量，只在提前知道未来会有修改时，再使用let。</p>
+</blockquote>
+<h2 id="3-4-数据类型"><a href="#3-4-数据类型" class="headerlink" title="3.4 数据类型"></a>3.4 数据类型</h2><blockquote>
+<p>ECMAScript有6种简单数据类型（也称为原始类型）: Undefined、Null、Boolean、Number、String和Symbol。Symbol（符号）是ECMAScript 6新增的。还有一种复杂数据类型叫Object（对象）。Object是一种无序名值对的集合。</p>
+</blockquote>
+<p>typeof function () {} &#x2F;&#x2F; “function”<br>typeof Function       &#x2F;&#x2F; “function”<br>typeof Object         &#x2F;&#x2F; “function”<br>typeof Object         &#x2F;&#x2F; “function”<br>typeof []             &#x2F;&#x2F; “object”<br>typeof {}             &#x2F;&#x2F; “object”</p>
+<p>Object instanceof Function &#x2F;&#x2F; true<br>Function instanceof Object &#x2F;&#x2F; true</p>
+<blockquote>
+<p>对一个值使用typeof操作符会返回下列字符串之一：<br>❑ “undefined”表示值未定义；<br>❑ “boolean”表示值为布尔值；<br>❑ “string”表示值为字符串；<br>❑ “number”表示值为数值；<br>❑ “object”表示值为对象（而不是函数）或null；<br>❑ “function”表示值为函数；<br>❑ “symbol”表示值为符号。</p>
+</blockquote>
+<blockquote>
+<p>严格来讲，函数在ECMAScript中被认为是对象，并不代表一种数据类型。可是，函数也有自己特殊的属性。为此，就有必要通过typeof操作符来区分函数和其他对象。</p>
+</blockquote>
+<blockquote>
+<p>Null类型同样只有一个值，即特殊值null。逻辑上讲，null值表示一个空对象指针，这也是给typeof传一个null会返回”object”的原因</p>
+</blockquote>
+<blockquote>
+<p>任何时候，只要变量要保存对象，而当时又没有那个对象可保存，就要用null来填充该变量。这样就可以保持null是空对象指针的语义，并进一步将其与undefined区分开来。</p>
+</blockquote>
+<blockquote>
+<p>这两个布尔值不同于数值，因此true不等于1，false不等于0。</p>
+</blockquote>
+<blockquote>
+<p>布尔值字面量true和false是区分大小写的，因此True和False（及其他大小混写形式）是有效的标识符，但不是布尔值。</p>
+</blockquote>
+<blockquote>
+<p>Number类型使用IEEE 754格式表示整数和浮点值（在某些语言中也叫双精度值）。</p>
+</blockquote>
+<blockquote>
+<p>整数也可以用八进制（以8为基数）或十六进制（以16为基数）字面量表示。对于八进制字面量，第一个数字必须是零（0），然后是相应的八进制数字（数值0~7）。如果字面量中包含的数字超出了应有的范围，就会忽略前缀的零，后面的数字序列会被当成十进制数</p>
+</blockquote>
+<p>ECMAScript 2015或ES6中的八进制值通过前缀0o来表示；严格模式下，前缀0会被视为语法错误，如果要表示八进制值，应该使用前缀0o。——译者注</p>
+<blockquote>
+<p>八进制字面量在严格模式下是无效的，会导致JavaScript引擎抛出语法错误。</p>
+</blockquote>
+<blockquote>
+<p>八进制字面量在严格模式下是无效的，会导致JavaScript引擎抛出语法错误。</p>
+</blockquote>
+<blockquote>
+<p>要创建十六进制字面量，必须让真正的数值前缀0x（区分大小写），然后是十六进制数字（0~9以及A~F）。十六进制数字中的字母大小写均可。</p>
+</blockquote>
+<blockquote>
+<p>使用八进制和十六进制格式创建的数值在所有数学操作中都被视为十进制数值。</p>
+</blockquote>
+<blockquote>
+<p>因为存储浮点值使用的内存空间是存储整数值的两倍，所以ECMAScript总是想方设法把值转换为整数。在小数点后面没有数字的情况下，数值就会变成整数。类似地，如果数值本身就是整数，只是小数点后面跟着0（如1.0），那它也会被转换为整数</p>
+</blockquote>
+<blockquote>
+<p>对于非常大或非常小的数值，浮点值可以用科学记数法来表示。科学记数法用于表示一个应该乘以10的给定次幂的数值。ECMAScript中科学记数法的格式要求是一个数值（整数或浮点数）后跟一个大写或小写的字母e，再加上一个要乘的10的多少次幂。</p>
+</blockquote>
+<blockquote>
+<p>科学记数法也可以用于表示非常小的数值，例如0.00000000000000003。这个数值用科学记数法可以表示为3e-17。默认情况下，ECMAScript会将小数点后至少包含6个零的浮点值转换为科学记数法（例如，0.000000 3会被转换为3e-7）。</p>
+</blockquote>
+<blockquote>
+<p>浮点值的精确度最高可达17位小数，但在算术计算中远不如整数精确。例如，0.1加0.2得到的不是0.3，而是0.30000000000000004。</p>
+</blockquote>
+<blockquote>
+<p>ECMAScript可以表示的最小数值保存在Number.MIN_VALUE中，这个值在多数浏览器中是5e-324；可以表示的最大数值保存在Number.MAX_VALUE中，这个值在多数浏览器中是1.797693134862315 7e+308。如果某个计算得到的数值结果超出了JavaScript可以表示的范围，那么这个数值会被自动转换为一个特殊的Infinity（无穷）值。任何无法表示的负数以-Infinity（负无穷大）表示，任何无法表示的正数以Infinity（正无穷大）表示。</p>
+</blockquote>
+<p>console.log(0&#x2F;0);     &#x2F;&#x2F; NaN<br>console.log(-0&#x2F;+0);   &#x2F;&#x2F; NaN</p>
+<blockquote>
+<p>有一个特殊的数值叫NaN，意思是“不是数值”（Not a Number），用于表示本来要返回数值的操作失败了（而不是抛出错误）。比如，用0除任意数值在其他语言中通常都会导致错误，从而中止代码执行。但在ECMAScript中，0、+0或-0相除会返回NaN</p>
+</blockquote>
+<blockquote>
+<p>有一个特殊的数值叫NaN，意思是“不是数值”（Not a Number），用于表示本来要返回数值的操作失败了（而不是抛出错误）。比如，用0除任意数值在其他语言中通常都会导致错误，从而中止代码执行。但在ECMAScript中，0、+0或-0相除会返回NaN</p>
+</blockquote>
+<p>console.log(5&#x2F;0);    &#x2F;&#x2F; Infinity<br>console.log(5&#x2F;-0);   &#x2F;&#x2F; -Infinity</p>
+<blockquote>
+<p>如果分子是非0值，分母是有符号0或无符号0，则会返回Infinity或-Infinity</p>
+</blockquote>
+<blockquote>
+<p>如果分子是非0值，分母是有符号0或无符号0，则会返回Infinity或-Infinity</p>
+</blockquote>
+<p>NaN计算操作，返回NaN；NaN不等于其本身，用isNaN()判断。</p>
+<blockquote>
+<p>NaN有几个独特的属性。首先，任何涉及NaN的操作始终返回NaN（如NaN&#x2F;10），在连续多步计算时这可能是个问题。其次，NaN不等于包括NaN在内的任何值。</p>
+</blockquote>
+<blockquote>
+<p>ECMAScript提供了isNaN()函数。该函数接收一个参数，可以是任意数据类型，然后判断这个参数是否“不是数值”。把一个值传给isNaN()后，该函数会尝试把它转换为数值。某些非数值的值可以直接转换成数值，如字符串”10”或布尔值。任何不能转换为数值的值都会导致这个函数返回true。</p>
+</blockquote>
+<p>#TODO</p>
+<blockquote>
+<p>注意 虽然不常见，但isNaN()可以用于测试对象。此时，首先会调用对象的valueOf()方法，然后再确定返回的值是否可以转换为数值。如果不能，再调用toString()方法，并测试其返回值。这通常是ECMAScript内置函数和操作符的工作方式，本章后面会讨论。</p>
+</blockquote>
+<blockquote>
+<p>有3个函数可以将非数值转换为数值：Number()、parseInt()和parseFloat()。Number()是转型函数，可用于任何数据类型。</p>
+</blockquote>
+<blockquote>
+<p>Number()函数基于如下规则执行转换。<br>❑ 布尔值，true转换为1，false转换为0。<br>❑ 数值，直接返回。<br>❑ null，返回0。<br>❑ undefined，返回NaN。<br>❑ 字符串，应用以下规则。<br>__ ■ 如果字符串包含数值字符，包括数值字符前面带加、减号的情况，则转换为一个十进制数值。因此，Number(“1”)返回1, Number(“123”)返回123, Number(“011”)返回11（忽略前面的零）。<br>__ ■ 如果字符串包含有效的浮点值格式如”1.1”，则会转换为相应的浮点值（同样，忽略前面的零）。<br>__ ■ 如果字符串包含有效的十六进制格式如”0xf”，则会转换为与该十六进制值对应的十进制整数值。<br>__ ■ 如果是空字符串（不包含字符），则返回0。<br>__ ■ 如果字符串包含除上述情况之外的其他字符，则返回NaN。<br>❑ 对象，调用valueOf()方法，并按照上述规则转换返回的值。如果转换结果是NaN，则调用toString()方法，再按照转换字符串的规则转换。</p>
+</blockquote>
+<p>parseInt()工作机制：</p>
+<ol>
+<li>从非空字符开始转换</li>
+<li>非数值、加号、减号开头返回NaN</li>
+<li>空字符串也返回NaN</li>
+<li>非以上情况继续转换</li>
+<li>可支持不同的进制格式字符</li>
+<li>非数值&#x2F;末尾字符结束转换</li>
+<li>第二个参数支持指定2~36进制，强制识别</li>
+</ol>
+<p>parseInt(‘0xA’, 10) &#x2F;&#x2F; 0xA 十进制为10，此处返回0</p>
+<blockquote>
+<p>考虑到用Number()函数转换字符串时相对复杂且有点反常规，通常在需要得到整数时可以优先使用parseInt()函数。parseInt()函数更专注于字符串是否包含数值模式。字符串最前面的空格会被忽略，从第一个非空格字符开始转换。如果第一个字符不是数值字符、加号或减号，parseInt()立即返回NaN。这意味着空字符串也会返回NaN（这一点跟Number()不一样，它返回0）。如果第一个字符是数值字符、加号或减号，则继续依次检测每个字符，直到字符串末尾，或碰到非数值字符。比如，”1234blue”会被转换为1234，因为”blue”会被完全忽略。类似地，”22.5”会被转换为22，因为小数点不是有效的整数字符。<br>假设字符串中的第一个字符是数值字符，parseInt()函数也能识别不同的整数格式（十进制、八进制、十六进制）。换句话说，如果字符串以”0x”开头，就会被解释为十六进制整数。如果字符串以”0”开头，且紧跟着数值字符，在非严格模式下会被某些实现解释为八进制整数。</p>
+</blockquote>
+<blockquote>
+<p>考虑到用Number()函数转换字符串时相对复杂且有点反常规，通常在需要得到整数时可以优先使用parseInt()函数。parseInt()函数更专注于字符串是否包含数值模式。字符串最前面的空格会被忽略，从第一个非空格字符开始转换。如果第一个字符不是数值字符、加号或减号，parseInt()立即返回NaN。这意味着空字符串也会返回NaN（这一点跟Number()不一样，它返回0）。如果第一个字符是数值字符、加号或减号，则继续依次检测每个字符，直到字符串末尾，或碰到非数值字符。比如，”1234blue”会被转换为1234，因为”blue”会被完全忽略。类似地，”22.5”会被转换为22，因为小数点不是有效的整数字符。假设字符串中的第一个字符是数值字符，parseInt()函数也能识别不同的整数格式（十进制、八进制、十六进制）。换句话说，如果字符串以”0x”开头，就会被解释为十六进制整数。如果字符串以”0”开头，且紧跟着数值字符，在非严格模式下会被某些实现解释为八进制整数。</p>
+</blockquote>
+<blockquote>
+<p>传底数参数相当于让parseInt()自己决定如何解析，所以为避免解析出错，建议始终传给它第二个参数。</p>
+</blockquote>
+<blockquote>
+<p>parseFloat()函数的工作方式跟parseInt()函数类似，都是从位置0开始检测每个字符。同样，它也是解析到字符串末尾或者解析到一个无效的浮点数值字符为止。这意味着第一次出现的小数点是有效的，但第二次出现的小数点就无效了，此时字符串的剩余字符都会被忽略。因此，”22.34.5”将转换成22.34。</p>
+</blockquote>
+<blockquote>
+<p>parseFloat()函数的另一个不同之处在于，它始终忽略字符串开头的零。这个函数能识别前面讨论的所有浮点格式，以及十进制格式（开头的零始终被忽略）。十六进制数值始终会返回0。因为parseFloat()只解析十进制值，因此不能指定底数。最后，如果字符串表示整数（没有小数点或者小数点后面只有一个零），则parseFloat()返回整数。</p>
+</blockquote>
+<p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Glossary/Unicode">https://developer.mozilla.org/zh-CN/docs/Glossary/Unicode</a></p>
+<blockquote>
+<p>String（字符串）数据类型表示零或多个16位Unicode字符序列。字符串可以使用双引号（”）、单引号（’）或反引号（&#96;）标示</p>
+</blockquote>
+<blockquote>
+<p>String（字符串）数据类型表示零或多个16位Unicode字符序列。字符串可以使用双引号（”）、单引号（’）或反引号（&#96;）标示</p>
+</blockquote>
+<blockquote>
+<p>注意 如果字符串中包含双字节字符，那么length属性返回的值可能不是准确的字符数。第5章将具体讨论如何解决这个问题。</p>
+</blockquote>
+<h2 id="3-5-操作符"><a href="#3-5-操作符" class="headerlink" title="3.5 操作符"></a>3.5 操作符</h2><blockquote>
+<p>后缀版与前缀版的主要区别在于，后缀版递增和递减在语句被求值后才发生。</p>
+</blockquote>
+<blockquote>
+<p>ECMAScript中的所有数值都以IEEE 754 64位格式存储，但位操作并不直接应用到64位表示，而是先把值转换为32位整数，再进行位操作，之后再把结果转换为64位。</p>
+</blockquote>
+<h2 id="4-3-垃圾回收"><a href="#4-3-垃圾回收" class="headerlink" title="4.3 垃圾回收"></a>4.3 垃圾回收</h2><blockquote>
+<p>JavaScript最常用的垃圾回收策略是标记清理（mark-and-sweep）。当变量进入上下文，比如在函数内部声明一个变量时，这个变量会被加上存在于上下文中的标记。</p>
+</blockquote>
+<blockquote>
+<p>另一种没那么常用的垃圾回收策略是引用计数（reference counting）。其思路是对每个值都记录它被引用的次数。</p>
+</blockquote>
+<blockquote>
+<p>开发者不知道什么时候运行时会收集垃圾，因此最好的办法是在写代码时就要做到：无论什么时候开始收集垃圾，都能让它尽快结束工作。</p>
+</blockquote>
+<h2 id="5-3-原始值包装类型"><a href="#5-3-原始值包装类型" class="headerlink" title="5.3 原始值包装类型"></a>5.3 原始值包装类型</h2><blockquote>
+<p>JavaScript字符串使用了两种Unicode编码混合的策略：UCS-2和UTF-16。对于可以采用16位编码的字符（U+0000~U+FFFF）</p>
+</blockquote>
+<h2 id="5-5-小结"><a href="#5-5-小结" class="headerlink" title="5.5 小结"></a>5.5 小结</h2><blockquote>
+<p>JavaScript比较独特的一点是，函数实际上是Function类型的实例，也就是说函数也是对象。因为函数也是对象，所以函数也有方法，可以用于增强其能力。</p>
+</blockquote>
+<h2 id="6-2-Array"><a href="#6-2-Array" class="headerlink" title="6.2 Array"></a>6.2 Array</h2><p>Array.from() 方法从一个类似数组或可迭代对象创建一个新的，浅拷贝的数组实例。</p>
+<p>显然form比偶of更加强大。</p>
+<blockquote>
+<p>Array构造函数还有两个ES6新增的用于创建数组的静态方法：from()和of()。from()用于将类数组结构转换为数组实例，而of()用于将一组参数转换为数组实例。</p>
+</blockquote>
+<blockquote>
+<p>Array构造函数还有两个ES6新增的用于创建数组的静态方法：from()和of()。from()用于将类数组结构转换为数组实例，而of()用于将一组参数转换为数组实例。</p>
+</blockquote>
+<p>function fn () { console.log(Array.from(arguments)) }<br>fn(1,2,3,4,5) &#x2F;&#x2F; Array(5) [ 1, 2, 3, 4, 5 ]</p>
+<blockquote>
+<p>Array.of()可以把一组参数转换为数组。这个方法用于替代在ES6之前常用的Array.prototype.slice.call(arguments)</p>
+</blockquote>
+<blockquote>
+<p>Array.of()可以把一组参数转换为数组。这个方法用于替代在ES6之前常用的Array.prototype. slice.call(arguments)</p>
+</blockquote>
+<blockquote>
+<p>在ES6中，Array的原型上暴露了3个用于检索数组内容的方法：keys()、values()和entries()。keys()返回数组索引的迭代器，values()返回数组元素的迭代器，而entries()返回索引&#x2F;值对的迭代器</p>
+</blockquote>
+<blockquote>
+<p>栈是一种后进先出（LIFO, Last-In-First-Out）的结构，也就是最近添加的项先被删除。数据项的插入（称为推入，push）和删除（称为弹出，pop）只在栈的一个地方发生，即栈顶。</p>
+</blockquote>
+<p>push()、shift()</p>
+<blockquote>
+<p>队列以先进先出（FIFO, First-In-First-Out）形式限制访问。队列在列表末尾添加数据，但从列表开头获取数据。</p>
+</blockquote>
+<blockquote>
+<p>队列以先进先出（FIFO, First-In-First-Out）形式限制访问。队列在列表末尾添加数据，但从列表开头获取数据。</p>
+</blockquote>
+<h2 id="6-3-定型数组"><a href="#6-3-定型数组" class="headerlink" title="6.3 定型数组"></a>6.3 定型数组</h2><p>只是在介绍一些基础理论还有api使用，并没有涉及具体场景以及区别，详细内容更建议看<a target="_blank" rel="noopener" href="https://es6.ruanyifeng.com/#docs/arraybuffer">https://es6.ruanyifeng.com/#docs/arraybuffer</a></p>
+<blockquote>
+<p>定型数组（typed array）是ECMAScript新增的结构，目的是提升向原生库传输数据的效率。实际上，JavaScript并没有“TypedArray”类型，它所指的其实是一种特殊的包含数值类型的数组。</p>
+</blockquote>
+<blockquote>
+<p>定型数组（typed array）是ECMAScript新增的结构，目的是提升向原生库传输数据的效率。实际上，JavaScript并没有“TypedArray”类型，它所指的其实是一种特殊的包含数值类型的数组。</p>
+</blockquote>
+<blockquote>
+<p>OpenGL ES是OpenGL专注于2D和3D计算机图形的子集。这个新API被命名为WebGL（Web Graphics Library）</p>
+</blockquote>
+<blockquote>
+<p>注意 SharedArrayBuffer是ArrayBuffer的一个变体，可以无须复制就在执行上下文间传递它。关于这种类型，请参考第27章。</p>
+</blockquote>
+<blockquote>
+<p>ArrayBuffer()是一个普通的JavaScript构造函数，可用于在内存中分配特定数量的字节空间。</p>
+</blockquote>
+<blockquote>
+<p>ArrayBuffer某种程度上类似于C++的malloc()，但也有几个明显的区别</p>
+</blockquote>
+<h2 id="7-1-理解迭代"><a href="#7-1-理解迭代" class="headerlink" title="7.1 理解迭代"></a>7.1 理解迭代</h2><p>Q 迭代是什么？<br>A 有条件的重复执行，循环是是最基础的迭代方式。<br>迭代器模式——某些内置的类型拥有Symbol.iterator属性（该属性是迭代器工厂模式，调用可返回一个新的迭代器）。<br>很多时候不需要显示调用，某些常用操作语法会自动调用。<br> 迭代器API使用next()方法在可迭代对象中遍历数据。每次成功调用next()，都会返回一个IteratorResult对象，其中包含迭代器返回的下一个值。若不调用next()，则无法知道迭代器的当前位置。</p>
+<p>非内置支持迭代器的类型也可使用Symbol.iterator定义一个迭代器，显示声明next函数。须知迭代器是一次性的，为了创建多歌迭代器，Symbol.iterator可以使用闭包返回迭代器。</p>
+<p>Q 为了解决什么问题？<br>A迭代之前需要事先知道如何使用数据结构、 遍历顺序并不是数据结构固有的。</p>
+<p>Q特点是什么？</p>
+<p>A迭代器不关注类型的数据结构和遍历顺序（递增、递减等），也可以提前终止迭代器。</p>
+<p>——————</p>
+<p>Q 生成器是什么？<br>A 一种异步编程解决方案，函数内能暂停和恢复代码执行、带星号（*）的funciton就是一个生成器，初始化的时状态为暂停执行。通过next()方法让生成器开始或恢复执行。yield关键字可以让生成器停止和开始执行。</p>
+<p>Q 生成器的作用<br>A 生成器对象作为可迭代对象，next() 开始&#x2F;恢复执行生成器，yield暂停；yied *可产生迭代器对象。</p>
+<p>Q 生成器跟迭代器的联系。<br>A 浅显的理解：基于迭代器实现，也有相同的next()函数。也可以把生成器作为迭代对象使用。</p>
+<blockquote>
+<p>7.1 理解迭代</p>
+</blockquote>
+<blockquote>
+<p>7.1 理解迭代</p>
+</blockquote>
+<blockquote>
+<p>在ECMAScript较早的版本中，执行迭代必须使用循环或其他辅助结构。随着代码量增加，代码会变得越发混乱。很多语言都通过原生语言结构解决了这个问题，开发者无须事先知道如何迭代就能实现迭代操作。这个解决方案就是迭代器模式。</p>
+</blockquote>
+<h2 id="7-2-迭代器模式"><a href="#7-2-迭代器模式" class="headerlink" title="7.2 迭代器模式"></a>7.2 迭代器模式</h2><blockquote>
+<p>迭代器模式（特别是在ECMAScript这个语境下）描述了一个方案，即可以把有些结构称为“可迭代对象”（iterable），因为它们实现了正式的Iterable接口，而且可以通过迭代器Iterator消费。</p>
+</blockquote>
+<p>‘’[Symbol.iterator]    &#x2F;&#x2F; function Symbol.iterator()<br>‘’<a href="">Symbol.iterator</a> &#x2F;&#x2F;String Iterator {  }</p>
+<blockquote>
+<p>实现Iterable接口（可迭代协议）要求同时具备两种能力：支持迭代的自我识别能力和创建实现Iterator接口的对象的能力。在ECMAScript中，这意味着必须暴露一个属性作为“默认迭代器”，而且这个属性必须使用特殊的Symbol.iterator作为键。</p>
+</blockquote>
+<p>Symbol.iterator是一个默认迭代器，要想知道某个类型的变量是否有迭代功能， 可以检测该变量是否拥有该属性；且此属性返回一个迭代器器工厂函数（调用此工厂函数会返回一个新的迭代器），部分内置类型已实现Iterable接口。</p>
+<blockquote>
+<p>实现Iterable接口（可迭代协议）要求同时具备两种能力：支持迭代的自我识别能力和创建实现Iterator接口的对象的能力。在ECMAScript中，这意味着必须暴露一个属性作为“默认迭代器”，而且这个属性必须使用特殊的Symbol.iterator作为键。</p>
+</blockquote>
+<blockquote>
+<p>实现Iterable接口（可迭代协议）要求同时具备两种能力：支持迭代的自我识别能力和创建实现Iterator接口的对象的能力。在ECMAScript中，这意味着必须暴露一个属性作为“默认迭代器”，而且这个属性必须使用特殊的Symbol.iterator作为键。</p>
+</blockquote>
+<p>在进行某些操作的时候，会自动调用类型的Symbol.itator迭代工厂函数生成一个迭代器：<br>for (let i of ‘str’) {console.log(i)} &#x2F;&#x2F; 依次输出s、t、r</p>
+<blockquote>
+<p>实际写代码过程中，不需要显式调用这个工厂函数来生成迭代器。实现可迭代协议的所有类型都会自动兼容接收可迭代对象的任何语言特性。</p>
+</blockquote>
+<blockquote>
+<p>实际写代码过程中，不需要显式调用这个工厂函数来生成迭代器。实现可迭代协议的所有类型都会自动兼容接收可迭代对象的任何语言特性。</p>
+</blockquote>
+<blockquote>
+<p>迭代器API使用next()方法在可迭代对象中遍历数据。每次成功调用next()，都会返回一个IteratorResult对象，其中包含迭代器返回的下一个值。若不调用next()，则无法知道迭代器的当前位置。</p>
+</blockquote>
+<blockquote>
+<p>为了让一个可迭代对象能够创建多个迭代器，必须每创建一个迭代器就对应一个新计数器。为此，可以把计数器变量放到闭包里，然后通过闭包返回迭代器</p>
+</blockquote>
+<h2 id="7-3-生成器"><a href="#7-3-生成器" class="headerlink" title="7.3 生成器"></a>7.3 生成器</h2><blockquote>
+<p>拥有在一个函数块内暂停和恢复代码执行的能力。这种新能力具有深远的影响，比如，使用生成器可以自定义迭代器和实现协程。</p>
+</blockquote>
+<h2 id="8-1-理解对象"><a href="#8-1-理解对象" class="headerlink" title="8.1 理解对象"></a>8.1 理解对象</h2><blockquote>
+<p>数据属性包含一个保存数据值的位置。值会从这个位置读取，也会写入到这个位置。</p>
+</blockquote>
+<blockquote>
+<p>使用解构，可以在一个类似对象字面量的结构中，声明多个变量，同时执行多个赋值操作。</p>
+</blockquote>
+<h2 id="8-2-创建对象"><a href="#8-2-创建对象" class="headerlink" title="8.2 创建对象"></a>8.2 创建对象</h2><blockquote>
+<p>ECMAScript的构造函数就是能创建对象的函数。</p>
+</blockquote>
+<blockquote>
+<p>constructor本来是用于标识对象类型的。不过，一般认为instanceof操作符是确定对象类型更可靠的方式。</p>
+</blockquote>
+<blockquote>
+<p>构造函数也是函数。并没有把某个函数定义为构造函数的特殊语法。</p>
+</blockquote>
+<blockquote>
+<p>ECMAScript的Object类型有一个方法叫Object.getPrototypeOf()，返回参数的内部特性[[Prototype]]的值。</p>
+</blockquote>
+<blockquote>
+<p>Object.values()返回对象值的数组，Object.entries()返回键&#x2F;值对的数组。</p>
+</blockquote>
+<h2 id="8-4-类"><a href="#8-4-类" class="headerlink" title="8.4 类"></a>8.4 类</h2><blockquote>
+<p>类可以包含构造函数方法、实例方法、获取函数、设置函数和静态类方法</p>
+</blockquote>
+<blockquote>
+<p>ECMAScript中没有正式的类这个类型。从各方面来看，ECMAScript类就是一种特殊函数。声明一个类之后，通过typeof操作符检测类标识符，表明它是一个函数</p>
+</blockquote>
+<blockquote>
+<p>可以把方法定义在类构造函数中或者类块中，但不能在类块中给原型添加原始值或对象作为成员数据：</p>
+</blockquote>
+<blockquote>
+<p>类定义也支持获取和设置访问器。</p>
+</blockquote>
+<blockquote>
+<p>可以在类上定义静态方法。这些方法通常用于执行不特定于实例的操作，也不要求存在类的实例。与原型成员类似，静态成员每个类上只能有一个。</p>
+</blockquote>
+<blockquote>
+<p>类继承使用的是新语法，但背后依旧使用的是原型链。</p>
+</blockquote>
+<blockquote>
+<p>派生类的方法可以通过super关键字引用它们的原型。这个关键字只能在派生类中使用，而且仅限于类构造函数、实例方法和静态方法内部。在类构造函数中使用super可以调用父类构造函数。</p>
+</blockquote>
+<blockquote>
+<p>new.target保存通过new关键字调用的类或函数。通过在实例化时检测new.target是不是抽象基类，可以阻止对抽象基类的实例化</p>
+</blockquote>
+<blockquote>
+<p>ES6类为继承内置引用类型提供了顺畅的机制，开发者可以方便地扩展内置类型</p>
+</blockquote>
+<blockquote>
+<p>软件设计原则：“组合胜过继承（composition over inheritance）。”</p>
+</blockquote>
+<h2 id="9-1-代理基础"><a href="#9-1-代理基础" class="headerlink" title="9.1 代理基础"></a>9.1 代理基础</h2><blockquote>
+<p>代理是使用Proxy构造函数创建的。这个构造函数接收两个参数：目标对象和处理程序对象。</p>
+</blockquote>
+<blockquote>
+<p>使用代理的主要目的是可以定义捕获器（trap）。捕获器就是在处理程序对象中定义的“基本操作的拦截器”。</p>
+</blockquote>
+<blockquote>
+<p>只有在代理对象上执行这些操作才会触发捕获器。在目标对象上执行这些操作仍然会产生正常的行为。</p>
+</blockquote>
+<h2 id="9-2-代理捕获器与反射方法"><a href="#9-2-代理捕获器与反射方法" class="headerlink" title="9.2 代理捕获器与反射方法"></a>9.2 代理捕获器与反射方法</h2><blockquote>
+<p>对于在代理对象上执行的任何一种操作，只会有一个捕获处理程序被调用。不会存在重复捕获的情况。</p>
+</blockquote>
+<p>Q 捕获器跟反射API的区别？？</p>
+<blockquote>
+<p>get()捕获器会在获取属性值的操作中被调用。对应的反射API方法为Reflect.get()。</p>
+</blockquote>
+<blockquote>
+<p>get()捕获器会在获取属性值的操作中被调用。对应的反射API方法为Reflect.get()。</p>
+</blockquote>
+<h2 id="9-4-小结"><a href="#9-4-小结" class="headerlink" title="9.4 小结"></a>9.4 小结</h2><blockquote>
+<p>宏观上看，代理是真实JavaScript对象的透明抽象层。代理可以定义包含捕获器的处理程序对象，而这些捕获器可以拦截绝大部分JavaScript的基本操作和方法。在这个捕获器处理程序中，可以修改任何基本操作的行为，当然前提是遵从捕获器不变式。</p>
+</blockquote>
+<blockquote>
+<p>代理的应用场景是不可限量的。开发者使用它可以创建出各种编码模式，比如（但远远不限于）跟踪属性访问、隐藏属性、阻止修改或删除属性、函数参数验证、构造函数参数验证、数据绑定，以及可观察对象。</p>
+</blockquote>
+<h2 id="第10章-函数"><a href="#第10章-函数" class="headerlink" title="第10章 函数"></a>第10章 函数</h2><blockquote>
+<p>因为函数实际上是对象。每个函数都是Function类型的实例，而Function也有属性和方法，跟其他引用类型一样。因为函数是对象，所以函数名就是指向函数对象的指针，而且不一定与函数本身紧密绑定。</p>
+</blockquote>
+<blockquote>
+<p>函数想象为对象，把函数名想象为指针</p>
+</blockquote>
+<h2 id="10-1-箭头函数"><a href="#10-1-箭头函数" class="headerlink" title="10.1 箭头函数"></a>10.1 箭头函数</h2><blockquote>
+<p>箭头函数虽然语法简洁，但也有很多场合不适用。箭头函数不能使用arguments、super和new.target，也不能用作构造函数。此外，箭头函数也没有prototype属性。</p>
+</blockquote>
+<h2 id="10-2-函数名"><a href="#10-2-函数名" class="headerlink" title="10.2 函数名"></a>10.2 函数名</h2><blockquote>
+<p>ECMAScript 6的所有函数对象都会暴露一个只读的name属性，其中包含关于函数的信息。</p>
+</blockquote>
+<h2 id="10-3-理解参数"><a href="#10-3-理解参数" class="headerlink" title="10.3 理解参数"></a>10.3 理解参数</h2><blockquote>
+<p>arguments对象是一个类数组对象（但不是Array的实例），因此可以使用中括号语法访问其中的元素</p>
+</blockquote>
+<blockquote>
+<p>ECMAScript函数的参数只是为了方便才写出来的，并不是必须写出来的。</p>
+</blockquote>
+<blockquote>
+<p>然箭头函数中没有arguments对象，但可以在包装函数中把它提供给箭头函数</p>
+</blockquote>
+<h2 id="10-5-默认参数值"><a href="#10-5-默认参数值" class="headerlink" title="10.5 默认参数值"></a>10.5 默认参数值</h2><blockquote>
+<p>函数的默认参数只有在函数被调用时才会求值，不会在函数定义时求值。而且，计算默认值的函数只有在调用函数但未传相应参数时才会被调用。</p>
+</blockquote>
+<h2 id="10-6-参数扩展与收集"><a href="#10-6-参数扩展与收集" class="headerlink" title="10.6 参数扩展与收集"></a>10.6 参数扩展与收集</h2><blockquote>
+<p>箭头函数虽然不支持arguments对象，但支持收集参数的定义方式，因此也可以实现与使用arguments一样的逻辑：</p>
+</blockquote>
+<h2 id="10-7-函数声明与函数表达式"><a href="#10-7-函数声明与函数表达式" class="headerlink" title="10.7 函数声明与函数表达式"></a>10.7 函数声明与函数表达式</h2><blockquote>
+<p>JavaScript引擎在任何代码执行之前，会先读取函数声明，并在执行上下文中生成函数定义。而函数表达式必须等到代码执行到它那一行，才会在执行上下文中生成函数定义。</p>
+</blockquote>
+<h2 id="10-9-函数内部"><a href="#10-9-函数内部" class="headerlink" title="10.9 函数内部"></a>10.9 函数内部</h2><blockquote>
+<p>使用arguments.callee就可以让函数逻辑与函数名解耦</p>
+</blockquote>
+<blockquote>
+<p>函数名只是保存指针的变量。因此全局定义的sayColor()函数和o.sayColor()是同一个函数，只不过执行的上下文不同。</p>
+</blockquote>
+<h2 id="10-10-函数属性与方法"><a href="#10-10-函数属性与方法" class="headerlink" title="10.10 函数属性与方法"></a>10.10 函数属性与方法</h2><blockquote>
+<p>函数还有两个方法：apply()和call()。</p>
+</blockquote>
+<blockquote>
+<p>使用call()或apply()的好处是可以将任意对象设置为任意函数的作用域，这样对象可以不用关心方法。</p>
+</blockquote>
+<h2 id="10-14-闭包"><a href="#10-14-闭包" class="headerlink" title="10.14 闭包"></a>10.14 闭包</h2><blockquote>
+<p>包指的是那些引用了另一个函数作用域中变量的函数，通常是在嵌套函数中实现的。</p>
+</blockquote>
+<h2 id="11-1-异步编程"><a href="#11-1-异步编程" class="headerlink" title="11.1 异步编程"></a>11.1 异步编程</h2><blockquote>
+<p>同步行为对应内存中顺序执行的处理器指令。</p>
+</blockquote>
+<blockquote>
+<p>异步行为类似于系统中断，即当前进程外部的实体可以触发代码执行。</p>
+</blockquote>
+<blockquote>
+<p>第二个指令块（加操作及赋值操作）是由系统计时器触发的，这会生成一个入队执行的中断。到底什么时候会触发这个中断，这对JavaScript运行时来说是一个黑盒，因此实际上无法预知（尽管可以保证这发生在当前线程的同步代码执行之后，否则回调都没有机会出列被执行）。无论如何，在排定回调以后基本没办法知道系统状态何时变化。</p>
+</blockquote>
+<blockquote>
+<p>随着代码越来越复杂，回调策略是不具有扩展性的。“回调地狱”这个称呼可谓名至实归。嵌套回调的代码维护起来就是噩梦。</p>
+</blockquote>
+<h2 id="11-2-期约"><a href="#11-2-期约" class="headerlink" title="11.2 期约"></a>11.2 期约</h2><blockquote>
+<p>2012年Promises&#x2F;A+组织分叉（fork）了CommonJS的Promises&#x2F;A建议，并以相同的名字制定了Promises&#x2F;A+规范。这个规范最终成为了ECMAScript 6规范实现的范本。</p>
+</blockquote>
+<blockquote>
+<p>❑ 待定（pending）<br>❑ 兑现（fulfilled，有时候也称为“解决”, resolved）<br>❑ 拒绝（rejected）</p>
+</blockquote>
+<blockquote>
+<p>无论落定为哪种状态都是不可逆的。只要从待定转换为兑现或拒绝，期约的状态就不再改变。</p>
+</blockquote>
+<blockquote>
+<p>期约故意将异步行为封装起来，从而隔离外部的同步代码。</p>
+</blockquote>
+<blockquote>
+<p>对这个静态方法而言，如果传入的参数本身是一个期约，那它的行为就类似于一个空包装。因此，Promise.resolve()可以说是一个幂等方法</p>
+</blockquote>
+<blockquote>
+<p>Promise.reject()会实例化一个拒绝的期约并抛出一个异步错误（这个错误不能通过try&#x2F;catch捕获，而只能通过拒绝处理程序捕获）</p>
+</blockquote>
+<blockquote>
+<p>拒绝期约的错误并没有抛到执行同步代码的线程里，而是通过浏览器异步消息队列来处理的。因此，try&#x2F;catch块并不能捕获该错误。</p>
+</blockquote>
+<blockquote>
+<p>then()和catch()的onRejected处理程序在语义上相当于try&#x2F;catch。出发点都是捕获错误之后将其隔离，同时不影响正常逻辑执行。</p>
+</blockquote>
+<h2 id="11-3-异步函数"><a href="#11-3-异步函数" class="headerlink" title="11.3 异步函数"></a>11.3 异步函数</h2><blockquote>
+<p>[插图]</p>
+</blockquote>
+<h2 id="11-4-小结"><a href="#11-4-小结" class="headerlink" title="11.4 小结"></a>11.4 小结</h2><blockquote>
+<p>异步函数是将期约应用于JavaScript函数的结果。异步函数可以暂停执行，而不阻塞主线程。</p>
+</blockquote>
+<h2 id="12-1-window对象"><a href="#12-1-window对象" class="headerlink" title="12.1 window对象"></a>12.1 window对象</h2><blockquote>
+<p>BOM的核心是window对象，表示浏览器的实例。window对象在浏览器中有两重身份，一个是ECMAScript中的Global对象，另一个就是浏览器窗口的JavaScript接口。</p>
+</blockquote>
+<blockquote>
+<p>如果在这里使用let或const替代var，则不会把变量添加给全局对象</p>
+</blockquote>
+<blockquote>
+<p>window.devicePixelRatio实际上与每英寸像素数（DPI, dots per inch）是对应的。DPI表示单位像素密度，而window.devicePixelRatio表示物理像素与逻辑像素之间的缩放系数。</p>
+</blockquote>
+<h2 id="12-2-location对象"><a href="#12-2-location对象" class="headerlink" title="12.2 location对象"></a>12.2 location对象</h2><blockquote>
+<p>它既是window的属性，也是document的属性。也就是说，window.location和document.location指向同一个对象。</p>
+</blockquote>
+<blockquote>
+<p>URLSearchParams提供了一组标准API方法，通过它们可以检查和修改查询字符串。</p>
+</blockquote>
+<h2 id="14-1-节点层级"><a href="#14-1-节点层级" class="headerlink" title="14.1 节点层级"></a>14.1 节点层级</h2><blockquote>
+<p>其中，document节点表示每个文档的根节点。在这里，根节点的唯一子节点是<code>&lt;html&gt;</code>元素，我们称之为文档元素（documentElement）。文档元素是文档最外层的元素，所有其他元素都存在于这个元素之内。每个文档只能有一个文档元素。</p>
+</blockquote>
+<h2 id="15-1-Selectors-API"><a href="#15-1-Selectors-API" class="headerlink" title="15.1 Selectors API"></a>15.1 Selectors API</h2><blockquote>
+<p>则querySelector()方法会抛出错误。</p>
+</blockquote>
+<blockquote>
+<p>querySelectorAll()返回的NodeList实例一个属性和方法都不缺，但它是一个静态的“快照”，而非“实时”的查询。</p>
+</blockquote>
+<h2 id="第16章-DOM2和DOM3"><a href="#第16章-DOM2和DOM3" class="headerlink" title="第16章 DOM2和DOM3"></a>第16章 DOM2和DOM3</h2><blockquote>
+<p>DOM1（DOM Level 1）主要定义了HTML和XML文档的底层结构。DOM2（DOM Level 2）和DOM3（DOM Level 3）在这些结构之上加入更多交互能力，提供了更高级的XML特性。</p>
+</blockquote>
+<h2 id="16-2-样式"><a href="#16-2-样式" class="headerlink" title="16.2 样式"></a>16.2 样式</h2><blockquote>
+<p>浏览器在每个元素上都暴露了getBoundingClientRect()方法，返回一个DOMRect对象，包含6个属性：left、top、right、bottom、height和width。这些属性给出了元素在页面中相对于视口的位置。图16-4[插图]展示了这些属性的含义。</p>
+</blockquote>
+<h2 id="17-1-事件流"><a href="#17-1-事件流" class="headerlink" title="17.1 事件流"></a>17.1 事件流</h2><blockquote>
+<p>IE事件流被称为事件冒泡，这是因为事件被定义为从最具体的元素（文档树中最深的节点）开始触发，然后向上传播至没有那么具体的元素（文档）。</p>
+</blockquote>
+<blockquote>
+<p>Netscape Communicator团队提出了另一种名为事件捕获的事件流。事件捕获的意思是最不具体的节点应该最先收到事件，而最具体的节点应该最后收到事件</p>
+</blockquote>
+<blockquote>
+<p>由于旧版本浏览器不支持，因此实际当中几乎不会使用事件捕获。通常建议使用事件冒泡，特殊情况下可以使用事件捕获。</p>
+</blockquote>
+<blockquote>
+<p>DOM2 Events规范规定事件流分为3个阶段：事件捕获、到达目标和事件冒泡。</p>
+</blockquote>
+<h2 id="17-2-事件处理程序"><a href="#17-2-事件处理程序" class="headerlink" title="17.2 事件处理程序"></a>17.2 事件处理程序</h2><blockquote>
+<p>在JavaScript中指定事件处理程序的传统方式是把一个函数赋值给（DOM元素的）一个事件处理程序属性。</p>
+</blockquote>
+<blockquote>
+<p>DOM2 Events为事件处理程序的赋值和移除定义了两个方法：addEventListener()和remove-EventListener()。</p>
+</blockquote>
+<blockquote>
+<p>大多数情况下，事件处理程序会被添加到事件流的冒泡阶段，主要原因是跨浏览器兼容性好。把事件处理程序注册到捕获阶段通常用于在事件到达其指定目标之前拦截事件。如果不需要拦截，则不要使用事件捕获。</p>
+</blockquote>
+<blockquote>
+<p>IE实现了与DOM类似的方法，即attachEvent()和detachEvent()。这两个方法接收两个同样的参数：事件处理程序的名字和事件处理函数。</p>
+</blockquote>
+<h2 id="17-3-事件对象"><a href="#17-3-事件对象" class="headerlink" title="17.3 事件对象"></a>17.3 事件对象</h2><blockquote>
+<p>preventDefault()方法用于阻止特定事件的默认动作。</p>
+</blockquote>
+<blockquote>
+<p>stopPropagation()方法用于立即阻止事件流在DOM结构中传播，取消后续的事件捕获或冒泡。</p>
+</blockquote>
+<h2 id="17-4-事件类型"><a href="#17-4-事件类型" class="headerlink" title="17.4 事件类型"></a>17.4 事件类型</h2><blockquote>
+<p>当用户按下键盘上的某个字符键时，首先会触发keydown事件，然后触发keypress事件，最后触发keyup事件。</p>
+</blockquote>
+<blockquote>
+<p>对于非字符键，在键盘上按一下这个键，会先触发keydown事件，然后触发keyup事件。如果按住某个非字符键不放，则会重复触发keydown事件，直到这个键被释放，此时会触发keyup事件。</p>
+</blockquote>
+<blockquote>
+<p>对于keydown和keyup事件，event对象的keyCode属性中会保存一个键码，对应键盘上特定的一个键。对于字母和数字键，keyCode的值与小写字母和数字的ASCII编码一致。</p>
+</blockquote>
+<blockquote>
+<p>浏览器在event对象上支持charCode属性，只有发生keypress事件时这个属性才会被设置值，包含的是按键字符对应的ASCII编码。</p>
+</blockquote>
+<blockquote>
+<p>一旦有了字母编码，就可以使用String.fromCharCode()方法将其转换为实际的字符了。</p>
+</blockquote>
+<h2 id="17-5-内存与性能"><a href="#17-5-内存与性能" class="headerlink" title="17.5 内存与性能"></a>17.5 内存与性能</h2><blockquote>
+<p>事件委托利用事件冒泡，可以只使用一个事件处理程序来管理一种类型的事件。</p>
+</blockquote>
+<blockquote>
+<p>被innerHTML删除的元素上如果有事件处理程序，就不会被垃圾收集程序正常清理。</p>
+</blockquote>
+<blockquote>
+<p>如果在页面卸载后事件处理程序没有被清理，则它们仍然会残留在内存中。之后，浏览器每次加载和卸载页面（比如通过前进、后退或刷新），内存中残留对象的数量都会增加，这是因为事件处理程序不会被回收。</p>
+</blockquote>
+<h2 id="17-6-模拟事件"><a href="#17-6-模拟事件" class="headerlink" title="17.6 模拟事件"></a>17.6 模拟事件</h2><blockquote>
+<p>任何时候，都可以使用document.createEvent()方法创建一个event对象。这个方法接收一个参数，此参数是一个表示要创建事件类型的字符串。</p>
+</blockquote>
+<blockquote>
+<p>DOM3增加了自定义事件的类型。自定义事件不会触发原生DOM事件，但可以让开发者定义自己的事件。要创建自定义事件，需要调用createEvent(“CustomEvent”)。</p>
+</blockquote>
+<h2 id="18-1-使用requestAnimationFrame"><a href="#18-1-使用requestAnimationFrame" class="headerlink" title="18.1 使用requestAnimationFrame"></a>18.1 使用requestAnimationFrame</h2><blockquote>
+<p>因此，实现平滑动画最佳的重绘间隔为1000毫秒&#x2F;60，大约17毫秒。以这个速度重绘可以实现最平滑的动画，因为这已经是浏览器的极限了。</p>
+</blockquote>
+<blockquote>
+<p>因为requestAnimationFrame()只会调用一次传入的函数，所以每次更新用户界面时需要再手动调用它一次。同样，也需要控制动画何时停止。结果就会得到非常平滑的动画。</p>
+</blockquote>
+<blockquote>
+<p>通过requestAnimationFrame节流</p>
+</blockquote>
+<h2 id="19-5-富文本编辑"><a href="#19-5-富文本编辑" class="headerlink" title="19.5 富文本编辑"></a>19.5 富文本编辑</h2><blockquote>
+<p>在空白HTML文件中嵌入一个iframe。通过designMode属性，可以将这个空白文档变成可以编辑的，实际编辑的则是<code>&lt;body&gt;</code>元素的HTML。</p>
+</blockquote>
+<h2 id="20-1-Atomics与SharedArrayBuffer"><a href="#20-1-Atomics与SharedArrayBuffer" class="headerlink" title="20.1 Atomics与SharedArrayBuffer"></a>20.1 Atomics与SharedArrayBuffer</h2><blockquote>
+<p>SharedArrayBuffer与ArrayBuffer具有同样的API。二者的主要区别是ArrayBuffer必须在不同执行上下文间切换，SharedArrayBuffer则可以被任意多个执行上下文同时使用。</p>
+</blockquote>
+<blockquote>
+<p>浏览器的JavaScript编译器和CPU架构本身都有权限重排指令以提升程序执行效率。正常情况下，JavaScript的单线程环境是可以随时进行这种优化的。但多线程下的指令重排可能导致资源争用，而且极难排错。</p>
+</blockquote>
+<h2 id="20-2-跨上下文消息"><a href="#20-2-跨上下文消息" class="headerlink" title="20.2 跨上下文消息"></a>20.2 跨上下文消息</h2><blockquote>
+<p>跨文档消息，有时候也简称为XDM（cross-document messaging），是一种在不同执行上下文（如不同工作线程或不同源的页面）间传递信息的能力。</p>
+</blockquote>
+<h2 id="20-3-Encoding-API"><a href="#20-3-Encoding-API" class="headerlink" title="20.3 Encoding API"></a>20.3 Encoding API</h2><blockquote>
+<p>Encoding API主要用于实现字符串与定型数组之间的转换。规范新增了4个用于执行转换的全局类：TextEncoder、TextEncoderStream、TextDecoder和TextDecoderStream。</p>
+</blockquote>
+<h2 id="20-4-File-API与Blob-API"><a href="#20-4-File-API与Blob-API" class="headerlink" title="20.4 File API与Blob API"></a>20.4 File API与Blob API</h2><blockquote>
+<p>File API仍然以表单中的文件输入字段为基础，但是增加了直接访问文件信息的能力。</p>
+</blockquote>
+<blockquote>
+<p>FileReader类型表示一种异步文件读取机制。可以把FileReader想象成类似于XMLHttpRequest，只不过是用于从文件系统读取文件，而不是从服务器读取数据。F</p>
+</blockquote>
+<blockquote>
+<p>blob表示二进制大对象（binary larget object），是JavaScript对不可修改二进制数据的封装类型。包含字符串的数组、ArrayBuffers、ArrayBufferViews，甚至其他Blob都可以用来创建blob。</p>
+</blockquote>
+<blockquote>
+<p>对象URL有时候也称作Blob URL，是指引用存储在File或Blob中数据的URL。</p>
+</blockquote>
+<blockquote>
+<p>创建对象URL，可以使用window.URL.createObjectURL()方法并传入File或Blob对象。这个函数返回的值是一个指向内存中地址的字符串。</p>
+</blockquote>
+<blockquote>
+<p>使用完数据之后，最好能释放与之关联的内存。只要对象URL在使用中，就不能释放内存。如果想表明不再使用某个对象URL，则可以把它传给window.URL.revokeObjectURL()。页面卸载时，所有对象URL占用的内存都会被释放。不过，最好在不使用时就立即释放内存，以便尽可能保持页面占用最少资源。</p>
+</blockquote>
+<h2 id="20-8-Page-Visibility-API"><a href="#20-8-Page-Visibility-API" class="headerlink" title="20.8 Page Visibility API"></a>20.8 Page Visibility API</h2><blockquote>
+<p>Web开发中一个常见的问题是开发者不知道用户什么时候真正在使用页面。如果页面被最小化或隐藏在其他标签页后面，那么轮询服务器或更新动画等功能可能就没有必要了</p>
+</blockquote>
+<h2 id="20-9-Streams-API"><a href="#20-9-Streams-API" class="headerlink" title="20.9 Streams API"></a>20.9 Streams API</h2><blockquote>
+<p>流的基本单位是块（chunk）。块可是任意数据类型，但通常是定型数组。</p>
+</blockquote>
+<h2 id="20-10-计时API"><a href="#20-10-计时API" class="headerlink" title="20.10 计时API"></a>20.10 计时API</h2><p>微秒 [1]  ，时间单位，符号μs（英语：microsecond ），1微秒等于百万分之一秒（10的负6次方秒），1毫秒等于千分之一秒（10的负3次方秒） [2]  。</p>
+<blockquote>
+<p>为此，必须使用不同的计时API来精确且准确地度量时间的流逝。HighResolution Time API定义了window.performance.now()，这个方法返回一个微秒精度的浮点值。</p>
+</blockquote>
+<blockquote>
+<p>为此，必须使用不同的计时API来精确且准确地度量时间的流逝。HighResolution Time API定义了window.performance.now()，这个方法返回一个微秒精度的浮点值。</p>
+</blockquote>
+<blockquote>
+<p>Navigation Timing API提供了高精度时间戳，用于度量当前页面加载速度。</p>
+</blockquote>
+<blockquote>
+<p>Resource Timing API提供了高精度时间戳，用于度量当前页面加载时请求资源的速度。</p>
+</blockquote>
+<h2 id="20-11-Web组件"><a href="#20-11-Web组件" class="headerlink" title="20.11 Web组件"></a>20.11 Web组件</h2><blockquote>
+<p>概念上讲，影子DOM（shadow DOM）Web组件相当直观，通过它可以将一个完整的DOM树作为节点添加到父DOM树。</p>
+</blockquote>
+<blockquote>
+<p>浏览器会尝试将无法识别的元素作为通用元素整合进DOM。当然，这些元素默认也不会做任何通用HTML元素不能做的事。</p>
+</blockquote>
+<blockquote>
+<p>调用customElements.define()方法可以创建自定义元素。</p>
+</blockquote>
+<h2 id="20-12-Web-Cryptography-API"><a href="#20-12-Web-Cryptography-API" class="headerlink" title="20.12 Web Cryptography API"></a>20.12 Web Cryptography API</h2><blockquote>
+<p>生成、使用和应用加密密钥对，加密和解密消息</p>
+</blockquote>
+<blockquote>
+<p>在需要生成随机值时，很多人会使用Math.random()。这个方法在浏览器中是以伪随机数生成器（PRNG, PseudoRandom Number Generator）方式实现的。所谓“伪”指的是生成值的过程不是真的随机。PRNG生成的值只是模拟了随机的特性。浏览器的PRNG并未使用真正的随机源，只是对一个内部状态应用了固定的算法。</p>
+</blockquote>
+<blockquote>
+<p>初始状态在重复自身之前都会产生2128-1个伪随机值。这种循环被称为置换循环（permutation cycle），而这个循环的长度被称为一个周期（period）。</p>
+</blockquote>
+<blockquote>
+<p>伪随机数生成器主要用于快速计算出看起来随机的值。</p>
+</blockquote>
+<blockquote>
+<p>密码学安全伪随机数生成器（CSPRNG, Cryptographically Secure PseudoRandom Number Generator）额外增加了一个熵作为输入，例如测试硬件时间或其他无法预计行为的系统特性。这样一来，计算速度明显比常规PRNG慢很多，但CSPRNG生成的值就很难预测，可以用于加密了。</p>
+</blockquote>
+<blockquote>
+<p>加密、散列、签名和生成密钥</p>
+</blockquote>
+<blockquote>
+<p>❑ SHA-1（Secure Hash Algorithm 1）：架构类似MD5的散列函数。</p>
+</blockquote>
+<blockquote>
+<p>❑ SHA-2（Secure Hash Algorithm 2）：构建于相同耐碰撞单向压缩函数之上的一套散列函数。</p>
+</blockquote>
+<blockquote>
+<p>这个算法被认为是安全的，广泛应用于很多领域和协议，包括TLS、PGP和加密货币（如比特币）。</p>
+</blockquote>
+<h2 id="21-2-错误处理"><a href="#21-2-错误处理" class="headerlink" title="21.2 错误处理"></a>21.2 错误处理</h2><blockquote>
+<p>错误处理在编程中的重要性毋庸置疑。所有主流Web应用程序都需要定义完善的错误处理协议，大多数优秀的应用程序有自己的错误处理策略，尽管主要逻辑是放在服务器端的。</p>
+</blockquote>
+<blockquote>
+<p>InternalError类型的错误会在底层JavaScript引擎抛出异常时由浏览器抛出。例如，递归过多导致了栈溢出。</p>
+</blockquote>
+<blockquote>
+<p>RangeError错误会在数值越界时抛出。</p>
+</blockquote>
+<blockquote>
+<p>ReferenceError会在找不到对象时发生。</p>
+</blockquote>
+<blockquote>
+<p>最后一种错误类型是URIError，只会在使用encodeURI()或decodeURI()但传入了格式错误的URI时发生。</p>
+</blockquote>
+<blockquote>
+<p>使用throw操作符时，代码立即停止执行，除非try&#x2F;catch语句捕获了抛出的值。</p>
+</blockquote>
+<blockquote>
+<p>捕获错误的目的是阻止浏览器以其默认方式响应；抛出错误的目的是为错误提供有关其发生原因的说明。</p>
+</blockquote>
+<blockquote>
+<p>何没有被try&#x2F;catch语句处理的错误都会在window对象上触发error事件。</p>
+</blockquote>
+<blockquote>
+<p>Web应用程序开发中的一个常见做法是建立中心化的错误日志存储和跟踪系统。</p>
+</blockquote>
+<h2 id="21-3-调试技术"><a href="#21-3-调试技术" class="headerlink" title="21.3 调试技术"></a>21.3 调试技术</h2><blockquote>
+<p>浏览器控制台是个读取-求值-打印-循环（REPL, read-eval-print-loop），与页面的JavaScript运行时并发。</p>
+</blockquote>
+<h2 id="21-4-旧版IE的常见错误"><a href="#21-4-旧版IE的常见错误" class="headerlink" title="21.4 旧版IE的常见错误"></a>21.4 旧版IE的常见错误</h2><blockquote>
+<p>旧版IE中所有DOM对象都是用COM对象实现的，并非原生JavaScript对象。在涉及垃圾回收时，这可能会导致很多奇怪的行为。其中，”member not found”错误是IE中垃圾回收程序常报告的错误。</p>
+</blockquote>
+<h2 id="22-2-浏览器对XPath的支持"><a href="#22-2-浏览器对XPath的支持" class="headerlink" title="22.2 浏览器对XPath的支持"></a>22.2 浏览器对XPath的支持</h2><blockquote>
+<p>XPath是为了在DOM文档中定位特定节点而创建的，因此它对XML处理很重要。</p>
+</blockquote>
+<h2 id="第23章-JSON"><a href="#第23章-JSON" class="headerlink" title="第23章 JSON"></a>第23章 JSON</h2><blockquote>
+<p>理解JSON最关键的一点是要把它当成一种数据格式，而不是编程语言。</p>
+</blockquote>
+<blockquote>
+<p>JSON也不是只能在JavaScript中使用，它是一种通用数据格式。很多语言都有解析和序列化JSON的内置能力。</p>
+</blockquote>
+<h2 id="23-1-语法"><a href="#23-1-语法" class="headerlink" title="23.1 语法"></a>23.1 语法</h2><blockquote>
+<p>JSON没有变量、函数或对象实例的概念。</p>
+</blockquote>
+<h2 id="23-2-解析与序列化"><a href="#23-2-解析与序列化" class="headerlink" title="23.2 解析与序列化"></a>23.2 解析与序列化</h2><blockquote>
+<p>在序列化JavaScript对象时，所有函数和原型成员都会有意地在结果中省略。此外，值为undefined的任何属性也会被跳过。最终得到的就是所有实例属性均为有效JSON数据类型的表示。</p>
+</blockquote>
+<h2 id="24-1-XMLHttpRequest对象"><a href="#24-1-XMLHttpRequest对象" class="headerlink" title="24.1 XMLHttpRequest对象"></a>24.1 XMLHttpRequest对象</h2><blockquote>
+<p>发送GET请求最常见的一个错误是查询字符串格式不对。查询字符串中的每个名和值都必须使用encodeURIComponent()编码，所有名&#x2F;值对必须以和号（&amp;）分隔</p>
+</blockquote>
+<blockquote>
+<p>XHR模拟表单提交。为此，第一步需要把Content-Type头部设置为”application&#x2F;x-www-formurlencoded”，这是提交表单时使用的内容类型。</p>
+</blockquote>
+<blockquote>
+<p>现代Web应用程序中经常需要对表单数据进行序列化，因此XMLHttpRequest Level 2新增了FormData类型。FormData类型便于表单序列化，也便于创建与表单类似格式的数据然后通过XHR发送。</p>
+</blockquote>
+<h2 id="24-2-进度事件"><a href="#24-2-进度事件" class="headerlink" title="24.2 进度事件"></a>24.2 进度事件</h2><blockquote>
+<p>Progress Events是W3C的工作草案，定义了客户端-服务器端通信。</p>
+</blockquote>
+<h2 id="24-3-跨源资源共享"><a href="#24-3-跨源资源共享" class="headerlink" title="24.3 跨源资源共享"></a>24.3 跨源资源共享</h2><blockquote>
+<p>最好在访问本地资源时使用相对URL，在访问远程资源时使用绝对URL。</p>
+</blockquote>
+<blockquote>
+<p>默认情况下，跨源请求不提供凭据（cookie、HTTP认证和客户端SSL证书）。可以通过将withCredentials属性设置为true来表明请求会发送凭据。</p>
+</blockquote>
+<h2 id="24-4-替代性跨源技术"><a href="#24-4-替代性跨源技术" class="headerlink" title="24.4 替代性跨源技术"></a>24.4 替代性跨源技术</h2><blockquote>
+<p>这种动态创建图片的技术经常用于图片探测（image pings）。图片探测是与服务器之间简单、跨域、单向的通信。</p>
+</blockquote>
+<blockquote>
+<p>图片探测频繁用于跟踪用户在页面上的点击操作或动态显示广告。当然，图片探测的缺点是只能发送GET请求和无法获取服务器响应的内容。这也是只能利用图片探测实现浏览器与服务器单向通信的原因。</p>
+</blockquote>
+<blockquote>
+<p>JSONP格式包含两个部分：回调和数据。</p>
+</blockquote>
+<h2 id="24-5-Fetch-API"><a href="#24-5-Fetch-API" class="headerlink" title="24.5 Fetch API"></a>24.5 Fetch API</h2><blockquote>
+<p>系统级网络协议已经成功完成消息的一次往返传输。至于真正的“成功”请求，则需要在处理响应时再定义。</p>
+</blockquote>
+<blockquote>
+<p>因为服务器没有响应而导致浏览器超时，这样真正的fetch()失败会导致期约被拒绝</p>
+</blockquote>
+<blockquote>
+<p>Headers对象是所有外发请求和入站响应头部的容器。</p>
+</blockquote>
+<blockquote>
+<p>Headers对象与Map对象极为相似。这是合理的，因为HTTP头部本质上是序列化后的键&#x2F;值对，它们的JavaScript表示则是中间接口。</p>
+</blockquote>
+<blockquote>
+<p>顾名思义，Request对象是获取资源请求的接口。这个接口暴露了请求的相关信息，也暴露了使用请求体的不同方式。</p>
+</blockquote>
+<h2 id="24-6-Beacon-API"><a href="#24-6-Beacon-API" class="headerlink" title="24.6 Beacon API"></a>24.6 Beacon API</h2><blockquote>
+<p>unload事件对浏览器意味着没有理由再发送任何结果未知的网络请求（因为页面都要被销毁了）</p>
+</blockquote>
+<h2 id="24-7-Web-Socket"><a href="#24-7-Web-Socket" class="headerlink" title="24.7 Web Socket"></a>24.7 Web Socket</h2><blockquote>
+<p>客户端与服务器之间可以发送非常少的数据，不会对HTTP造成任何负担。使用更小的数据包让Web Socket非常适合带宽和延迟问题比较明显的移动应用。</p>
+</blockquote>
+<h2 id="25-1-cookie"><a href="#25-1-cookie" class="headerlink" title="25.1 cookie"></a>25.1 cookie</h2><blockquote>
+<p>所有名和值都是URL编码的，因此必须使用decodeURIComponent()解码。</p>
+</blockquote>
+<blockquote>
+<p>为绕过浏览器对每个域cookie数的限制，有些开发者提出了子cookie的概念。子cookie是在单个cookie存储的小块数据，本质上是使用cookie的值在单个cookie中存储多个名&#x2F;值对。</p>
+</blockquote>
+<h2 id="25-2-Web-Storage"><a href="#25-2-Web-Storage" class="headerlink" title="25.2 Web Storage"></a>25.2 Web Storage</h2><blockquote>
+<p>Web Storage的第2版定义了两个对象：localStorage和sessionStorage。localStorage是永久存储机制，sessionStorage是跨会话的存储机制。这两种浏览器存储API提供了在浏览器中不受页面刷新影响而存储数据的两种方式。</p>
+</blockquote>
+<h2 id="26-1-理解模块模式"><a href="#26-1-理解模块模式" class="headerlink" title="26.1 理解模块模式"></a>26.1 理解模块模式</h2><blockquote>
+<p>模块系统的核心是管理依赖。</p>
+</blockquote>
+<h2 id="26-3-使用ES6之前的模块加载器"><a href="#26-3-使用ES6之前的模块加载器" class="headerlink" title="26.3 使用ES6之前的模块加载器"></a>26.3 使用ES6之前的模块加载器</h2><blockquote>
+<p>为了统一CommonJS和AMD生态系统，通用模块定义（UMD, Universal Module Definition）规范应运而生。UMD可用于创建这两个系统都可以使用的模块代码。</p>
+</blockquote>
+<h2 id="第27章-工作者线程"><a href="#第27章-工作者线程" class="headerlink" title="第27章 工作者线程"></a>第27章 工作者线程</h2><blockquote>
+<p>工作者线程的价值所在：允许把主线程的工作转嫁给独立的实体，而不会改变现有的单线程模型。</p>
+</blockquote>
+<h2 id="27-1-工作者线程简介"><a href="#27-1-工作者线程简介" class="headerlink" title="27.1 工作者线程简介"></a>27.1 工作者线程简介</h2><blockquote>
+<p>JavaScript环境实际上是运行在托管操作系统中的虚拟环境。在浏览器中每打开一个页面，就会分配一个它自己的环境。</p>
+</blockquote>
+<blockquote>
+<p>使用工作者线程，浏览器可以在原始页面环境之外再分配一个完全独立的二级子环境。这个子环境不能与依赖单线程交互的API（如DOM）互操作，但可以与父环境并行执行代码。</p>
+</blockquote>
+<blockquote>
+<p>工作者线程是以实际线程实现的。</p>
+</blockquote>
+<blockquote>
+<p>工作者线程并行执行。</p>
+</blockquote>
+<blockquote>
+<p>工作者线程可以共享某些内存</p>
+</blockquote>
+<blockquote>
+<p>Web工作者线程规范中定义了三种主要的工作者线程：专用工作者线程、共享工作者线程和服务工作者线程。现代浏览器都支持这些工作者线程。</p>
+</blockquote>
+<h2 id="27-2-专用工作者线程"><a href="#27-2-专用工作者线程" class="headerlink" title="27.2 专用工作者线程"></a>27.2 专用工作者线程</h2><blockquote>
+<p>支持传统多线程模型的语言中，可以使用锁、互斥量，以及volatile变量。在JavaScript中，有三种在上下文间转移信息的方式：结构化克隆算法（structured clone algorithm）、可转移对象（transferable objects）和共享数组缓冲区（shared array buffers）。</p>
+</blockquote>
+<blockquote>
+<p>始终保持固定数量的线程活动，需要时就把任务分派给它们。</p>
+</blockquote>
+<h2 id="27-5-小结"><a href="#27-5-小结" class="headerlink" title="27.5 小结"></a>27.5 小结</h2><blockquote>
+<p>工作者线程可以是专用线程、共享线程。专用线程只能由一个页面使用，而共享线程则可以由同源的任意页面共享。</p>
+</blockquote>
+<blockquote>
+<p>服务工作者线程用于让网页模拟原生应用程序。服务工作者线程也是一种工作者线程，但它们更像是网络代理，而非独立的浏览器线程。</p>
+</blockquote>
+<h2 id="28-1-可维护性"><a href="#28-1-可维护性" class="headerlink" title="28.1 可维护性"></a>28.1 可维护性</h2><blockquote>
+<p>JavaScript并不强迫开发者把任何东西都定义为对象。它支持任何编程风格，包括传统的面向对象编程、声明式编程，以及函数式编程。</p>
+</blockquote>
+<blockquote>
+<p>最好的方法是永远不要修改不属于你的对象。只有你自己创建的才是你的对象，包括自定义类型和对象字面量。</p>
+</blockquote>
+<h2 id="28-2-性能"><a href="#28-2-性能" class="headerlink" title="28.2 性能"></a>28.2 性能</h2><blockquote>
+<p>只要函数中有引用超过两次的全局对象，就应该把这个对象保存为一个局部变量。</p>
+</blockquote>
+<blockquote>
+<p>达夫设备的基本思路是以8的倍数作为迭代次数从而将循环展开为一系列语句。</p>
+</blockquote>
+<blockquote>
+<p>求模、逻辑AND与和逻辑OR或都很适合替代成位操作。</p>
+</blockquote>
+<h2 id="A-5-数组打平方法"><a href="#A-5-数组打平方法" class="headerlink" title="A.5 数组打平方法"></a>A.5 数组打平方法</h2><blockquote>
+<p>CMAScript 2019在Array.prototype上增加了两个方法：flat()和flatMap()。这两个方法为打平数组提供了便利。如果没有这两个方法，则打平数组就要使用迭代或递归。</p>
+</blockquote>
+<h2 id="A-6-Object-fromEntries"><a href="#A-6-Object-fromEntries" class="headerlink" title="A.6 Object.fromEntries()"></a>A.6 Object.fromEntries()</h2><blockquote>
+<p>ECMAScript 2019又给Object类添加了一个静态方法fromEntries()，用于通过键&#x2F;值对数组的集合构建对象。这个方法执行与Object.entries()方法相反的操作。</p>
+</blockquote>
+<blockquote>
+<p>这个方法可以方便地将Map实例转换为Object实例，因为Map迭代器返回的结果与fromEntries()的参数恰好匹配</p>
+</blockquote>
+<h2 id="B-6-类与模块"><a href="#B-6-类与模块" class="headerlink" title="B.6 类与模块"></a>B.6 类与模块</h2><blockquote>
+<p>TC39委员会决定在ES6类和模块中定义的所有代码默认都处于严格模式。</p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>screw-hand
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://screw-hand.com/post/%E3%80%8AJavaScript%E9%AB%98%E7%BA%A7%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%EF%BC%88%E7%AC%AC4%E7%89%88%EF%BC%89%E3%80%8B/" title="《JavaScript高级程序设计（第4版）》的笔记">https://screw-hand.com/post/《JavaScript高级程序设计（第4版）》/</a>
+  </li>
+  <li class="post-copyright-license">
+      <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="followme">
+  <span>欢迎关注我的其它发布渠道</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+      </div>
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/js-%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" rel="tag"># js 读书笔记</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/post/webpack5/" rel="prev" title="webpack5">
+                  <i class="fa fa-chevron-left"></i> webpack5
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/post/antd-source/" rel="next" title="antd源码浅析">
+                  antd源码浅析 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    
+  <div class="comments" id="disqus_thread">
+    <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+  </div>
+  
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2019 – 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">screw-hand</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/screw-hand" class="github-corner" title="在 GitHub 上关注我" aria-label="在 GitHub 上关注我" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.6.0/pjax.min.js" integrity="sha256-vxLn1tSKWD4dqbMRyv940UYw4sXgMtYcK6reefzZrao=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.0.8/medium-zoom.min.js" integrity="sha256-7PhEpEWEW0XXQ0k6kQrPKwuoIomz8R8IYyuU1Qew4P8=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pangu/4.0.7/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/pjax.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+  <script src="/js/third-party/fancybox.js"></script>
+
+
+
+  
+
+
+
+
+<script class="next-config" data-name="disqus" type="application/json">{"enable":true,"shortname":"screw-hand","count":true,"i18n":{"disqus":"disqus"}}</script>
+<script src="/js/third-party/comments/disqus.js"></script>
+
+</body>
+</html>

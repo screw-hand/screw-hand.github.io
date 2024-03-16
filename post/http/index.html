@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"screw-hand.com","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.17.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":"default","style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="浏览器与服务器之间美好约定  过桥米线的传说相传，清朝时滇南蒙自市城外有一湖心小岛，一个秀才到岛上读书，秀才贤慧勤劳的娘子常常弄了他爱吃的米线送去给他当饭，但等出门到了岛上时，米线已不热了。后来一次偶然送鸡汤的时候，秀才娘子发现鸡汤上覆盖着厚厚的那层鸡油有如锅盖一样，可以让汤保持温度，如果把佐料和米线等吃时再放，还能更加爽口。于是她先把肥鸡、筒子骨等熟好清汤，上覆厚厚鸡油;米线在家烫好，而不少配">
+<meta property="og:type" content="article">
+<meta property="og:title" content="从HTTP到互联网协议，浏览器与服务器之间不得不说的故事">
+<meta property="og:url" content="https://screw-hand.com/post/http/index.html">
+<meta property="og:site_name" content="螺丝手">
+<meta property="og:description" content="浏览器与服务器之间美好约定  过桥米线的传说相传，清朝时滇南蒙自市城外有一湖心小岛，一个秀才到岛上读书，秀才贤慧勤劳的娘子常常弄了他爱吃的米线送去给他当饭，但等出门到了岛上时，米线已不热了。后来一次偶然送鸡汤的时候，秀才娘子发现鸡汤上覆盖着厚厚的那层鸡油有如锅盖一样，可以让汤保持温度，如果把佐料和米线等吃时再放，还能更加爽口。于是她先把肥鸡、筒子骨等熟好清汤，上覆厚厚鸡油;米线在家烫好，而不少配">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://screw-hand.com/post/http/image1.jpg">
+<meta property="og:image" content="https://screw-hand.com/post/http/image2.jpg">
+<meta property="og:image" content="https://screw-hand.com/post/http/image3.jpg">
+<meta property="og:image" content="https://screw-hand.com/post/http/image4.jpg">
+<meta property="og:image" content="https://screw-hand.com/post/http/image5.jpg">
+<meta property="og:image" content="https://screw-hand.com/post/http/image6.jpg">
+<meta property="og:image" content="https://screw-hand.com/post/http/image7.jpg">
+<meta property="article:published_time" content="2019-03-28T09:19:26.000Z">
+<meta property="article:modified_time" content="2024-03-14T16:49:44.814Z">
+<meta property="article:author" content="screw-hand">
+<meta property="article:tag" content="web">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://screw-hand.com/post/http/image1.jpg">
+
+
+<link rel="canonical" href="https://screw-hand.com/post/http/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://screw-hand.com/post/http/","path":"/post/http/","title":"从HTTP到互联网协议，浏览器与服务器之间不得不说的故事"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>从HTTP到互联网协议，浏览器与服务器之间不得不说的故事 | 螺丝手</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="螺丝手" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">螺丝手</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%87%E6%A1%A5%E7%B1%B3%E7%BA%BF%E7%9A%84%E4%BC%A0%E8%AF%B4"><span class="nav-number">1.</span> <span class="nav-text">过桥米线的传说</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP-%E5%8D%8F%E8%AE%AE%EF%BC%9F"><span class="nav-number">2.</span> <span class="nav-text">HTTP..协议？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8B%E5%8A%A1%EF%BC%8CURL%EF%BC%8C%E6%8A%A5%E6%96%87"><span class="nav-number">2.1.</span> <span class="nav-text">事务，URL，报文</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AF%A6%E8%A7%A3%E8%AF%B7%E6%B1%82%E6%8A%A5%E6%96%87%E5%92%8C%E5%93%8D%E5%BA%94%E6%8A%A5%E6%96%87"><span class="nav-number">2.1.1.</span> <span class="nav-text">详解请求报文和响应报文</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%B9%E6%B3%95%E4%B8%8E%E7%8A%B6%E6%80%81%E7%A0%81"><span class="nav-number">2.1.2.</span> <span class="nav-text">方法与状态码</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP%E8%83%8C%E5%90%8E%E7%9A%84%E7%BB%84%E7%BB%87"><span class="nav-number">3.</span> <span class="nav-text">HTTP背后的组织</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%92%E8%81%94%E7%BD%91%E5%8D%8F%E8%AE%AE%EF%BC%8C%E4%BA%94%E5%B1%82%E6%A8%A1%E5%9E%8B"><span class="nav-number">3.1.</span> <span class="nav-text">互联网协议，五层模型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BA%94%E5%B1%82%E6%A8%A1%E5%9E%8B"><span class="nav-number">3.1.1.</span> <span class="nav-text">五层模型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HTTP%E8%BF%9E%E6%8E%A5%E6%96%B9%E5%BC%8F"><span class="nav-number">3.1.2.</span> <span class="nav-text">HTTP连接方式</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9E%E5%88%B0http"><span class="nav-number">4.</span> <span class="nav-text">回到http</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTPS"><span class="nav-number">4.1.</span> <span class="nav-text">HTTPS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8D%E6%AD%A2%E6%B5%8F%E8%A7%88%E5%99%A8"><span class="nav-number">4.2.</span> <span class="nav-text">不止浏览器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#web%E6%8E%A7%E4%BB%B6"><span class="nav-number">4.3.</span> <span class="nav-text">web控件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B0%BE%E5%A3%B0"><span class="nav-number">5.</span> <span class="nav-text">尾声</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%AA%E5%AE%8C%E5%BE%85%E7%BB%AD"><span class="nav-number">5.1.</span> <span class="nav-text">未完待续</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%93%E8%AF%AD"><span class="nav-number">5.2.</span> <span class="nav-text">结语</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="screw-hand"
+      src="/avatar.jpg">
+  <p class="site-author-name" itemprop="name">screw-hand</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">31</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/screw-hand" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;screw-hand" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:screwhand0@gmail.com" title="E-Mail → mailto:screwhand0@gmail.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml" rel="noopener me"><i class="fa fa-rss fa-fw"></i></a>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://screw-hand.com/post/http/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/avatar.jpg">
+      <meta itemprop="name" content="screw-hand">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="螺丝手">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="从HTTP到互联网协议，浏览器与服务器之间不得不说的故事 | 螺丝手">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          从HTTP到互联网协议，浏览器与服务器之间不得不说的故事
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-03-28 17:19:26" itemprop="dateCreated datePublished" datetime="2019-03-28T17:19:26+08:00">2019-03-28</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-03-15 00:49:44" itemprop="dateModified" datetime="2024-03-15T00:49:44+08:00">2024-03-15</time>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/post/http/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="/post/http/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>7.5k</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><blockquote>
+<p>浏览器与服务器之间美好约定</p>
+</blockquote>
+<h2 id="过桥米线的传说"><a href="#过桥米线的传说" class="headerlink" title="过桥米线的传说"></a>过桥米线的传说</h2><p>相传，清朝时滇南蒙自市城外有一湖心小岛，一个秀才到岛上读书，秀才贤慧勤劳的娘子常常弄了他爱吃的米线送去给他当饭，但等出门到了岛上时，米线已不热了。<br>后来一次偶然送鸡汤的时候，秀才娘子发现鸡汤上覆盖着厚厚的那层鸡油有如锅盖一样，可以让汤保持温度，如果把佐料和米线等吃时再放，还能更加爽口。<br>于是她先把肥鸡、筒子骨等熟好清汤，上覆厚厚鸡油;米线在家烫好，而不少配料切得薄薄的到岛上后用滚油烫熟，之后加入米线，鲜香滑爽。<br>此法一经传开，人们纷纷仿效，因为到岛上要过一座桥，也为纪念这位贤妻，后世就把它叫做”过桥米线”。</p>
+<span id="more"></span>
+
+<p>好的，故事就这里。</p>
+<h2 id="HTTP-协议？"><a href="#HTTP-协议？" class="headerlink" title="HTTP..协议？"></a>HTTP..协议？</h2><p>首先我们先来简单了解下什么是HTTP协议。</p>
+<p>浏览器，大家都不陌生。<br>地址栏输入一个网址，对应的网页就会跳出来，那么，这个网页是怎么来的呢？<br>是浏览器自己弄出来的吗？显然不是，网站的所有资源都源于服务器；<br>浏览器只是拿到服务器的资源，“翻译”一下给呈现给用户。<br>那么，浏览器是通过什么方式告诉服务器我需要这个网页，而服务器又怎么知道浏览器需要的是哪个页面？<br>浏览器与服务器的交互有很多种，最常见的一种是HTTP请求，即—–HTTP协议。</p>
+<p>HTTP协议约定了两者之间的沟通方式，才不会牛头马嘴。<br>协议由<strong>请求（requset）</strong>与<strong>响应（reponse）</strong>触发。</p>
+<blockquote>
+<p>HTTP是因特网上一种常见的数据传输协议</p>
+</blockquote>
+<p><em>服务器：说起来你可能不信，是它先动手的！</em></p>
+<h3 id="事务，URL，报文"><a href="#事务，URL，报文" class="headerlink" title="事务，URL，报文"></a>事务，URL，报文</h3><p>接下来我们来了解下HTTP协议的体现过程。</p>
+<p>浏览器的地址栏输入网址，将会发送一个HTTP请求；<br>服务器收到浏览器的请求，响应数据给浏览器；<br>浏览器解析资源渲染到界面。<br>这种通信方式使用<strong>HTTP报文</strong>的格式化数据块进行。<br>至此，一条完整的请求和响应命令，整个过程称之为<strong>HTTP事务</strong>。</p>
+<p>浏览器凭借着URL，准确地请求资源，服务器响应并传输回数据。<br>每个web服务器资源都有一个名字——统一资源标识符（url）。<br>有了这个名字，浏览器才能找到对应的资源，url有特定的标准格式。<br>一个url分为3个部分：<br>协议代码，装由所需文件的计算机地址和主机资源的具体位置。<br><code>scheme://host[:post]/path/filename</code></p>
+<ul>
+<li>scheme - 协议名称</li>
+<li>host - IP地址或计算机名称</li>
+<li>post - 服务器端口</li>
+<li>path - 文件路径</li>
+<li>filename - 文件名</li>
+</ul>
+<p>例：<code>http://www.4399.com/</code></p>
+<p>PS：我们说的“网址”、“域名”都属于url的范畴。</p>
+<p>以HTTP的角度讲，<br>浏览器（Browser）是客户端（Client），<br>服务器（Server）是服务端（Server）；<br>也就是说浏览器和服务器模式是B&#x2F;S结构，<br>即：Browser&#x2F;Server(浏览器&#x2F;服务器)结构。</p>
+<p>客户端发送请求报文，服务器回复响应报文；<br>请求报文和响应报文的格式都由以下三个部分组成</p>
+<ul>
+<li>起始行：由方法字段、URL字段和HTTP协议版本字段3个字段组成，它们用空格分隔</li>
+<li>首部字段：由关键字&#x2F;值对组成，每行一对，关键字和值用英文冒号“:”分隔，关于请求&#x2F;响应的信息</li>
+<li>主体：要发送给服务器的请求数据，或是服务器回复的响应数据</li>
+</ul>
+<p><img src="/post/http/image1.jpg" alt="d7c0e5cfe6eb9ced302d14b50422caaf.png"></p>
+<p><em>一个简单的HTTP实例 图源于《HTTP权威指南》</em></p>
+<h4 id="详解请求报文和响应报文"><a href="#详解请求报文和响应报文" class="headerlink" title="详解请求报文和响应报文"></a>详解请求报文和响应报文</h4><p>请求报文和响应报文的差异不大，可以对比了解。</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>请求报文</th>
+<th>响应报文</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>起始行</td>
+<td>请求行：请求url、HTTP版本、请求方法</td>
+<td>响应行：HTTP版本，状态码， 状态码短语</td>
+<td>用空格分隔</td>
+</tr>
+<tr>
+<td>首部字段</td>
+<td>请求头：数量不定，关于客户端的请求信息</td>
+<td>请求行：关于服务器的响应信息</td>
+<td>特定的分类用于请求头或用于响应头</td>
+</tr>
+<tr>
+<td>主体</td>
+<td>请求主体：一般是POST方法的请求数据</td>
+<td>响应主体：HTTP响应请求的真正数据</td>
+<td>HTTP所传输的内容</td>
+</tr>
+</tbody></table>
+<h4 id="方法与状态码"><a href="#方法与状态码" class="headerlink" title="方法与状态码"></a>方法与状态码</h4><p>即使是同一个url，如果使用了其他的请求方法，服务器没有为url设置相对应的响应方法，那浏览器也不会拿到正确的资源，可能会出现的是几个数字（状态吗）和一句短语（原因短语）；</p>
+<p><img src="/post/http/image2.jpg"></p>
+<p><em><a href="https://screw-hand.com/_">https://screw-hand.com/_</a> 404代表了什么？</em></p>
+<p>因此最后小节我们有必要学习HTTP的请求方法和状态码。</p>
+<p>根据HTTP标准，HTTP请求定义了多种请求方法，在不同场景下执行不同的动作，常见的有…<br><code>GET</code>：向服务器请求资源（最常用的HTTP方法）<br><code>POST</code>：输入数据（一般用于用户登录，付款等）<br><code>PUT</code>：写入文档（更新数据，发表文章，评论等）<br><code>DELETE</code>：删除请求资源（删除资源，但服务器不一定会删除）</p>
+<p>为了便于理解，我们拿两个使用频率最高的方法比较一下。</p>
+<p><strong>GET与POST的区别</strong></p>
+<ul>
+<li>便利：浏览器后退对GET请求无影响，浏览器<strong>主动缓存GET请求</strong>，而<strong>POST不缓存</strong>且后退历史再次提交请求</li>
+<li>参数：GET请求参数记录在<strong>原url后</strong>且有<strong>长度限制</strong>，而POST中的参数记录在<strong>请求主体</strong>中</li>
+<li>安全：GET比POST更不安全，因为参数直接暴露在URL上，所以不能用来传递<strong>敏感信息</strong></li>
+<li>编码：GET请求只能进行url编码，而POST支持多种编码方式</li>
+</ul>
+<p><strong>状态码</strong>：三位数字组成，第一个数字定义了响应的类别，且有五种可能取值</p>
+<ul>
+<li>1xx：指示信息–表示请求已接收，继续处理</li>
+<li>2xx：成功–表示请求已被成功接收、理解、接受</li>
+<li>3xx：重定向–要完成请求必须进行更进一步的操作</li>
+<li>4xx：客户端错误–请求有语法错误或请求无法实现</li>
+<li>5xx：服务器端错误–服务器未能实现合法的请求</li>
+</ul>
+<p><strong>短语</strong>：对状态码的描述，帮助用户理解状态码原因</p>
+<p>以下是常见的响应状态码和短语</p>
+<ul>
+<li>200 OK      &#x2F;&#x2F;客户端请求成功</li>
+<li>304 Not Modified &#x2F;&#x2F;请求资源的缓存可以使用，响应缓存的文件</li>
+<li>400 Bad Request  &#x2F;&#x2F;客户端请求有语法错误，不能被服务器所理解</li>
+<li>401 Unauthorized &#x2F;&#x2F;请求未经授权，这个状态代码必须和WWW-Authenticate报头域一起使用</li>
+<li>403 Forbidden  &#x2F;&#x2F;服务器收到请求，但是拒绝提供服务</li>
+<li>404 Not Found  &#x2F;&#x2F;请求资源不存在，eg：输入了错误的URL</li>
+<li>500 Internal Server Error &#x2F;&#x2F;服务器发生不可预期的错误</li>
+<li>503 Server Unavailable  &#x2F;&#x2F;服务器当前不能处理客户端的请求，一段时间后可能恢复正常</li>
+</ul>
+<p>以该url - <a href="https://screw-hand.com/_">https://screw-hand.com/_</a> 为例，这个地址是没有任何资源的，故服务器返回了404提示我们Not Found，原因可能是：之前的资源被删除了，所以这里没有资源了亦或者根本就没有资源。这里我们只是单纯网址最后打多了一个<code>_</code>而已。</p>
+<p>唧唧歪歪了那么多，我们再结合开头的故事小结一下。</p>
+<ul>
+<li>《过桥米线》中，娘子送米线给丈夫，丈夫食用完娘子回家；类似浏览器与服务器之间使用<strong>请求</strong>和<strong>响应</strong>完成一个<strong>HTTP事务</strong></li>
+<li>米线是娘子送给丈夫的午餐；而则浏览器使用<strong>HTTP报文</strong>这种格式发送数据供服务器响应，报文只是格式，为的是发送数据</li>
+<li>娘子曾尝试赶马车送餐，不过米线还是凉了；正如HTTP有多种请求方法，合理使用<strong>请求方法</strong>服务器方可正确响应资源</li>
+</ul>
+<p>恭喜读者了解了HTTP协议的一些基本概念，想深入探索的的朋友请往下看…</p>
+<h2 id="HTTP背后的组织"><a href="#HTTP背后的组织" class="headerlink" title="HTTP背后的组织"></a>HTTP背后的组织</h2><p>很高兴读者继续下划，那么现在我们已经认识了HTTP这位朋友，（从读者学会网上冲浪的那一刻，它就一直在你身边），接下来我们来认识一下这位朋友所在的组织<strong>互联网协议</strong>。</p>
+<p>《名侦探柯南》中的琴酒，黑衣组织（酒厂）的高级成员，可以得到“那位先生”的直接命令。</p>
+<p>HTTP也并非单枪作战，背后也犹如琴酒背后的酒厂，那么我们来介绍下“酒厂”。</p>
+<h3 id="互联网协议，五层模型"><a href="#互联网协议，五层模型" class="headerlink" title="互联网协议，五层模型"></a>互联网协议，五层模型</h3><p><strong>什么是互联网？</strong></p>
+<blockquote>
+<p> 互联网（英语：Internet），是21世纪之始网络与网络之间所串连成的庞大网络，这些网络以一组标准的网络TCP&#x2F;IP协议族相连，连接全世界几十亿个设备，形成逻辑上的单一巨大国际网络。 ——wiki百科</p>
+</blockquote>
+<p>……这，也太概念化了吧？？</p>
+<p><strong>简单一句话：世界上所有的网络组成起来就是互联网。</strong></p>
+<p>PS：互联网、因特网、万维网的概念之后再讨论，本篇文章的重要在于HTTP。</p>
+<h4 id="五层模型"><a href="#五层模型" class="headerlink" title="五层模型"></a>五层模型</h4><p>所有的网络环境组成了互联网，所以互联网很庞大，从模型上有3种分层方式：</p>
+<ol>
+<li>OSI分层 （7层）</li>
+<li>TCP&#x2F;IP分层（4层）</li>
+<li>五层协议 （5层）</li>
+</ol>
+<p>就像“酒厂”一样，一个优秀的<del>暗杀</del>组织，肯定<strong>结构清晰</strong>，<strong>分工明确</strong>；<br>伏特加跟着琴酒清除卧底，然后其他人不是卧底就是渣渣，是的，结构清晰，谁是大反派谁是卧底谁是渣一下子就看出来了；<br>分工明确，琴酒一个人为组织拼死拼活，伏特加给琴酒开车，其他人，其他人.. 不知道琴酒先生会怎么想？</p>
+<p><em>琴酒：酒厂都是假酒，这活没法干了!(摔酒瓶)</em></p>
+<p>这里我们主要说说五层模型。</p>
+<blockquote>
+<p>五层模型将互联网分成了5个层，每一个层都定应了很多协议，所有的协议都是互联网协议。</p>
+</blockquote>
+<p><img src="/post/http/image3.jpg" alt="f2eedd2ab72134dfe7c5350f9837b39d.png"></p>
+<p>应用层(Application Layer): 规定应用程序的数据格式。 应用程序协议<br>传输层(Transport Layer): 建立”端口到端口”的通信      UDP协议    TCP协议<br>网络层(Network Layer)： 建立”主机到主机”的通信      IP协议    ARP协议<br>链接层(Link Layer)：在“实体层”上方，确定了0和1的分组方式    以太网协议<br>实体层(Physical layer)：把电脑连接起来的物理手段。负责传送0和1的电信号</p>
+<p>顺序从下到上看，越下面的层，越靠近硬件；越上面的层，越靠近用户。</p>
+<!--
+**实体层** 实体层使用物理把电脑（两台或以上）连起来，光缆，电缆，无线电波都行，传递0与1的电信号。
+
+**链接层** 定义电信号，确定0和1的分组方式。使用了**以太网协议**，通过识别网卡的MAC地址识别发送者（网卡的MAC地址具有唯一性），以太网并不一对一直接发送数据包给接受方，以**广播**的方法发送给以太网的所有计算机，计算机将自己的MAC地址与数据包的接受者比较，若本机不是接受方，丢弃该包；本机确定接收者的身份，才会进一步处理。
+以太网协议、网卡的MAC地址、广播发送组成链接层，使得计算机之间可以传递数据。
+
+**网络层**
+
+-->
+
+<h4 id="HTTP连接方式"><a href="#HTTP连接方式" class="headerlink" title="HTTP连接方式"></a>HTTP连接方式</h4><p>HTTP属于应用层的一种互联网协议，基于TCP&#x2F;IP协议，是两者的一种具体运用。五层模型中的应用层除了HTTP还有其他的协议。<br>  http：超文本传输协议<br>  https：安全超文本传输协议<br>  IP：TCP&#x2F;IP协议<br>  ftp：文件传输协议<br>  SMTP：邮件传输协议</p>
+<blockquote>
+<p>HTTP协议位于TCP&#x2F;IP上层，HTTP使用TCP&#x2F;IP传输报文数据。</p>
+</blockquote>
+<p>看到这里，应该理解了浏览器发送HTTP请求，是通过TCP&#x2F;IP的方式与服务器链接的。</p>
+<p><strong>如何建立TCP连接？</strong></p>
+<p><img src="/post/http/image4.jpg" alt="6c4f9604d0f4cc83eb0293c6659d646a.png"></p>
+<p><strong>三次握手</strong>：建立一个TCP连接时，需要客户端和服务器总共发送3个包</p>
+<ol>
+<li>首先，请求新的TCP 连接，客户端向服务器发送一个小的 TCP 分组这个分组中，包含的<strong>SYN</strong>标记说明这是一个连接请求。（a ）。</li>
+<li>接着，如果服务器接受了连接，会向客户端回送一个 TCP 分组，这个分组中的 <strong>SYN</strong> 和 <strong>ACK</strong> 标记都被置位，说明连接请求已被接受（b ）。</li>
+<li>最后，客户端向服务器回送一条确认信息，通知它连接已成功建立 （c ）。</li>
+</ol>
+<p>握手过程中传送的包里不包含数据，三次握手完毕后，客户端与服务器才正式开始传送数据；<br>三次握手为了是连接服务器指定端口，建立TCP连接，并同步连接交换TCP信息。</p>
+<p>断开TCP连接客户端需要和服务器发送四个包，最终确认断开。因此称为<strong>四次挥手</strong>，这里并不详细说明具体过程。</p>
+<p>关于“酒厂”的介绍就到这里，读者到这里能对互联网有一个大概的了解就行了，我们继续探索HTTP。</p>
+<h2 id="回到http"><a href="#回到http" class="headerlink" title="回到http"></a>回到http</h2><p>保时捷356-A是琴酒的爱车，黑色风格是他的穿衣风格，不记住死人的名字，每次只执行一次任务，但使命必达（柯南是个例外），必要时穷追不舍。</p>
+<p><em>“不好意思啊伏特加，已经杀掉的人的脸和名字，我是从来不去记的。”</em></p>
+<p>HTTP在某方面也跟琴酒有点类似，每次连接只能处理一个请求（但可以使用<strong>持久连接</strong>），不关心处理了多少条事务，可以传输多种类型数据：文本，图片，网页，音频等..</p>
+<p>PS：事务结束连接后，TCP可使连接保持打开状态，这种技术叫<strong>持久性连接</strong></p>
+<p>正式给HTTP一个简介：</p>
+<ul>
+<li>超文本传输协议 (Hyper Text Transport Protocol, HTTP)最为广泛的一种网络传输协议</li>
+<li>基于TCP&#x2F;IP通信协议来传递数据</li>
+<li>连接所有的WWW文件都必须遵守这个标准</li>
+<li>无连接：限制每次连接只处理一个请求</li>
+<li>任何类型的数据都可以通过HTTP发送</li>
+<li>无状态协议：对于事务处理没有记忆能力</li>
+</ul>
+<h3 id="HTTPS"><a href="#HTTPS" class="headerlink" title="HTTPS"></a>HTTPS</h3><p>虽说浏览器发送请求给服务器，但HTTP传输数据并不是直达目的服务器的。且HTTP是使用明文（不加密）传输数据的。这意味者请求在发送过程中，可能数据会被抓到导致泄露纂改，或经过某个网关&#x2F;代理被拦截下来自己的身份被冒充，因此<strong>HTTP并不安全</strong>，为了确保请求能准确加密送达服务器，HTTPS出现了。</p>
+<!-- 龙舌兰是墨西哥的一种烈酒，它的传统喝法是配上柠檬和盐。 -->
+
+<p><img src="/post/http/image5.jpg" alt="c04dbca7e19b08519ebf1ad2df2fd090.png"></p>
+<p><em>还记得之前一笔带过的TCP&#x2F;IP分层（4层）吗？</em></p>
+<p><strong>如何加密？</strong></p>
+<p>HTTPS在安全的传输层上发送HTTP，在这里先加密后发送报文给TCP。同样遵循一层有一个或多个协议，安全层通过SSL或TLS协议实现（SSL采用公开密钥加密），安全层使得即使请求被第三方获取，也无法识别数据内容。</p>
+<p>这里涉及到密码学的一些基本知识</p>
+<ul>
+<li>SSL的加密方式是公开密钥加密</li>
+<li>密钥是一套对明文进行编码&#x2F;转码的算法</li>
+<li>公开密钥即公开编码密钥</li>
+<li>每个人拥有不同的解码密钥</li>
+<li>非对称加密的编码和解码密钥不同</li>
+</ul>
+<p>密码学上，没有绝对安全的密码，如果暴力破解，是可以破解出来的，只是时间长短问题，有些密码可能需要好几百年才能破解，详情了解MD5加密。</p>
+<p><em>“锄头凿得好，没有挖不到的墙角。”</em></p>
+<p><strong>签名与证书</strong></p>
+<p>服务器远在他乡，有时候网页打不开都得先看下wifi信号是不是不好，再检测下站点的服务器是不是问题；那正常情况下，又有谁能保证请求一定送达服务器？</p>
+<p>我们可以考虑给HTTP的报文签名，以备注报文的编写作者。同时，我们需要一个公正的、值得信赖的组织，保证这个连接是安全的。</p>
+<p><strong>数字签名</strong>技术使用加密系统给报文签名，说明是谁编写的报文，同时也能证明报文没有被篡改过，这可以保证报文的准确传输。</p>
+<p><strong>服务器证书</strong>，SSL数字证书的一种形式，是因特网上的“ID卡”，由官方的“证书颁发机构”签发。记录了服务器名称，过期时间，证书发布者和发布者的数字签名等。</p>
+<p>SSL不检测站点服务器的证书，现代浏览器会自行检查，若没有证书，浏览器会警告用户连接并不安全。</p>
+<p><img src="/post/http/image6.jpg"><br><img src="/post/http/image7.jpg"></p>
+<p><em>浏览器检测证书</em></p>
+<p>一个未正确配置SSL的网址，打开看看自己的浏览器有没有对SSL检测？<a target="_blank" rel="noopener" href="https://self-signed.badssl.com/">https://self-signed.badssl.com/</a></p>
+<p>相信比我更敏慧的你早已发现：”S”代表safe(安全)，safe是SSL&#x2F;TLS。</p>
+<p>基本概念已经知晓，是时候来一波SSL连接了。</p>
+<p><strong>SSL握手</strong></p>
+<p>SSL握手发生在HTTP传输加密报文前，它们会完成以下工作：</p>
+<ul>
+<li>交换协议版本号</li>
+<li>选择一个两端都了解的密码（公钥）</li>
+<li>对两端身份进行认证</li>
+<li>生成临时密钥，加密通道</li>
+</ul>
+<p>由于多了一次SSL握手过程，相同的网络环境下，HTTPS比HTTP要费时。</p>
+<p><strong>兼容HTTP</strong></p>
+<p>如果自己的网站从HTTP升级到了HTTPS，那么需要考虑用户可能会按照之前的习惯<a href="http://screw-hand.com/">http://screw-hand.com/</a>，而不是输入<a href="https://screw-hand.com/">https://screw-hand.com/</a>，这导致用户并不能使用该网站的HTTPS协议。所幸，http和https使用的默认端口(port)不同。http的默认端口是80或者8080，https默认端口是443。我们可以在http的默认端口设置代理使之跳转到https的443。</p>
+<p><a href="http://screw-hand.com/">http://screw-hand.com/</a> &#x3D; <a href="http://screw-hand.com/">http://screw-hand.com:80/</a></p>
+<p><a href="https://screw-hand.com/">https://screw-hand.com/</a> &#x3D; <a href="https://screw-hand.com/">http://screw-hand.com:443/</a></p>
+<p>以上四个超链接都可正确打开此博客主页。</p>
+<p>PS：上文提及的URL格式中<code>port</code>参数出现了</p>
+<p><strong>对比HTTP</strong></p>
+<p>按照惯例，接下来是小结的时间。</p>
+<ul>
+<li>HTTPS：超文本安全传输协议(Hypertext Transfer Protocol Secure)</li>
+<li>以安全为目标的HTTP通道，简单讲是HTTP的安全版</li>
+<li>在HTTP下加入SSL层，提供加密传输和身份验证功能</li>
+<li>HTTP和HTTPS使用的是完全不同的连接方式，用的端口也不一样，前者是80，后者是443</li>
+<li>HTTPS协议握手阶段比较费时，会使页面的加载时间延长近50%</li>
+<li>HTTPS是现行架构下最安全的解决方案，并非绝对安全</li>
+</ul>
+<h3 id="不止浏览器"><a href="#不止浏览器" class="headerlink" title="不止浏览器"></a>不止浏览器</h3><p>再次把话题的范围放大。HTTP也并不是浏览器特有使用的协议，更运行上在其他的客户端(Client)上，如印象笔记，微信，音乐播放器等，甚至自己写的一个网络爬虫程序，也是HTTP客户端。只要可以发送HTTP报文的，都是HTTP的客户端。浏览器是最经典的HTTP客户端，且浏览器支持HTTP协议的同时，更支持ftp， file协议。</p>
+<p>C&#x2F;S结构：客户机&#x2F;服务器模式，是基于企业内部网络的应用系统。由于Web浏览器的兴起，B&#x2F;S模式逐步取代了C&#x2F;S模式，被更广泛地应用。</p>
+<blockquote>
+<p>B&#x2F;S结构基于C&#x2F;S结构，是其本身的一种改良。</p>
+</blockquote>
+<h3 id="web控件"><a href="#web控件" class="headerlink" title="web控件"></a>web控件</h3><p>而客户端到服务器之间并不是直连的。也就是说，报文在传输的过程，需要经过好几个结构组件，如代理、缓存、网关、隧道、Agent代理。举个例子，我们浏览一个美国的网站，如果网站配置了CDN，而在国内正好有某个节点有缓存；且缓存未过期。这时候我们的请求被国内的节点处理，返回的结果是其缓存，从物理角度看，这远比直接跑到美国拿数据要快得过。</p>
+<h2 id="尾声"><a href="#尾声" class="headerlink" title="尾声"></a>尾声</h2><p>这是在下写的第一篇博文，本意是简单写写HTTP协议的。<br>网上冲浪离不开这位老朋友，因此我觉得第一篇博文以HTTP为话题多少有点起点性的意义。<br>技术型的文章如果太多术语，逼格是高了，但是会隐晦难懂。<br>因此在保证文章质量的前提下，插入了两个小故事，使得趣味性高一点。<br>更深层的技术也没怎么提及，所以这篇文章的定位是科普文章。</p>
+<h3 id="未完待续"><a href="#未完待续" class="headerlink" title="未完待续"></a>未完待续</h3><p>那么，关于HTTP就到此为止了吗？不不不，HTTP的话题太过庞大，文章简述了一些比较主要的知识点而已，更衍生出了很多相关的话题。</p>
+<ul>
+<li>互联网、因特网、万维网是什么？</li>
+<li>浏览器访问网页的详细过程？</li>
+<li>五层模型中的其他协议</li>
+<li>web控件的功能？</li>
+<li>https与web安全</li>
+<li>如何设置缓存</li>
+<li>用户认证机制</li>
+</ul>
+<p>在这之前也有很多优秀的前辈的写过相关的文章，这些话题以后再慢慢提及。<br>还有HTTP的历史需要读者自行探索，这里介绍两本书：<a target="_blank" rel="noopener" href="https://book.douban.com/subject/10746113/">《HTTP权威指南》</a>、 <a target="_blank" rel="noopener" href="https://book.douban.com/subject/25863515/">《图解HTTP》</a>。</p>
+<p>相信看完整篇文章，读者再去看书也会有更深层次的收获。</p>
+<h3 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h3><p>《过桥米线》中，妻子送米线表达对夫君的爱意和仕途的支持；<br>浏览器与服务器之间使用HTTP协议交互；<br>所以我想：HTTP协议应该是浏览器和服务器之间的美好约定吧。</p>
+<p>琴酒纵使能力再强，也属于“酒厂”组织的其中一个成员；<br>HTTP固然如此，名气再大，也希望读者不要忘记在背后支持它的互联网协议。</p>
+<p>最后，<br>希望朋友吃米粉的时候能想起HTTP；<br>喝酒的时候能想起互联网协议；<br>喝酒吃米粉的时候能想到我。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>screw-hand
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://screw-hand.com/post/http/" title="从HTTP到互联网协议，浏览器与服务器之间不得不说的故事">https://screw-hand.com/post/http/</a>
+  </li>
+  <li class="post-copyright-license">
+      <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="followme">
+  <span>欢迎关注我的其它发布渠道</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+      </div>
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/web/" rel="tag"># web</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/post/web-cache/" rel="prev" title="前端常见缓存机制">
+                  <i class="fa fa-chevron-left"></i> 前端常见缓存机制
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/post/cross-domain/" rel="next" title="跨域">
+                  跨域 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    
+  <div class="comments" id="disqus_thread">
+    <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+  </div>
+  
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2019 – 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">screw-hand</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/screw-hand" class="github-corner" title="在 GitHub 上关注我" aria-label="在 GitHub 上关注我" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.6.0/pjax.min.js" integrity="sha256-vxLn1tSKWD4dqbMRyv940UYw4sXgMtYcK6reefzZrao=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.0.8/medium-zoom.min.js" integrity="sha256-7PhEpEWEW0XXQ0k6kQrPKwuoIomz8R8IYyuU1Qew4P8=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pangu/4.0.7/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/pjax.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+  <script src="/js/third-party/fancybox.js"></script>
+
+
+
+  
+
+
+
+
+<script class="next-config" data-name="disqus" type="application/json">{"enable":true,"shortname":"screw-hand","count":true,"i18n":{"disqus":"disqus"}}</script>
+<script src="/js/third-party/comments/disqus.js"></script>
+
+</body>
+</html>

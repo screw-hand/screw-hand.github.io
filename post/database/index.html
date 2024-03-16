@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"screw-hand.com","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.17.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":"default","style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="作者：Vicki Boykis | 译者：阿拉丁    阅读数：678 2019 年 3 月 2 日 | 话题：大数据  AI 最佳实践  当你看到“数据科学”这个词时，会想到什么？你可能会觉得它是统计学、机器学习、深度学习和“21 世纪最性感的工作”等关键词的组合，或者你的脑海里会浮现出一个数据科学家的形象，她坐在电脑旁，将 AB 测试得到的结果拼接在一起，又或者你听很多人说过干这行有赚不完的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="不再性感，不再赚钱，数据科学的时代变了">
+<meta property="og:url" content="https://screw-hand.com/post/database/index.html">
+<meta property="og:site_name" content="螺丝手">
+<meta property="og:description" content="作者：Vicki Boykis | 译者：阿拉丁    阅读数：678 2019 年 3 月 2 日 | 话题：大数据  AI 最佳实践  当你看到“数据科学”这个词时，会想到什么？你可能会觉得它是统计学、机器学习、深度学习和“21 世纪最性感的工作”等关键词的组合，或者你的脑海里会浮现出一个数据科学家的形象，她坐在电脑旁，将 AB 测试得到的结果拼接在一起，又或者你听很多人说过干这行有赚不完的">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-01-08T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-03-14T16:49:44.802Z">
+<meta property="article:author" content="screw-hand">
+<meta property="article:tag" content="转载">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://screw-hand.com/post/database/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://screw-hand.com/post/database/","path":"/post/database/","title":"不再性感，不再赚钱，数据科学的时代变了"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>不再性感，不再赚钱，数据科学的时代变了 | 螺丝手</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="螺丝手" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">螺丝手</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%99%E6%96%B0%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6%E5%AE%B6%E7%9A%84%E5%BB%BA%E8%AE%AE"><span class="nav-number">1.</span> <span class="nav-text">给新数据科学家的建议</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8D%E8%A6%81%E8%BF%9B%E5%85%A5%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6%E9%A2%86%E5%9F%9F"><span class="nav-number">2.</span> <span class="nav-text">不要进入数据科学领域</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%86%E8%A7%A3%E5%BD%93%E4%BB%8A%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6%E6%89%80%E9%9C%80%E7%9A%84%E6%8A%80%E8%83%BD"><span class="nav-number">3.</span> <span class="nav-text">了解当今数据科学所需的技能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%80%E5%90%8E%E7%9A%84%E6%AD%A5%E9%AA%A4"><span class="nav-number">4.</span> <span class="nav-text">最后的步骤</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="screw-hand"
+      src="/avatar.jpg">
+  <p class="site-author-name" itemprop="name">screw-hand</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">31</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/screw-hand" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;screw-hand" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:screwhand0@gmail.com" title="E-Mail → mailto:screwhand0@gmail.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml" rel="noopener me"><i class="fa fa-rss fa-fw"></i></a>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://screw-hand.com/post/database/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/avatar.jpg">
+      <meta itemprop="name" content="screw-hand">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="螺丝手">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="不再性感，不再赚钱，数据科学的时代变了 | 螺丝手">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          不再性感，不再赚钱，数据科学的时代变了
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-01-09 00:00:00" itemprop="dateCreated datePublished" datetime="2019-01-09T00:00:00+08:00">2019-01-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-03-15 00:49:44" itemprop="dateModified" datetime="2024-03-15T00:49:44+08:00">2024-03-15</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%BD%AC%E8%BD%BD/" itemprop="url" rel="index"><span itemprop="name">转载</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/post/database/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="/post/database/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>7k</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><blockquote>
+<p>作者：Vicki Boykis | 译者：阿拉丁 </p>
+</blockquote>
+<blockquote>
+<p>阅读数：678 2019 年 3 月 2 日 | 话题：大数据  AI 最佳实践</p>
+</blockquote>
+<pre><code>当你看到“数据科学”这个词时，会想到什么？你可能会觉得它是统计学、机器学习、深度学习和“21 世纪最性感的工作”等关键词的组合，或者你的脑海里会浮现出一个数据科学家的形象，她坐在电脑旁，将 AB 测试得到的结果拼接在一起，又或者你听很多人说过干这行有赚不完的钱（根据权威部门统计：入门级数据科学家的平均年薪约人民币 744253 元）。无论是哪一种，它都是迷人、聪明和复杂的。
+
+从本文作者 Vicki Boykis 十年前进入这一领域以来，数据科学一直给人这样的印象，但现在，数据科学已经不再是当初的样子了。以下内容由 AI 前线编译，原文来自 Vicki Boykis 发表于个人博客的文章《Data science is different now》。
+</code></pre>
+<p>我最初是一名数据分析师。</p>
+<pre><code>我是否曾经提到过我有多讨厌 Excel 默认的数字字符串格式？
+——Vicki Boykis（@vboykis）2012 年 5 月 18 日
+</code></pre>
+<p>我经常是一边苦等 SQL 的运行结果、整理乱糟糟的 Excel 文件，一边看着 Hacker News 上有关海量数据挖掘的文章、Facebook 数据科学团队的新闻和谷歌首席经济学家 Hal Varian 写的文章，然后一边做着白日梦。</p>
+<p>2012 年，我很幸运地被分配到了一个数据分析工程团队，他们正在将一些 ETL 作业从 Oracle 迁移到 Hadoop 上，以便满足不断增长的数据吞吐量要求。</p>
+<span id="more"></span>
+
+<pre><code>有没有“给白痴用的 Hadoop”？ 给小白用的 Hadoop 并不适合我。
+——Vicki Boykis（@vboykis）2012 年 8 月 16 日
+</code></pre>
+<p>我自愿成为第一个使用 Pig 和 Hive 的分析师，主要是因为我不想等到工程工作完成后才能访问我的数据。而且，我沉迷于数据科学家的光环——这些人开展很酷的实验，提出很酷的分析想法，并可以使用 MacBook。</p>
+<p>我也想成为这样的人！所以，我在线学习了 Python，重温了我在大学学习过的统计学。在早期，并没有真正形式化的方法来学习“数据科学”，最多只能看看其他人在做什么、去参加聚会或者试着从人力资源招聘的职位描述中读出点什么。</p>
+<p>在独自摸索了很长一段时间之后，我在过去的六年时间里已经在“数据科学”领域站稳了脚跟。并且，作为一名导师（但我之前并没有导师），我一直在回复电子邮件，和那些希望进入数据科学领域的人喝咖啡会面。</p>
+<p>自 2012 年以来，数据科学行业发展极其迅速。它几乎经历了甘特炒作周期的每个阶段。</p>
+<p>我们已经经历了早期采用阶段、有关人工智能和偏见的负面新闻、Facebook 等公司的第二轮和第三轮风险投资，现在正处于高采用增长阶段：银行、医疗保健公司和其他财富 100 强企业（这些公司已经落后市场五年）也在为机器学习招聘数据科学家。</p>
+<p>很多东西都变了。大数据（记得 Hadoop 和 Pig 吗？）已经出局了，R 语言的采用率急剧上升，Python 成为经济学家的宠儿，而云计算再次改变了一切。</p>
+<p>然而，媒体针对数据科学领域的炒作却没有变，一直在鼓吹数据科学家是“21 世纪最性感的职业”。但我现在认为这是一个很严重的问题，需要引起社区的注意。希望进入这个行业的初级数据科学家供过于求，而一旦他们获得了梦寐以求的“数据科学家”头衔，他们能够得到的东西与他们的期望其实是不匹配的。<br>新数据科学家的供过于求</p>
+<p>首先，我们来谈谈初级数据科学家的供过于求。针对数据科学的持续媒体炒作导致过去五年中市场上的初级人才数量激增。</p>
+<p>这纯粹是道听途说的东西，所以不要太当真。但是，基于我自己作为简历筛选者、数据科学家导师、面试官、面试者，以及与从事类似职业的朋友和同事的对话，我有一种直觉，每个给定的数据科学职位（特别是入门级的科学职位）的候选人数量从 20 个增加到 100 个或更多。我最近了解到，我的一位朋友在招聘一个职位时收到了不止 500 份简历。</p>
+<p>这都很正常，类似的情况还有很多。机器学习教父吴恩达的 AI 创业公司每周要求工作 70 到 80 个小时，但仍然收到了大量申请，甚至有人愿意免费做志愿者。在写这篇文章时，他们的办公室已经容不下更多的人。</p>
+<p>要评估市场需求与供应之间的真正差距是非常非常困难的，不过我们可以从这里(<a target="_blank" rel="noopener" href="https://www.wired.com/story/andrew-ngs-new-online-school/)%E5%BC%80%E5%A7%8B%E7%9D%80%E6%89%8B%E3%80%82">https://www.wired.com/story/andrew-ngs-new-online-school/)开始着手。</a></p>
+<pre><code>对 4 月份招聘广告的研究发现，美国有超过 10,000 个针对人工智能或机器学习的职位空缺。
+
+[超过 10 万人参加了 Fast.ai](http://xn--10fast-qo7i07amn353ae9cy36wyeg.ai/)（一家专注于推广人工智能的创业公司）的深度学习课程。
+</code></pre>
+<p>假设平均 MOOC 完成率约为 7％，那意味着有 7000 人可以填补这 10,000 个工作岗位。但是，今年是这样，那么明年呢？我们是否在假设数据科学创造的就业率是稳定的？如果实际情况不是这样的，那么数据科学就业市场有可能会萎缩。</p>
+<p>LinkedIn 提供的数据表明，市场上有 151,717 个数据科学人才空缺。虽然目前还不清楚它们是不是就是指数据科学家，或者是只拥有部分技能的人，但我们假设是前者。因此，我们可以说美国现在有 150,000 多个数据科学家职位空缺。</p>
+<p>我们假设有 100,000 个人已经参加了数据科学课程，并且其中有 7,000 个人会完成课程。</p>
+<p>但是，上面这数字并没有考虑到其他的数据科学候选人计划和途径：Fast.ai 之外的 MOOC，比如 Coursera、Metis（超过 10 个全国性训练营）和 General Assembly（每 12 周就有 25 人参加）、来自加州大学洛杉矶分校等地的远程学位、分析和数据科学的本科学位、YouTube，等等。还有很多博士正在从学术界转向数据科学领域，但却无法在竞争极其激烈的就业市场中找到工作。</p>
+<p>这篇文章指出，在 2015 年有 4 万个数据科学家职位空缺。总体而言，到 2018 年，分析技能的市场供应将超过市场容量。<br>image</p>
+<p>参加数据科学计划的初级人才数量，再加上数百个开设数据科学课程的训练营，你将看到一场完美的风暴。</p>
+<p>除了我从工作中了解到的以及与 100 多名同事进行的交谈之外，下面的两条推文让我确信目前存在真正的数据科学供应泡沫。</p>
+<pre><code>@Cal 的数据科学入门课程 Data 8 非常受欢迎。它位于有泽勒巴大剧院。2018 年秋季开学。pic.twitter.com/VBhtPnikmw
+——Mike Olson（@mikeolson），2018 年 10 月 4 日
+
+UVA（美国弗吉尼亚大学）很自豪地宣布开设数据科学学院的计划，它将满足社会对数据科学不断增长的需求。https://t.co/QlP4OUrTrO
+——UVA（@UVA）2019 年 1 月 18 日
+</code></pre>
+<p>由于学术界在跟上新趋势方面通常会滞后，因此，对于所有希望在数据科学领域找到职位的初级数据科学家来说，这确实令人感到担忧。对于一个拥有数据科学新学位的人来说，要找到一个数据科学的职位是非常困难的，因为他们要在市场上与许多新人展开竞争。</p>
+<p>但在三、四年前，情况并非如此。而现在，数据科学已经从流行语变成了连硅谷之外的公司都在招聘的职位，职位的准入门槛更高了，而且偏爱具备数据科学经验的人，数据科学面试仍然很难通过。</p>
+<p>正如很多文章指出的那样，你不一定会在第一次尝试时就能找到你梦寐以求的工作。市场可能非常残酷，并且对于大量初入者来说非常令人沮丧。<br>数据科学是一个具有误导性的岗位需求</p>
+<p>第二个问题是，一旦这些初级人员进入市场，他们会对数据科学工作产生不切实际的期望。每个人都认为他们将从事与机器学习、深度学习和贝叶斯模拟相关的工作。</p>
+<p>这不是他们的错，这就是数据科学课程和技术媒体所宣扬的。</p>
+<p>但现实的情况却是，“数据科学”大多数时候是关于如何清理和整理数据以及将数据从一个地方移动到另一个地方。</p>
+<p>我最近进行的一次非科学调查证实了这一点：</p>
+<pre><code>一段时间以来，我一直对此感到好奇，所以决定做一个民意调查。
+“作为一个 2019 年被称为’数据科学家’的人，我花了大部分时间（60％以上）：”
+也欢迎“其他”选项，请在回复中添加。
+——Vicki Boykis（@vboykis）2019 年 1 月 28 日
+</code></pre>
+<p>还有很多行业专家发来的推文也是如此：</p>
+<pre><code>对于我最近的几个 ML 项目，复杂性并不在于建模或训练，而在于输入预处理。我发现在一个项目中耗尽了 CPU（而不是 GPU），我不确定如何进一步优化 Python（我正在考虑使用 C++）。
+——mat kelcey（@mat_kelcey）2019 年 2 月 11 日
+
+我看到初级 ML/CV 工程师对构建数据集完全缺乏兴趣。虽然这是一项无聊的工作，但我认为在整理数据集时需要学到很多东西，毕竟这占了问题的一大半。
+——Katherine Scott（@kscottz）2019 年 2 月 1 日
+
+角色和责任：
+- 自动化糟糕的商业行为
+
+- 根据需要编写临时 SQL
+
+经验要求：
+
+· 15 年使用 Python 进行深度学习的经验
+
+· 写过有关贝叶斯建模的博士论文
+
+· 7 种语言的 NLP 经验
+
+· 10 年从头开始​​创建 Hadoop 集群的经验
+
+——NickHeitzman（@NickDoesData）2019 年 2 月 12 日
+
+在过去两年中，项目的工作类别所占百分比：
+- 涉及 ML：15％
+
+- 涉及移动、监控和统计数据：85％
+
+——Vicki Boykis（@vboykis）2019 年 1 月 15 日
+</code></pre>
+<p>显而易见的是，在炒作周期的后期阶段，数据科学逐渐向工程学靠近，数据科学家需要的技能不再是基于可视化和统计学，而是更接近传统计算机科学课程所提供的那些：</p>
+<pre><code>像单元测试和持续集成这样的概念很快就成为数据科学家和从事 ML 工程的数值科学家的行话和常用的工具。
+</code></pre>
+<p>这导致了一些事情的发生。首先是“机器学习工程师”这个头衔的崛起，在过去的 3 到 4 年里，它带来了更多的声望和更高的收入潜力。</p>
+<p>其次，它导致数据科学家头衔含金量严重缩水。由于数据科学家头衔的声望，像 Lyft 这样的公司会招聘数据科学，但实际上他们只需要数据分析师的技能，导致“数据科学”职位对技能的要求发生了扭曲，究竟需要多少新进入者也变得不明确。</p>
+<h2 id="给新数据科学家的建议"><a href="#给新数据科学家的建议" class="headerlink" title="给新数据科学家的建议"></a>给新数据科学家的建议</h2><p>因此，本着继续为初学者提供建议的初衷，如果有人问我如何在 2019 年进入数据科学领域，我会给他们发送下面这样的电子邮件。</p>
+<p>这是一个两步走的计划：</p>
+<pre><code>    1. 不要死盯着数据科学的工作岗位。
+
+    2. 为大多数数据科学家相关的工作做好准备，但不要成为数据科学家。调整你的技能组合。
+</code></pre>
+<p>这些话可能有点令人沮丧！但请允许我解释一下，希望它们不像听起来的那么悲观。</p>
+<h2 id="不要进入数据科学领域"><a href="#不要进入数据科学领域" class="headerlink" title="不要进入数据科学领域"></a>不要进入数据科学领域</h2><p>因为每个初级职位一般有 50 个（有时 100 个，有时 200 个）人申请，所以不要与这些人去竞争。不要去攻读数学科学学位，不要参加训练营（我见过的大多数训练营的效果都不太好）。</p>
+<p>不要做别人正在做的事情，因为这样无法让你脱颖而出。你正处在一个过度饱和的行业中，这样只会给自己增加难度。在我之前提到的那份PWC 报告中，数据科学职位的数量估计为 5 万，数据工程师职位的数量为 50 万，数据分析师职位的数量是 12.5 万。</p>
+<p>通过“后门”进入数据科学领域要容易得多，也就是说从初级开发人员开始，可以是 DevOps 工程师、项目管理人员、数据分析师、信息管理员或类似的角色。这可能需要更长的时间，但在你努力完成数据科学工作的同时，你也将学会对职业生涯来说至关重要的 IT 技能。</p>
+<h2 id="了解当今数据科学所需的技能"><a href="#了解当今数据科学所需的技能" class="headerlink" title="了解当今数据科学所需的技能"></a>了解当今数据科学所需的技能</h2><p>以下是你在数据领域需要解决的一些问题：</p>
+<p>1）创建 Python 包</p>
+<p>2）将 R 语言用在生产环境中</p>
+<p>3）优化 Spark 作业，使其更有效地运行</p>
+<p>4）对数据进行版本控制</p>
+<p>5）让模型和数据可重现</p>
+<p>6）对 SQL 进行版本控制</p>
+<p>7）在数据湖中建立和维护干净的数据</p>
+<p>8）大规模时间序列预测工具</p>
+<p>9）共享 Jupyter Notebook</p>
+<p>10）寻找可用于清理数据的系统</p>
+<p>11）JSON</p>
+<p>作为一名数据科学家，优化模型、可视化和分析数据是职责工作的一部分，而数据科学主要是（也一直是）关于在一个地方获得用于插补的干净数据。</p>
+<p>你应该如何为解决这些问题做好准备？如何为工作做好准备？你可以考虑学习下面这三种技能，它们都是基础技能，并彼此依赖，从简单到困难。</p>
+<p>所有这些技能也是数据科学以外的软件开发的基础和关键，这意味着，如果你无法找到数据科学工作，可以快速转做软件开发或 DevOps。我认为这种灵活性与针对特定数据相关工作的培训同样重要。</p>
+<p><strong>1. 学习 SQL</strong></p>
+<p>首先，我建议每个人都要学习 SQL，无论他们的目标是成为数据工程师、ML 专家还是 AI 大师。</p>
+<p>SQL 并不性感，也不是上述问题的解决方案。但为了访问数据，你很可能需要针对数据库编写一些 SQL 查询，并用它获取答案。</p>
+<p>SQL 非常强大且非常流行，甚至有些 NoSQL 和键值存储数据库也在重新实现它。比如 Presto 推出的 Presto 和 Athena、BigQuery、KSQL、Pandas、Spark，等等。如果你发现自己陷入了数据工具海洋之中，很可能可以找到一个适合你的 SQL 工具。而且，一旦你理解了 SQL，你会发现它比其他查询语言更容易理解，从而开辟了一个全新的世界。</p>
+<p>在熟悉了 SQL 之后，下一步是了解数据库的工作原理，这样你就可以学会如何优化查询。你不一定要成为数据库开发人员，但很多概念将延续到你的其他编程生活当中。</p>
+<p><strong>2. 学好一门编程语言和学习编程概念</strong></p>
+<p>SQL 不是一门编程语言吗？它是的，但它是声明性的。你指定所需的输出（即你要从表中获取哪些列），但不指定这些列以怎样的形式返回给你。SQL 抽象了很多数据库底层的细节。</p>
+<p>你需要一门过程式语言，你可以自行指定如何以及从哪里获取数据。大多数现代语言都是过程式的：Java、Python、Scala、R 语言、Go 语言，等等。</p>
+<p>关于为数据科学应该选择哪种语言存在很多争论，我不会针对任何特定情况规定说要学习哪一种语言，只是在我的职业生涯中，Python 对我来说非常有用。作为一个初学者，它很容易入门，可以说是数据领域最流行的编程语言，并且可以用来完成很多不同的事情，从将模型嵌入 scikit 中，到访问 AWS API，再到构建 Web 应用程序、清理数据，以及创建深度学习模型。</p>
+<p>当然，也有一些任务不太适合用 Python 来完成：大型应用程序、打包依赖项和一些特定的与数字相关的任务，特别是时间序列和 R 语言提供的一系列功能。</p>
+<p>如果你不选择 Python，也没问题。但你至少要选择一种语言，让你在数据科学领域之外保持灵活性。例如，如果你的第一份工作是数据分析师、QA 分析师、DevOps 初级工程师，或者其他职位，掌握一门语言都有助于你站稳脚跟。</p>
+<p>在选择了一门编程语言并弄清楚如何使用它之后，就可以开始学习它背后的范式以及它与计算机科学生态系统的关系。</p>
+<p>你是如何使用你的语言实现 OOP 的？OOP 是什么东西？你如何优化你的代码？你的语言的依赖项是如何工作的？如何使用给定语言打包代码，如何进行版本控制、持续集成，如何部署模型工件？你的语言社区在哪里，会在哪里举行聚会？</p>
+<p>了解你的语言，了解它的优缺点，用你的语言开发一些有趣的东西。</p>
+<p>然后，当你有足够的信心继续下去时，也只有在这个时候，才能开始学习你的第二门语言。它将把你带入更广泛的语言设计、算法和模式的世界。</p>
+<p><strong>3. 了解云端的工作</strong></p>
+<p>现在你已经知道如何编程，现在是时候将这些技能和理论带到云端了。</p>
+<p>如今，云无处不在，你可能需要在下一个工作中使用云。如果有更多的机器学习范例转移到云端（如 SageMaker、Cloud AI 和 Azure 机器学习），已经有现成的模板可用来实现算法，而且企业的更多数据也开始存储在那里。</p>
+<p>你可能会与行业领导者 AWS 合作，但越来越多的公司正在采用 Google Cloud，而很多已经与微软开展业务合作的保守企业在使用 Azure。我建议深入了解这三个云供应商，然后挑选一个你最感兴趣的。云设计范式都是类似的，你必须了解如何将服务粘合在一起，如何区分云端的服务器，以及如何使用 JSON。</p>
+<p>有趣的是，这三家供应商现在都提供了他们的产品认证。我一般不会通过认证来衡量一个人对知识的掌握程度与否，但通过认证可以学到云的工作原理，这是工程的另一个组成部分：网络。</p>
+<p>了解这三种产品，并在开始下一份工作之前在云端构建一些有趣的东西。</p>
+<p>这里缺失的部分当然是“软技能”——知道在什么时候构建什么，知道如何在工作场所进行交流，知道其他人想要什么。软技能与技术技能一样重要，有很多专门讨论它的文章，但为了保持这篇文章不会太长，这里就不作累述了。</p>
+<h2 id="最后的步骤"><a href="#最后的步骤" class="headerlink" title="最后的步骤"></a>最后的步骤</h2><p>现在，请深呼吸，我想你已经做好准备了。</p>
+<p>如果上述有任何一点（或者所有）让你感兴趣，那说明你已经准备好在 2019 年成为数据科学家、机器学习工程师、云专家或 AI 大师了。</p>
+<p>请记住，你的最终目标是打败那些攻读数据科学学位、参加训练营和学习教程的人。</p>
+<p>你想要迈出第一步，获得一个与数据相关的职位，然后朝着你梦想的工作前进，同时尽可能多地了解科技行业的总体情况。</p>
+<p>我最后一个一般性的建议是给自己打气：</p>
+<p>这对每个人来说都很难，似乎有很多事情你必须知道。不要气馁。</p>
+<p>不要因为想太多就望而却步。先从小处开始，做一些小的事情，学习一些小的东西，构建一些小的东西，把你做的事情告诉其他人。请记住，你在数据科学领域的第一份工作可能不是数据科学家。</p>
+<p>祝你好运！</p>
+<p>英文原文：<br><a target="_blank" rel="noopener" href="https://veekaybee.github.io/2019/02/13/data-science-is-different/">https://veekaybee.github.io/2019/02/13/data-science-is-different/</a></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>screw-hand
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://screw-hand.com/post/database/" title="不再性感，不再赚钱，数据科学的时代变了">https://screw-hand.com/post/database/</a>
+  </li>
+  <li class="post-copyright-license">
+      <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="followme">
+  <span>欢迎关注我的其它发布渠道</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+      </div>
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/%E8%BD%AC%E8%BD%BD/" rel="tag"># 转载</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+            </div>
+            <div class="post-nav-item">
+                <a href="/post/ES2019/" rel="next" title="JavaScript ES2019 中的 8 个新功能">
+                  JavaScript ES2019 中的 8 个新功能 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    
+  <div class="comments" id="disqus_thread">
+    <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+  </div>
+  
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2019 – 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">screw-hand</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/screw-hand" class="github-corner" title="在 GitHub 上关注我" aria-label="在 GitHub 上关注我" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.6.0/pjax.min.js" integrity="sha256-vxLn1tSKWD4dqbMRyv940UYw4sXgMtYcK6reefzZrao=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.0.8/medium-zoom.min.js" integrity="sha256-7PhEpEWEW0XXQ0k6kQrPKwuoIomz8R8IYyuU1Qew4P8=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pangu/4.0.7/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/pjax.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+  <script src="/js/third-party/fancybox.js"></script>
+
+
+
+  
+
+
+
+
+<script class="next-config" data-name="disqus" type="application/json">{"enable":true,"shortname":"screw-hand","count":true,"i18n":{"disqus":"disqus"}}</script>
+<script src="/js/third-party/comments/disqus.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,481 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>螺丝手</title>
+  
+  
+  <link href="https://screw-hand.com/atom.xml" rel="self"/>
+  
+  <link href="https://screw-hand.com/"/>
+  <updated>2024-03-14T16:49:44.826Z</updated>
+  <id>https://screw-hand.com/</id>
+  
+  <author>
+    <name>screw-hand</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>ssh配置</title>
+    <link href="https://screw-hand.com/post/ssh-config/"/>
+    <id>https://screw-hand.com/post/ssh-config/</id>
+    <published>2023-07-05T11:48:57.000Z</published>
+    <updated>2024-03-14T16:49:44.826Z</updated>
+    
+    
+    <summary type="html">&lt;ul&gt;
+&lt;li&gt;多个账号配置ssh key&lt;/li&gt;
+&lt;li&gt;ssh免密码登录&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;…&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="cli" scheme="https://screw-hand.com/categories/cli/"/>
+    
+    
+    <category term="cli" scheme="https://screw-hand.com/tags/cli/"/>
+    
+    <category term="ssh" scheme="https://screw-hand.com/tags/ssh/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>github中的fork技巧</title>
+    <link href="https://screw-hand.com/post/fork-skill/"/>
+    <id>https://screw-hand.com/post/fork-skill/</id>
+    <published>2023-06-21T04:50:55.000Z</published>
+    <updated>2024-03-14T16:49:44.806Z</updated>
+    
+    
+    <summary type="html">&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;进阶fork技巧，对初学者不是那么友好，建议拥有以下前置技能：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;使用过github的fork&amp;#x2F;pr操作&lt;/li&gt;
+&lt;li&gt;熟悉使用git命令的多个分支，多个远端操作&lt;/li&gt;
+&lt;li&gt;熟练使用git处理合并分支冲突&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;各个大标题内容独立，可根据自己需求跳读:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;如何将fork类型仓库转成自己的仓库&lt;/li&gt;
+&lt;li&gt;如何同步多个上游仓库&lt;/li&gt;
+&lt;li&gt;在fork之前clone上游仓库并commit了，怎么提pr&lt;/li&gt;
+&lt;/ul&gt;</summary>
+    
+    
+    
+    
+    <category term="github" scheme="https://screw-hand.com/tags/github/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>你的理想生活</title>
+    <link href="https://screw-hand.com/post/hope/"/>
+    <id>https://screw-hand.com/post/hope/</id>
+    <published>2022-08-22T10:22:11.000Z</published>
+    <updated>2024-03-14T16:49:44.814Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;很多时候我都很好奇别人想法，比如朋友的理想生活到底是怎样的。所以给最珍贵的朋友做了一次人间采访，我想知道，脱离了现实的客观条件，朋友们希望过上一种什么样的生活。&lt;/p&gt;
+&lt;p&gt;以下回答来自不同的朋友，不同的时间，或者想法会进化或者放弃。但是仍然希望，所有人都记得有某一个人，曾经有这么一个理想过。&lt;/p&gt;
+&lt;p&gt;因为说出自己的真实想法太过羞耻，很多人并不一定喜欢自我暴露，所有的回答都是采用匿名机制，只保留日期，如果找不到自己的回答，那也说明这个理想生活也不属于你了。&lt;/p&gt;
+&lt;p&gt;或许某一天，当你迷失了方向，会重新回来这里，寻找你最初的想法。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;“你的理想生活是什么，无视所有客观条件?”&lt;/strong&gt;&lt;/p&gt;</summary>
+    
+    
+    
+    
+    <category term="人间采访" scheme="https://screw-hand.com/tags/%E4%BA%BA%E9%97%B4%E9%87%87%E8%AE%BF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>antd源码浅析</title>
+    <link href="https://screw-hand.com/post/antd-source/"/>
+    <id>https://screw-hand.com/post/antd-source/</id>
+    <published>2022-08-02T07:47:16.000Z</published>
+    <updated>2024-03-14T16:49:44.722Z</updated>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;导读&quot;&gt;&lt;a href=&quot;#导读&quot; class=&quot;headerlink&quot; title=&quot;导读&quot;&gt;&lt;/a&gt;导读&lt;/h1&gt;&lt;p&gt;github上面有一些很“哇塞”的项目，在工作中呢，我们只是作为“使用者”的角色，去把这些开源项目应用在项目中。&lt;br&gt;看着官网提供的资料，了解了这是什么、这怎么安装、这怎么使用、这有什么东西……&lt;br&gt;这很常见，从使用者的角度上看，甚至社区上的项目写得好不好跟我们关系也不大。&lt;br&gt;“能用就用，不能用就换一个，反正有很多选择”，这是很多人使用者的态度。&lt;br&gt;这当然没问题。&lt;br&gt;不过作为研发人员，我们可以不止步于此，可以进一步深入了解他们的项目代码。&lt;br&gt;毕竟作者都开源了，肯定是希望社区上的用户能对他们的代码有更多的了解。&lt;br&gt;开源给了所有技术人员一个机会——了解其他优秀开发者的项目机会。&lt;br&gt;遗憾的是大部分开发者都不具备去独立分析一个开源项目的方法。&lt;br&gt;看到优秀的项目代码，常常没办法搞懂整体设计、功能代码，想了解其实现也望而止步。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;这是一个系列，以Ant Design UI（react）为示例，一起学习如何分析一个开源项目。&lt;/strong&gt;&lt;/p&gt;</summary>
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>《JavaScript高级程序设计（第4版）》的笔记</title>
+    <link href="https://screw-hand.com/post/%E3%80%8AJavaScript%E9%AB%98%E7%BA%A7%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%EF%BC%88%E7%AC%AC4%E7%89%88%EF%BC%89%E3%80%8B/"/>
+    <id>https://screw-hand.com/post/%E3%80%8AJavaScript%E9%AB%98%E7%BA%A7%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%EF%BC%88%E7%AC%AC4%E7%89%88%EF%BC%89%E3%80%8B/</id>
+    <published>2022-03-20T12:37:34.000Z</published>
+    <updated>2024-03-14T16:49:44.830Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;&lt;strong&gt;JavaScript高级程序设计（第4版）&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;马特·弗里斯比&lt;br&gt;278个想法&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="js" scheme="https://screw-hand.com/categories/js/"/>
+    
+    
+    <category term="js 读书笔记" scheme="https://screw-hand.com/tags/js-%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>webpack5</title>
+    <link href="https://screw-hand.com/post/webpack5/"/>
+    <id>https://screw-hand.com/post/webpack5/</id>
+    <published>2022-03-12T14:20:48.000Z</published>
+    <updated>2024-03-14T16:49:44.830Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;简介：本质上，&lt;strong&gt;webpack&lt;/strong&gt; 是一个用于现代 JavaScript 应用程序的 &lt;em&gt;静态模块打包工具&lt;/em&gt;。当 webpack 处理应用程序时，它会在内部从一个或多个入口点构建一个 &lt;a href=&quot;https://webpack.docschina.org/concepts/dependency-graph/&quot;&gt;依赖图(dependency graph)&lt;/a&gt;，然后将你项目中所需的每一个模块组合成一个或多个 &lt;em&gt;bundles&lt;/em&gt;，它们均为静态资源，用于展示你的内容。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="工程化" scheme="https://screw-hand.com/categories/%E5%B7%A5%E7%A8%8B%E5%8C%96/"/>
+    
+    
+    <category term="webpack" scheme="https://screw-hand.com/tags/webpack/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>代码规范整改的项目实践</title>
+    <link href="https://screw-hand.com/post/code-style/"/>
+    <id>https://screw-hand.com/post/code-style/</id>
+    <published>2021-12-27T09:10:18.000Z</published>
+    <updated>2024-03-14T16:49:44.798Z</updated>
+    
+    
+    <summary type="html">&lt;h2 id=&quot;背景&quot;&gt;&lt;a href=&quot;#背景&quot; class=&quot;headerlink&quot; title=&quot;背景&quot;&gt;&lt;/a&gt;背景&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;痛点: 项目的代码写得太乱了，风格不统一。团队成员的编辑器格式化设置也不一样，经常在提交记录出现大量的格式化代码风格修改，影响日志追溯。&lt;/li&gt;
+&lt;li&gt;动机：npm script(prettier)似乎不起作用，虽然有 git hooks，项目也没有安装 eslint，也缺少 stylelint。&lt;/li&gt;
+&lt;li&gt;预期：团队统一代码风格，统一设置好编辑器，安装必要的编辑器插件，尽量用工具去自动整理代码&lt;/li&gt;
+&lt;li&gt;原则：让工具去管理规范，配置好相应的工具就行，让开发者少操心格式问题，把精力多放点在代码的实现&lt;/li&gt;
+&lt;li&gt;结果：预期想法基本满足。&lt;/li&gt;
+&lt;/ul&gt;</summary>
+    
+    
+    
+    <category term="工程化" scheme="https://screw-hand.com/categories/%E5%B7%A5%E7%A8%8B%E5%8C%96/"/>
+    
+    
+    <category term="规范" scheme="https://screw-hand.com/tags/%E8%A7%84%E8%8C%83/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>使用代理解决跨域问题</title>
+    <link href="https://screw-hand.com/post/cors-proxy/"/>
+    <id>https://screw-hand.com/post/cors-proxy/</id>
+    <published>2021-07-17T01:54:08.000Z</published>
+    <updated>2024-03-14T16:49:44.802Z</updated>
+    
+    
+    <summary type="html">&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;如今主流开发模式&lt;strong&gt;前后端分离&lt;/strong&gt;已是普遍的开发模式，相对于传统的前后端耦合，前后端各拥有自己的一套开发环境。开发完成后，又一起部署到是测试&amp;#x2F;线上环境。&lt;/p&gt;
+&lt;p&gt;因为后端的API服务并不部署在前端的开发环境上，所以在开发时，经常会遇到需要跨域的场景；即便是部署到测试&amp;#x2F;线上环境，也不一定是部署到同一台服务器（单体、集群式服务）。&lt;/p&gt;
+&lt;p&gt;内容：介绍跨域、同源策略的基本概念；收跨域影响的场景；常用的跨域方案、代理；反向代理、正向代理；开发、线上环境配置代理。&lt;/p&gt;</summary>
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>浏览器下载与上传文件</title>
+    <link href="https://screw-hand.com/post/file/"/>
+    <id>https://screw-hand.com/post/file/</id>
+    <published>2021-01-30T07:37:05.000Z</published>
+    <updated>2024-03-14T16:49:44.802Z</updated>
+    
+    
+    <summary type="html">&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;浏览器&amp;#x2F;服务器如何生成、下载与上传文件，以及js的文件处理。&lt;/p&gt;</summary>
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>浏览器图片机制</title>
+    <link href="https://screw-hand.com/post/image/"/>
+    <id>https://screw-hand.com/post/image/</id>
+    <published>2020-11-06T10:48:40.000Z</published>
+    <updated>2024-03-14T16:49:44.818Z</updated>
+    
+    
+    <summary type="html">&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;浏览器中引用图片是一种很常见的情况，使用方式的不同，他们的意义也不同。比如————作为“内容主体”、“背景”、“图标”等，而设计师有时候也会提供不同的格式图片（img&amp;#x2F;png&amp;#x2F;svg&amp;#x2F;）。在不同的场景，我们对同一份图片素材，要根据图片在web界面中的意义合理运用。个人会列举浏览器常用使用图片的方式。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;img&lt;/li&gt;
+&lt;li&gt;background-image&lt;/li&gt;
+&lt;li&gt;icon-font&lt;/li&gt;
+&lt;li&gt;svg&lt;/li&gt;
+&lt;li&gt;webpack 与 img&lt;/li&gt;
+&lt;li&gt;base64&lt;/li&gt;
+&lt;/ul&gt;</summary>
+    
+    
+    
+    
+    <category term="web" scheme="https://screw-hand.com/tags/web/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>同步遍历调用异步请求</title>
+    <link href="https://screw-hand.com/post/async-to-call-async-request-foreach/"/>
+    <id>https://screw-hand.com/post/async-to-call-async-request-foreach/</id>
+    <published>2020-10-06T03:11:50.000Z</published>
+    <updated>2024-03-14T16:49:44.798Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;业务场景：一次性发送多个http请求，并且这些请求有&lt;strong&gt;先后顺序&lt;/strong&gt;之分。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="js" scheme="https://screw-hand.com/categories/js/"/>
+    
+    
+    <category term="js" scheme="https://screw-hand.com/tags/js/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>vue生态圈</title>
+    <link href="https://screw-hand.com/post/vue-ecosystem/"/>
+    <id>https://screw-hand.com/post/vue-ecosystem/</id>
+    <published>2020-02-05T15:22:39.000Z</published>
+    <updated>2024-03-14T16:49:44.826Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;这是一次资料整理，关于vue的生态圈。包括工具、插件，这里不按照库的类型分类。&lt;/p&gt;
+&lt;p&gt;思维导图体现的是&lt;strong&gt;这些库由什么原理实现，或者说深入了解库会接触到的一些关键点。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;官方也整理了&lt;a href=&quot;https://github.com/vuejs/vue#ecosystem&quot;&gt;生态圈&lt;/a&gt;，不过&lt;a href=&quot;https://github.com/vuejs/vue/commit/4504cafa8dcece12538c8be4ae84fb93afcdafed#diff-04c6e90faac2675aa89e2176d2eec7d8R144-R18://github.com/vuejs/vue/commit/4504cafa8dcece12538c8be4ae84fb93afcdafed#diff-04c6e90faac2675aa89e2176d2eec7d8R144-R182&quot;&gt;修改记录&lt;/a&gt;是两年前。&lt;/p&gt;</summary>
+    
+    
+    
+    
+    <category term="vue" scheme="https://screw-hand.com/tags/vue/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>vue技巧篇：渲染函数 &amp; JSX</title>
+    <link href="https://screw-hand.com/post/render-JSX/"/>
+    <id>https://screw-hand.com/post/render-JSX/</id>
+    <published>2020-01-28T12:01:25.000Z</published>
+    <updated>2024-03-14T16:49:44.826Z</updated>
+    
+    
+    <summary type="html">&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;官方文档介绍的&lt;a href=&quot;https://cn.vuejs.org/v2/guide/render-function.html&quot;&gt;渲染函数&lt;/a&gt;似乎有点太过偏重表现而放轻原因。已经看过这部分好几次，还是有点不知所以然。这也不是第一次看不明白文档的介绍了，还是需要自己整理下知识点。所以，这里的内容是对文档做降级处理，好让这一块知识点更容易理解一点。文档有的东西，这里不会再重复。&lt;/p&gt;
+&lt;p&gt;建议阅读顺序：先粗略浏览下官方文档；精读这篇文章同时结合文档。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="vue" scheme="https://screw-hand.com/categories/vue/"/>
+    
+    
+    <category term="vue-skill" scheme="https://screw-hand.com/tags/vue-skill/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>git笔记</title>
+    <link href="https://screw-hand.com/post/git-note/"/>
+    <id>https://screw-hand.com/post/git-note/</id>
+    <published>2020-01-27T15:04:27.000Z</published>
+    <updated>2024-03-14T16:49:44.810Z</updated>
+    
+    
+    <summary type="html">&lt;h2 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot; class=&quot;headerlink&quot; title=&quot;简介&quot;&gt;&lt;/a&gt;简介&lt;/h2&gt;&lt;p&gt;部分重要概念。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;HEAD&lt;/li&gt;
+&lt;li&gt;Working Directory &amp;#x2F; Repository &amp;#x2F; Stage&lt;/li&gt;
+&lt;li&gt;branch&lt;/li&gt;
+&lt;li&gt;remote&lt;/li&gt;
+&lt;li&gt;tag&lt;/li&gt;
+&lt;li&gt;repo&lt;/li&gt;
+&lt;/ul&gt;</summary>
+    
+    
+    
+    <category term="git" scheme="https://screw-hand.com/categories/git/"/>
+    
+    
+    <category term="git" scheme="https://screw-hand.com/tags/git/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>vue技巧篇：生命周期</title>
+    <link href="https://screw-hand.com/post/lifecycle/"/>
+    <id>https://screw-hand.com/post/lifecycle/</id>
+    <published>2020-01-25T14:17:01.000Z</published>
+    <updated>2024-03-14T16:49:44.822Z</updated>
+    
+    
+    <summary type="html">&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;每个 Vue 实例在被创建时都要经过一系列的初始化过程——例如，需要设置数据监听、编译模板、将实例挂载到 DOM 并在数据变化时更新 DOM 等。同时在这个过程中也会运行一些叫做&lt;strong&gt;生命周期钩子&lt;/strong&gt;的函数，这给了用户在不同阶段添加自己的代码的机会。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;其实对生命周期而言，我们要搞懂的是。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;什么阶段初始化数据&lt;/li&gt;
+&lt;li&gt;什么阶段初始化事件&lt;/li&gt;
+&lt;li&gt;什么阶段渲染DOM&lt;/li&gt;
+&lt;li&gt;什么阶段挂载数据&lt;/li&gt;
+&lt;/ol&gt;</summary>
+    
+    
+    
+    <category term="vue" scheme="https://screw-hand.com/categories/vue/"/>
+    
+    
+    <category term="vue-skill" scheme="https://screw-hand.com/tags/vue-skill/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>vue技巧篇：组件通讯</title>
+    <link href="https://screw-hand.com/post/component-communication/"/>
+    <id>https://screw-hand.com/post/component-communication/</id>
+    <published>2020-01-24T12:05:19.000Z</published>
+    <updated>2024-03-14T16:49:44.802Z</updated>
+    
+    
+    <summary type="html">&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;组件化&lt;/strong&gt;也是vue的一大特点之一，组件是组成vue项目的基本单位。&lt;br&gt;一个组件可以做什么？ 这取决于组件的设计，组件一般由以下几点组成：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;选项&lt;/li&gt;
+&lt;li&gt;实例属性&amp;#x2F;方法&lt;/li&gt;
+&lt;li&gt;生命周期&lt;/li&gt;
+&lt;li&gt;全局API&lt;/li&gt;
+&lt;li&gt;指令&lt;/li&gt;
+&lt;li&gt;导入的其他组件&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;组件是可复用的vue实例，可以复用，导入导出，组成组件化系统。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;vue的组件都是保持相对独立的关系，可是又可以进行相互依赖（导入导出机制）；&lt;br&gt;这种规范下，实际开发又难免会出现组件之间&lt;strong&gt;传递数据&lt;/strong&gt;、&lt;strong&gt;转发事件&lt;/strong&gt;的场景。&lt;br&gt;而vue又对组件间的数据、事件做了一定的限制；&lt;br&gt;正因如此，我们需要好好探讨vue的组件通讯。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="vue" scheme="https://screw-hand.com/categories/vue/"/>
+    
+    
+    <category term="vue-skill" scheme="https://screw-hand.com/tags/vue-skill/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>vue技巧篇：自定义双向绑定</title>
+    <link href="https://screw-hand.com/post/two-way-binding/"/>
+    <id>https://screw-hand.com/post/two-way-binding/</id>
+    <published>2020-01-20T09:57:01.000Z</published>
+    <updated>2024-03-14T16:49:44.826Z</updated>
+    
+    
+    <summary type="html">&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;双向绑定&lt;/strong&gt; 是 &lt;code&gt;vue&lt;/code&gt; 的一大特点之一，使用也非常方便。&lt;br&gt;在需要双向绑定的&lt;strong&gt;表单控件元素&lt;/strong&gt;使用指令 &lt;code&gt;v-model&lt;/code&gt;即可。&lt;/p&gt;
+&lt;p&gt;官方文档教程 —— 表单输入绑定（&lt;a href=&quot;https://cn.vuejs.org/v2/guide/forms.html&quot;&gt;传送门&lt;/a&gt;）&lt;br&gt;官方文档api —— v-model 指令（&lt;a href=&quot;https://cn.vuejs.org/v2/api/#v-model&quot;&gt;传送门&lt;/a&gt;）&lt;/p&gt;
+&lt;p&gt;注意了：到目前为止，&lt;strong&gt;双向绑定只是针对表单控件元素，并没有说明其他DOM元素，或者是自定义组件。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;那我们要如何实现在组件（或者说其他DOM元素）的双向绑定呢？&lt;/p&gt;
+&lt;pre class=&quot;line-numbers language-markup&quot; data-language=&quot;markup&quot;&gt;&lt;code class=&quot;language-markup&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;base-components&lt;/span&gt; &lt;span class=&quot;token attr-name&quot;&gt;v-model&lt;/span&gt;&lt;span class=&quot;token attr-value&quot;&gt;&lt;span class=&quot;token punctuation attr-equals&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;fieldValue&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;/&lt;/span&gt;base-components&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;&lt;span aria-hidden=&quot;true&quot; class=&quot;line-numbers-rows&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;</summary>
+    
+    
+    
+    <category term="vue" scheme="https://screw-hand.com/categories/vue/"/>
+    
+    
+    <category term="vue-skill" scheme="https://screw-hand.com/tags/vue-skill/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>vue技巧篇：我的浏览器也是“控制台”</title>
+    <link href="https://screw-hand.com/post/control-pane/"/>
+    <id>https://screw-hand.com/post/control-pane/</id>
+    <published>2020-01-17T05:39:38.000Z</published>
+    <updated>2024-03-14T16:49:44.802Z</updated>
+    
+    
+    <summary type="html">&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;写代码少不了，调试最简单方便的方法是控制台输出信息，如js的 &lt;code&gt;control.log&lt;/code&gt;。&lt;br&gt;可有时候我们要监听的变量是改动频繁，可能要多次使用&lt;code&gt;control.log&lt;/code&gt;，控制台信息太多看得也容易乱。&lt;br&gt;有一次查阅资料的时候，看到其他开发者使用&lt;code&gt;pre&lt;/code&gt;标签直接在页面上打印变量，突然受到了一点感悟。&lt;/p&gt;
+&lt;h2 id=&quot;pre-和-data&quot;&gt;&lt;a href=&quot;#pre-和-data&quot; class=&quot;headerlink&quot; title=&quot;pre 和 $data&quot;&gt;&lt;/a&gt;pre 和 $data&lt;/h2&gt;&lt;p&gt;html的&lt;code&gt;pre&lt;/code&gt;标签并不常用，它可以保留原格式（空格和换行符），常用于表示源代码。&lt;br&gt;有了&lt;code&gt;pre&lt;/code&gt;我们很容易在页面上输出源码。此外，还需要vue的声明式渲染 —— &lt;code&gt;｛｛ x ｝｝&lt;/code&gt; 或者是 &lt;code&gt;v-text&lt;/code&gt; 指令。&lt;br&gt;以及 vue 的 &lt;code&gt;$data&lt;/code&gt; 实例属性，其实引用的是&lt;code&gt;data&lt;/code&gt;对象属性的访问。&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;附：博客系统，不支持双括号，这里用 &lt;code&gt;v-text&lt;/code&gt;代替，大部分情况下两者可以互换&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;说了那么多，其实只需要&lt;code&gt;&amp;lt;pre v-text=&amp;quot;$data&amp;quot;&amp;gt;&amp;lt;/pre&amp;gt;&lt;/code&gt;,这一行就够了。好的，今天就到这里，大家再见。&lt;/p&gt;
+&lt;p&gt;…&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="vue" scheme="https://screw-hand.com/categories/vue/"/>
+    
+    
+    <category term="vue-skill" scheme="https://screw-hand.com/tags/vue-skill/"/>
+    
+    <category term="debugger" scheme="https://screw-hand.com/tags/debugger/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>项目部署</title>
+    <link href="https://screw-hand.com/post/deploy/"/>
+    <id>https://screw-hand.com/post/deploy/</id>
+    <published>2020-01-16T16:30:34.000Z</published>
+    <updated>2024-03-14T16:49:44.802Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;工作中实操过的项目部署记录，使用的是Ubuntu系统，nignx 和 C# 的运行环境均已安装。&lt;/p&gt;
+&lt;h2 id=&quot;前期配置文件准备&quot;&gt;&lt;a href=&quot;#前期配置文件准备&quot; class=&quot;headerlink&quot; title=&quot;前期配置文件准备&quot;&gt;&lt;/a&gt;前期配置文件准备&lt;/h2&gt;&lt;pre class=&quot;line-numbers language-bash&quot; data-language=&quot;bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;# 以acs.HOST.cn举例 （HOST）为主域名&lt;/span&gt;
+
+&lt;span class=&quot;token comment&quot;&gt;# 项目路径&lt;/span&gt;
+/home/wwwroot/acs.xxx.cn
+
+&lt;span class=&quot;token comment&quot;&gt;# 从服务器下载文件配置文件（需要本机使用pscp或其他支持ftp协议的程序）&lt;/span&gt;
+pscp USERNAME@IP:/home/wwwroot/acs.HOST.cn/appsettings.json E:&lt;span class=&quot;token punctuation&quot;&gt;&#92;&lt;/span&gt;&lt;span class=&quot;token environment constant&quot;&gt;PATH&lt;/span&gt;
+
+&lt;span class=&quot;token comment&quot;&gt;# nginx 配置acs 所有项目(HOSTboss.conf)&lt;/span&gt;
+usr/local/nginx/conf/HOSTboss.conf
+
+&lt;span class=&quot;token comment&quot;&gt;# nginx 配置路径&lt;/span&gt;
+usr/local/nginx/conf/nginx.conf
+
+&lt;span class=&quot;token comment&quot;&gt;# 守护进程&lt;/span&gt;
+/etc/systemd/system/apps.acs.serive&lt;span aria-hidden=&quot;true&quot; class=&quot;line-numbers-rows&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;</summary>
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>vue的一些技巧</title>
+    <link href="https://screw-hand.com/post/vue-skill/"/>
+    <id>https://screw-hand.com/post/vue-skill/</id>
+    <published>2019-12-20T14:49:04.000Z</published>
+    <updated>2024-03-14T16:49:44.830Z</updated>
+    
+    
+    <summary type="html">&lt;h2 id=&quot;v-if-获取-refs-问题&quot;&gt;&lt;a href=&quot;#v-if-获取-refs-问题&quot; class=&quot;headerlink&quot; title=&quot;v-if 获取 refs 问题&quot;&gt;&lt;/a&gt;&lt;code&gt;v-if&lt;/code&gt; 获取 &lt;code&gt;refs&lt;/code&gt; 问题&lt;/h2&gt;&lt;p&gt;先简单介绍下这两个指令：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;v-if&lt;/code&gt; 条件渲染&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ref&lt;/code&gt; 返回组件实例或DOM元素&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;有时候我们需要在条件渲染的DOM节点上返回一个DOM对象或组件实例，可&lt;code&gt;this.$refs.child&lt;/code&gt; 返回的是&lt;code&gt;undefined&lt;/code&gt;。通过查阅文档得知:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;v-if 是“真正”的条件渲染，因为它会确保在切换过程中条件块内的事件监听器和子组件适当地被销毁和重建。&lt;br&gt;v-if 也是惰性的：如果在初始渲染时条件为假，则什么也不做——直到条件第一次变为真时，才会开始渲染条块。&lt;br&gt;$refs 只会在组件渲染完成之后生效，并且它们不是响应式的。这仅作为一个用于直接操作子组件的“逃生舱”——你应该避免在模板或计算属性中访问 $refs。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;如此可得：&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;v-if&lt;/code&gt; 条件渲染： 惰性渲染，DOM、事件、组件会被销毁重建&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;ref&lt;/code&gt; 返回组件实例或DOM元素，非相应式&lt;/strong&gt;&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="vue" scheme="https://screw-hand.com/categories/vue/"/>
+    
+    
+    <category term="vue-skill" scheme="https://screw-hand.com/tags/vue-skill/"/>
+    
+  </entry>
+  
+</feed>
