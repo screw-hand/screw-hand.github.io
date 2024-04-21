@@ -40,3 +40,5 @@ git branch -u origin/$TARGET_BRANCH
 git pull
 git merge origin/$SOURCE_BRANCH
 git push
+
+git checkout $SOURCE_BRANCH
