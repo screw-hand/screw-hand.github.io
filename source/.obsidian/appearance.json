@@ -1,0 +1,11 @@
+{
+  "baseFontSize": 16,
+  "cssTheme": "Obsidianotion",
+  "theme": "obsidian",
+  "enabledCssSnippets": [
+    "iconfont"
+  ],
+  "translucency": false,
+  "accentColor": "#e6964c",
+  "nativeMenus": true
+}

@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# how to use 👇
+# ./bin/branch-sync post hexo
+
 SCRIPT_NAME=$(basename "$0")
 
 if [ -z "$1" ] || [ -z "$2" ]; then
