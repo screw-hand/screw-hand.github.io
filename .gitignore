@@ -9,3 +9,6 @@ public/
 
 # thems git
 themes/next/.git
+
+# obsidian
+source/.obsidian/workspace.json
