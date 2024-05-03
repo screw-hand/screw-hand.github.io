@@ -1,6 +1,6 @@
 ---
 title: 如何让mac的vscode-insiders支持在web上直接安装扩展
-date: 2023-08-1416:27
+date: 2023-08-14 16:27:43
 categories: geek
 tags:
   - mac
