@@ -6,7 +6,7 @@
   <link href="https://screw-hand.com/atom.xml" rel="self"/>
   
   <link href="https://screw-hand.com/"/>
-  <updated>2024-03-17T09:23:23.096Z</updated>
+  <updated>2024-05-13T03:20:33.554Z</updated>
   <id>https://screw-hand.com/</id>
   
   <author>
@@ -15,6 +15,93 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>M系mac设置2k外接显示器使用HiDPI</title>
+    <link href="https://screw-hand.com/post/m-series-mac-2k-HiDPI/"/>
+    <id>https://screw-hand.com/post/m-series-mac-2k-HiDPI/</id>
+    <published>2024-03-19T06:19:06.000Z</published>
+    <updated>2024-05-13T03:20:33.554Z</updated>
+    
+    
+    <summary type="html">&lt;ul&gt;
+&lt;li&gt;原生系统支持&lt;/li&gt;
+&lt;li&gt;BetterDummy(BetterDisplay)&lt;/li&gt;
+&lt;/ul&gt;</summary>
+    
+    
+    
+    <category term="geek" scheme="https://screw-hand.com/categories/geek/"/>
+    
+    
+    <category term="mac" scheme="https://screw-hand.com/tags/mac/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>web应用的服务器环境迁移</title>
+    <link href="https://screw-hand.com/post/web-env-migrate/"/>
+    <id>https://screw-hand.com/post/web-env-migrate/</id>
+    <published>2024-01-29T02:29:00.000Z</published>
+    <updated>2024-05-13T03:20:33.562Z</updated>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;背景&quot;&gt;&lt;a href=&quot;#背景&quot; class=&quot;headerlink&quot; title=&quot;背景&quot;&gt;&lt;/a&gt;背景&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;单体Web应用部署在云服务提供商上。&lt;/li&gt;
+&lt;li&gt;用户通过域名访问该应用。&lt;/li&gt;
+&lt;li&gt;计划将应用从一个云服务器（A）迁移到另一个（B），使用Docker进行部署。&lt;/li&gt;
+&lt;li&gt;迁移的目标是让用户无感知这一变更。&lt;/li&gt;
+&lt;/ul&gt;</summary>
+    
+    
+    
+    <category term="DevOps" scheme="https://screw-hand.com/categories/DevOps/"/>
+    
+    
+    <category term="env" scheme="https://screw-hand.com/tags/env/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>缩放倍率设置达到最佳视觉效果</title>
+    <link href="https://screw-hand.com/post/optimal-visual-effect-scaling/"/>
+    <id>https://screw-hand.com/post/optimal-visual-effect-scaling/</id>
+    <published>2023-10-19T15:50:00.000Z</published>
+    <updated>2024-05-13T03:20:33.562Z</updated>
+    
+    
+    <summary type="html">&lt;ul&gt;
+&lt;li&gt;计算dpi/ppi&lt;/li&gt;
+&lt;li&gt;最佳缩放倍率&lt;/li&gt;
+&lt;/ul&gt;</summary>
+    
+    
+    
+    <category term="geek" scheme="https://screw-hand.com/categories/geek/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>如何让mac的vscode-insiders支持在web上直接安装扩展</title>
+    <link href="https://screw-hand.com/post/vscode-insiders-support-install-extension-by-web/"/>
+    <id>https://screw-hand.com/post/vscode-insiders-support-install-extension-by-web/</id>
+    <published>2023-08-14T08:27:43.000Z</published>
+    <updated>2024-05-13T03:20:33.562Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;mac使用vscode-insiders，无法直接在网页上直接安装扩展。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="geek" scheme="https://screw-hand.com/categories/geek/"/>
+    
+    
+    <category term="mac" scheme="https://screw-hand.com/tags/mac/"/>
+    
+    <category term="vscode" scheme="https://screw-hand.com/tags/vscode/"/>
+    
+  </entry>
   
   <entry>
     <title>ssh配置</title>
@@ -66,6 +153,27 @@
     
     
     <category term="github" scheme="https://screw-hand.com/tags/github/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>apt vs apt-get</title>
+    <link href="https://screw-hand.com/post/apt-vs-apt-get/"/>
+    <id>https://screw-hand.com/post/apt-vs-apt-get/</id>
+    <published>2023-06-20T03:52:03.000Z</published>
+    <updated>2024-05-13T03:20:33.554Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;apt和apt-get都是Ubuntu的包管理工具，在较新的系统推荐用apt，apt比apt-get更新，后者的兼容性会更好。apt也会让其依赖项一起升级。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="geek" scheme="https://screw-hand.com/categories/geek/"/>
+    
+    
+    <category term="linux" scheme="https://screw-hand.com/tags/linux/"/>
+    
+    <category term="ubuntu" scheme="https://screw-hand.com/tags/ubuntu/"/>
     
   </entry>
   
@@ -330,144 +438,6 @@
 &lt;li&gt;什么阶段渲染DOM&lt;/li&gt;
 &lt;li&gt;什么阶段挂载数据&lt;/li&gt;
 &lt;/ol&gt;</summary>
-    
-    
-    
-    <category term="vue" scheme="https://screw-hand.com/categories/vue/"/>
-    
-    
-    <category term="vue-skill" scheme="https://screw-hand.com/tags/vue-skill/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>vue技巧篇：组件通讯</title>
-    <link href="https://screw-hand.com/post/component-communication/"/>
-    <id>https://screw-hand.com/post/component-communication/</id>
-    <published>2020-01-24T12:05:19.000Z</published>
-    <updated>2024-03-17T09:23:22.996Z</updated>
-    
-    
-    <summary type="html">&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;组件化&lt;/strong&gt;也是vue的一大特点之一，组件是组成vue项目的基本单位。&lt;br&gt;一个组件可以做什么？ 这取决于组件的设计，组件一般由以下几点组成：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;选项&lt;/li&gt;
-&lt;li&gt;实例属性&amp;#x2F;方法&lt;/li&gt;
-&lt;li&gt;生命周期&lt;/li&gt;
-&lt;li&gt;全局API&lt;/li&gt;
-&lt;li&gt;指令&lt;/li&gt;
-&lt;li&gt;导入的其他组件&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;组件是可复用的vue实例，可以复用，导入导出，组成组件化系统。&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;vue的组件都是保持相对独立的关系，可是又可以进行相互依赖（导入导出机制）；&lt;br&gt;这种规范下，实际开发又难免会出现组件之间&lt;strong&gt;传递数据&lt;/strong&gt;、&lt;strong&gt;转发事件&lt;/strong&gt;的场景。&lt;br&gt;而vue又对组件间的数据、事件做了一定的限制；&lt;br&gt;正因如此，我们需要好好探讨vue的组件通讯。&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="vue" scheme="https://screw-hand.com/categories/vue/"/>
-    
-    
-    <category term="vue-skill" scheme="https://screw-hand.com/tags/vue-skill/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>vue技巧篇：自定义双向绑定</title>
-    <link href="https://screw-hand.com/post/two-way-binding/"/>
-    <id>https://screw-hand.com/post/two-way-binding/</id>
-    <published>2020-01-20T09:57:01.000Z</published>
-    <updated>2024-03-17T09:23:23.104Z</updated>
-    
-    
-    <summary type="html">&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;双向绑定&lt;/strong&gt; 是 &lt;code&gt;vue&lt;/code&gt; 的一大特点之一，使用也非常方便。&lt;br&gt;在需要双向绑定的&lt;strong&gt;表单控件元素&lt;/strong&gt;使用指令 &lt;code&gt;v-model&lt;/code&gt;即可。&lt;/p&gt;
-&lt;p&gt;官方文档教程 —— 表单输入绑定（&lt;a href=&quot;https://cn.vuejs.org/v2/guide/forms.html&quot;&gt;传送门&lt;/a&gt;）&lt;br&gt;官方文档api —— v-model 指令（&lt;a href=&quot;https://cn.vuejs.org/v2/api/#v-model&quot;&gt;传送门&lt;/a&gt;）&lt;/p&gt;
-&lt;p&gt;注意了：到目前为止，&lt;strong&gt;双向绑定只是针对表单控件元素，并没有说明其他DOM元素，或者是自定义组件。&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;那我们要如何实现在组件（或者说其他DOM元素）的双向绑定呢？&lt;/p&gt;
-&lt;pre class=&quot;line-numbers language-markup&quot; data-language=&quot;markup&quot;&gt;&lt;code class=&quot;language-markup&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;base-components&lt;/span&gt; &lt;span class=&quot;token attr-name&quot;&gt;v-model&lt;/span&gt;&lt;span class=&quot;token attr-value&quot;&gt;&lt;span class=&quot;token punctuation attr-equals&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;fieldValue&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;/&lt;/span&gt;base-components&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;&lt;span aria-hidden=&quot;true&quot; class=&quot;line-numbers-rows&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;</summary>
-    
-    
-    
-    <category term="vue" scheme="https://screw-hand.com/categories/vue/"/>
-    
-    
-    <category term="vue-skill" scheme="https://screw-hand.com/tags/vue-skill/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>vue技巧篇：我的浏览器也是“控制台”</title>
-    <link href="https://screw-hand.com/post/control-pane/"/>
-    <id>https://screw-hand.com/post/control-pane/</id>
-    <published>2020-01-17T05:39:38.000Z</published>
-    <updated>2024-03-17T09:23:23.000Z</updated>
-    
-    
-    <summary type="html">&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;写代码少不了，调试最简单方便的方法是控制台输出信息，如js的 &lt;code&gt;control.log&lt;/code&gt;。&lt;br&gt;可有时候我们要监听的变量是改动频繁，可能要多次使用&lt;code&gt;control.log&lt;/code&gt;，控制台信息太多看得也容易乱。&lt;br&gt;有一次查阅资料的时候，看到其他开发者使用&lt;code&gt;pre&lt;/code&gt;标签直接在页面上打印变量，突然受到了一点感悟。&lt;/p&gt;
-&lt;h2 id=&quot;pre-和-data&quot;&gt;&lt;a href=&quot;#pre-和-data&quot; class=&quot;headerlink&quot; title=&quot;pre 和 $data&quot;&gt;&lt;/a&gt;pre 和 $data&lt;/h2&gt;&lt;p&gt;html的&lt;code&gt;pre&lt;/code&gt;标签并不常用，它可以保留原格式（空格和换行符），常用于表示源代码。&lt;br&gt;有了&lt;code&gt;pre&lt;/code&gt;我们很容易在页面上输出源码。此外，还需要vue的声明式渲染 —— &lt;code&gt;｛｛ x ｝｝&lt;/code&gt; 或者是 &lt;code&gt;v-text&lt;/code&gt; 指令。&lt;br&gt;以及 vue 的 &lt;code&gt;$data&lt;/code&gt; 实例属性，其实引用的是&lt;code&gt;data&lt;/code&gt;对象属性的访问。&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;附：博客系统，不支持双括号，这里用 &lt;code&gt;v-text&lt;/code&gt;代替，大部分情况下两者可以互换&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;说了那么多，其实只需要&lt;code&gt;&amp;lt;pre v-text=&amp;quot;$data&amp;quot;&amp;gt;&amp;lt;/pre&amp;gt;&lt;/code&gt;,这一行就够了。好的，今天就到这里，大家再见。&lt;/p&gt;
-&lt;p&gt;…&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="vue" scheme="https://screw-hand.com/categories/vue/"/>
-    
-    
-    <category term="vue-skill" scheme="https://screw-hand.com/tags/vue-skill/"/>
-    
-    <category term="debugger" scheme="https://screw-hand.com/tags/debugger/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>项目部署</title>
-    <link href="https://screw-hand.com/post/deploy/"/>
-    <id>https://screw-hand.com/post/deploy/</id>
-    <published>2020-01-16T16:30:34.000Z</published>
-    <updated>2024-03-17T09:23:23.008Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;工作中实操过的项目部署记录，使用的是Ubuntu系统，nignx 和 C# 的运行环境均已安装。&lt;/p&gt;
-&lt;h2 id=&quot;前期配置文件准备&quot;&gt;&lt;a href=&quot;#前期配置文件准备&quot; class=&quot;headerlink&quot; title=&quot;前期配置文件准备&quot;&gt;&lt;/a&gt;前期配置文件准备&lt;/h2&gt;&lt;pre class=&quot;line-numbers language-bash&quot; data-language=&quot;bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;# 以acs.HOST.cn举例 （HOST）为主域名&lt;/span&gt;
-
-&lt;span class=&quot;token comment&quot;&gt;# 项目路径&lt;/span&gt;
-/home/wwwroot/acs.xxx.cn
-
-&lt;span class=&quot;token comment&quot;&gt;# 从服务器下载文件配置文件（需要本机使用pscp或其他支持ftp协议的程序）&lt;/span&gt;
-pscp USERNAME@IP:/home/wwwroot/acs.HOST.cn/appsettings.json E:&lt;span class=&quot;token punctuation&quot;&gt;&#92;&lt;/span&gt;&lt;span class=&quot;token environment constant&quot;&gt;PATH&lt;/span&gt;
-
-&lt;span class=&quot;token comment&quot;&gt;# nginx 配置acs 所有项目(HOSTboss.conf)&lt;/span&gt;
-usr/local/nginx/conf/HOSTboss.conf
-
-&lt;span class=&quot;token comment&quot;&gt;# nginx 配置路径&lt;/span&gt;
-usr/local/nginx/conf/nginx.conf
-
-&lt;span class=&quot;token comment&quot;&gt;# 守护进程&lt;/span&gt;
-/etc/systemd/system/apps.acs.serive&lt;span aria-hidden=&quot;true&quot; class=&quot;line-numbers-rows&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;</summary>
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>vue的一些技巧</title>
-    <link href="https://screw-hand.com/post/vue-skill/"/>
-    <id>https://screw-hand.com/post/vue-skill/</id>
-    <published>2019-12-20T14:49:04.000Z</published>
-    <updated>2024-03-17T09:23:23.108Z</updated>
-    
-    
-    <summary type="html">&lt;h2 id=&quot;v-if-获取-refs-问题&quot;&gt;&lt;a href=&quot;#v-if-获取-refs-问题&quot; class=&quot;headerlink&quot; title=&quot;v-if 获取 refs 问题&quot;&gt;&lt;/a&gt;&lt;code&gt;v-if&lt;/code&gt; 获取 &lt;code&gt;refs&lt;/code&gt; 问题&lt;/h2&gt;&lt;p&gt;先简单介绍下这两个指令：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;v-if&lt;/code&gt; 条件渲染&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;ref&lt;/code&gt; 返回组件实例或DOM元素&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;有时候我们需要在条件渲染的DOM节点上返回一个DOM对象或组件实例，可&lt;code&gt;this.$refs.child&lt;/code&gt; 返回的是&lt;code&gt;undefined&lt;/code&gt;。通过查阅文档得知:&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;v-if 是“真正”的条件渲染，因为它会确保在切换过程中条件块内的事件监听器和子组件适当地被销毁和重建。&lt;br&gt;v-if 也是惰性的：如果在初始渲染时条件为假，则什么也不做——直到条件第一次变为真时，才会开始渲染条块。&lt;br&gt;$refs 只会在组件渲染完成之后生效，并且它们不是响应式的。这仅作为一个用于直接操作子组件的“逃生舱”——你应该避免在模板或计算属性中访问 $refs。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;如此可得：&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;&lt;code&gt;v-if&lt;/code&gt; 条件渲染： 惰性渲染，DOM、事件、组件会被销毁重建&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;&lt;code&gt;ref&lt;/code&gt; 返回组件实例或DOM元素，非相应式&lt;/strong&gt;&lt;/p&gt;</summary>
     
     
     
