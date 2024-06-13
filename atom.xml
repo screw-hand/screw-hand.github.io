@@ -6,7 +6,7 @@
   <link href="https://screw-hand.com/atom.xml" rel="self"/>
   
   <link href="https://screw-hand.com/"/>
-  <updated>2024-05-13T03:20:33.554Z</updated>
+  <updated>2024-06-13T02:49:55.012Z</updated>
   <id>https://screw-hand.com/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>如何在 VMware Workstation 中配置桥接模式</title>
+    <link href="https://screw-hand.com/post/config-bridge-mode-in-vmware-workstation/"/>
+    <id>https://screw-hand.com/post/config-bridge-mode-in-vmware-workstation/</id>
+    <published>2024-06-13T02:45:50.000Z</published>
+    <updated>2024-06-13T02:49:55.012Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html"></summary>
+        
+      
+    
+    
+    
+    <category term="DevOps" scheme="https://screw-hand.com/categories/DevOps/"/>
+    
+    
+    <category term="linux" scheme="https://screw-hand.com/tags/linux/"/>
+    
+  </entry>
   
   <entry>
     <title>M系mac设置2k外接显示器使用HiDPI</title>
@@ -108,7 +133,7 @@
     <link href="https://screw-hand.com/post/ssh-config/"/>
     <id>https://screw-hand.com/post/ssh-config/</id>
     <published>2023-07-05T11:48:57.000Z</published>
-    <updated>2024-03-17T09:23:23.096Z</updated>
+    <updated>2024-06-13T02:49:55.016Z</updated>
     
     
     <summary type="html">&lt;ul&gt;
@@ -417,34 +442,6 @@
     
     
     <category term="git" scheme="https://screw-hand.com/tags/git/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>vue技巧篇：生命周期</title>
-    <link href="https://screw-hand.com/post/lifecycle/"/>
-    <id>https://screw-hand.com/post/lifecycle/</id>
-    <published>2020-01-25T14:17:01.000Z</published>
-    <updated>2024-03-17T09:23:23.076Z</updated>
-    
-    
-    <summary type="html">&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;blockquote&gt;
-&lt;p&gt;每个 Vue 实例在被创建时都要经过一系列的初始化过程——例如，需要设置数据监听、编译模板、将实例挂载到 DOM 并在数据变化时更新 DOM 等。同时在这个过程中也会运行一些叫做&lt;strong&gt;生命周期钩子&lt;/strong&gt;的函数，这给了用户在不同阶段添加自己的代码的机会。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;其实对生命周期而言，我们要搞懂的是。&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;什么阶段初始化数据&lt;/li&gt;
-&lt;li&gt;什么阶段初始化事件&lt;/li&gt;
-&lt;li&gt;什么阶段渲染DOM&lt;/li&gt;
-&lt;li&gt;什么阶段挂载数据&lt;/li&gt;
-&lt;/ol&gt;</summary>
-    
-    
-    
-    <category term="vue" scheme="https://screw-hand.com/categories/vue/"/>
-    
-    
-    <category term="vue-skill" scheme="https://screw-hand.com/tags/vue-skill/"/>
     
   </entry>
   

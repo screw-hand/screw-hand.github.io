@@ -21,29 +21,28 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"screw-hand.com","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.17.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":"default","style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="apt和apt-get都是Ubuntu的包管理工具，在较新的系统推荐用apt，apt比apt-get更新，后者的兼容性会更好。apt也会让其依赖项一起升级。">
+    <meta name="description" content="准备工作  确保宿主机的物理网卡已启用并正常工作。 确保 VMware Workstation 和虚拟机的网络驱动程序是最新的，并且与操作系统兼容。   配置 VMware Workstation 的虚拟网络编辑器  打开 VMware Workstation，点击 “编辑” 菜单，选择 “虚拟网络编辑器”。 选择 “VMnet0”（默认用于桥接模式的虚拟交换机），确保它处于 “桥接模式”。 在">
 <meta property="og:type" content="article">
-<meta property="og:title" content="apt vs apt-get">
-<meta property="og:url" content="https://screw-hand.com/post/apt-vs-apt-get/index.html">
+<meta property="og:title" content="如何在 VMware Workstation 中配置桥接模式">
+<meta property="og:url" content="https://screw-hand.com/post/config-bridge-mode-in-vmware-workstation/index.html">
 <meta property="og:site_name" content="螺丝手">
-<meta property="og:description" content="apt和apt-get都是Ubuntu的包管理工具，在较新的系统推荐用apt，apt比apt-get更新，后者的兼容性会更好。apt也会让其依赖项一起升级。">
+<meta property="og:description" content="准备工作  确保宿主机的物理网卡已启用并正常工作。 确保 VMware Workstation 和虚拟机的网络驱动程序是最新的，并且与操作系统兼容。   配置 VMware Workstation 的虚拟网络编辑器  打开 VMware Workstation，点击 “编辑” 菜单，选择 “虚拟网络编辑器”。 选择 “VMnet0”（默认用于桥接模式的虚拟交换机），确保它处于 “桥接模式”。 在">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-06-20T03:52:03.000Z">
-<meta property="article:modified_time" content="2024-05-13T03:20:33.554Z">
+<meta property="article:published_time" content="2024-06-13T02:45:50.000Z">
+<meta property="article:modified_time" content="2024-06-13T02:49:55.012Z">
 <meta property="article:author" content="screw-hand">
 <meta property="article:tag" content="linux">
-<meta property="article:tag" content="ubuntu">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://screw-hand.com/post/apt-vs-apt-get/">
+<link rel="canonical" href="https://screw-hand.com/post/config-bridge-mode-in-vmware-workstation/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://screw-hand.com/post/apt-vs-apt-get/","path":"/post/apt-vs-apt-get/","title":"apt vs apt-get"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://screw-hand.com/post/config-bridge-mode-in-vmware-workstation/","path":"/post/config-bridge-mode-in-vmware-workstation/","title":"如何在 VMware Workstation 中配置桥接模式"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>apt vs apt-get | 螺丝手</title>
+<title>如何在 VMware Workstation 中配置桥接模式 | 螺丝手</title>
   
 
 
@@ -130,7 +129,7 @@
   
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+    <div class="sidebar-inner sidebar-overview-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -143,7 +142,6 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#apt-vs-apt-get"><span class="nav-number">1.</span> <span class="nav-text">apt vs apt-get</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#apt-update-vs-apt-upgrade"><span class="nav-number">2.</span> <span class="nav-text">apt update vs apt upgrade</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -210,7 +208,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://screw-hand.com/post/apt-vs-apt-get/">
+    <link itemprop="mainEntityOfPage" href="https://screw-hand.com/post/config-bridge-mode-in-vmware-workstation/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/avatar.jpg">
@@ -223,12 +221,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="apt vs apt-get | 螺丝手">
+      <meta itemprop="name" content="如何在 VMware Workstation 中配置桥接模式 | 螺丝手">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          apt vs apt-get
+          如何在 VMware Workstation 中配置桥接模式
         </h1>
 
         <div class="post-meta-container">
@@ -238,15 +236,9 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
+      
 
-      <time title="创建时间：2023-06-20 11:52:03" itemprop="dateCreated datePublished" datetime="2023-06-20T11:52:03+08:00">2023-06-20</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-05-13 11:20:33" itemprop="dateModified" datetime="2024-05-13T11:20:33+08:00">2024-05-13</time>
+      <time title="创建时间：2024-06-13 10:45:50 / 修改时间：10:49:55" itemprop="dateCreated datePublished" datetime="2024-06-13T10:45:50+08:00">2024-06-13</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -254,7 +246,7 @@
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/geek/" itemprop="url" rel="index"><span itemprop="name">geek</span></a>
+          <a href="/categories/DevOps/" itemprop="url" rel="index"><span itemprop="name">DevOps</span></a>
         </span>
     </span>
 
@@ -267,8 +259,8 @@
       </span>
       <span class="post-meta-item-text">Disqus：</span>
     
-    <a title="disqus" href="/post/apt-vs-apt-get/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="/post/apt-vs-apt-get/" itemprop="commentCount"></span>
+    <a title="disqus" href="/post/config-bridge-mode-in-vmware-workstation/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="/post/config-bridge-mode-in-vmware-workstation/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -278,7 +270,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>1.7k</span>
+      <span>736</span>
     </span>
 </div>
 
@@ -288,25 +280,64 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><p>apt和apt-get都是Ubuntu的包管理工具，在较新的系统推荐用apt，apt比apt-get更新，后者的兼容性会更好。apt也会让其依赖项一起升级。</p>
-<span id="more"></span>
-
-<h1 id="apt-vs-apt-get"><a href="#apt-vs-apt-get" class="headerlink" title="apt vs apt-get"></a><code>apt</code> vs <code>apt-get</code></h1><p>On Ubuntu, both <code>apt</code> and <code>apt-get</code> are package management commands used to handle software packages. Here’s an overview of the differences between the two:</p>
-<ol>
-<li><p><strong>User Interface</strong>: <code>apt</code> provides a more user-friendly and streamlined interface compared to <code>apt-get</code>. It aims to simplify package management tasks by offering clearer and more concise output, progress bars during installation, and easier-to-understand prompts.</p>
+    <div class="post-body" itemprop="articleBody"><ol>
+<li><p>准备工作</p>
+<ul>
+<li>确保宿主机的物理网卡已启用并正常工作。</li>
+<li>确保 VMware Workstation 和虚拟机的网络驱动程序是最新的，并且与操作系统兼容。</li>
+</ul>
 </li>
-<li><p><strong>Command Syntax</strong>: The command syntax for <code>apt</code> and <code>apt-get</code> is different. <code>apt</code> uses a more straightforward and intuitive command structure, while <code>apt-get</code> has a slightly more complex and traditional syntax.</p>
+<li><p>配置 VMware Workstation 的虚拟网络编辑器</p>
+<ul>
+<li>打开 VMware Workstation，点击 “编辑” 菜单，选择 “虚拟网络编辑器”。</li>
+<li>选择 “VMnet0”（默认用于桥接模式的虚拟交换机），确保它处于 “桥接模式”。</li>
+<li>在 “桥接到” 下拉菜单中，选择 “自动” 或宿主机上用于桥接的特定物理网卡。</li>
+<li>点击 “确定” 保存设置。</li>
+</ul>
 </li>
-<li><p><strong>Package Dependency Handling</strong>: <code>apt</code> includes automatic handling of package dependencies by default. It automatically resolves and installs any necessary dependencies when you use the <code>apt install</code> command. In contrast, with <code>apt-get</code>, you may need to use the separate <code>apt-get build-dep</code> command to install build dependencies for source packages.</p>
+<li><p>配置虚拟机的网络适配器</p>
+<ul>
+<li>关闭虚拟机（如果正在运行）。</li>
+<li>在 VMware Workstation 主界面，选择虚拟机，点击 “编辑虚拟机设置”。</li>
+<li>在 “硬件” 选项卡下，选择 “网络适配器”。</li>
+<li>将 “网络连接” 更改为 “桥接模式”，并选择 “复制物理网络连接状态”。</li>
+<li>点击 “确定” 保存设置。</li>
+</ul>
 </li>
-<li><p><strong>Compatibility</strong>: <code>apt-get</code> is more established and has been around for a longer time. It is compatible with older versions of Ubuntu and other Debian-based distributions. <code>apt</code>, introduced in Ubuntu 16.04, is designed to be backward-compatible with <code>apt-get</code>, meaning you can still use <code>apt-get</code> commands on newer Ubuntu versions without issues.</p>
+<li><p>配置虚拟机内部的网络</p>
+<ul>
+<li><p>启动虚拟机。</p>
+</li>
+<li><p>编辑 <code>/etc/netplan/01-network-manager-all.yaml</code> 文件（如果文件名不同，请相应调整），配置内容如下：</p>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">network</span><span class="token punctuation">:</span>
+  <span class="token key atrule">version</span><span class="token punctuation">:</span> <span class="token number">2</span>
+  <span class="token key atrule">renderer</span><span class="token punctuation">:</span> NetworkManager
+  <span class="token key atrule">ethernets</span><span class="token punctuation">:</span>
+    <span class="token key atrule">ens33</span><span class="token punctuation">:</span>
+      <span class="token key atrule">dhcp4</span><span class="token punctuation">:</span> yes<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p>应用新的网络配置：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> netplan apply<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li><p>检查虚拟机是否已获得与宿主机同一网段的 IP 地址：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">ip</span> addr show ens33<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></li>
+</ul>
+</li>
+<li><p>验证和故障排除</p>
+<ul>
+<li>确保虚拟机的网络接口已启用，并已获得正确的 IP 地址。</li>
+<li>尝试从虚拟机 ping 宿主机和其他网络设备，以验证连通性。</li>
+<li>如果遇到问题，请检查：<ul>
+<li>VMware Workstation 的虚拟网络编辑器设置</li>
+<li>虚拟机的网络适配器设置</li>
+<li>虚拟机内部的 netplan 配置</li>
+<li>宿主机的网络连接和物理网卡状态</li>
+</ul>
+</li>
+</ul>
 </li>
 </ol>
-<p>In general, if you’re using a newer version of Ubuntu, <code>apt</code> is recommended due to its improved user experience and simplified syntax. However, both <code>apt</code> and <code>apt-get</code> are capable package management tools, and you can choose the one that best suits your preferences and requirements.</p>
-<p>It’s worth noting that there are other package management commands available on Ubuntu, such as <code>apt-cache</code> for querying package information and <code>aptitude</code> for a more advanced package management interface.</p>
-<h1 id="apt-update-vs-apt-upgrade"><a href="#apt-update-vs-apt-upgrade" class="headerlink" title="apt update vs apt upgrade"></a><code>apt update</code> vs <code>apt upgrade</code></h1><p>update 命令只会获得系统上所有包的最新信息，并不会下载或者安装任何一个包。 而是 apt upgrade 命令来把这些包下载和升级到最新版本。</p>
-<p><a target="_blank" rel="noopener" href="https://linux.cn/article-14994-1.html">技术|apt 的 update 和 upgrade 命令的区别是什么？</a></p>
-
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> systemctl restart NetworkManager<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
     </div>
 
     
@@ -323,7 +354,7 @@
   </li>
   <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="https://screw-hand.com/post/apt-vs-apt-get/" title="apt vs apt-get">https://screw-hand.com/post/apt-vs-apt-get/</a>
+      <a href="https://screw-hand.com/post/config-bridge-mode-in-vmware-workstation/" title="如何在 VMware Workstation 中配置桥接模式">https://screw-hand.com/post/config-bridge-mode-in-vmware-workstation/</a>
   </li>
   <li class="post-copyright-license">
       <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -350,21 +381,17 @@
 
           <div class="post-tags">
               <a href="/tags/linux/" rel="tag"># linux</a>
-              <a href="/tags/ubuntu/" rel="tag"># ubuntu</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/post/hope/" rel="prev" title="你的理想生活">
-                  <i class="fa fa-chevron-left"></i> 你的理想生活
+                <a href="/post/m-series-mac-2k-HiDPI/" rel="prev" title="M系mac设置2k外接显示器使用HiDPI">
+                  <i class="fa fa-chevron-left"></i> M系mac设置2k外接显示器使用HiDPI
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/post/fork-skill/" rel="next" title="github中的fork技巧">
-                  github中的fork技巧 <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
     </footer>

@@ -1204,7 +1204,7 @@ No conflicting rules detected <span class="token keyword">in</span> your styleli
 
 <p><strong>lint 和 prettier 的执行顺序？</strong></p>
 <p>个人理解应处理完错误后，再来整理代码，所以这里是先<code>lint</code>后<code>prettier</code>。</p>
-<h2 id="行尾结束符问题（LF-x2F-CRLF）"><a href="#行尾结束符问题（LF-x2F-CRLF）" class="headerlink" title="行尾结束符问题（LF&#x2F;CRLF）"></a>行尾结束符问题（LF&#x2F;CRLF）</h2><p>结论，使用 LF，配置好 git 还有 prettier 的规则就行。</p>
+<h2 id="行尾结束符问题（LF-CRLF）"><a href="#行尾结束符问题（LF-CRLF）" class="headerlink" title="行尾结束符问题（LF&#x2F;CRLF）"></a>行尾结束符问题（LF&#x2F;CRLF）</h2><p>结论，使用 LF，配置好 git 还有 prettier 的规则就行。</p>
 <p>添加<code>* text=auto eol=lf</code>到<code>.gitattributes</code>文件。</p>
 <p>prettier 设置<code>endOfLine</code>规则为<code>&quot;lf&quot;</code>或者干脆不设置。</p>
 <p>v2.0.0 起默认值从<code>auto</code>更改为的<code>lf</code>。</p>
@@ -1369,7 +1369,7 @@ No conflicting rules detected <span class="token keyword">in</span> your styleli
 <p>若再增加一个<code>bus-child3.vue</code>，它也监听了<code>this.bus.$on(&#39;on-change&#39;, this.handleChange)</code>。<br>而其实我们并不想<code>bus-child3.vue</code>响应 <code>bus-child1.vue</code>事件。</p>
 <p>说白了就是作用域太广，bus是全局作用域；<br>又或者说没有命令空间，相同的事件名不能在两个组件定义。</p>
 <p><strong>其实这种解决方案之于<code>$root.dat</code>是换汤不换药的，都是把不同组件的数据&#x2F;事件集中到一个vue实例。</strong></p>
-<h3 id="emitter-dispatch-x2F-broadcast"><a href="#emitter-dispatch-x2F-broadcast" class="headerlink" title="emitter (dispatch &#x2F; broadcast)"></a>emitter (dispatch &#x2F; broadcast)</h3><p>如果两个组件，有相同的父组件，可以使用<strong>事件派发与广播机制</strong>处理非父子组件通讯。<br>其实都会有相同的父组件的，再不济最顶层就是vue的根实例了，不过一般不需要到根实例。</p>
+<h3 id="emitter-dispatch-broadcast"><a href="#emitter-dispatch-broadcast" class="headerlink" title="emitter (dispatch &#x2F; broadcast)"></a>emitter (dispatch &#x2F; broadcast)</h3><p>如果两个组件，有相同的父组件，可以使用<strong>事件派发与广播机制</strong>处理非父子组件通讯。<br>其实都会有相同的父组件的，再不济最顶层就是vue的根实例了，不过一般不需要到根实例。</p>
 <p> 派发&#x2F;广播机制很依赖组件层级关系。<br>派发(dispatch):由本组件向上派发事件，供上层组件监听处理。<br>广播(broadcast)：由本组件向下广播事件，供下层组件监听处理。</p>
 <p><strong>Element UI 框架源码的<a href="https://github.com/ElemeFE/element/blob/dev/src/mixins/emitter.js">emitter.js</a>就是基于派发广播机制处理非父子组件的通讯。<br>源码的emitter.js把其机制封装成了一个独立的mixin，以便在各个组件方便使用。</strong><br>这里就以emitter.js为例子，简单讲解是如何实现的，还有如何使用这个mixin。</p>
 <pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// 简化emitter.js, 只提取出结构</span>
@@ -1480,6 +1480,74 @@ No conflicting rules detected <span class="token keyword">in</span> your styleli
       </categories>
       <tags>
         <tag>vue-skill</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>如何在 VMware Workstation 中配置桥接模式</title>
+    <url>//post/config-bridge-mode-in-vmware-workstation/</url>
+    <content><![CDATA[<ol>
+<li><p>准备工作</p>
+<ul>
+<li>确保宿主机的物理网卡已启用并正常工作。</li>
+<li>确保 VMware Workstation 和虚拟机的网络驱动程序是最新的，并且与操作系统兼容。</li>
+</ul>
+</li>
+<li><p>配置 VMware Workstation 的虚拟网络编辑器</p>
+<ul>
+<li>打开 VMware Workstation，点击 “编辑” 菜单，选择 “虚拟网络编辑器”。</li>
+<li>选择 “VMnet0”（默认用于桥接模式的虚拟交换机），确保它处于 “桥接模式”。</li>
+<li>在 “桥接到” 下拉菜单中，选择 “自动” 或宿主机上用于桥接的特定物理网卡。</li>
+<li>点击 “确定” 保存设置。</li>
+</ul>
+</li>
+<li><p>配置虚拟机的网络适配器</p>
+<ul>
+<li>关闭虚拟机（如果正在运行）。</li>
+<li>在 VMware Workstation 主界面，选择虚拟机，点击 “编辑虚拟机设置”。</li>
+<li>在 “硬件” 选项卡下，选择 “网络适配器”。</li>
+<li>将 “网络连接” 更改为 “桥接模式”，并选择 “复制物理网络连接状态”。</li>
+<li>点击 “确定” 保存设置。</li>
+</ul>
+</li>
+<li><p>配置虚拟机内部的网络</p>
+<ul>
+<li><p>启动虚拟机。</p>
+</li>
+<li><p>编辑 <code>/etc/netplan/01-network-manager-all.yaml</code> 文件（如果文件名不同，请相应调整），配置内容如下：</p>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">network</span><span class="token punctuation">:</span>
+  <span class="token key atrule">version</span><span class="token punctuation">:</span> <span class="token number">2</span>
+  <span class="token key atrule">renderer</span><span class="token punctuation">:</span> NetworkManager
+  <span class="token key atrule">ethernets</span><span class="token punctuation">:</span>
+    <span class="token key atrule">ens33</span><span class="token punctuation">:</span>
+      <span class="token key atrule">dhcp4</span><span class="token punctuation">:</span> yes<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p>应用新的网络配置：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> netplan apply<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li><p>检查虚拟机是否已获得与宿主机同一网段的 IP 地址：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">ip</span> addr show ens33<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></li>
+</ul>
+</li>
+<li><p>验证和故障排除</p>
+<ul>
+<li>确保虚拟机的网络接口已启用，并已获得正确的 IP 地址。</li>
+<li>尝试从虚拟机 ping 宿主机和其他网络设备，以验证连通性。</li>
+<li>如果遇到问题，请检查：<ul>
+<li>VMware Workstation 的虚拟网络编辑器设置</li>
+<li>虚拟机的网络适配器设置</li>
+<li>虚拟机内部的 netplan 配置</li>
+<li>宿主机的网络连接和物理网卡状态</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> systemctl restart NetworkManager<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>]]></content>
+      <categories>
+        <category>DevOps</category>
+      </categories>
+      <tags>
+        <tag>linux</tag>
       </tags>
   </entry>
   <entry>
@@ -1826,70 +1894,205 @@ module<span class="token punctuation">.</span>exports <span class="token operato
 ]]></content>
   </entry>
   <entry>
-    <title>es6主要特性小结</title>
-    <url>//post/es6-main/</url>
-    <content><![CDATA[<p>ECMAScript 6（以下简称ES6）是JavaScript语言的下一代标准。因为当前版本的ES6是在2015年发布的，所以又称ECMAScript 2015。</p>
-<p>Babel是一个广泛使用的ES6转码器，可以将ES6代码转为ES5代码，从而在现有环境执行。</p>
-<p>let：<code>let</code>实际上为JavaScript新增了块级作用域。用它所声明的变量，只在<code>let</code>命令所在的代码块（花括号）内有效；与<code>var</code>的区别是，<code>var</code>用来做循环的计数变量，会泄露成全局变量，在外部调用的值是循环完成后的值。</p>
-<p>const：声明变量，但声明的是<strong>常量</strong>，一旦声明，常量的值不能改变。</p>
+    <title>跨域</title>
+    <url>//post/cross-domain/</url>
+    <content><![CDATA[<h3 id="同源策略"><a href="#同源策略" class="headerlink" title="同源策略"></a>同源策略</h3><p>源：源由协议，域名和端口号组成，若url地址的协议、域名和端口号均相同则属于同源。</p>
+<p>同源策略：浏览器的一个安全功能，不同源的客户端脚本在没有明确授权的情况下，不能读写对象自资源。其阻止的是数据的接受而不是请求的发送</p>
+<p>不受同源策略限制：<br>页面中的链接，重定向以及表单提交；<br>可以引入跨域资源，但js不能读写加载内容。 如嵌入到页面中的<code>&lt;script src=&quot;...&quot;&gt;&lt;/script&gt;</code>，<code>&lt;img&gt;</code>，<code>&lt;link&gt;</code>，<code>&lt;iframe&gt;</code>等。</p>
+<h3 id="跨域：受同源策略的限制，不同源的脚本不能操作其他源下面的对象，想操作另一个源下面的对象就是跨域。"><a href="#跨域：受同源策略的限制，不同源的脚本不能操作其他源下面的对象，想操作另一个源下面的对象就是跨域。" class="headerlink" title="跨域：受同源策略的限制，不同源的脚本不能操作其他源下面的对象，想操作另一个源下面的对象就是跨域。"></a>跨域：受同源策略的限制，不同源的脚本不能操作其他源下面的对象，想操作另一个源下面的对象就是跨域。</h3><span id="more"></span>
+
+<p>实现方式：</p>
+<ul>
+<li>document.domain</li>
+<li>JSONP</li>
+<li>CORS</li>
+<li>window.name</li>
+<li>postMessage H5</li>
+</ul>
+<p>需要跨域的场景：</p>
+<ol>
+<li>上传图片、文件</li>
+<li>富文本编辑器</li>
+<li>页面请求第三方接口</li>
+</ol>
+<p><strong>降域 document.domain</strong></p>
+<p>将两个不同源的域名document.domain设置为同一个即可；存在安全性问题，一个网站被攻击，另一个也有安全漏洞，只适用于cookie和iframe窗口。</p>
+<p><strong>跨域资源共享 CORS</strong></p>
+<p>设置服务器响应头 Access-Control-Allow-Origin 指定允许跨域的源，实现浏览器向跨源服务器，发出XMLHttpRequest请求，从而克服了AJAX只能同源使用的限制。</p>
+<p><strong>JSON with Padding JSONP</strong></p>
+<p>动态插入script标签，通过script标签引入一个js文件， 在服务端输出JSON数据，客户端执行回调函数，从而解决了跨域的数据请求。 jsonp+padding–将json填充到一个盒子里，（使用回调函数获取json数据）；兼容性好，简单易用，支持浏览器与服务器双向通信。当然也有一些缺点：权限漏洞，只能发送GET请求，需要防止XSS。</p>
+<p><strong>window.name</strong></p>
+<p>一个窗口的声明周期内，窗口载入的所有页面都是共享一个name属性的，每个页面都对window.name有读写权限，其属性持久存在，不因新页面载入而进行充值。</p>
+<p>在原页面中使用一个隐藏的iframe充当中间人角色，由iframe去获取数据，src设为目标页面，再把src设置跟原页面同一个域，否则受到同源策略的限制。原页面再去得到iframe获取到的数据，iframe的window.name。</p>
+<p><strong>postMessage</strong></p>
+<p>H5提供的一个API</p>
+]]></content>
+      <tags>
+        <tag>web</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>不再性感，不再赚钱，数据科学的时代变了</title>
+    <url>//post/database/</url>
+    <content><![CDATA[<blockquote>
+<p>作者：Vicki Boykis | 译者：阿拉丁 </p>
+</blockquote>
+<blockquote>
+<p>阅读数：678 2019 年 3 月 2 日 | 话题：大数据  AI 最佳实践</p>
+</blockquote>
+<pre><code>当你看到“数据科学”这个词时，会想到什么？你可能会觉得它是统计学、机器学习、深度学习和“21 世纪最性感的工作”等关键词的组合，或者你的脑海里会浮现出一个数据科学家的形象，她坐在电脑旁，将 AB 测试得到的结果拼接在一起，又或者你听很多人说过干这行有赚不完的钱（根据权威部门统计：入门级数据科学家的平均年薪约人民币 744253 元）。无论是哪一种，它都是迷人、聪明和复杂的。
+
+从本文作者 Vicki Boykis 十年前进入这一领域以来，数据科学一直给人这样的印象，但现在，数据科学已经不再是当初的样子了。以下内容由 AI 前线编译，原文来自 Vicki Boykis 发表于个人博客的文章《Data science is different now》。
+</code></pre>
+<p>我最初是一名数据分析师。</p>
+<pre><code>我是否曾经提到过我有多讨厌 Excel 默认的数字字符串格式？
+——Vicki Boykis（@vboykis）2012 年 5 月 18 日
+</code></pre>
+<p>我经常是一边苦等 SQL 的运行结果、整理乱糟糟的 Excel 文件，一边看着 Hacker News 上有关海量数据挖掘的文章、Facebook 数据科学团队的新闻和谷歌首席经济学家 Hal Varian 写的文章，然后一边做着白日梦。</p>
+<p>2012 年，我很幸运地被分配到了一个数据分析工程团队，他们正在将一些 ETL 作业从 Oracle 迁移到 Hadoop 上，以便满足不断增长的数据吞吐量要求。</p>
 <span id="more"></span>
 
-<p>class：定义一个类，可定义构造方法在其中，构造方式<code>this</code>关键字指向实例。<code>constructor</code>内定义的方法和属性是<strong>实例对象</strong>自己的，而<code>constructor</code>外定义的方法和属性则是<strong>所有实例对象可以共享</strong>的。</p>
-<p>extends：<code>class</code>之间可用<code>extends</code>关键字实现继承</p>
-<p>super：指代父类的实例（即父类的this对象）。子类必须在<code>constructor</code>中调用·方法，否则新建实例就会报错，因为子类没有自己的<code>this</code>对象，而是继承父类的<code>this</code>对象，然后对其进行加工。</p>
-<blockquote>
-<p>ES6的继承机制，实质是先创造父类的实例对象<code>this</code>（所以必须先调用<code>super</code>方法），然后再用子类的构造函数修改<code>this</code>。</p>
-</blockquote>
-<p>arrow function：箭头函数 <code>(i)=&gt; i+1</code>;箭头函数体内的this对象指向定义时所在的对象（箭头函数内无自己的<code>this</code>，其<code>this</code>继承外面的作用域）</p>
-<p>template string：用反引号（ &#96; ）来标识起始，用<code>$&#123;&#125;</code>来引用变量，所有的空格和缩进都会被保留在输出之中</p>
-<p>destructuring：从数组和对象中提取值，对变量进行赋值，这被称为解构（Destructuring）。</p>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// 解构</span>
-<span class="token keyword">let</span> cat <span class="token operator">=</span> <span class="token string">'ken'</span>
-<span class="token keyword">let</span> dog <span class="token operator">=</span> <span class="token string">'lili'</span>
-<span class="token keyword">let</span> zoo <span class="token operator">=</span> <span class="token punctuation">&#123;</span>cat<span class="token punctuation">,</span> dog<span class="token punctuation">&#125;</span>
-console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>zoo<span class="token punctuation">)</span>  <span class="token comment">//Object &#123;cat: "ken", dog: "lili"&#125;</span>
+<pre><code>有没有“给白痴用的 Hadoop”？ 给小白用的 Hadoop 并不适合我。
+——Vicki Boykis（@vboykis）2012 年 8 月 16 日
+</code></pre>
+<p>我自愿成为第一个使用 Pig 和 Hive 的分析师，主要是因为我不想等到工程工作完成后才能访问我的数据。而且，我沉迷于数据科学家的光环——这些人开展很酷的实验，提出很酷的分析想法，并可以使用 MacBook。</p>
+<p>我也想成为这样的人！所以，我在线学习了 Python，重温了我在大学学习过的统计学。在早期，并没有真正形式化的方法来学习“数据科学”，最多只能看看其他人在做什么、去参加聚会或者试着从人力资源招聘的职位描述中读出点什么。</p>
+<p>在独自摸索了很长一段时间之后，我在过去的六年时间里已经在“数据科学”领域站稳了脚跟。并且，作为一名导师（但我之前并没有导师），我一直在回复电子邮件，和那些希望进入数据科学领域的人喝咖啡会面。</p>
+<p>自 2012 年以来，数据科学行业发展极其迅速。它几乎经历了甘特炒作周期的每个阶段。</p>
+<p>我们已经经历了早期采用阶段、有关人工智能和偏见的负面新闻、Facebook 等公司的第二轮和第三轮风险投资，现在正处于高采用增长阶段：银行、医疗保健公司和其他财富 100 强企业（这些公司已经落后市场五年）也在为机器学习招聘数据科学家。</p>
+<p>很多东西都变了。大数据（记得 Hadoop 和 Pig 吗？）已经出局了，R 语言的采用率急剧上升，Python 成为经济学家的宠儿，而云计算再次改变了一切。</p>
+<p>然而，媒体针对数据科学领域的炒作却没有变，一直在鼓吹数据科学家是“21 世纪最性感的职业”。但我现在认为这是一个很严重的问题，需要引起社区的注意。希望进入这个行业的初级数据科学家供过于求，而一旦他们获得了梦寐以求的“数据科学家”头衔，他们能够得到的东西与他们的期望其实是不匹配的。<br>新数据科学家的供过于求</p>
+<p>首先，我们来谈谈初级数据科学家的供过于求。针对数据科学的持续媒体炒作导致过去五年中市场上的初级人才数量激增。</p>
+<p>这纯粹是道听途说的东西，所以不要太当真。但是，基于我自己作为简历筛选者、数据科学家导师、面试官、面试者，以及与从事类似职业的朋友和同事的对话，我有一种直觉，每个给定的数据科学职位（特别是入门级的科学职位）的候选人数量从 20 个增加到 100 个或更多。我最近了解到，我的一位朋友在招聘一个职位时收到了不止 500 份简历。</p>
+<p>这都很正常，类似的情况还有很多。机器学习教父吴恩达的 AI 创业公司每周要求工作 70 到 80 个小时，但仍然收到了大量申请，甚至有人愿意免费做志愿者。在写这篇文章时，他们的办公室已经容不下更多的人。</p>
+<p>要评估市场需求与供应之间的真正差距是非常非常困难的，不过我们可以从这里(<a href="https://www.wired.com/story/andrew-ngs-new-online-school/)%E5%BC%80%E5%A7%8B%E7%9D%80%E6%89%8B%E3%80%82">https://www.wired.com/story/andrew-ngs-new-online-school/)开始着手。</a></p>
+<pre><code>对 4 月份招聘广告的研究发现，美国有超过 10,000 个针对人工智能或机器学习的职位空缺。
 
-<span class="token comment">// 赋值</span>
-<span class="token keyword">let</span> dog <span class="token operator">=</span> <span class="token punctuation">&#123;</span><span class="token literal-property property">type</span><span class="token operator">:</span> <span class="token string">'animal'</span><span class="token punctuation">,</span> <span class="token literal-property property">many</span><span class="token operator">:</span> <span class="token number">2</span><span class="token punctuation">&#125;</span>
-<span class="token keyword">let</span> <span class="token punctuation">&#123;</span> type<span class="token punctuation">,</span> many<span class="token punctuation">&#125;</span> <span class="token operator">=</span> dog
-console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>type<span class="token punctuation">,</span> many<span class="token punctuation">)</span>  <span class="token comment">//animal 2</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+[超过 10 万人参加了 Fast.ai](http://xn--10fast-qo7i07amn353ae9cy36wyeg.ai/)（一家专注于推广人工智能的创业公司）的深度学习课程。
+</code></pre>
+<p>假设平均 MOOC 完成率约为 7％，那意味着有 7000 人可以填补这 10,000 个工作岗位。但是，今年是这样，那么明年呢？我们是否在假设数据科学创造的就业率是稳定的？如果实际情况不是这样的，那么数据科学就业市场有可能会萎缩。</p>
+<p>LinkedIn 提供的数据表明，市场上有 151,717 个数据科学人才空缺。虽然目前还不清楚它们是不是就是指数据科学家，或者是只拥有部分技能的人，但我们假设是前者。因此，我们可以说美国现在有 150,000 多个数据科学家职位空缺。</p>
+<p>我们假设有 100,000 个人已经参加了数据科学课程，并且其中有 7,000 个人会完成课程。</p>
+<p>但是，上面这数字并没有考虑到其他的数据科学候选人计划和途径：Fast.ai 之外的 MOOC，比如 Coursera、Metis（超过 10 个全国性训练营）和 General Assembly（每 12 周就有 25 人参加）、来自加州大学洛杉矶分校等地的远程学位、分析和数据科学的本科学位、YouTube，等等。还有很多博士正在从学术界转向数据科学领域，但却无法在竞争极其激烈的就业市场中找到工作。</p>
+<p>这篇文章指出，在 2015 年有 4 万个数据科学家职位空缺。总体而言，到 2018 年，分析技能的市场供应将超过市场容量。<br>image</p>
+<p>参加数据科学计划的初级人才数量，再加上数百个开设数据科学课程的训练营，你将看到一场完美的风暴。</p>
+<p>除了我从工作中了解到的以及与 100 多名同事进行的交谈之外，下面的两条推文让我确信目前存在真正的数据科学供应泡沫。</p>
+<pre><code>@Cal 的数据科学入门课程 Data 8 非常受欢迎。它位于有泽勒巴大剧院。2018 年秋季开学。pic.twitter.com/VBhtPnikmw
+——Mike Olson（@mikeolson），2018 年 10 月 4 日
 
-<p>default：变量未赋值时给该变量一个默认值</p>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">function</span> <span class="token function">animal</span><span class="token punctuation">(</span>type <span class="token operator">=</span> <span class="token string">'cat'</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>type<span class="token punctuation">)</span>
-<span class="token punctuation">&#125;</span>
-<span class="token function">animal</span><span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment">//cat</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+UVA（美国弗吉尼亚大学）很自豪地宣布开设数据科学学院的计划，它将满足社会对数据科学不断增长的需求。https://t.co/QlP4OUrTrO
+——UVA（@UVA）2019 年 1 月 18 日
+</code></pre>
+<p>由于学术界在跟上新趋势方面通常会滞后，因此，对于所有希望在数据科学领域找到职位的初级数据科学家来说，这确实令人感到担忧。对于一个拥有数据科学新学位的人来说，要找到一个数据科学的职位是非常困难的，因为他们要在市场上与许多新人展开竞争。</p>
+<p>但在三、四年前，情况并非如此。而现在，数据科学已经从流行语变成了连硅谷之外的公司都在招聘的职位，职位的准入门槛更高了，而且偏爱具备数据科学经验的人，数据科学面试仍然很难通过。</p>
+<p>正如很多文章指出的那样，你不一定会在第一次尝试时就能找到你梦寐以求的工作。市场可能非常残酷，并且对于大量初入者来说非常令人沮丧。<br>数据科学是一个具有误导性的岗位需求</p>
+<p>第二个问题是，一旦这些初级人员进入市场，他们会对数据科学工作产生不切实际的期望。每个人都认为他们将从事与机器学习、深度学习和贝叶斯模拟相关的工作。</p>
+<p>这不是他们的错，这就是数据科学课程和技术媒体所宣扬的。</p>
+<p>但现实的情况却是，“数据科学”大多数时候是关于如何清理和整理数据以及将数据从一个地方移动到另一个地方。</p>
+<p>我最近进行的一次非科学调查证实了这一点：</p>
+<pre><code>一段时间以来，我一直对此感到好奇，所以决定做一个民意调查。
+“作为一个 2019 年被称为’数据科学家’的人，我花了大部分时间（60％以上）：”
+也欢迎“其他”选项，请在回复中添加。
+——Vicki Boykis（@vboykis）2019 年 1 月 28 日
+</code></pre>
+<p>还有很多行业专家发来的推文也是如此：</p>
+<pre><code>对于我最近的几个 ML 项目，复杂性并不在于建模或训练，而在于输入预处理。我发现在一个项目中耗尽了 CPU（而不是 GPU），我不确定如何进一步优化 Python（我正在考虑使用 C++）。
+——mat kelcey（@mat_kelcey）2019 年 2 月 11 日
 
-<p>rest：过滤变量</p>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">function</span> <span class="token function">animals</span><span class="token punctuation">(</span><span class="token parameter">once<span class="token punctuation">,</span> <span class="token operator">...</span>types</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>types<span class="token punctuation">)</span>
-<span class="token punctuation">&#125;</span>
-<span class="token function">animals</span><span class="token punctuation">(</span><span class="token string">'cat'</span><span class="token punctuation">,</span> <span class="token string">'dog'</span><span class="token punctuation">,</span> <span class="token string">'fish'</span><span class="token punctuation">)</span>   <span class="token comment">//[ "dog", "fish"]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+我看到初级 ML/CV 工程师对构建数据集完全缺乏兴趣。虽然这是一项无聊的工作，但我认为在整理数据集时需要学到很多东西，毕竟这占了问题的一大半。
+——Katherine Scott（@kscottz）2019 年 2 月 1 日
 
-<p>import export：es6的模块化机制， import用于导入模块，可以选择性导入模块中的一部戏属性&#x2F;方法，也可给导入的模块重命名；export用于导出模块，也多次导出，任何数据类型都可导出（变量、函数、类等..）。</p>
-<p>基本使用</p>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">//index.js</span>
-<span class="token keyword">import</span> animal <span class="token keyword">from</span> <span class="token string">'./content'</span>
-console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>animal<span class="token punctuation">)</span> <span class="token comment">// A cat</span>
+角色和责任：
+- 自动化糟糕的商业行为
 
-<span class="token comment">//content.js</span>
-<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token string">'A cat'</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+- 根据需要编写临时 SQL
 
-<p>多次导出，导入模块时使用 <code>as</code> 重命名 <code>type</code> 为 <code>animalType</code></p>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">//content.js</span>
-<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token string">'A cat'</span>
-<span class="token keyword">export</span> <span class="token keyword">function</span> <span class="token function">say</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-  <span class="token keyword">return</span> <span class="token string">'Hello!'</span>
-<span class="token punctuation">&#125;</span>
-<span class="token keyword">export</span> <span class="token keyword">const</span> type <span class="token operator">=</span> <span class="token string">'dog'</span><span class="token punctuation">;</span>
+经验要求：
 
-<span class="token comment">//index.js</span>
-<span class="token keyword">import</span> animal<span class="token punctuation">,</span> <span class="token punctuation">&#123;</span> say<span class="token punctuation">,</span> type <span class="token keyword">as</span> animalType <span class="token punctuation">&#125;</span> <span class="token keyword">from</span> <span class="token string">'./content'</span>
-<span class="token keyword">let</span> says <span class="token operator">=</span> <span class="token function">say</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">The </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">$&#123;</span>animalType<span class="token interpolation-punctuation punctuation">&#125;</span></span><span class="token string"> says </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">$&#123;</span>says<span class="token interpolation-punctuation punctuation">&#125;</span></span><span class="token string"> to </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">$&#123;</span>animal<span class="token interpolation-punctuation punctuation">&#125;</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span>
-<span class="token comment">//The dog says Hello to A cat</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>]]></content>
+· 15 年使用 Python 进行深度学习的经验
+
+· 写过有关贝叶斯建模的博士论文
+
+· 7 种语言的 NLP 经验
+
+· 10 年从头开始​​创建 Hadoop 集群的经验
+
+——NickHeitzman（@NickDoesData）2019 年 2 月 12 日
+
+在过去两年中，项目的工作类别所占百分比：
+- 涉及 ML：15％
+
+- 涉及移动、监控和统计数据：85％
+
+——Vicki Boykis（@vboykis）2019 年 1 月 15 日
+</code></pre>
+<p>显而易见的是，在炒作周期的后期阶段，数据科学逐渐向工程学靠近，数据科学家需要的技能不再是基于可视化和统计学，而是更接近传统计算机科学课程所提供的那些：</p>
+<pre><code>像单元测试和持续集成这样的概念很快就成为数据科学家和从事 ML 工程的数值科学家的行话和常用的工具。
+</code></pre>
+<p>这导致了一些事情的发生。首先是“机器学习工程师”这个头衔的崛起，在过去的 3 到 4 年里，它带来了更多的声望和更高的收入潜力。</p>
+<p>其次，它导致数据科学家头衔含金量严重缩水。由于数据科学家头衔的声望，像 Lyft 这样的公司会招聘数据科学，但实际上他们只需要数据分析师的技能，导致“数据科学”职位对技能的要求发生了扭曲，究竟需要多少新进入者也变得不明确。</p>
+<h2 id="给新数据科学家的建议"><a href="#给新数据科学家的建议" class="headerlink" title="给新数据科学家的建议"></a>给新数据科学家的建议</h2><p>因此，本着继续为初学者提供建议的初衷，如果有人问我如何在 2019 年进入数据科学领域，我会给他们发送下面这样的电子邮件。</p>
+<p>这是一个两步走的计划：</p>
+<pre><code>    1. 不要死盯着数据科学的工作岗位。
+
+    2. 为大多数数据科学家相关的工作做好准备，但不要成为数据科学家。调整你的技能组合。
+</code></pre>
+<p>这些话可能有点令人沮丧！但请允许我解释一下，希望它们不像听起来的那么悲观。</p>
+<h2 id="不要进入数据科学领域"><a href="#不要进入数据科学领域" class="headerlink" title="不要进入数据科学领域"></a>不要进入数据科学领域</h2><p>因为每个初级职位一般有 50 个（有时 100 个，有时 200 个）人申请，所以不要与这些人去竞争。不要去攻读数学科学学位，不要参加训练营（我见过的大多数训练营的效果都不太好）。</p>
+<p>不要做别人正在做的事情，因为这样无法让你脱颖而出。你正处在一个过度饱和的行业中，这样只会给自己增加难度。在我之前提到的那份PWC 报告中，数据科学职位的数量估计为 5 万，数据工程师职位的数量为 50 万，数据分析师职位的数量是 12.5 万。</p>
+<p>通过“后门”进入数据科学领域要容易得多，也就是说从初级开发人员开始，可以是 DevOps 工程师、项目管理人员、数据分析师、信息管理员或类似的角色。这可能需要更长的时间，但在你努力完成数据科学工作的同时，你也将学会对职业生涯来说至关重要的 IT 技能。</p>
+<h2 id="了解当今数据科学所需的技能"><a href="#了解当今数据科学所需的技能" class="headerlink" title="了解当今数据科学所需的技能"></a>了解当今数据科学所需的技能</h2><p>以下是你在数据领域需要解决的一些问题：</p>
+<p>1）创建 Python 包</p>
+<p>2）将 R 语言用在生产环境中</p>
+<p>3）优化 Spark 作业，使其更有效地运行</p>
+<p>4）对数据进行版本控制</p>
+<p>5）让模型和数据可重现</p>
+<p>6）对 SQL 进行版本控制</p>
+<p>7）在数据湖中建立和维护干净的数据</p>
+<p>8）大规模时间序列预测工具</p>
+<p>9）共享 Jupyter Notebook</p>
+<p>10）寻找可用于清理数据的系统</p>
+<p>11）JSON</p>
+<p>作为一名数据科学家，优化模型、可视化和分析数据是职责工作的一部分，而数据科学主要是（也一直是）关于在一个地方获得用于插补的干净数据。</p>
+<p>你应该如何为解决这些问题做好准备？如何为工作做好准备？你可以考虑学习下面这三种技能，它们都是基础技能，并彼此依赖，从简单到困难。</p>
+<p>所有这些技能也是数据科学以外的软件开发的基础和关键，这意味着，如果你无法找到数据科学工作，可以快速转做软件开发或 DevOps。我认为这种灵活性与针对特定数据相关工作的培训同样重要。</p>
+<p><strong>1. 学习 SQL</strong></p>
+<p>首先，我建议每个人都要学习 SQL，无论他们的目标是成为数据工程师、ML 专家还是 AI 大师。</p>
+<p>SQL 并不性感，也不是上述问题的解决方案。但为了访问数据，你很可能需要针对数据库编写一些 SQL 查询，并用它获取答案。</p>
+<p>SQL 非常强大且非常流行，甚至有些 NoSQL 和键值存储数据库也在重新实现它。比如 Presto 推出的 Presto 和 Athena、BigQuery、KSQL、Pandas、Spark，等等。如果你发现自己陷入了数据工具海洋之中，很可能可以找到一个适合你的 SQL 工具。而且，一旦你理解了 SQL，你会发现它比其他查询语言更容易理解，从而开辟了一个全新的世界。</p>
+<p>在熟悉了 SQL 之后，下一步是了解数据库的工作原理，这样你就可以学会如何优化查询。你不一定要成为数据库开发人员，但很多概念将延续到你的其他编程生活当中。</p>
+<p><strong>2. 学好一门编程语言和学习编程概念</strong></p>
+<p>SQL 不是一门编程语言吗？它是的，但它是声明性的。你指定所需的输出（即你要从表中获取哪些列），但不指定这些列以怎样的形式返回给你。SQL 抽象了很多数据库底层的细节。</p>
+<p>你需要一门过程式语言，你可以自行指定如何以及从哪里获取数据。大多数现代语言都是过程式的：Java、Python、Scala、R 语言、Go 语言，等等。</p>
+<p>关于为数据科学应该选择哪种语言存在很多争论，我不会针对任何特定情况规定说要学习哪一种语言，只是在我的职业生涯中，Python 对我来说非常有用。作为一个初学者，它很容易入门，可以说是数据领域最流行的编程语言，并且可以用来完成很多不同的事情，从将模型嵌入 scikit 中，到访问 AWS API，再到构建 Web 应用程序、清理数据，以及创建深度学习模型。</p>
+<p>当然，也有一些任务不太适合用 Python 来完成：大型应用程序、打包依赖项和一些特定的与数字相关的任务，特别是时间序列和 R 语言提供的一系列功能。</p>
+<p>如果你不选择 Python，也没问题。但你至少要选择一种语言，让你在数据科学领域之外保持灵活性。例如，如果你的第一份工作是数据分析师、QA 分析师、DevOps 初级工程师，或者其他职位，掌握一门语言都有助于你站稳脚跟。</p>
+<p>在选择了一门编程语言并弄清楚如何使用它之后，就可以开始学习它背后的范式以及它与计算机科学生态系统的关系。</p>
+<p>你是如何使用你的语言实现 OOP 的？OOP 是什么东西？你如何优化你的代码？你的语言的依赖项是如何工作的？如何使用给定语言打包代码，如何进行版本控制、持续集成，如何部署模型工件？你的语言社区在哪里，会在哪里举行聚会？</p>
+<p>了解你的语言，了解它的优缺点，用你的语言开发一些有趣的东西。</p>
+<p>然后，当你有足够的信心继续下去时，也只有在这个时候，才能开始学习你的第二门语言。它将把你带入更广泛的语言设计、算法和模式的世界。</p>
+<p><strong>3. 了解云端的工作</strong></p>
+<p>现在你已经知道如何编程，现在是时候将这些技能和理论带到云端了。</p>
+<p>如今，云无处不在，你可能需要在下一个工作中使用云。如果有更多的机器学习范例转移到云端（如 SageMaker、Cloud AI 和 Azure 机器学习），已经有现成的模板可用来实现算法，而且企业的更多数据也开始存储在那里。</p>
+<p>你可能会与行业领导者 AWS 合作，但越来越多的公司正在采用 Google Cloud，而很多已经与微软开展业务合作的保守企业在使用 Azure。我建议深入了解这三个云供应商，然后挑选一个你最感兴趣的。云设计范式都是类似的，你必须了解如何将服务粘合在一起，如何区分云端的服务器，以及如何使用 JSON。</p>
+<p>有趣的是，这三家供应商现在都提供了他们的产品认证。我一般不会通过认证来衡量一个人对知识的掌握程度与否，但通过认证可以学到云的工作原理，这是工程的另一个组成部分：网络。</p>
+<p>了解这三种产品，并在开始下一份工作之前在云端构建一些有趣的东西。</p>
+<p>这里缺失的部分当然是“软技能”——知道在什么时候构建什么，知道如何在工作场所进行交流，知道其他人想要什么。软技能与技术技能一样重要，有很多专门讨论它的文章，但为了保持这篇文章不会太长，这里就不作累述了。</p>
+<h2 id="最后的步骤"><a href="#最后的步骤" class="headerlink" title="最后的步骤"></a>最后的步骤</h2><p>现在，请深呼吸，我想你已经做好准备了。</p>
+<p>如果上述有任何一点（或者所有）让你感兴趣，那说明你已经准备好在 2019 年成为数据科学家、机器学习工程师、云专家或 AI 大师了。</p>
+<p>请记住，你的最终目标是打败那些攻读数据科学学位、参加训练营和学习教程的人。</p>
+<p>你想要迈出第一步，获得一个与数据相关的职位，然后朝着你梦想的工作前进，同时尽可能多地了解科技行业的总体情况。</p>
+<p>我最后一个一般性的建议是给自己打气：</p>
+<p>这对每个人来说都很难，似乎有很多事情你必须知道。不要气馁。</p>
+<p>不要因为想太多就望而却步。先从小处开始，做一些小的事情，学习一些小的东西，构建一些小的东西，把你做的事情告诉其他人。请记住，你在数据科学领域的第一份工作可能不是数据科学家。</p>
+<p>祝你好运！</p>
+<p>英文原文：<br><a href="https://veekaybee.github.io/2019/02/13/data-science-is-different/">https://veekaybee.github.io/2019/02/13/data-science-is-different/</a></p>
+]]></content>
+      <categories>
+        <category>转载</category>
+      </categories>
       <tags>
-        <tag>es6</tag>
+        <tag>转载</tag>
       </tags>
   </entry>
   <entry>
@@ -1979,6 +2182,73 @@ usr/local/nginx/conf/nginx.conf
 <li><code>https://mgt.HOST.cn</code>  一体化管理中心</li>
 </ul>
 ]]></content>
+  </entry>
+  <entry>
+    <title>es6主要特性小结</title>
+    <url>//post/es6-main/</url>
+    <content><![CDATA[<p>ECMAScript 6（以下简称ES6）是JavaScript语言的下一代标准。因为当前版本的ES6是在2015年发布的，所以又称ECMAScript 2015。</p>
+<p>Babel是一个广泛使用的ES6转码器，可以将ES6代码转为ES5代码，从而在现有环境执行。</p>
+<p>let：<code>let</code>实际上为JavaScript新增了块级作用域。用它所声明的变量，只在<code>let</code>命令所在的代码块（花括号）内有效；与<code>var</code>的区别是，<code>var</code>用来做循环的计数变量，会泄露成全局变量，在外部调用的值是循环完成后的值。</p>
+<p>const：声明变量，但声明的是<strong>常量</strong>，一旦声明，常量的值不能改变。</p>
+<span id="more"></span>
+
+<p>class：定义一个类，可定义构造方法在其中，构造方式<code>this</code>关键字指向实例。<code>constructor</code>内定义的方法和属性是<strong>实例对象</strong>自己的，而<code>constructor</code>外定义的方法和属性则是<strong>所有实例对象可以共享</strong>的。</p>
+<p>extends：<code>class</code>之间可用<code>extends</code>关键字实现继承</p>
+<p>super：指代父类的实例（即父类的this对象）。子类必须在<code>constructor</code>中调用·方法，否则新建实例就会报错，因为子类没有自己的<code>this</code>对象，而是继承父类的<code>this</code>对象，然后对其进行加工。</p>
+<blockquote>
+<p>ES6的继承机制，实质是先创造父类的实例对象<code>this</code>（所以必须先调用<code>super</code>方法），然后再用子类的构造函数修改<code>this</code>。</p>
+</blockquote>
+<p>arrow function：箭头函数 <code>(i)=&gt; i+1</code>;箭头函数体内的this对象指向定义时所在的对象（箭头函数内无自己的<code>this</code>，其<code>this</code>继承外面的作用域）</p>
+<p>template string：用反引号（ &#96; ）来标识起始，用<code>$&#123;&#125;</code>来引用变量，所有的空格和缩进都会被保留在输出之中</p>
+<p>destructuring：从数组和对象中提取值，对变量进行赋值，这被称为解构（Destructuring）。</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// 解构</span>
+<span class="token keyword">let</span> cat <span class="token operator">=</span> <span class="token string">'ken'</span>
+<span class="token keyword">let</span> dog <span class="token operator">=</span> <span class="token string">'lili'</span>
+<span class="token keyword">let</span> zoo <span class="token operator">=</span> <span class="token punctuation">&#123;</span>cat<span class="token punctuation">,</span> dog<span class="token punctuation">&#125;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>zoo<span class="token punctuation">)</span>  <span class="token comment">//Object &#123;cat: "ken", dog: "lili"&#125;</span>
+
+<span class="token comment">// 赋值</span>
+<span class="token keyword">let</span> dog <span class="token operator">=</span> <span class="token punctuation">&#123;</span><span class="token literal-property property">type</span><span class="token operator">:</span> <span class="token string">'animal'</span><span class="token punctuation">,</span> <span class="token literal-property property">many</span><span class="token operator">:</span> <span class="token number">2</span><span class="token punctuation">&#125;</span>
+<span class="token keyword">let</span> <span class="token punctuation">&#123;</span> type<span class="token punctuation">,</span> many<span class="token punctuation">&#125;</span> <span class="token operator">=</span> dog
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>type<span class="token punctuation">,</span> many<span class="token punctuation">)</span>  <span class="token comment">//animal 2</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>default：变量未赋值时给该变量一个默认值</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">function</span> <span class="token function">animal</span><span class="token punctuation">(</span>type <span class="token operator">=</span> <span class="token string">'cat'</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>type<span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span>
+<span class="token function">animal</span><span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment">//cat</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>rest：过滤变量</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">function</span> <span class="token function">animals</span><span class="token punctuation">(</span><span class="token parameter">once<span class="token punctuation">,</span> <span class="token operator">...</span>types</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>types<span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span>
+<span class="token function">animals</span><span class="token punctuation">(</span><span class="token string">'cat'</span><span class="token punctuation">,</span> <span class="token string">'dog'</span><span class="token punctuation">,</span> <span class="token string">'fish'</span><span class="token punctuation">)</span>   <span class="token comment">//[ "dog", "fish"]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>import export：es6的模块化机制， import用于导入模块，可以选择性导入模块中的一部戏属性&#x2F;方法，也可给导入的模块重命名；export用于导出模块，也多次导出，任何数据类型都可导出（变量、函数、类等..）。</p>
+<p>基本使用</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">//index.js</span>
+<span class="token keyword">import</span> animal <span class="token keyword">from</span> <span class="token string">'./content'</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>animal<span class="token punctuation">)</span> <span class="token comment">// A cat</span>
+
+<span class="token comment">//content.js</span>
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token string">'A cat'</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>多次导出，导入模块时使用 <code>as</code> 重命名 <code>type</code> 为 <code>animalType</code></p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">//content.js</span>
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token string">'A cat'</span>
+<span class="token keyword">export</span> <span class="token keyword">function</span> <span class="token function">say</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+  <span class="token keyword">return</span> <span class="token string">'Hello!'</span>
+<span class="token punctuation">&#125;</span>
+<span class="token keyword">export</span> <span class="token keyword">const</span> type <span class="token operator">=</span> <span class="token string">'dog'</span><span class="token punctuation">;</span>
+
+<span class="token comment">//index.js</span>
+<span class="token keyword">import</span> animal<span class="token punctuation">,</span> <span class="token punctuation">&#123;</span> say<span class="token punctuation">,</span> type <span class="token keyword">as</span> animalType <span class="token punctuation">&#125;</span> <span class="token keyword">from</span> <span class="token string">'./content'</span>
+<span class="token keyword">let</span> says <span class="token operator">=</span> <span class="token function">say</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">The </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">$&#123;</span>animalType<span class="token interpolation-punctuation punctuation">&#125;</span></span><span class="token string"> says </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">$&#123;</span>says<span class="token interpolation-punctuation punctuation">&#125;</span></span><span class="token string"> to </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">$&#123;</span>animal<span class="token interpolation-punctuation punctuation">&#125;</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span>
+<span class="token comment">//The dog says Hello to A cat</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>]]></content>
+      <tags>
+        <tag>es6</tag>
+      </tags>
   </entry>
   <entry>
     <title>浏览器下载与上传文件</title>
@@ -2881,7 +3151,7 @@ $ <span class="token function">git</span> rebase <span class="token parameter va
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h2 id="skill"><a href="#skill" class="headerlink" title="skill"></a>skill</h2><p>一些简简单单的小技巧。</p>
-<h3 id="忽略文件-x2F-目录"><a href="#忽略文件-x2F-目录" class="headerlink" title="忽略文件&#x2F;目录"></a>忽略文件&#x2F;目录</h3><p>根目录创建.gitignore文件。</p>
+<h3 id="忽略文件-目录"><a href="#忽略文件-目录" class="headerlink" title="忽略文件&#x2F;目录"></a>忽略文件&#x2F;目录</h3><p>根目录创建.gitignore文件。</p>
 <p>windows系统需使用命令行创建，打开cmd，定位。</p>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token operator">></span> <span class="token builtin class-name">type</span> nul <span class="token operator">></span> .gitignore<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
@@ -3299,6 +3569,355 @@ $ <span class="token function">git</span> rebase <span class="token parameter va
       </tags>
   </entry>
   <entry>
+    <title>浏览器图片机制</title>
+    <url>//post/image/</url>
+    <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>浏览器中引用图片是一种很常见的情况，使用方式的不同，他们的意义也不同。比如————作为“内容主体”、“背景”、“图标”等，而设计师有时候也会提供不同的格式图片（img&#x2F;png&#x2F;svg&#x2F;）。在不同的场景，我们对同一份图片素材，要根据图片在web界面中的意义合理运用。个人会列举浏览器常用使用图片的方式。</p>
+<ul>
+<li>img</li>
+<li>background-image</li>
+<li>icon-font</li>
+<li>svg</li>
+<li>webpack 与 img</li>
+<li>base64</li>
+</ul>
+<span id="more"></span>
+
+<h2 id="img、background-image"><a href="#img、background-image" class="headerlink" title="img、background-image"></a>img、background-image</h2><p><code>HTML</code>的<code>img</code>标签、<code>css</code>的<code>background-image</code>样式是最原始的使用图片方式，在H5时代前，相当长的一段时间都是用这两方式引用图片资源的。</p>
+<p><code>&lt;img&gt;</code>标签，将图片作为<strong>内容主体</strong>引入web页面，故其是<strong>占位</strong>的；而<code>background-image</code>样式，起<strong>修饰</strong>作用，<strong>不占位</strong>。</p>
+<h3 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法"></a>基本用法</h3><p><strong>img</strong></p>
+<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>https://mdn.mozillademos.org/files/7693/catfront.png<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><strong>background-image</strong></p>
+<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>background<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<pre class="line-numbers language-css" data-language="css"><code class="language-css"><span class="token selector">.background</span> <span class="token punctuation">&#123;</span>
+  <span class="token property">width</span><span class="token punctuation">:</span> 30px<span class="token punctuation">;</span>
+  <span class="token property">height</span><span class="token punctuation">:</span> 64px<span class="token punctuation">;</span>
+  <span class="token property">margin</span><span class="token punctuation">:</span> 0 auto<span class="token punctuation">;</span>
+  <span class="token property">background-image</span><span class="token punctuation">:</span> <span class="token url"><span class="token function">url</span><span class="token punctuation">(</span><span class="token string url">'https://mdn.mozillademos.org/files/7693/catfront.png'</span><span class="token punctuation">)</span></span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<img src="https://mdn.mozillademos.org/files/7693/catfront.png" />
+
+<div class="background"></div>
+
+<style>
+.background {
+  width: 30px;
+  height: 64px;
+  margin: 0 auto;
+  background-image: url('https://mdn.mozillademos.org/files/7693/catfront.png');
+}
+</style>
+
+<p><em>虽然呈现的效果一致，意义却不一样。</em></p>
+<!-- - [<img>：图像嵌入元素](https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/img) -->
+<!-- - [background-image](https://developer.mozilla.org/zh-CN/docs/Web/CSS/background-image) -->
+
+<h3 id="img之尺寸、居中"><a href="#img之尺寸、居中" class="headerlink" title="img之尺寸、居中"></a>img之尺寸、居中</h3><p><code>img</code>标签提供了关于设置尺寸的属性，分别是<code>width</code>和<code>height</code>，单位可以是css像素，也可以是百分比。</p>
+<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>https://mdn.mozillademos.org/files/7693/catfront.png<span class="token punctuation">"</span></span>  <span class="token attr-name">width</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>100%<span class="token punctuation">"</span></span> <span class="token attr-name">height</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>100%<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><em>然而尺寸的百分比单位并不是相对于图片资源的比例，而是其容器的百分比。</em></p>
+<p>所以并不推荐使用img标签的<code>width</code>及<code>height</code>设置属性，推荐使用css的<code>width</code>及<code>height</code>属性编写。</p>
+<p>其实很多web开发者设置<code>100%</code>的本意是想让图片<strong>按父容器宽度自动缩放，并保持图片原本的长宽比</strong>。</p>
+<pre class="line-numbers language-css" data-language="css"><code class="language-css"><span class="token selector">img</span> <span class="token punctuation">&#123;</span>
+    <span class="token property">width</span><span class="token punctuation">:</span> auto<span class="token punctuation">;</span>
+    <span class="token property">height</span><span class="token punctuation">:</span> auto<span class="token punctuation">;</span>
+    <span class="token property">max-width</span><span class="token punctuation">:</span> 100%<span class="token punctuation">;</span>
+    <span class="token property">max-height</span><span class="token punctuation">:</span> 100%<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>除此之外，<code>img</code>的居中方式也是很容易让人误解，因<code>img</code>的<code>display</code>属性为<code>inline-block</code>，其居中方式（水平、垂直都是）更是让人误解。</p>
+<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>block<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>https://mdn.mozillademos.org/files/7693/catfront.png<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<pre class="line-numbers language-css" data-language="css"><code class="language-css"><span class="token selector">.block</span> <span class="token punctuation">&#123;</span>
+  <span class="token property">width</span><span class="token punctuation">:</span>150px<span class="token punctuation">;</span>
+  <span class="token property">height</span><span class="token punctuation">:</span> 150px<span class="token punctuation">;</span>
+  <span class="token property">border</span><span class="token punctuation">:</span> 1px solid #333<span class="token punctuation">;</span>
+  <span class="token comment">/* 垂直居中 */</span>
+  <span class="token property">display</span><span class="token punctuation">:</span> table-cell<span class="token punctuation">;</span>
+  <span class="token property">vertical-align</span><span class="token punctuation">:</span> middle<span class="token punctuation">;</span>
+  <span class="token comment">/* 水平居中 */</span>
+  <span class="token property">text-align</span><span class="token punctuation">:</span> center<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token selector">img</span> <span class="token punctuation">&#123;</span>
+    <span class="token property">max-width</span><span class="token punctuation">:</span> 50%<span class="token punctuation">;</span>
+    <span class="token property">max-height</span><span class="token punctuation">:</span> 50%<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>没想吧？居然是加在img的容器标签上，虽然绝对居中（水平、垂直都同时居中）还有其他的方法，常见的<code>margin auto</code>居中还有绝对定位50%。不过个人觉得这是最值得开发着去记住的。除此之外，也建议给容器设置<code>font-size: 0;</code>，这可以解决两个相邻的img标签之间的空隙问题。</p>
+<p>说了那么多的img，现在得回过头来谈论<code>background-image</code>了。</p>
+<h3 id="background-image之位置、尺寸及重复"><a href="#background-image之位置、尺寸及重复" class="headerlink" title="background-image之位置、尺寸及重复"></a>background-image之位置、尺寸及重复</h3><p>虽然前面我们说的<code>background-image</code>一直说的是css的样式特性，然而<code>background-image</code>只能指定使用的图片资源（可以是一张、也可以是多张）。背景图片样式（如本节小标题所说的位置、尺寸及重复）的设置，往往还需要结合其他css特性。</p>
+<ol>
+<li><p><code>background-position</code>可以给背景图片定义位置，设置的是其图片的左上角要在容器的哪个偏移度位置。</p>
+</li>
+<li><p><code>background-size</code> 可设置背景图片大小。<code>contain</code>理解为等比例缩放图片，高度&#x2F;宽度其一先与容器尺寸相等，则停止缩放，若图片和容器宽高比例不一致，会出现白边；<code>cover</code>也是等比例缩放，高度&#x2F;宽度其一先与容器尺寸相等，继续缩放，（此时图片溢出），直到另一方向的尺寸占满容器，停止缩放。</p>
+</li>
+</ol>
+<p><img src="/post/image/background-size_contain.png" alt="background-size:contai"></p>
+<p><img src="/post/image/background-size_cover.png" alt="background-size:cover"></p>
+<p><strong>更简易的理解： <code>contain</code>为最小化等比例缩放图片，<code>cover</code>则为最大化等比例缩放。</strong></p>
+<p>除了这两个关键字，也可以用两个单位值指定背景图片的宽高，对于绝对单位（px、em、rem）没啥好说的，对于相对单位（百分比），是相对于容器的尺寸来计算的，<strong>有意思的是<code>100% 100%</code>，这代表着破坏原比例，把图片拉伸&#x2F;挤压到容器的尺寸。</strong>（很多css属性的相对单位都是根据容器来计算的，或许有特殊的属性我忘了。;-)</p>
+<ol start="3">
+<li><code>background-repeat</code> 设置图片重复使用的方式。</li>
+</ol>
+<p>以上就是关于背景常用的css样式特性，完整的css背景样式如下，并不复杂。</p>
+<ul>
+<li>background-attachment</li>
+<li>background-clip</li>
+<li>background-color</li>
+<li>background-image</li>
+<li>background-origin</li>
+<li>background-position</li>
+<li>background-position-x</li>
+<li>background-position-y</li>
+<li>background-repeat</li>
+<li>background-size</li>
+</ul>
+<blockquote>
+<p>不建议使用css简写属性<code>background</code>一次性设置背景特性。</p>
+</blockquote>
+<h3 id="CSS-Sprites"><a href="#CSS-Sprites" class="headerlink" title="CSS Sprites"></a>CSS Sprites</h3><p>CSS Sprite(CSS 精灵), 又名雪碧图，是一种图片合并技术，我们可以把一些小图，整合放在一张大图中，每次单独使用小图的时候，裁剪出指定位置，尺寸即可正常显示。</p>
+<p><img src="/post/image/CSS-Sprites.gif" alt="CSS-Sprites.gif"></p>
+<p>像上图就可以作为雪碧图的素材使用，以实现改方案。</p>
+<p>简单分析一下这张图片：</p>
+<ol>
+<li>尺寸：134 * 44</li>
+<li>小图数量：3</li>
+<li>规范：固定大小，水平排列</li>
+</ol>
+<p>那我们可以定义一个通用的<code>class</code>，设置小图的尺寸；再定义一个<code>class</code>，设置图片裁剪位置即可。</p>
+<pre class="line-numbers language-css" data-language="css"><code class="language-css"><span class="token selector">.css-sprite</span> <span class="token punctuation">&#123;</span>
+    <span class="token property">width</span><span class="token punctuation">:</span> 44px<span class="token punctuation">;</span>
+    <span class="token property">height</span><span class="token punctuation">:</span> 44px<span class="token punctuation">;</span>
+    <span class="token property">background</span><span class="token punctuation">:</span> <span class="token url"><span class="token function">url</span><span class="token punctuation">(</span><span class="token string url">"./CSS-Sprites.gif"</span><span class="token punctuation">)</span></span><span class="token punctuation">;</span>
+    <span class="token property">background-repeat</span><span class="token punctuation">:</span> no-repeat<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token selector">.hourse</span> <span class="token punctuation">&#123;</span>
+    <span class="token property">background-position-x</span><span class="token punctuation">:</span> 0<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+<span class="token selector">.left-arrow</span> <span class="token punctuation">&#123;</span>
+    <span class="token property">background-position-x</span><span class="token punctuation">:</span> -44px<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+<span class="token selector">.right-arrow</span> <span class="token punctuation">&#123;</span>
+    <span class="token property">background-position-x</span><span class="token punctuation">:</span> -88px<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h4><ol>
+<li>减少服务器压力：多图合并成一张，只发送一次HTTP请求，并且可以被缓存，有助于提升页面加载性能</li>
+<li>维护困难： 后期维护成本较高，添加一张图片需要重新制作。</li>
+<li>应用麻烦：每应用一张图片都需要调整位置，误差要求严格。</li>
+<li>局限：只能用在背景图片<code>background-image</code>上，不能用<code>&lt;img&gt;</code>标签来使用。</li>
+</ol>
+<h4 id="不同方式实现-CSS-Sprites"><a href="#不同方式实现-CSS-Sprites" class="headerlink" title="不同方式实现 CSS Sprites"></a>不同方式实现 CSS Sprites</h4><p>如果会使用<code>gulp</code>、<code>webkack</code> 等构建工具，可以借助工具自动生成雪碧图。</p>
+<p><a href="https://github.com/twolfson/spritesmith">spritesmith</a>，是一个node工具，可以将多张图片合成一张图片——雪碧图，也提供了<code>grup</code>和 <code>gulp</code>插件，甚至是命令行工具。</p>
+<ul>
+<li><code>gulp</code> 结合<a href="https://www.npmjs.com/package/spritesmith">spritesmith</a>的插件 <a href="https://www.npmjs.com/package/gulp.spritesmith">gulp.spritesmith</a></li>
+<li><code>webpack</code>结合对应的loader <a href="https://www.npmjs.com/package/webpack-spritesmith">webpack-spritesmith</a></li>
+<li>svg <a href="https://www.npmjs.com/package/svg-sprite-loader">svg-sprite-loader</a></li>
+</ul>
+<h2 id="icon-font"><a href="#icon-font" class="headerlink" title="icon-font"></a>icon-font</h2><p><strong>首先我们得明白，icont-font本质上不是图片，而是一种比较特殊字体，这种字体，以图标的方式显示。</strong></p>
+<h3 id="web字体"><a href="#web字体" class="headerlink" title="web字体"></a>web字体</h3><p>得益于<code>css3</code>的新特性“web字体”，我们可以为自己的网页定义在线字体，无论用户是否安装了我们指定的字体，我们都可以让网页呈现出我们想要的字体，突破了传统<a href="https://developer.mozilla.org/en-US/Learn/CSS/Styling_text/Fundamentals#Web_safe_fonts">Web-safe 字体</a>的限制。</p>
+<pre class="line-numbers language-css" data-language="css"><code class="language-css"><span class="token comment">/* 定义名为“Open Sans”字体  */</span>
+<span class="token atrule"><span class="token rule">@font-face</span></span> <span class="token punctuation">&#123;</span>
+  <span class="token property">font-family</span><span class="token punctuation">:</span> <span class="token string">"Open Sans"</span><span class="token punctuation">;</span>
+  <span class="token property">src</span><span class="token punctuation">:</span> <span class="token url"><span class="token function">url</span><span class="token punctuation">(</span><span class="token string url">"/fonts/OpenSans-Regular-webfont.woff2"</span><span class="token punctuation">)</span></span> <span class="token function">format</span><span class="token punctuation">(</span><span class="token string">"woff2"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+       <span class="token url"><span class="token function">url</span><span class="token punctuation">(</span><span class="token string url">"/fonts/OpenSans-Regular-webfont.woff"</span><span class="token punctuation">)</span></span> <span class="token function">format</span><span class="token punctuation">(</span><span class="token string">"woff"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token comment">/* 应用于网页 */</span>
+<span class="token selector">body</span> <span class="token punctuation">&#123;</span>
+ <span class="token property">font-family</span><span class="token punctuation">:</span> <span class="token string">"Open Sans"</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<blockquote>
+<p>web字体不是我们这次要重点的谈论范围，了解即可，这里提供了一些相关资料：</p>
+</blockquote>
+<ul>
+<li><a href="https://developer.mozilla.org/zh-CN/docs/Learn/CSS/%E4%B8%BA%E6%96%87%E6%9C%AC%E6%B7%BB%E5%8A%A0%E6%A0%B7%E5%BC%8F/Web_%E5%AD%97%E4%BD%93">Web 字体</a></li>
+<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/@font-face">@font-face</a></li>
+<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/font-family">font-family</a></li>
+</ul>
+<p>所以icon-font，指的是使用自定义的字体展示图标。运用了上述介绍的web字体技术。</p>
+<h3 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h3><p>字体图标技术已经是web主流使用icon的一种方案了，很多UI库都内置提供了一套图标库供开发者使用，当然也可以独立使用开源的图标库，或者使用工具生成自定义的图标库。</p>
+<p>这里用常用的UI框架<code>elemment-ui</code>举例，其UI库提供了<a href="https://element.eleme.cn/#/zh-CN/component/icon">icon</a>组件，内置了图标库，使用方式也很简单。</p>
+<p><img src="/post/image/element-ui_icon.png"></p>
+<p>基本上，正确引用了icon-font，直接设置的类名即可展示对应的UI，那么我们究竟引用了什么东西呢？在<a href="https://element.eleme.cn/#/zh-CN/component/icon">icon</a>页面上，使用<code>F12</code>打开开发者工具、找到<code>element-ui-*.css</code>源码。</p>
+<p><img src="/post/image/element-ui-css.png"></p>
+<p> 独立的开源图标库有很多，名气比较大的有<a href="https://fontawesome.com/">Font Awesome</a>。使用方法也是类比UI库，引入相关的css源文件即可。css源文件也是类似<code>element-ui-*.css</code>的格式，引用外部资源、定义web字体、使用web字体，内置定义了<code>class</code>。直接在相关dom中使用class即可。</p>
+<p>实际项目中，这种开源的集成图标库往往不能满足需求设计稿，我们需要使用一些自定义图标。我们可以使用一些工具：<a href="https://www.iconfont.cn/">iconfont</a>、<a href="https://fontello.com/">fontello</a>、<a href="https://icomoon.io/">icomoon</a>，都是很优秀的在线生成图标库，具体使用方式网站也有介绍，不再累述。教程中引入的<code>css</code>，也是跟<code>element-ui-*.css</code>的格式类似。</p>
+<h3 id="特性-1"><a href="#特性-1" class="headerlink" title="特性"></a>特性</h3><p>icon-font最大的特性就是样式有更多的灵活性。<strong>我们可以像处理文字一样处理图标的样式。</strong>使用<code>font-size</code>控制图标的尺寸，<code>text-align</code>、<code>line-height</code>控制其居中方式，甚至是<code>color</code>为图标设置不同的样式。</p>
+<p>一般使用icon-font都是一套一套的使用，而不是一个一个独立使用，所以这对减少网络请求次数也有优势。</p>
+<p>矢量图形也意味着我们可以随意调整图标大小而不用担心其失真。</p>
+<p>不过icon-font只适用于纯色图标，当然渐变效果也可以使用css样式编写。</p>
+<h2 id="svg"><a href="#svg" class="headerlink" title="svg"></a>svg</h2><p><a href="https://en.wikipedia.org/wiki/Scalable_Vector_Graphics">svg</a>——可缩放矢量图形(Scalable Vector Graphics)，是一种文件格式， 用XML 的格式定义图像。我们可以使用代码编辑器编辑svg文件，使用浏览器可直接预览。</p>
+<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>svg</span> <span class="token attr-name">version</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>1.1<span class="token punctuation">"</span></span>
+  <span class="token attr-name">baseProfile</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>full<span class="token punctuation">"</span></span>
+  <span class="token attr-name">width</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>300<span class="token punctuation">"</span></span> <span class="token attr-name">height</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>200<span class="token punctuation">"</span></span>
+  <span class="token attr-name">xmlns</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>http://www.w3.org/2000/svg<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>rect</span> <span class="token attr-name">width</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>100%<span class="token punctuation">"</span></span> <span class="token attr-name">height</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>100%<span class="token punctuation">"</span></span> <span class="token attr-name">fill</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>red<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>circle</span> <span class="token attr-name">cx</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>150<span class="token punctuation">"</span></span> <span class="token attr-name">cy</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>100<span class="token punctuation">"</span></span> <span class="token attr-name">r</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>80<span class="token punctuation">"</span></span> <span class="token attr-name">fill</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>green<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>text</span> <span class="token attr-name">x</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>150<span class="token punctuation">"</span></span> <span class="token attr-name">y</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>125<span class="token punctuation">"</span></span> <span class="token attr-name">font-size</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>60<span class="token punctuation">"</span></span> <span class="token attr-name">text-anchor</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>middle<span class="token punctuation">"</span></span> <span class="token attr-name">fill</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>white<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>SVG<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>text</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>svg</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<blockquote>
+<p>可以先将其拷贝保存为x.svg，待会用到的 。</p>
+</blockquote>
+<p>将在浏览器中呈现…</p>
+<p><img src="/post/image/svg.png"></p>
+<h3 id="基本使用-1"><a href="#基本使用-1" class="headerlink" title="基本使用"></a>基本使用</h3><p>有几种使用方式，第一种是直接作为标签嵌入<code>HTML</code>源码中。</p>
+<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token doctype"><span class="token punctuation">&lt;!</span><span class="token doctype-tag">DOCTYPE</span> <span class="token name">html</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span> <span class="token attr-name">lang</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>en<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">charset</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>UTF-8<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>viewport<span class="token punctuation">"</span></span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>width=device-width, initial-scale=1.0<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">></span></span>Document<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">></span></span>
+
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>svg</span> <span class="token attr-name">version</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>1.1<span class="token punctuation">"</span></span>
+    <span class="token attr-name">baseProfile</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>full<span class="token punctuation">"</span></span>
+    <span class="token attr-name">width</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>300<span class="token punctuation">"</span></span> <span class="token attr-name">height</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>200<span class="token punctuation">"</span></span>
+    <span class="token attr-name">xmlns</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>http://www.w3.org/2000/svg<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>rect</span> <span class="token attr-name">width</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>100%<span class="token punctuation">"</span></span> <span class="token attr-name">height</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>100%<span class="token punctuation">"</span></span> <span class="token attr-name">fill</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>red<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>circle</span> <span class="token attr-name">cx</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>150<span class="token punctuation">"</span></span> <span class="token attr-name">cy</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>100<span class="token punctuation">"</span></span> <span class="token attr-name">r</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>80<span class="token punctuation">"</span></span> <span class="token attr-name">fill</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>green<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>text</span> <span class="token attr-name">x</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>150<span class="token punctuation">"</span></span> <span class="token attr-name">y</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>125<span class="token punctuation">"</span></span> <span class="token attr-name">font-size</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>60<span class="token punctuation">"</span></span> <span class="token attr-name">text-anchor</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>middle<span class="token punctuation">"</span></span> <span class="token attr-name">fill</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>white<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>SVG<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>text</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>svg</span><span class="token punctuation">></span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>第二种是将svg代码保存为一个单独的文件，如同png，jpg，git等图片资源一样使用。</p>
+<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span><span class="token punctuation">></span></span>img svg<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>x.svg<span class="token punctuation">"</span></span> <span class="token attr-name">alt</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span><span class="token punctuation">></span></span>object svg<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>object</span> <span class="token attr-name">data</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>x.svg<span class="token punctuation">"</span></span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>object</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span><span class="token punctuation">></span></span>iframe svg<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>iframe</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>x.svg<span class="token punctuation">"</span></span> <span class="token attr-name">frameborder</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>0<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>iframe</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>背景图片也是可以的。</p>
+<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>div-svg<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>style</span><span class="token punctuation">></span></span><span class="token style"><span class="token language-css">
+  <span class="token selector">#div-svg</span> <span class="token punctuation">&#123;</span>
+    <span class="token property">width</span><span class="token punctuation">:</span> 300px<span class="token punctuation">;</span>
+    <span class="token property">height</span><span class="token punctuation">:</span> 200px<span class="token punctuation">;</span>
+    <span class="token property">background</span><span class="token punctuation">:</span> <span class="token url"><span class="token function">url</span><span class="token punctuation">(</span><span class="token string url">'./x.svg'</span><span class="token punctuation">)</span></span><span class="token punctuation">;</span>
+  <span class="token punctuation">&#125;</span>
+</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>style</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="特性-2"><a href="#特性-2" class="headerlink" title="特性"></a>特性</h3><p>svg基于<code>XML</code>语法实现，可以用DOM选择器获取该DOM对象。前提是用第一种方式直接将svg嵌入<code>HTML</code>。</p>
+<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token comment">&lt;!-- 先给刚才的svg加上id属性 --></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>svg</span>
+    <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>dom-svg<span class="token punctuation">"</span></span>
+    <span class="token attr-name">...</span><span class="token punctuation">></span></span>
+    ...
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>svg</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">const</span> domSvg <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">'#dom-svg'</span><span class="token punctuation">)</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>domSvg<span class="token punctuation">)</span> <span class="token comment">// &lt;svg id="dom-svg" version="1.1" baseProfile="full" width="300" height="200" xmlns="http://www.w3.org/2000/svg"></span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>domSvg<span class="token punctuation">.</span>childNodes<span class="token punctuation">)</span> <span class="token comment">// NodeList(7) [ #text, rect, #text, circle, #text, text, #text ]</span>
+<span class="token keyword">const</span> divSvg <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">'#div-svg'</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>如果有用过<code>icon-font</code>，会知道我们可以用多个svg制作成一套字体图标库。虽然字体图标然比传统的<code>img</code>，<code>background</code>方式有着更好的css样式灵活性，可终究直接使用的时候是纯色的。而svg有着更好的色彩表现能力，同样也是矢量图形，且可以进行DOM操作，这也意味着我们可以<strong>随时动态地改变图片的结构</strong>。<strong>而且svg不仅仅可以制作成字体图标库，也可以转换成png、jpg等传统图片格式甚至是<code>canvas</code>。</strong></p>
+<blockquote>
+<p> svg文件格式现在已经是主流web开发图片使用方案了，而且是目前最灵活的图片文件格式。</p>
+</blockquote>
+<h2 id="webpack-与-img"><a href="#webpack-与-img" class="headerlink" title="webpack 与 img"></a>webpack 与 img</h2><p><a href="https://webpack.js.org/">webpack</a>是一个前端打包工具，前端项目的每个静态资源都是一个单独的模块，<code>webpack</code>内部会<strong>自动管理这些依赖关系</strong>，编译源码时会自动根据这些依赖关系进行打开，最终生成<em>bundle</em>。其特点是拥有<strong>模块化机制</strong>、<strong>loader</strong>可以对各种类型的模块加载时运动不同的任务、<strong>插件化</strong>更是令其可以跟其他的构建工具（<code>grunt</code>、<code>gulp</code>等）结合使用、*<em>模块热替换</em>***更是大大加大了开发速度，模块的更新无需重新加载整个页面。</p>
+<p><code>webpack</code>功能多样且强大，我们本次将重点放在webpack是如何处理图片资源的。<code>webpack</code>一般是跟<code>vue</code>或者<code>react</code>框架集成使用，当然也可以独立使用。原理都差不多，框架的脚手架会基于<code>webpack</code>进行对框架场景的适合或者说扩展。为了方便，这里以<code>vue</code>为例。</p>
+<h3 id="基本使用-2"><a href="#基本使用-2" class="headerlink" title="基本使用"></a>基本使用</h3><p><a href="https://cli.vuejs.org/zh/guide/html-and-static-assets.html#%E5%A4%84%E7%90%86%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90">vue-cli</a>已有相关介绍，简单来说，就是在<code>template</code>中，还有在js中有不同的使用图片方式。</p>
+<p>原生<code>html</code> 跟<code>vue</code>的<code>template</code>语法是一样的。</p>
+<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>./image.png<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><code>script</code> 或者叫<code>js</code>中是这样使用的。</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">imgURL <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'./image.png'</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">:src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>require('./image.png')<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><code>background</code>也类同<code>&lt;img&gt;</code>。</p>
+<h3 id="裂图-空图"><a href="#裂图-空图" class="headerlink" title="裂图&#x2F;空图"></a>裂图&#x2F;空图</h3><p>裂图：指定的图片资源地址不存在，或者加载失败（404），此时界面出现一张小的占位“裂图”；</p>
+<p>空图：不指定图片资源地址，如果样式有设置尺寸大小，会根据img&#x2F;background的原生特性占位。</p>
+<p>裂图一般是bug，我们需要根据bug的场景去解决。</p>
+<p>空图也有其使用的场景：如，初始img标签，动态加载不同的图片资源地址，默认占位。</p>
+<p>实现空图也很简单，<code>src=&quot;&quot;</code> <code>:src=&quot;null&quot;</code> 即可，也可以直接不使用<code>src</code>属性。</p>
+<p>有意思的是，当<code>src</code>的属性值为空时，chrome 和 firefox 渲染的DOM略有差异。</p>
+<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token comment">&lt;!-- chrome --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">src(unknown)</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token comment">&lt;!-- firefox --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<h3 id="小图自动转成base64"><a href="#小图自动转成base64" class="headerlink" title="小图自动转成base64"></a>小图自动转成base64</h3><p>有时候我们会发现<code>webpack</code>自动把一些小内存的图片自动转换成<code>databas64</code>格式的编码。在<code>vue-cli</code>也有相关的资料介绍 —— <a href="https://cli.vuejs.org/zh/guide/html-and-static-assets.html#%E4%BB%8E%E7%9B%B8%E5%AF%B9%E8%B7%AF%E5%BE%84%E5%AF%BC%E5%85%A5">从相对路径导入</a>。</p>
+<p>我们知道<code>vue-cli</code>是一个集成了<code>webpack</code>常用的功能实现的<code>vue</code>脚手架，为了是配置管理<code>vue</code>项目更加方便快捷，内置静默配置了<code>webpack</code>的常用功能。</p>
+<blockquote>
+<p> 究其原因还是使用了<code>webpack</code>的<code>file-loader</code>处理资源最终引用的路径。<code>url-loader</code>将小于<strong>指定大小</strong>的资源转成内联（这里包括<code>css</code>、<code>javascript</code>、图片字体等静态资源），<code>css</code> <code>javascript</code> 都拥有html对用的标签，图片资源则是处理成<code>base64</code>格式。为了是节约 HTTP 请求数量。</p>
+</blockquote>
+<p><code>vue-cli</code>可以使用<code>chainWebpack</code>设置指定大小，如果是单独使用<code>webpack</code>，则应该配置<code>url-loader</code>，以下是参考的<code>url-loader</code>配置。</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token literal-property property">module</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+　　loaders<span class="token operator">:</span> <span class="token punctuation">[</span>
+　　　　<span class="token punctuation">&#123;</span>
+　　　　　　test<span class="token operator">:</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">\.(png|jpg)$</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">,</span>
+　　　　　　loader<span class="token operator">:</span> <span class="token string">'url-loader?limit=8192'</span>
+　　　　<span class="token punctuation">&#125;</span>
+　　<span class="token punctuation">]</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="base64"><a href="#base64" class="headerlink" title="base64"></a>base64</h2><p><a href="https://zh.wikipedia.org/wiki/Base64">base64</a>是一种编码的方法，可以用来表示<strong>二进制</strong>数据。所以图片也可以被编码成<code>base64</code>，形成一条字符串。</p>
+<p><em>试试将下面的这串字符复制在浏览器地址栏直接访问，看看是本文的出现的哪张图片。</em></p>
+<pre class="line-numbers language-none"><code class="language-none">data:image&#x2F;png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAABACAIAAACC1lByAAAABnRSTlMAAAAAAABupgeRAAAACXBIWXMAAAsTAAALEwEAmpwYAAAOjUlEQVR42iXWS6+t2VXe8WeMMed7W7d9OfvsOuUqW3YZ28GWLIgUJJAQNDBCIEXp5ZOELp8njdCnGymNRIJEGBxju27nfmrf1l57rfcy5xgPjfoK&#x2F;8ZPf&#x2F;lvf&#x2F;t30ZBOMHyp8zKNT&#x2F;O71+&#x2F;effmuy&#x2F;ZHf&#x2F;0nV88uCDVqzdVgmakmT6IKHceRnq2PnHqNZIlUq3UWBsAkphYuWj2EiS8uP3k6PN7e3lOEGrpISDaZK1VEQPVUFQmAizd9FmgSkwTNOs+LRNQyQ5T0JAAkBUQgSfJq6Dfb9Xq3279&#x2F;XJ4eHW6yhBpDNESkShhBGAW2zGVZpq5paOhcUD3lpgBmOh2LhglJC6GVfmim&#x2F;dP9uw9tkr&#x2F;6L38xbLYlkosaFRqAgwyIgQQB18TNqltthufXl7ltrc2pbbphEFGzULKKuGsok1c&#x2F;POy9BBemLv35X&#x2F;1ZzgVQKkTMVavwdDoeR3doqZVVmpR7bWKcoe7V57LMsz8eH8ZlSiKUSKqlgkrxOPm8FGmiJhnSZ9c&#x2F;ur29&#x2F;bDfb1e7zWb48PbdzYfb+TheXT9LJldX17Q6lnu3pmRQaNDj8QFaXUtSkUiLEBBErV5lmk95dZaa8fTwtF8d7u7vvvn6A4Hzi+18mp8eRmtTmcfn3&#x2F;vOetciqpimPrWWl&#x2F;Ak1q8MVEanFI1Q+KqpKSLGaRpP8&#x2F;F4nOZlrn775vb1569LyBLFAx&#x2F;&#x2F;8NPNs1VuxaxR0fCScpKmJxLVQJ3nERTST+NTMlCgtFNQ1FWAZRznaWyHVdO3+6e7ftPOx&#x2F;nF1bNPPvvBZz&#x2F;65Hi7H7bb7WZo+46lmmKyYqIaUMQ4L&#x2F;NUxqd9breJYSKJMrsCzrzaXgzd7vo7Neb5VFbr3dnVdbe26+cvrl9cbjfrH&#x2F;&#x2F;8J+3Q9+shwQSV4zydDkKlpToe6MWybXdnJppgAbgQVsFkbZfGw1KX07Dph9Ua1xTTH3z&#x2F;e0lks15Jk37v93+4fzw0bU5iyihdw9MBQuES4iIwiqhUMhE01iJz0pZqNqy71So1lttWRc+252M5RURerzQ3gA+rnlB4FTVIaJNTNopOx3FZFlGCAaBORZWZKsY2VCGiOfWrVW47hW63Z3lourZ&#x2F;Op1MNSWAAkmiomaKyJLW66HpV&#x2F;Ay1xESwhDJVBn6PilYASrIaqB7nmpcnq9h&#x2F;Nd&#x2F;&#x2F;uU88qMX59vd9i41w6cfNWbui8&#x2F;z0+Mx5Xx2sUqazne7rx&#x2F;upuUoESEh0SaURXJygYgZ4OGkOQpctWuuXzz&#x2F;3&#x2F;&#x2F;zn375j78+X7c&#x2F;&#x2F;vlPq&#x2F;Pq+cXZ2e71q7d&#x2F;&#x2F;9&#x2F;&#x2F;x7TwP3z2gz&#x2F;9yz8209Ph+L&#x2F;+4f9M09GQPRaBOkMUCSJSoyaqGhcH6DqNx7HU+MV&#x2F;&#x2F;sV2s&#x2F;7q81dlnubTXJ0e&#x2F;vbLr81rM+Oz3&#x2F;t+bhtV++rl61e&#x2F;ebWMozTBohSnG9STeRVVEY0IFfUwuh8eD&#x2F;ubu2fPr&#x2F;76v&#x2F;7N5&#x2F;&#x2F;2u89&#x2F;9VtNctjvV33z3R9+7+Lqclh3u4tdn5uIuH91iwTA5iIpIlDpDmqKBGEAIqhMWSIUUk7z&#x2F;u4hNSl3tttu1tt1VJmnSVWurp73Xdf0bdsYhGWa85B&#x2F;9h9&#x2F;onQqUaGmCrpEgoRQCYOqUEQtwRZdnh5P55e+TGV&#x2F;&#x2F;5Capp4eseym47T7eAfxAEkj+Prt+2HVNN99RoEABJQSikYiESkg5vDkacmeqiSTmqF8OhymeSqTG9J4GuvD6bh+4IvrnDv3WnypxW9u3kaeM7NLVWnCZkhuA4AnKCEoqE1YtVBnaq1r8+K1LCFSc2OizbPrnxw&#x2F;3H60G2qpSxQRBGOap2msSZJkJSC+JGSgqJJoEggXz1VobljR62l&#x2F;3Fyuu94kQsKgAbFpXEaR&#x2F;cOodt80mlQg7LuutTRDKa5MakElkAJIUKUWBZnULYMFGWLx&#x2F;v3d4&#x2F;4pqj8c97c396fTodb5&#x2F;GJDWQ77h9N4nGs1a5NhWK1MIKImITQBiEgEAkkjXFxdjGyalSaeWMdvTof7hy8ex3n0p8Nhd3Hxs&#x2F;&#x2F;0Ixua5X7fdSvrcj+ImJhZt27kG1EWCRAIVEESIBQpmDQ8JDQLM5PkfisfNe3h8Wjd1Nf5ojkfhv7weLy43l4+&#x2F;yiZ9X3fNX1OirA2DwCERmqYmJsgUykaSd1FRNTNe7XERjft2q2mnCSlae8GfufTjzbrfrvZtKlJpikLEEIV0912m7RdWKssClDt2+5gSiEhkZSqneYcwW&#x2F;xa0&#x2F;vl&#x2F;Lyi+n2prGcfvy9i+cXbc6qpsksJUuAiEKtSZZFWBMpc6U1IlApgaThBECJgKbcrtaDJrU27x9u5PChwyjz6fDF5yZKESSYMiELzNRg3rZJFVIDzioKd7K4AKJKR9TiYcIiwb7rNttNlJif9kIVUVpMh6emaZKaBUhQwgBGrSUipO3WoaFUJIaRoiKqnJUeEZXhlW5i0ACRcsrtKiSUIlG7YQivIgpIQExUoABUKFLbrgGTA+YwUQgDDqgynBDSvXpliVLDq2Vdn1&#x2F;6sHKGZH3+wx9ECSGCNYFmoMDdw0Mg634QmkSI1IBImIZCkIgF0RBE8XkuzQQzN+ezq&#x2F;P29&#x2F;9Aj&#x2F;vu8nz78QsXEROlJGsJiLiaqalPPmz6ZLa4gn0ojQnhrp6iZlFXNpHrsvg8PwmqZTPl9cfX691PSkyqzEr32qSUkhmgUELpEERuvt0CQsLCICWUgGllcY8aYymT18UDEbVOtY5LJRafzYzOsjAqkzZmCqSgECRImFhOmhwOVtABb1wtQqO6u6OG09wZdaGHKFJOqmTAxOalqlnTNJaEQQ+nOCQACNiY5cYUDlKCEVEUBDXczYUEa6BGKVHDwys96OHz9PR0kBIKNwUEAVdQSaOQhIgohs1aAHoCSEDIYFVElIgIKFPEUotHIQhRpQpEylgqUUsJJ1QEpIqoBhAsEiTj&#x2F;Oyi789MECEaKeDGTt2DdEjKZhRVhhqookAwmj4TNVjnuYazlqoqphoUMsJLSDFLbdeknAOgzIJKUlC1SKlRVAmhmBBJGFJcu5SpQqSsAiAhOHspQXefvJZvhVAYgJxaU6EGRCkQ0BGqrspk0keohpMlXGhmYov7NI7rzWYYOi&#x2F;VXasv4aE0iKmpqoopxCxhtVml1DCEDvEsYeoeYYSFipCmtKKRcq5LQFiqNu26zW1WmabJa4AAtMtt02SzLCICUqAi4U4QAKSSoR5BF3VVJAGJUIqqpTYLRLVGnTWr5maajrXGtwcACRETmIYRoUjLUhCEB4OoFkIFoSFQEVOBQcIrUqNNl9uh7ftegGWcWGnITWoASZZFFeFkeITCcmO73aaoRwhDii2kJndQqkuhZYIRVsIFKTdNNgtSm3Z6fETKKTVQNTOVCGcQdEIrIBopDZ2hcUxCiItoVQ+v1S3EmEwahGNepnlU0dS0uU8KLo7pOKmEiAoIKIJeSzDEBa4exUQ8HLCAk1pZtVQPRghVKqW6Yym+jEcGm9S1ab1&#x2F;PJ3G0RlqbcrJzAQAtCzV3aswogql79ZD16h4EAEnWv3w8iiu6hokRNx9GZd5LF5cDE2Thcvp8QAoJNyreyVQa51Oo5MMhYIAvQa0kgIYoKzar+XpcCjLUrkoQlQr6vG4HI&#x2F;HiKqJlvrT8RS+SFBVVaGSDscH1yoigiADHvcPD9N4EGcA7hnIenmx06a9edzPU0RkEarEcTyeDsdaKqi505QbYQpAxCAK8dPhKFRBuItXd&#x2F;L4dCgupAbJCHpJxcfXX950fbPqhiY1mqWKxFyXpSzzFDG0qWdUiJhYo2qmp+mkggRElRAPFxHOU415ISFMlBKAfniz3z88PB5Oh&#x2F;1+PI0sFJfA8nC3Px3mqGGteVSRUJVQqqTj4RGplSRBeiUZHpWmSzgCoAhUQtPbr1+HGLHcfPOobQ5hMvOIw+P+9DSOc1lvNs1mZ0bLpqJGOU3jqlsFjSji9Aj3Op8mqUKJUBdUCtPs1qih+u3N41I8FtnsGlou8+n29m59vh761bBqKCk3aqYBmqokAyRq8UpA9ofDzZs3dSnRqFUEFCZJDZZzMpnnU7ldVHwpl5tNB9rD3cP6m2F7frbut01KObVNbiRpCERIMujjab49PH35qy&#x2F;vXn+jjuBS3brVsPv0me3Wz+GEsm1bFT+dxlJF1YDKQNfms7NdahPJzXY39D0Z7z+8b9tOQIC&#x2F;&#x2F;uLdb3&#x2F;9BirSZmaTOp+Oy7BedbtevYYos+ZxPs0TLDdPh4ebd3dl5lSfHk&#x2F;7+&#x2F;3dZr2uUWqd5mUK4WaziigKPT6V+7vDaqWIZX4c728ef&#x2F;XbD6WW9fkFZySAdSmLtV58tUHbmFd6nbsht5ZiYSkVdFM8PNyXsrStDW0&#x2F;jsdI9f7wgKj1cTo9Pr599y7medvky+uraNXn2TbdFZI6Fgpy2yyz1xJN1hBvunaz3mxWfagnS69evhJLSs1tC9H72&#x2F;svP395+PD+&#x2F;v7xzcv3eVw+++Tq+sWz4fn54fDU9pZCaUov0rcJ1ZfC3KdTqcdXt6c5rj6+ki6t15u2ax72jw83DwLZnG2mUv&#x2F;l&#x2F;&#x2F;7m8Wa&#x2F;fzoe7u5Sma8vL07TfP1sM0LaVvvGbDN8FEuoEhI1iIhGc6kzi5fjGMKr5xeXz66c9eUXb&#x2F;Z3p65vk+nLl2++&#x2F;t2r+&#x2F;vD&#x2F;sN9N6eL3dZNR8fmk4&#x2F;HMl6st9NxSgoJq4ROhT2USSOcNSzlMH39u7f&#x2F;L7XfvLq7uX+6+eb+O9&#x2F;9dB6Xz&#x2F;&#x2F;&#x2F;6y8&#x2F;&#x2F;8pjPuyfLmxYXwzFQIn1xZlKs+6aw+kYXpKp5Nx5eJ2mmXljic4whFUjqw9ffPH6n3&#x2F;5b1i0265&#x2F;+oc&#x2F;Pd3cffHVa&#x2F;dQk&#x2F;PzYdWtLGXxGOnb5xfH+XG7zrfvH7a7jZ2fX8MBImgIR9bV2a7MBWIIkqHWd20DUTE53N9&#x2F;9du3ZZ5Lmc5WQ9+027MNBhVhNwyXnz57&#x2F;bt39Hp+tSZzqgWgB0FWUIiy2q0BnMYjAgAjlm4zrJ+fa07Z7Nm2h2q23LfSt7vRZ5HUDd3588vjzen+zf3Z7sWmWz+U+d8BxLQ80KidgBcAAAAASUVORK5CYII&#x3D;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>这条字符串有特定的格式的，这种格式叫<a href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/data_URIs"><strong>Data URL scheme</strong></a>，意为data协议（类同http协议）。base64编码不仅仅可以表示图片，也可以表示其他类型的数据。</p>
+<pre class="line-numbers language-none"><code class="language-none">data:[&lt;mediatype&gt;][;base64],&lt;data&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><strong>再次区别：base64是一种编码方法。Data URL表示一个文件，可以是图片，也可以是其他格式的文件。base64对其来说更是一种可选的编码方法。</strong></p>
+<h3 id="特性-3"><a href="#特性-3" class="headerlink" title="特性"></a>特性</h3><ol>
+<li>体积会比原来大1&#x2F;3</li>
+<li>不需要请求服务器资源，减少HTTP请求次数</li>
+<li>编码、解码方便，算法可逆，不适用于私密信息通信</li>
+<li>无法缓存，不建议使用在改动频繁的地方</li>
+</ol>
+<p>js创建<code>base64</code>的方法：</p>
+<ol>
+<li><p><code>canvas</code> 将图片转化为 <code>base64</code> 编码</p>
+</li>
+<li><p><code>FileReader</code> 将图片转化<code>base64</code>格式</p>
+</li>
+</ol>
+<h3 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h3><p><code>base64</code>的使用场景比较少，个人之前的工作经历是img url 有token认证机制，直接使用<code>&lt;img src=&quot;https://HOST/xx.jpg&quot;&gt;</code>，接口状态码返回403。而后端整个api系统都是有token认证的机制，不太好改，img标签又不支持添加HTTP请求头。最后用js发起http请求，设置token请求头。</p>
+<ol>
+<li>使用XHR发送http请求，设置响应类型 <code>xhr.responseType = &#39;blob&#39;</code></li>
+<li>构建 <code>new FileReader()</code>实例，实例事件 <code>onloadend</code>获取<code>base64</code></li>
+<li>将<code>base64 </code>赋值给<code>&lt;img&gt;</code>标签的<code>src</code>属性</li>
+</ol>
+<p>其他常见的编码格式</p>
+<ul>
+<li>Unicode</li>
+<li>UTF-8</li>
+<li>URL12</li>
+<li>Unix时间戳</li>
+<li>Ascii&#x2F;Native</li>
+<li>Hex</li>
+<li>Html</li>
+</ul>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>我们介绍了从各个话题介绍了浏览器中使用的图片，现在是时候来一波总结了。</p>
+<ol>
+<li><code>img</code> &#x2F; <code>background</code> - 原生<code>html</code>、<code>css</code>实现，分别作为<strong>内容主体</strong>、<strong>样式装饰</strong>功能</li>
+<li><code>CSS Sprites</code> （技术方案） - 一种优化图片方案，有不同的实现方式</li>
+<li><code>icon-font</code> - 基于<code>h5</code>的<code>web-font</code>特性实现，使用在线工具可生成一套矢量图片库，样式控制灵活</li>
+<li><code>svg</code> - 一种很灵活的图片格式，浏览器原生支持，可转换成传统图片格式或者制作成<code>icon-font</code></li>
+<li><code>webpack</code>中使用<code>img</code> - img在工程化中的简单实现</li>
+<li><code>base64</code> - 一种编码方式，格式为Data URL scheme， 可表示图片等二进制文件流</li>
+</ol>
+<h2 id="结尾"><a href="#结尾" class="headerlink" title="结尾"></a>结尾</h2><p>此本从开发者拿到一张图片素材开始。以在不同场景在，选择最合适的实现方式。尽管写得比较长，可还是少了一点东西。比如<code>canvas</code>没有讲，不过一般<code>canvas</code>用于脚本绘制渲染可视化数据多一些，当然能渲染成img，场景少，就没在这里讨论。本意也是觉得一张图片在浏览器上有多种使用方式，就整理了一下，写下以上内容，算是个人的知识总结回顾吧。</p>
+]]></content>
+      <tags>
+        <tag>web</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>嗜夜</title>
     <url>//post/killing-night/</url>
     <content><![CDATA[<p>夜晚的钟声慢慢敲起。<br>原始丛林狼群双眸诡异的光芒。<br>无处安放的灵魂也回归平静。</p>
@@ -3471,7 +4090,7 @@ $ <span class="token function">git</span> rebase <span class="token parameter va
 <p>下一实例阶段 <a href="#update">update</a></p>
 <hr>
 <p>这里会按照判断机制的顺序介绍不同的挂载方式。</p>
-<h4 id="el-x2F-mount"><a href="#el-x2F-mount" class="headerlink" title="el &#x2F; $mount"></a>el &#x2F; $mount</h4><p>首先会判断有无<a href="https://cn.vuejs.org/v2/api/#el">el选项</a>声明实例要挂载的DOM。</p>
+<h4 id="el-mount"><a href="#el-mount" class="headerlink" title="el &#x2F; $mount"></a>el &#x2F; $mount</h4><p>首先会判断有无<a href="https://cn.vuejs.org/v2/api/#el">el选项</a>声明实例要挂载的DOM。</p>
 <blockquote>
 <p>el选项：提供一个在页面上已存在的 DOM 元素作为 Vue 实例的挂载目标。</p>
 </blockquote>
@@ -4343,44 +4962,6 @@ console<span class="token punctuation">.</span><span class="token function">log<
 ]]></content>
   </entry>
   <entry>
-    <title>跨域</title>
-    <url>//post/cross-domain/</url>
-    <content><![CDATA[<h3 id="同源策略"><a href="#同源策略" class="headerlink" title="同源策略"></a>同源策略</h3><p>源：源由协议，域名和端口号组成，若url地址的协议、域名和端口号均相同则属于同源。</p>
-<p>同源策略：浏览器的一个安全功能，不同源的客户端脚本在没有明确授权的情况下，不能读写对象自资源。其阻止的是数据的接受而不是请求的发送</p>
-<p>不受同源策略限制：<br>页面中的链接，重定向以及表单提交；<br>可以引入跨域资源，但js不能读写加载内容。 如嵌入到页面中的<code>&lt;script src=&quot;...&quot;&gt;&lt;/script&gt;</code>，<code>&lt;img&gt;</code>，<code>&lt;link&gt;</code>，<code>&lt;iframe&gt;</code>等。</p>
-<h3 id="跨域：受同源策略的限制，不同源的脚本不能操作其他源下面的对象，想操作另一个源下面的对象就是跨域。"><a href="#跨域：受同源策略的限制，不同源的脚本不能操作其他源下面的对象，想操作另一个源下面的对象就是跨域。" class="headerlink" title="跨域：受同源策略的限制，不同源的脚本不能操作其他源下面的对象，想操作另一个源下面的对象就是跨域。"></a>跨域：受同源策略的限制，不同源的脚本不能操作其他源下面的对象，想操作另一个源下面的对象就是跨域。</h3><span id="more"></span>
-
-<p>实现方式：</p>
-<ul>
-<li>document.domain</li>
-<li>JSONP</li>
-<li>CORS</li>
-<li>window.name</li>
-<li>postMessage H5</li>
-</ul>
-<p>需要跨域的场景：</p>
-<ol>
-<li>上传图片、文件</li>
-<li>富文本编辑器</li>
-<li>页面请求第三方接口</li>
-</ol>
-<p><strong>降域 document.domain</strong></p>
-<p>将两个不同源的域名document.domain设置为同一个即可；存在安全性问题，一个网站被攻击，另一个也有安全漏洞，只适用于cookie和iframe窗口。</p>
-<p><strong>跨域资源共享 CORS</strong></p>
-<p>设置服务器响应头 Access-Control-Allow-Origin 指定允许跨域的源，实现浏览器向跨源服务器，发出XMLHttpRequest请求，从而克服了AJAX只能同源使用的限制。</p>
-<p><strong>JSON with Padding JSONP</strong></p>
-<p>动态插入script标签，通过script标签引入一个js文件， 在服务端输出JSON数据，客户端执行回调函数，从而解决了跨域的数据请求。 jsonp+padding–将json填充到一个盒子里，（使用回调函数获取json数据）；兼容性好，简单易用，支持浏览器与服务器双向通信。当然也有一些缺点：权限漏洞，只能发送GET请求，需要防止XSS。</p>
-<p><strong>window.name</strong></p>
-<p>一个窗口的声明周期内，窗口载入的所有页面都是共享一个name属性的，每个页面都对window.name有读写权限，其属性持久存在，不因新页面载入而进行充值。</p>
-<p>在原页面中使用一个隐藏的iframe充当中间人角色，由iframe去获取数据，src设为目标页面，再把src设置跟原页面同一个域，否则受到同源策略的限制。原页面再去得到iframe获取到的数据，iframe的window.name。</p>
-<p><strong>postMessage</strong></p>
-<p>H5提供的一个API</p>
-]]></content>
-      <tags>
-        <tag>web</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>vue技巧篇：渲染函数 &amp; JSX</title>
     <url>//post/render-JSX/</url>
     <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>官方文档介绍的<a href="https://cn.vuejs.org/v2/guide/render-function.html">渲染函数</a>似乎有点太过偏重表现而放轻原因。已经看过这部分好几次，还是有点不知所以然。这也不是第一次看不明白文档的介绍了，还是需要自己整理下知识点。所以，这里的内容是对文档做降级处理，好让这一块知识点更容易理解一点。文档有的东西，这里不会再重复。</p>
@@ -4450,7 +5031,7 @@ console<span class="token punctuation">.</span><span class="token function">log<
 </blockquote>
 <p>文档也写得很详细了，深入底层的代价可以更好地控制交互细节。</p>
 <p>这里略过不重复。</p>
-<h3 id="render-h-gt-h-App"><a href="#render-h-gt-h-App" class="headerlink" title="render: h =&gt; h(App)"></a><code>render: h =&gt; h(App)</code></h3><p>当你认认真真把关于渲染函数的资料看完，你也自然理解了<code>main.js</code>中，<code>render</code>为什么这么写。</p>
+<h3 id="render-h-h-App"><a href="#render-h-h-App" class="headerlink" title="render: h =&gt; h(App)"></a><code>render: h =&gt; h(App)</code></h3><p>当你认认真真把关于渲染函数的资料看完，你也自然理解了<code>main.js</code>中，<code>render</code>为什么这么写。</p>
 <pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">new</span> <span class="token class-name">Vue</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>
   <span class="token function-variable function">render</span><span class="token operator">:</span> h <span class="token operator">=></span> <span class="token function">h</span><span class="token punctuation">(</span>App<span class="token punctuation">)</span>
 <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">$mount</span><span class="token punctuation">(</span><span class="token string">'#app'</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
@@ -4611,7 +5192,7 @@ Generating public/private rsa key pair.
 Enter <span class="token function">file</span> <span class="token keyword">in</span> <span class="token function">which</span> to save the key <span class="token punctuation">(</span>/Users/wu/.ssh/id_rsa<span class="token punctuation">)</span>: <span class="token punctuation">[</span>ssh-key-name<span class="token punctuation">]</span>
 
 <span class="token comment"># 复制指定ssh密钥到服务器，以后登录的时候就不需要输入密码了</span>
-ssh-copy-id <span class="token parameter variable">-i</span> ~/.ssh/id_rsa.pub root@<span class="token variable">$SERVER</span>
+ssh-copy-id <span class="token parameter variable">-i</span> ~/.ssh/id_rsa.pub <span class="token parameter variable">-p</span> <span class="token number">22</span> root@<span class="token variable">$SERVER</span>
 
 <span class="token comment"># 登录远端服务器</span>
 <span class="token function">ssh</span> root@<span class="token variable">$SERVER</span>
@@ -4621,6 +5202,14 @@ ssh-copy-id <span class="token parameter variable">-i</span> ~/.ssh/id_rsa.pub r
 <span class="token comment"># 测试跟服务器的连接</span>
 <span class="token function">ssh</span> <span class="token parameter variable">-T</span> root@<span class="token variable">$SERVER</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
+<h1 id="非root用户，如何配置免密码登录"><a href="#非root用户，如何配置免密码登录" class="headerlink" title="非root用户，如何配置免密码登录"></a>非root用户，如何配置免密码登录</h1><pre class="line-numbers language-none"><code class="language-none"># 用非root用户登录到服务器，比如normal: ssh normal@$SERVER
+sudo mkdir ~&#x2F;.ssh
+sudo chown $(whoami) ~&#x2F;.ssh
+sudo touch ~&#x2F;.ssh&#x2F;authorized_keys
+sudo chown $(whoami)  ~&#x2F;.ssh&#x2F;authorized_keys
+sudo chmod 600 ~&#x2F;.ssh&#x2F;authorized_keys
+ls -l ~&#x2F;.ssh&#x2F;authorized_keys
+# -rw------- 1 zsuser root 0 May 23 15:09 &#x2F;home&#x2F;zsuser&#x2F;.ssh&#x2F;authorized_keys<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h1 id="结尾"><a href="#结尾" class="headerlink" title="结尾"></a>结尾</h1><ul>
 <li><a href="https://linuxize.com/post/using-the-ssh-config-file/">Using the SSH Config File | Linuxize</a></li>
 <li><a href="https://cloud.tencent.com/developer/article/1456064">ssh免密码登录-腾讯云开发者社区-腾讯云</a></li>
@@ -4982,58 +5571,6 @@ ssh-copy-id <span class="token parameter variable">-i</span> ~/.ssh/id_rsa.pub r
       </tags>
   </entry>
   <entry>
-    <title>前端常见缓存机制</title>
-    <url>//post/web-cache/</url>
-    <content><![CDATA[<blockquote>
-<p>缓存是捷径，使http抄近道</p>
-</blockquote>
-<!-- cookie session Web Stroage -->
-
-<h2 id="cookie"><a href="#cookie" class="headerlink" title="cookie"></a>cookie</h2><p>Cookie 是服务器保存在浏览器的一小段文本信息。浏览器每次向服务器发出请求，就会自动附上这段信息，是前端的一种常见而又传统的缓存机制。</p>
-<h3 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h3><ol>
-<li>用于保存页面信息：如自动登录，记住用户名</li>
-<li>以域名为单位，数量大小有4k-10k，有过期时间</li>
-<li>js中通过<code>doucment.cookie</code>调用</li>
-<li>cookie的传递<br>从服务器端，发送cookie给客户端，是对应的Set-Cookie头信息。包括了对应的cookie的名称，值，以及各个属性。<br>从客户端发送cookie给服务器，对应Cookie头信息，不发送cookie的各个属性，只发送对应的名称和值。</li>
-</ol>
-<span id="more"></span>
-
-<h3 id="使用方式"><a href="#使用方式" class="headerlink" title="使用方式"></a>使用方式</h3><ol>
-<li>设置：<code>doucument.cookie=&quot;name=value;max-age=seconds;Path=path;HttpOnly;&quot;</code>等；一次设置一个值，同名参数会进行覆盖</li>
-<li>指定过期时间的cookie会存储在本地，没有指定时为session Cookie，会话结束后cookie删除，设置domain和paath可指定cookie的作用域。httponly指定cookie必须用http或https传输，该属性可限制js访问操作此cookie。secure可指定cookie只能使用https传输。</li>
-<li>读取：document.cookie会返回cookie的名和值，其他参数不会返回，如：a&#x3D;1;b&#x3D;2; 每个cookie的名值通过分号分割。</li>
-<li>删除：将max-age设置为-1</li>
-</ol>
-<h3 id="cookie优点"><a href="#cookie优点" class="headerlink" title="cookie优点"></a>cookie优点</h3><p>可配置性和可扩展性</p>
-<ol>
-<li>可以在客户端上保存用户数据，起到简单的缓存和用户身份识别等作用</li>
-<li>保存用户的偏好，比如网页的字体大小、背景色等等。</li>
-<li>记录用户的行为</li>
-</ol>
-<h3 id="cookie的缺陷"><a href="#cookie的缺陷" class="headerlink" title="cookie的缺陷"></a>cookie的缺陷</h3><p>数据数量：每个cookie的大小限制在4k，不同的浏览器对同一个域下的cookie的数量有限制，IE6 20，IE7+ 50，Firefox 50，Safari ∞，Chrome 53。数量超出时， IE和Opera 会清理近期最少使用的cookie，Firefox会随机清理cookie。保险起见cookie的数量应控制在20个，单个cookie大小应小于4KB。</p>
-<p>安全性问题：HTTP请求中的cookie是明文传递（HTTPS不是），故敏感信息不能使用cookie存储，如用户密码等。如果cookie被人拦截了，那人就可以取得所有的session信息。即使加密也与事无补，因为拦截者并不需要知道cookie的意义，他只要原样转发cookie就可以达到目的了。</p>
-<p>网络负担：cookie会被附加在每个HTTP请求中，在请求和响应时都会被传输，所以增加了流量的损失。</p>
-<h2 id="seesion"><a href="#seesion" class="headerlink" title="seesion"></a>seesion</h2><p>存储会话机制，保存在服务器上。客户端访问服务器时，服务器把客户端信息以某种形式记录在服务器上。再次访问时只需要从该Session中查找该客户的状态就可以了。</p>
-<p>标识用户身份： 用户与服务器建立连接的同时，服务器会自动为其分配一个SessionId，cookie把SessiondId自动带到服务器。</p>
-<p>session创建：当程序需要为某个客户端的请求创建一个session时，服务器首先检查这个客户端的请求里是否已包含了sessionId，如果已包含则说明以前已经为此客户端创建过session，服务器就按照sessionId把这个session检索出来使用（检索不到，会新建一个）。如果客户端请求不包含sessionId，则为此客户端创建一个session并且生成一个与此session相关联的sessionId，sessionId的值是一个既不会重复，又不容易被找到规律以仿造的字符串，这个sessionId将被在本次响应中返回给客户端保存。</p>
-<p>禁用cookie：如果客户端禁用了cookie，通常有两种方法实现session而不依赖cookie。<br>1）URL重写，就是把sessionId直接附加在URL路径的后面。<br>2）表单隐藏字段。就是服务器会自动修改表单，添加一个隐藏字段，以便在表单提交时能够把session id传递回服务器</p>
-<p>Session共享：对于多网站(同一父域不同子域)单服务器，我们需要解决的就是来自不同网站之间SessionId的共享。由于域名不同(aaa.test.com和bbb.test.com)，而SessionId又分别储存在各自的cookie中，因此服务器会认为对于两个子站的访问,是来自不同的会话。解决的方法是通过修改cookies的域名为父域名达到cookie共享的目的,从而实现SessionId的共享。带来的弊端就是，子站间的cookie信息也同时被共享了。  </p>
-<p>cookie与session的区别<br>1、cookie数据存放在客户的浏览器上，session数据放在服务器上。<br>2、cookie不是很安全，别人可以分析存放在本地的cookie并进行cookie欺骗，考虑到安全应当使用session。<br>3、session会在一定时间内保存在服务器上。当访问增多，会比较占用你服务器的性能，考虑到减轻服务器性能方面，应当使用cookie。<br>4、单个cookie保存的数据不能超过4K，很多浏览器都限制一个站点最多保存20个cookie。<br>5、可以考虑将登陆信息等重要信息存放为session，其他信息如果需要保留，可以放在cookie中。</p>
-<h2 id="web-Storage"><a href="#web-Storage" class="headerlink" title="web Storage"></a>web Storage</h2><p>web 本地存储对浏览器来说，使用 Web Storage 存储键值对比存储 Cookie 方式更直观，而且容量更大，它包含两种：localStorage 和 sessionStorage</p>
-<p>sessionStorage（临时存储） ：为每一个数据源维持一个存储区域，在浏览器打开期间存在，包括页面重新加载<br>localStorage（长期存储） ： 一直存储在本地，数据存储是永久的，除非用户或程序对其进行删除操作；localStorage 对象存储的数据没有时间限制。第二天、第二周或下一年之后，数据依然可用。 </p>
-<p>sessionStorage 和 localStorage 的用法基本一致，引用类型的值要转换成JSON</p>
-<p>特点：<br>域内安全、永久保存。即客户端或浏览器中来自同一域名的所有页面都可访问localStorage数据且数据除了删除否则永久保存，但客户端或浏览器之间的数据相互独立。<br>数据不会随着Http请求发送到后台服务器；<br>存储数据的大小至少4MB。</p>
-<p>存储方式：以键值对(Key-Value)的方式存储字符串。<br>主要应用：购物车、客户登录、游戏存档。。。<br>可储存的数据类型：数组，图片，json，样式，脚本。。。（只要是能序列化成字符串的内容都可以存储）</p>
-<p>JS API<br>localStorage.setItem(键名，键值)    在本地客户端存储一个字符串类型的数据<br>localStorage.getItem(键名)   读取已存储在本地的数据<br>localStorage.removeItem(键名)  移除已存储在本地的数据<br>localStorage.clear()   移除本地存储所有数据</p>
-<p>sessionStorage中的四个函数与以上localStorage类的函数用法基本一致</p>
-<p>cookie与web Storage的区别<br>1、cookie数据始终在同源的http请求中携带<br>2、cookie可设置路径，限制其作用域<br>3、存储大小，cookie不能超过4k，web Storage可达5M<br>4、cookie有数据有效期，web Storage无<br>5、作用域不同，sessionStroage不在不同浏览器窗口共享，<br>      localStorage与cookie在所有同源窗口共享</p>
-<p>cookie与webStorage的使用方法<br>1、兼容性：IE9+支持web Storage，cookie作为远古时期产物，无兼容性问题<br>2、交互性：web Storage不与服务器交互，需要与服务器交互时使用cookie<br>3、数据大小：cookie不能超过4k，web Storage可达5M</p>
-]]></content>
-      <tags>
-        <tag>web</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>web应用的服务器环境迁移</title>
     <url>//post/web-env-migrate/</url>
     <content><![CDATA[<h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><ul>
@@ -5081,7 +5618,7 @@ ssh-copy-id <span class="token parameter variable">-i</span> ~/.ssh/id_rsa.pub r
 <h1 id="Docker配置建议"><a href="#Docker配置建议" class="headerlink" title="Docker配置建议"></a>Docker配置建议</h1><ul>
 <li>在Docker配置中使用域名，提高灵活性和可维护性。</li>
 </ul>
-<h1 id="域名-x2F-IP配置优缺点"><a href="#域名-x2F-IP配置优缺点" class="headerlink" title="域名&#x2F;IP配置优缺点"></a>域名&#x2F;IP配置优缺点</h1><ul>
+<h1 id="域名-IP配置优缺点"><a href="#域名-IP配置优缺点" class="headerlink" title="域名&#x2F;IP配置优缺点"></a>域名&#x2F;IP配置优缺点</h1><ul>
 <li><strong>使用域名</strong><ul>
 <li><strong>优点</strong>：易于维护，灵活性高，便于未来迁移或更改。</li>
 <li><strong>缺点</strong>：初始配置和测试可能更复杂，需额外步骤如修改hosts文件。</li>
@@ -5849,6 +6386,58 @@ new MiniCssExtractPlugin(&#123;
       </tags>
   </entry>
   <entry>
+    <title>前端常见缓存机制</title>
+    <url>//post/web-cache/</url>
+    <content><![CDATA[<blockquote>
+<p>缓存是捷径，使http抄近道</p>
+</blockquote>
+<!-- cookie session Web Stroage -->
+
+<h2 id="cookie"><a href="#cookie" class="headerlink" title="cookie"></a>cookie</h2><p>Cookie 是服务器保存在浏览器的一小段文本信息。浏览器每次向服务器发出请求，就会自动附上这段信息，是前端的一种常见而又传统的缓存机制。</p>
+<h3 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h3><ol>
+<li>用于保存页面信息：如自动登录，记住用户名</li>
+<li>以域名为单位，数量大小有4k-10k，有过期时间</li>
+<li>js中通过<code>doucment.cookie</code>调用</li>
+<li>cookie的传递<br>从服务器端，发送cookie给客户端，是对应的Set-Cookie头信息。包括了对应的cookie的名称，值，以及各个属性。<br>从客户端发送cookie给服务器，对应Cookie头信息，不发送cookie的各个属性，只发送对应的名称和值。</li>
+</ol>
+<span id="more"></span>
+
+<h3 id="使用方式"><a href="#使用方式" class="headerlink" title="使用方式"></a>使用方式</h3><ol>
+<li>设置：<code>doucument.cookie=&quot;name=value;max-age=seconds;Path=path;HttpOnly;&quot;</code>等；一次设置一个值，同名参数会进行覆盖</li>
+<li>指定过期时间的cookie会存储在本地，没有指定时为session Cookie，会话结束后cookie删除，设置domain和paath可指定cookie的作用域。httponly指定cookie必须用http或https传输，该属性可限制js访问操作此cookie。secure可指定cookie只能使用https传输。</li>
+<li>读取：document.cookie会返回cookie的名和值，其他参数不会返回，如：a&#x3D;1;b&#x3D;2; 每个cookie的名值通过分号分割。</li>
+<li>删除：将max-age设置为-1</li>
+</ol>
+<h3 id="cookie优点"><a href="#cookie优点" class="headerlink" title="cookie优点"></a>cookie优点</h3><p>可配置性和可扩展性</p>
+<ol>
+<li>可以在客户端上保存用户数据，起到简单的缓存和用户身份识别等作用</li>
+<li>保存用户的偏好，比如网页的字体大小、背景色等等。</li>
+<li>记录用户的行为</li>
+</ol>
+<h3 id="cookie的缺陷"><a href="#cookie的缺陷" class="headerlink" title="cookie的缺陷"></a>cookie的缺陷</h3><p>数据数量：每个cookie的大小限制在4k，不同的浏览器对同一个域下的cookie的数量有限制，IE6 20，IE7+ 50，Firefox 50，Safari ∞，Chrome 53。数量超出时， IE和Opera 会清理近期最少使用的cookie，Firefox会随机清理cookie。保险起见cookie的数量应控制在20个，单个cookie大小应小于4KB。</p>
+<p>安全性问题：HTTP请求中的cookie是明文传递（HTTPS不是），故敏感信息不能使用cookie存储，如用户密码等。如果cookie被人拦截了，那人就可以取得所有的session信息。即使加密也与事无补，因为拦截者并不需要知道cookie的意义，他只要原样转发cookie就可以达到目的了。</p>
+<p>网络负担：cookie会被附加在每个HTTP请求中，在请求和响应时都会被传输，所以增加了流量的损失。</p>
+<h2 id="seesion"><a href="#seesion" class="headerlink" title="seesion"></a>seesion</h2><p>存储会话机制，保存在服务器上。客户端访问服务器时，服务器把客户端信息以某种形式记录在服务器上。再次访问时只需要从该Session中查找该客户的状态就可以了。</p>
+<p>标识用户身份： 用户与服务器建立连接的同时，服务器会自动为其分配一个SessionId，cookie把SessiondId自动带到服务器。</p>
+<p>session创建：当程序需要为某个客户端的请求创建一个session时，服务器首先检查这个客户端的请求里是否已包含了sessionId，如果已包含则说明以前已经为此客户端创建过session，服务器就按照sessionId把这个session检索出来使用（检索不到，会新建一个）。如果客户端请求不包含sessionId，则为此客户端创建一个session并且生成一个与此session相关联的sessionId，sessionId的值是一个既不会重复，又不容易被找到规律以仿造的字符串，这个sessionId将被在本次响应中返回给客户端保存。</p>
+<p>禁用cookie：如果客户端禁用了cookie，通常有两种方法实现session而不依赖cookie。<br>1）URL重写，就是把sessionId直接附加在URL路径的后面。<br>2）表单隐藏字段。就是服务器会自动修改表单，添加一个隐藏字段，以便在表单提交时能够把session id传递回服务器</p>
+<p>Session共享：对于多网站(同一父域不同子域)单服务器，我们需要解决的就是来自不同网站之间SessionId的共享。由于域名不同(aaa.test.com和bbb.test.com)，而SessionId又分别储存在各自的cookie中，因此服务器会认为对于两个子站的访问,是来自不同的会话。解决的方法是通过修改cookies的域名为父域名达到cookie共享的目的,从而实现SessionId的共享。带来的弊端就是，子站间的cookie信息也同时被共享了。  </p>
+<p>cookie与session的区别<br>1、cookie数据存放在客户的浏览器上，session数据放在服务器上。<br>2、cookie不是很安全，别人可以分析存放在本地的cookie并进行cookie欺骗，考虑到安全应当使用session。<br>3、session会在一定时间内保存在服务器上。当访问增多，会比较占用你服务器的性能，考虑到减轻服务器性能方面，应当使用cookie。<br>4、单个cookie保存的数据不能超过4K，很多浏览器都限制一个站点最多保存20个cookie。<br>5、可以考虑将登陆信息等重要信息存放为session，其他信息如果需要保留，可以放在cookie中。</p>
+<h2 id="web-Storage"><a href="#web-Storage" class="headerlink" title="web Storage"></a>web Storage</h2><p>web 本地存储对浏览器来说，使用 Web Storage 存储键值对比存储 Cookie 方式更直观，而且容量更大，它包含两种：localStorage 和 sessionStorage</p>
+<p>sessionStorage（临时存储） ：为每一个数据源维持一个存储区域，在浏览器打开期间存在，包括页面重新加载<br>localStorage（长期存储） ： 一直存储在本地，数据存储是永久的，除非用户或程序对其进行删除操作；localStorage 对象存储的数据没有时间限制。第二天、第二周或下一年之后，数据依然可用。 </p>
+<p>sessionStorage 和 localStorage 的用法基本一致，引用类型的值要转换成JSON</p>
+<p>特点：<br>域内安全、永久保存。即客户端或浏览器中来自同一域名的所有页面都可访问localStorage数据且数据除了删除否则永久保存，但客户端或浏览器之间的数据相互独立。<br>数据不会随着Http请求发送到后台服务器；<br>存储数据的大小至少4MB。</p>
+<p>存储方式：以键值对(Key-Value)的方式存储字符串。<br>主要应用：购物车、客户登录、游戏存档。。。<br>可储存的数据类型：数组，图片，json，样式，脚本。。。（只要是能序列化成字符串的内容都可以存储）</p>
+<p>JS API<br>localStorage.setItem(键名，键值)    在本地客户端存储一个字符串类型的数据<br>localStorage.getItem(键名)   读取已存储在本地的数据<br>localStorage.removeItem(键名)  移除已存储在本地的数据<br>localStorage.clear()   移除本地存储所有数据</p>
+<p>sessionStorage中的四个函数与以上localStorage类的函数用法基本一致</p>
+<p>cookie与web Storage的区别<br>1、cookie数据始终在同源的http请求中携带<br>2、cookie可设置路径，限制其作用域<br>3、存储大小，cookie不能超过4k，web Storage可达5M<br>4、cookie有数据有效期，web Storage无<br>5、作用域不同，sessionStroage不在不同浏览器窗口共享，<br>      localStorage与cookie在所有同源窗口共享</p>
+<p>cookie与webStorage的使用方法<br>1、兼容性：IE9+支持web Storage，cookie作为远古时期产物，无兼容性问题<br>2、交互性：web Storage不与服务器交互，需要与服务器交互时使用cookie<br>3、数据大小：cookie不能超过4k，web Storage可达5M</p>
+]]></content>
+      <tags>
+        <tag>web</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>《JavaScript高级程序设计（第4版）》的笔记</title>
     <url>//post/%E3%80%8AJavaScript%E9%AB%98%E7%BA%A7%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%EF%BC%88%E7%AC%AC4%E7%89%88%EF%BC%89%E3%80%8B/</url>
     <content><![CDATA[<p><strong>JavaScript高级程序设计（第4版）</strong></p>
@@ -5897,7 +6486,7 @@ new MiniCssExtractPlugin(&#123;
 <h2 id="1-4-小结"><a href="#1-4-小结" class="headerlink" title="1.4 小结"></a>1.4 小结</h2><blockquote>
 <p>JavaScript是一门用来与网页交互的脚本语言，包含以下三个组成部分。<br>❑ ECMAScript：由ECMA-262定义并提供核心功能。<br>❑ 文档对象模型（DOM）：提供与网页内容交互的方法和接口。<br>❑ 浏览器对象模型（BOM）：提供与浏览器交互的方法和接口。<br>JavaScript的这三个部分得到了五大Web浏览器（IE、Firefox、Chrome、Safari和Opera）不同程度的支持。所有浏览器基本上对ES5（ECMAScript 5）提供了完善的支持，而对ES6（ECMAScript 6）和ES7（ECMAScript 7）的支持度也在不断提升。这些浏览器对DOM的支持各不相同，但对Level 3的支持日益趋于规范。HTML5中收录的BOM会因浏览器而异，不过开发者仍然可以假定存在很大一部分公共特性。</p>
 </blockquote>
-<h2 id="2-1-lt-script-gt-元素"><a href="#2-1-lt-script-gt-元素" class="headerlink" title="2.1 &lt;script&gt;元素"></a>2.1 <code>&lt;script&gt;</code>元素</h2><p><a href="https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/script#%E5%B1%9E%E6%80%A7">https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/script#%E5%B1%9E%E6%80%A7</a></p>
+<h2 id="2-1-元素"><a href="#2-1-元素" class="headerlink" title="2.1 &lt;script&gt;元素"></a>2.1 <code>&lt;script&gt;</code>元素</h2><p><a href="https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/script#%E5%B1%9E%E6%80%A7">https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/script#%E5%B1%9E%E6%80%A7</a></p>
 <blockquote>
 <p><code>&lt;script&gt;</code>元素有下列8个属性。</p>
 </blockquote>
@@ -6737,519 +7326,6 @@ new MiniCssExtractPlugin(&#123;
       </categories>
       <tags>
         <tag>js 读书笔记</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>不再性感，不再赚钱，数据科学的时代变了</title>
-    <url>//post/database/</url>
-    <content><![CDATA[<blockquote>
-<p>作者：Vicki Boykis | 译者：阿拉丁 </p>
-</blockquote>
-<blockquote>
-<p>阅读数：678 2019 年 3 月 2 日 | 话题：大数据  AI 最佳实践</p>
-</blockquote>
-<pre><code>当你看到“数据科学”这个词时，会想到什么？你可能会觉得它是统计学、机器学习、深度学习和“21 世纪最性感的工作”等关键词的组合，或者你的脑海里会浮现出一个数据科学家的形象，她坐在电脑旁，将 AB 测试得到的结果拼接在一起，又或者你听很多人说过干这行有赚不完的钱（根据权威部门统计：入门级数据科学家的平均年薪约人民币 744253 元）。无论是哪一种，它都是迷人、聪明和复杂的。
-
-从本文作者 Vicki Boykis 十年前进入这一领域以来，数据科学一直给人这样的印象，但现在，数据科学已经不再是当初的样子了。以下内容由 AI 前线编译，原文来自 Vicki Boykis 发表于个人博客的文章《Data science is different now》。
-</code></pre>
-<p>我最初是一名数据分析师。</p>
-<pre><code>我是否曾经提到过我有多讨厌 Excel 默认的数字字符串格式？
-——Vicki Boykis（@vboykis）2012 年 5 月 18 日
-</code></pre>
-<p>我经常是一边苦等 SQL 的运行结果、整理乱糟糟的 Excel 文件，一边看着 Hacker News 上有关海量数据挖掘的文章、Facebook 数据科学团队的新闻和谷歌首席经济学家 Hal Varian 写的文章，然后一边做着白日梦。</p>
-<p>2012 年，我很幸运地被分配到了一个数据分析工程团队，他们正在将一些 ETL 作业从 Oracle 迁移到 Hadoop 上，以便满足不断增长的数据吞吐量要求。</p>
-<span id="more"></span>
-
-<pre><code>有没有“给白痴用的 Hadoop”？ 给小白用的 Hadoop 并不适合我。
-——Vicki Boykis（@vboykis）2012 年 8 月 16 日
-</code></pre>
-<p>我自愿成为第一个使用 Pig 和 Hive 的分析师，主要是因为我不想等到工程工作完成后才能访问我的数据。而且，我沉迷于数据科学家的光环——这些人开展很酷的实验，提出很酷的分析想法，并可以使用 MacBook。</p>
-<p>我也想成为这样的人！所以，我在线学习了 Python，重温了我在大学学习过的统计学。在早期，并没有真正形式化的方法来学习“数据科学”，最多只能看看其他人在做什么、去参加聚会或者试着从人力资源招聘的职位描述中读出点什么。</p>
-<p>在独自摸索了很长一段时间之后，我在过去的六年时间里已经在“数据科学”领域站稳了脚跟。并且，作为一名导师（但我之前并没有导师），我一直在回复电子邮件，和那些希望进入数据科学领域的人喝咖啡会面。</p>
-<p>自 2012 年以来，数据科学行业发展极其迅速。它几乎经历了甘特炒作周期的每个阶段。</p>
-<p>我们已经经历了早期采用阶段、有关人工智能和偏见的负面新闻、Facebook 等公司的第二轮和第三轮风险投资，现在正处于高采用增长阶段：银行、医疗保健公司和其他财富 100 强企业（这些公司已经落后市场五年）也在为机器学习招聘数据科学家。</p>
-<p>很多东西都变了。大数据（记得 Hadoop 和 Pig 吗？）已经出局了，R 语言的采用率急剧上升，Python 成为经济学家的宠儿，而云计算再次改变了一切。</p>
-<p>然而，媒体针对数据科学领域的炒作却没有变，一直在鼓吹数据科学家是“21 世纪最性感的职业”。但我现在认为这是一个很严重的问题，需要引起社区的注意。希望进入这个行业的初级数据科学家供过于求，而一旦他们获得了梦寐以求的“数据科学家”头衔，他们能够得到的东西与他们的期望其实是不匹配的。<br>新数据科学家的供过于求</p>
-<p>首先，我们来谈谈初级数据科学家的供过于求。针对数据科学的持续媒体炒作导致过去五年中市场上的初级人才数量激增。</p>
-<p>这纯粹是道听途说的东西，所以不要太当真。但是，基于我自己作为简历筛选者、数据科学家导师、面试官、面试者，以及与从事类似职业的朋友和同事的对话，我有一种直觉，每个给定的数据科学职位（特别是入门级的科学职位）的候选人数量从 20 个增加到 100 个或更多。我最近了解到，我的一位朋友在招聘一个职位时收到了不止 500 份简历。</p>
-<p>这都很正常，类似的情况还有很多。机器学习教父吴恩达的 AI 创业公司每周要求工作 70 到 80 个小时，但仍然收到了大量申请，甚至有人愿意免费做志愿者。在写这篇文章时，他们的办公室已经容不下更多的人。</p>
-<p>要评估市场需求与供应之间的真正差距是非常非常困难的，不过我们可以从这里(<a href="https://www.wired.com/story/andrew-ngs-new-online-school/)%E5%BC%80%E5%A7%8B%E7%9D%80%E6%89%8B%E3%80%82">https://www.wired.com/story/andrew-ngs-new-online-school/)开始着手。</a></p>
-<pre><code>对 4 月份招聘广告的研究发现，美国有超过 10,000 个针对人工智能或机器学习的职位空缺。
-
-[超过 10 万人参加了 Fast.ai](http://xn--10fast-qo7i07amn353ae9cy36wyeg.ai/)（一家专注于推广人工智能的创业公司）的深度学习课程。
-</code></pre>
-<p>假设平均 MOOC 完成率约为 7％，那意味着有 7000 人可以填补这 10,000 个工作岗位。但是，今年是这样，那么明年呢？我们是否在假设数据科学创造的就业率是稳定的？如果实际情况不是这样的，那么数据科学就业市场有可能会萎缩。</p>
-<p>LinkedIn 提供的数据表明，市场上有 151,717 个数据科学人才空缺。虽然目前还不清楚它们是不是就是指数据科学家，或者是只拥有部分技能的人，但我们假设是前者。因此，我们可以说美国现在有 150,000 多个数据科学家职位空缺。</p>
-<p>我们假设有 100,000 个人已经参加了数据科学课程，并且其中有 7,000 个人会完成课程。</p>
-<p>但是，上面这数字并没有考虑到其他的数据科学候选人计划和途径：Fast.ai 之外的 MOOC，比如 Coursera、Metis（超过 10 个全国性训练营）和 General Assembly（每 12 周就有 25 人参加）、来自加州大学洛杉矶分校等地的远程学位、分析和数据科学的本科学位、YouTube，等等。还有很多博士正在从学术界转向数据科学领域，但却无法在竞争极其激烈的就业市场中找到工作。</p>
-<p>这篇文章指出，在 2015 年有 4 万个数据科学家职位空缺。总体而言，到 2018 年，分析技能的市场供应将超过市场容量。<br>image</p>
-<p>参加数据科学计划的初级人才数量，再加上数百个开设数据科学课程的训练营，你将看到一场完美的风暴。</p>
-<p>除了我从工作中了解到的以及与 100 多名同事进行的交谈之外，下面的两条推文让我确信目前存在真正的数据科学供应泡沫。</p>
-<pre><code>@Cal 的数据科学入门课程 Data 8 非常受欢迎。它位于有泽勒巴大剧院。2018 年秋季开学。pic.twitter.com/VBhtPnikmw
-——Mike Olson（@mikeolson），2018 年 10 月 4 日
-
-UVA（美国弗吉尼亚大学）很自豪地宣布开设数据科学学院的计划，它将满足社会对数据科学不断增长的需求。https://t.co/QlP4OUrTrO
-——UVA（@UVA）2019 年 1 月 18 日
-</code></pre>
-<p>由于学术界在跟上新趋势方面通常会滞后，因此，对于所有希望在数据科学领域找到职位的初级数据科学家来说，这确实令人感到担忧。对于一个拥有数据科学新学位的人来说，要找到一个数据科学的职位是非常困难的，因为他们要在市场上与许多新人展开竞争。</p>
-<p>但在三、四年前，情况并非如此。而现在，数据科学已经从流行语变成了连硅谷之外的公司都在招聘的职位，职位的准入门槛更高了，而且偏爱具备数据科学经验的人，数据科学面试仍然很难通过。</p>
-<p>正如很多文章指出的那样，你不一定会在第一次尝试时就能找到你梦寐以求的工作。市场可能非常残酷，并且对于大量初入者来说非常令人沮丧。<br>数据科学是一个具有误导性的岗位需求</p>
-<p>第二个问题是，一旦这些初级人员进入市场，他们会对数据科学工作产生不切实际的期望。每个人都认为他们将从事与机器学习、深度学习和贝叶斯模拟相关的工作。</p>
-<p>这不是他们的错，这就是数据科学课程和技术媒体所宣扬的。</p>
-<p>但现实的情况却是，“数据科学”大多数时候是关于如何清理和整理数据以及将数据从一个地方移动到另一个地方。</p>
-<p>我最近进行的一次非科学调查证实了这一点：</p>
-<pre><code>一段时间以来，我一直对此感到好奇，所以决定做一个民意调查。
-“作为一个 2019 年被称为’数据科学家’的人，我花了大部分时间（60％以上）：”
-也欢迎“其他”选项，请在回复中添加。
-——Vicki Boykis（@vboykis）2019 年 1 月 28 日
-</code></pre>
-<p>还有很多行业专家发来的推文也是如此：</p>
-<pre><code>对于我最近的几个 ML 项目，复杂性并不在于建模或训练，而在于输入预处理。我发现在一个项目中耗尽了 CPU（而不是 GPU），我不确定如何进一步优化 Python（我正在考虑使用 C++）。
-——mat kelcey（@mat_kelcey）2019 年 2 月 11 日
-
-我看到初级 ML/CV 工程师对构建数据集完全缺乏兴趣。虽然这是一项无聊的工作，但我认为在整理数据集时需要学到很多东西，毕竟这占了问题的一大半。
-——Katherine Scott（@kscottz）2019 年 2 月 1 日
-
-角色和责任：
-- 自动化糟糕的商业行为
-
-- 根据需要编写临时 SQL
-
-经验要求：
-
-· 15 年使用 Python 进行深度学习的经验
-
-· 写过有关贝叶斯建模的博士论文
-
-· 7 种语言的 NLP 经验
-
-· 10 年从头开始​​创建 Hadoop 集群的经验
-
-——NickHeitzman（@NickDoesData）2019 年 2 月 12 日
-
-在过去两年中，项目的工作类别所占百分比：
-- 涉及 ML：15％
-
-- 涉及移动、监控和统计数据：85％
-
-——Vicki Boykis（@vboykis）2019 年 1 月 15 日
-</code></pre>
-<p>显而易见的是，在炒作周期的后期阶段，数据科学逐渐向工程学靠近，数据科学家需要的技能不再是基于可视化和统计学，而是更接近传统计算机科学课程所提供的那些：</p>
-<pre><code>像单元测试和持续集成这样的概念很快就成为数据科学家和从事 ML 工程的数值科学家的行话和常用的工具。
-</code></pre>
-<p>这导致了一些事情的发生。首先是“机器学习工程师”这个头衔的崛起，在过去的 3 到 4 年里，它带来了更多的声望和更高的收入潜力。</p>
-<p>其次，它导致数据科学家头衔含金量严重缩水。由于数据科学家头衔的声望，像 Lyft 这样的公司会招聘数据科学，但实际上他们只需要数据分析师的技能，导致“数据科学”职位对技能的要求发生了扭曲，究竟需要多少新进入者也变得不明确。</p>
-<h2 id="给新数据科学家的建议"><a href="#给新数据科学家的建议" class="headerlink" title="给新数据科学家的建议"></a>给新数据科学家的建议</h2><p>因此，本着继续为初学者提供建议的初衷，如果有人问我如何在 2019 年进入数据科学领域，我会给他们发送下面这样的电子邮件。</p>
-<p>这是一个两步走的计划：</p>
-<pre><code>    1. 不要死盯着数据科学的工作岗位。
-
-    2. 为大多数数据科学家相关的工作做好准备，但不要成为数据科学家。调整你的技能组合。
-</code></pre>
-<p>这些话可能有点令人沮丧！但请允许我解释一下，希望它们不像听起来的那么悲观。</p>
-<h2 id="不要进入数据科学领域"><a href="#不要进入数据科学领域" class="headerlink" title="不要进入数据科学领域"></a>不要进入数据科学领域</h2><p>因为每个初级职位一般有 50 个（有时 100 个，有时 200 个）人申请，所以不要与这些人去竞争。不要去攻读数学科学学位，不要参加训练营（我见过的大多数训练营的效果都不太好）。</p>
-<p>不要做别人正在做的事情，因为这样无法让你脱颖而出。你正处在一个过度饱和的行业中，这样只会给自己增加难度。在我之前提到的那份PWC 报告中，数据科学职位的数量估计为 5 万，数据工程师职位的数量为 50 万，数据分析师职位的数量是 12.5 万。</p>
-<p>通过“后门”进入数据科学领域要容易得多，也就是说从初级开发人员开始，可以是 DevOps 工程师、项目管理人员、数据分析师、信息管理员或类似的角色。这可能需要更长的时间，但在你努力完成数据科学工作的同时，你也将学会对职业生涯来说至关重要的 IT 技能。</p>
-<h2 id="了解当今数据科学所需的技能"><a href="#了解当今数据科学所需的技能" class="headerlink" title="了解当今数据科学所需的技能"></a>了解当今数据科学所需的技能</h2><p>以下是你在数据领域需要解决的一些问题：</p>
-<p>1）创建 Python 包</p>
-<p>2）将 R 语言用在生产环境中</p>
-<p>3）优化 Spark 作业，使其更有效地运行</p>
-<p>4）对数据进行版本控制</p>
-<p>5）让模型和数据可重现</p>
-<p>6）对 SQL 进行版本控制</p>
-<p>7）在数据湖中建立和维护干净的数据</p>
-<p>8）大规模时间序列预测工具</p>
-<p>9）共享 Jupyter Notebook</p>
-<p>10）寻找可用于清理数据的系统</p>
-<p>11）JSON</p>
-<p>作为一名数据科学家，优化模型、可视化和分析数据是职责工作的一部分，而数据科学主要是（也一直是）关于在一个地方获得用于插补的干净数据。</p>
-<p>你应该如何为解决这些问题做好准备？如何为工作做好准备？你可以考虑学习下面这三种技能，它们都是基础技能，并彼此依赖，从简单到困难。</p>
-<p>所有这些技能也是数据科学以外的软件开发的基础和关键，这意味着，如果你无法找到数据科学工作，可以快速转做软件开发或 DevOps。我认为这种灵活性与针对特定数据相关工作的培训同样重要。</p>
-<p><strong>1. 学习 SQL</strong></p>
-<p>首先，我建议每个人都要学习 SQL，无论他们的目标是成为数据工程师、ML 专家还是 AI 大师。</p>
-<p>SQL 并不性感，也不是上述问题的解决方案。但为了访问数据，你很可能需要针对数据库编写一些 SQL 查询，并用它获取答案。</p>
-<p>SQL 非常强大且非常流行，甚至有些 NoSQL 和键值存储数据库也在重新实现它。比如 Presto 推出的 Presto 和 Athena、BigQuery、KSQL、Pandas、Spark，等等。如果你发现自己陷入了数据工具海洋之中，很可能可以找到一个适合你的 SQL 工具。而且，一旦你理解了 SQL，你会发现它比其他查询语言更容易理解，从而开辟了一个全新的世界。</p>
-<p>在熟悉了 SQL 之后，下一步是了解数据库的工作原理，这样你就可以学会如何优化查询。你不一定要成为数据库开发人员，但很多概念将延续到你的其他编程生活当中。</p>
-<p><strong>2. 学好一门编程语言和学习编程概念</strong></p>
-<p>SQL 不是一门编程语言吗？它是的，但它是声明性的。你指定所需的输出（即你要从表中获取哪些列），但不指定这些列以怎样的形式返回给你。SQL 抽象了很多数据库底层的细节。</p>
-<p>你需要一门过程式语言，你可以自行指定如何以及从哪里获取数据。大多数现代语言都是过程式的：Java、Python、Scala、R 语言、Go 语言，等等。</p>
-<p>关于为数据科学应该选择哪种语言存在很多争论，我不会针对任何特定情况规定说要学习哪一种语言，只是在我的职业生涯中，Python 对我来说非常有用。作为一个初学者，它很容易入门，可以说是数据领域最流行的编程语言，并且可以用来完成很多不同的事情，从将模型嵌入 scikit 中，到访问 AWS API，再到构建 Web 应用程序、清理数据，以及创建深度学习模型。</p>
-<p>当然，也有一些任务不太适合用 Python 来完成：大型应用程序、打包依赖项和一些特定的与数字相关的任务，特别是时间序列和 R 语言提供的一系列功能。</p>
-<p>如果你不选择 Python，也没问题。但你至少要选择一种语言，让你在数据科学领域之外保持灵活性。例如，如果你的第一份工作是数据分析师、QA 分析师、DevOps 初级工程师，或者其他职位，掌握一门语言都有助于你站稳脚跟。</p>
-<p>在选择了一门编程语言并弄清楚如何使用它之后，就可以开始学习它背后的范式以及它与计算机科学生态系统的关系。</p>
-<p>你是如何使用你的语言实现 OOP 的？OOP 是什么东西？你如何优化你的代码？你的语言的依赖项是如何工作的？如何使用给定语言打包代码，如何进行版本控制、持续集成，如何部署模型工件？你的语言社区在哪里，会在哪里举行聚会？</p>
-<p>了解你的语言，了解它的优缺点，用你的语言开发一些有趣的东西。</p>
-<p>然后，当你有足够的信心继续下去时，也只有在这个时候，才能开始学习你的第二门语言。它将把你带入更广泛的语言设计、算法和模式的世界。</p>
-<p><strong>3. 了解云端的工作</strong></p>
-<p>现在你已经知道如何编程，现在是时候将这些技能和理论带到云端了。</p>
-<p>如今，云无处不在，你可能需要在下一个工作中使用云。如果有更多的机器学习范例转移到云端（如 SageMaker、Cloud AI 和 Azure 机器学习），已经有现成的模板可用来实现算法，而且企业的更多数据也开始存储在那里。</p>
-<p>你可能会与行业领导者 AWS 合作，但越来越多的公司正在采用 Google Cloud，而很多已经与微软开展业务合作的保守企业在使用 Azure。我建议深入了解这三个云供应商，然后挑选一个你最感兴趣的。云设计范式都是类似的，你必须了解如何将服务粘合在一起，如何区分云端的服务器，以及如何使用 JSON。</p>
-<p>有趣的是，这三家供应商现在都提供了他们的产品认证。我一般不会通过认证来衡量一个人对知识的掌握程度与否，但通过认证可以学到云的工作原理，这是工程的另一个组成部分：网络。</p>
-<p>了解这三种产品，并在开始下一份工作之前在云端构建一些有趣的东西。</p>
-<p>这里缺失的部分当然是“软技能”——知道在什么时候构建什么，知道如何在工作场所进行交流，知道其他人想要什么。软技能与技术技能一样重要，有很多专门讨论它的文章，但为了保持这篇文章不会太长，这里就不作累述了。</p>
-<h2 id="最后的步骤"><a href="#最后的步骤" class="headerlink" title="最后的步骤"></a>最后的步骤</h2><p>现在，请深呼吸，我想你已经做好准备了。</p>
-<p>如果上述有任何一点（或者所有）让你感兴趣，那说明你已经准备好在 2019 年成为数据科学家、机器学习工程师、云专家或 AI 大师了。</p>
-<p>请记住，你的最终目标是打败那些攻读数据科学学位、参加训练营和学习教程的人。</p>
-<p>你想要迈出第一步，获得一个与数据相关的职位，然后朝着你梦想的工作前进，同时尽可能多地了解科技行业的总体情况。</p>
-<p>我最后一个一般性的建议是给自己打气：</p>
-<p>这对每个人来说都很难，似乎有很多事情你必须知道。不要气馁。</p>
-<p>不要因为想太多就望而却步。先从小处开始，做一些小的事情，学习一些小的东西，构建一些小的东西，把你做的事情告诉其他人。请记住，你在数据科学领域的第一份工作可能不是数据科学家。</p>
-<p>祝你好运！</p>
-<p>英文原文：<br><a href="https://veekaybee.github.io/2019/02/13/data-science-is-different/">https://veekaybee.github.io/2019/02/13/data-science-is-different/</a></p>
-]]></content>
-      <categories>
-        <category>转载</category>
-      </categories>
-      <tags>
-        <tag>转载</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>浏览器图片机制</title>
-    <url>//post/image/</url>
-    <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>浏览器中引用图片是一种很常见的情况，使用方式的不同，他们的意义也不同。比如————作为“内容主体”、“背景”、“图标”等，而设计师有时候也会提供不同的格式图片（img&#x2F;png&#x2F;svg&#x2F;）。在不同的场景，我们对同一份图片素材，要根据图片在web界面中的意义合理运用。个人会列举浏览器常用使用图片的方式。</p>
-<ul>
-<li>img</li>
-<li>background-image</li>
-<li>icon-font</li>
-<li>svg</li>
-<li>webpack 与 img</li>
-<li>base64</li>
-</ul>
-<span id="more"></span>
-
-<h2 id="img、background-image"><a href="#img、background-image" class="headerlink" title="img、background-image"></a>img、background-image</h2><p><code>HTML</code>的<code>img</code>标签、<code>css</code>的<code>background-image</code>样式是最原始的使用图片方式，在H5时代前，相当长的一段时间都是用这两方式引用图片资源的。</p>
-<p><code>&lt;img&gt;</code>标签，将图片作为<strong>内容主体</strong>引入web页面，故其是<strong>占位</strong>的；而<code>background-image</code>样式，起<strong>修饰</strong>作用，<strong>不占位</strong>。</p>
-<h3 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法"></a>基本用法</h3><p><strong>img</strong></p>
-<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>https://mdn.mozillademos.org/files/7693/catfront.png<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p><strong>background-image</strong></p>
-<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>background<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<pre class="line-numbers language-css" data-language="css"><code class="language-css"><span class="token selector">.background</span> <span class="token punctuation">&#123;</span>
-  <span class="token property">width</span><span class="token punctuation">:</span> 30px<span class="token punctuation">;</span>
-  <span class="token property">height</span><span class="token punctuation">:</span> 64px<span class="token punctuation">;</span>
-  <span class="token property">margin</span><span class="token punctuation">:</span> 0 auto<span class="token punctuation">;</span>
-  <span class="token property">background-image</span><span class="token punctuation">:</span> <span class="token url"><span class="token function">url</span><span class="token punctuation">(</span><span class="token string url">'https://mdn.mozillademos.org/files/7693/catfront.png'</span><span class="token punctuation">)</span></span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<img src="https://mdn.mozillademos.org/files/7693/catfront.png" />
-
-<div class="background"></div>
-
-<style>
-.background {
-  width: 30px;
-  height: 64px;
-  margin: 0 auto;
-  background-image: url('https://mdn.mozillademos.org/files/7693/catfront.png');
-}
-</style>
-
-<p><em>虽然呈现的效果一致，意义却不一样。</em></p>
-<!-- - [<img>：图像嵌入元素](https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/img) -->
-<!-- - [background-image](https://developer.mozilla.org/zh-CN/docs/Web/CSS/background-image) -->
-
-<h3 id="img之尺寸、居中"><a href="#img之尺寸、居中" class="headerlink" title="img之尺寸、居中"></a>img之尺寸、居中</h3><p><code>img</code>标签提供了关于设置尺寸的属性，分别是<code>width</code>和<code>height</code>，单位可以是css像素，也可以是百分比。</p>
-<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>https://mdn.mozillademos.org/files/7693/catfront.png<span class="token punctuation">"</span></span>  <span class="token attr-name">width</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>100%<span class="token punctuation">"</span></span> <span class="token attr-name">height</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>100%<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p><em>然而尺寸的百分比单位并不是相对于图片资源的比例，而是其容器的百分比。</em></p>
-<p>所以并不推荐使用img标签的<code>width</code>及<code>height</code>设置属性，推荐使用css的<code>width</code>及<code>height</code>属性编写。</p>
-<p>其实很多web开发者设置<code>100%</code>的本意是想让图片<strong>按父容器宽度自动缩放，并保持图片原本的长宽比</strong>。</p>
-<pre class="line-numbers language-css" data-language="css"><code class="language-css"><span class="token selector">img</span> <span class="token punctuation">&#123;</span>
-    <span class="token property">width</span><span class="token punctuation">:</span> auto<span class="token punctuation">;</span>
-    <span class="token property">height</span><span class="token punctuation">:</span> auto<span class="token punctuation">;</span>
-    <span class="token property">max-width</span><span class="token punctuation">:</span> 100%<span class="token punctuation">;</span>
-    <span class="token property">max-height</span><span class="token punctuation">:</span> 100%<span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>除此之外，<code>img</code>的居中方式也是很容易让人误解，因<code>img</code>的<code>display</code>属性为<code>inline-block</code>，其居中方式（水平、垂直都是）更是让人误解。</p>
-<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>block<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
-  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>https://mdn.mozillademos.org/files/7693/catfront.png<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-
-<pre class="line-numbers language-css" data-language="css"><code class="language-css"><span class="token selector">.block</span> <span class="token punctuation">&#123;</span>
-  <span class="token property">width</span><span class="token punctuation">:</span>150px<span class="token punctuation">;</span>
-  <span class="token property">height</span><span class="token punctuation">:</span> 150px<span class="token punctuation">;</span>
-  <span class="token property">border</span><span class="token punctuation">:</span> 1px solid #333<span class="token punctuation">;</span>
-  <span class="token comment">/* 垂直居中 */</span>
-  <span class="token property">display</span><span class="token punctuation">:</span> table-cell<span class="token punctuation">;</span>
-  <span class="token property">vertical-align</span><span class="token punctuation">:</span> middle<span class="token punctuation">;</span>
-  <span class="token comment">/* 水平居中 */</span>
-  <span class="token property">text-align</span><span class="token punctuation">:</span> center<span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span>
-
-<span class="token selector">img</span> <span class="token punctuation">&#123;</span>
-    <span class="token property">max-width</span><span class="token punctuation">:</span> 50%<span class="token punctuation">;</span>
-    <span class="token property">max-height</span><span class="token punctuation">:</span> 50%<span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>没想吧？居然是加在img的容器标签上，虽然绝对居中（水平、垂直都同时居中）还有其他的方法，常见的<code>margin auto</code>居中还有绝对定位50%。不过个人觉得这是最值得开发着去记住的。除此之外，也建议给容器设置<code>font-size: 0;</code>，这可以解决两个相邻的img标签之间的空隙问题。</p>
-<p>说了那么多的img，现在得回过头来谈论<code>background-image</code>了。</p>
-<h3 id="background-image之位置、尺寸及重复"><a href="#background-image之位置、尺寸及重复" class="headerlink" title="background-image之位置、尺寸及重复"></a>background-image之位置、尺寸及重复</h3><p>虽然前面我们说的<code>background-image</code>一直说的是css的样式特性，然而<code>background-image</code>只能指定使用的图片资源（可以是一张、也可以是多张）。背景图片样式（如本节小标题所说的位置、尺寸及重复）的设置，往往还需要结合其他css特性。</p>
-<ol>
-<li><p><code>background-position</code>可以给背景图片定义位置，设置的是其图片的左上角要在容器的哪个偏移度位置。</p>
-</li>
-<li><p><code>background-size</code> 可设置背景图片大小。<code>contain</code>理解为等比例缩放图片，高度&#x2F;宽度其一先与容器尺寸相等，则停止缩放，若图片和容器宽高比例不一致，会出现白边；<code>cover</code>也是等比例缩放，高度&#x2F;宽度其一先与容器尺寸相等，继续缩放，（此时图片溢出），直到另一方向的尺寸占满容器，停止缩放。</p>
-</li>
-</ol>
-<p><img src="/post/image/background-size_contain.png" alt="background-size:contai"></p>
-<p><img src="/post/image/background-size_cover.png" alt="background-size:cover"></p>
-<p><strong>更简易的理解： <code>contain</code>为最小化等比例缩放图片，<code>cover</code>则为最大化等比例缩放。</strong></p>
-<p>除了这两个关键字，也可以用两个单位值指定背景图片的宽高，对于绝对单位（px、em、rem）没啥好说的，对于相对单位（百分比），是相对于容器的尺寸来计算的，<strong>有意思的是<code>100% 100%</code>，这代表着破坏原比例，把图片拉伸&#x2F;挤压到容器的尺寸。</strong>（很多css属性的相对单位都是根据容器来计算的，或许有特殊的属性我忘了。;-)</p>
-<ol start="3">
-<li><code>background-repeat</code> 设置图片重复使用的方式。</li>
-</ol>
-<p>以上就是关于背景常用的css样式特性，完整的css背景样式如下，并不复杂。</p>
-<ul>
-<li>background-attachment</li>
-<li>background-clip</li>
-<li>background-color</li>
-<li>background-image</li>
-<li>background-origin</li>
-<li>background-position</li>
-<li>background-position-x</li>
-<li>background-position-y</li>
-<li>background-repeat</li>
-<li>background-size</li>
-</ul>
-<blockquote>
-<p>不建议使用css简写属性<code>background</code>一次性设置背景特性。</p>
-</blockquote>
-<h3 id="CSS-Sprites"><a href="#CSS-Sprites" class="headerlink" title="CSS Sprites"></a>CSS Sprites</h3><p>CSS Sprite(CSS 精灵), 又名雪碧图，是一种图片合并技术，我们可以把一些小图，整合放在一张大图中，每次单独使用小图的时候，裁剪出指定位置，尺寸即可正常显示。</p>
-<p><img src="/post/image/CSS-Sprites.gif" alt="CSS-Sprites.gif"></p>
-<p>像上图就可以作为雪碧图的素材使用，以实现改方案。</p>
-<p>简单分析一下这张图片：</p>
-<ol>
-<li>尺寸：134 * 44</li>
-<li>小图数量：3</li>
-<li>规范：固定大小，水平排列</li>
-</ol>
-<p>那我们可以定义一个通用的<code>class</code>，设置小图的尺寸；再定义一个<code>class</code>，设置图片裁剪位置即可。</p>
-<pre class="line-numbers language-css" data-language="css"><code class="language-css"><span class="token selector">.css-sprite</span> <span class="token punctuation">&#123;</span>
-    <span class="token property">width</span><span class="token punctuation">:</span> 44px<span class="token punctuation">;</span>
-    <span class="token property">height</span><span class="token punctuation">:</span> 44px<span class="token punctuation">;</span>
-    <span class="token property">background</span><span class="token punctuation">:</span> <span class="token url"><span class="token function">url</span><span class="token punctuation">(</span><span class="token string url">"./CSS-Sprites.gif"</span><span class="token punctuation">)</span></span><span class="token punctuation">;</span>
-    <span class="token property">background-repeat</span><span class="token punctuation">:</span> no-repeat<span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span>
-
-<span class="token selector">.hourse</span> <span class="token punctuation">&#123;</span>
-    <span class="token property">background-position-x</span><span class="token punctuation">:</span> 0<span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span>
-<span class="token selector">.left-arrow</span> <span class="token punctuation">&#123;</span>
-    <span class="token property">background-position-x</span><span class="token punctuation">:</span> -44px<span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span>
-<span class="token selector">.right-arrow</span> <span class="token punctuation">&#123;</span>
-    <span class="token property">background-position-x</span><span class="token punctuation">:</span> -88px<span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h4 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h4><ol>
-<li>减少服务器压力：多图合并成一张，只发送一次HTTP请求，并且可以被缓存，有助于提升页面加载性能</li>
-<li>维护困难： 后期维护成本较高，添加一张图片需要重新制作。</li>
-<li>应用麻烦：每应用一张图片都需要调整位置，误差要求严格。</li>
-<li>局限：只能用在背景图片<code>background-image</code>上，不能用<code>&lt;img&gt;</code>标签来使用。</li>
-</ol>
-<h4 id="不同方式实现-CSS-Sprites"><a href="#不同方式实现-CSS-Sprites" class="headerlink" title="不同方式实现 CSS Sprites"></a>不同方式实现 CSS Sprites</h4><p>如果会使用<code>gulp</code>、<code>webkack</code> 等构建工具，可以借助工具自动生成雪碧图。</p>
-<p><a href="https://github.com/twolfson/spritesmith">spritesmith</a>，是一个node工具，可以将多张图片合成一张图片——雪碧图，也提供了<code>grup</code>和 <code>gulp</code>插件，甚至是命令行工具。</p>
-<ul>
-<li><code>gulp</code> 结合<a href="https://www.npmjs.com/package/spritesmith">spritesmith</a>的插件 <a href="https://www.npmjs.com/package/gulp.spritesmith">gulp.spritesmith</a></li>
-<li><code>webpack</code>结合对应的loader <a href="https://www.npmjs.com/package/webpack-spritesmith">webpack-spritesmith</a></li>
-<li>svg <a href="https://www.npmjs.com/package/svg-sprite-loader">svg-sprite-loader</a></li>
-</ul>
-<h2 id="icon-font"><a href="#icon-font" class="headerlink" title="icon-font"></a>icon-font</h2><p><strong>首先我们得明白，icont-font本质上不是图片，而是一种比较特殊字体，这种字体，以图标的方式显示。</strong></p>
-<h3 id="web字体"><a href="#web字体" class="headerlink" title="web字体"></a>web字体</h3><p>得益于<code>css3</code>的新特性“web字体”，我们可以为自己的网页定义在线字体，无论用户是否安装了我们指定的字体，我们都可以让网页呈现出我们想要的字体，突破了传统<a href="https://developer.mozilla.org/en-US/Learn/CSS/Styling_text/Fundamentals#Web_safe_fonts">Web-safe 字体</a>的限制。</p>
-<pre class="line-numbers language-css" data-language="css"><code class="language-css"><span class="token comment">/* 定义名为“Open Sans”字体  */</span>
-<span class="token atrule"><span class="token rule">@font-face</span></span> <span class="token punctuation">&#123;</span>
-  <span class="token property">font-family</span><span class="token punctuation">:</span> <span class="token string">"Open Sans"</span><span class="token punctuation">;</span>
-  <span class="token property">src</span><span class="token punctuation">:</span> <span class="token url"><span class="token function">url</span><span class="token punctuation">(</span><span class="token string url">"/fonts/OpenSans-Regular-webfont.woff2"</span><span class="token punctuation">)</span></span> <span class="token function">format</span><span class="token punctuation">(</span><span class="token string">"woff2"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
-       <span class="token url"><span class="token function">url</span><span class="token punctuation">(</span><span class="token string url">"/fonts/OpenSans-Regular-webfont.woff"</span><span class="token punctuation">)</span></span> <span class="token function">format</span><span class="token punctuation">(</span><span class="token string">"woff"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span>
-
-<span class="token comment">/* 应用于网页 */</span>
-<span class="token selector">body</span> <span class="token punctuation">&#123;</span>
- <span class="token property">font-family</span><span class="token punctuation">:</span> <span class="token string">"Open Sans"</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<blockquote>
-<p>web字体不是我们这次要重点的谈论范围，了解即可，这里提供了一些相关资料：</p>
-</blockquote>
-<ul>
-<li><a href="https://developer.mozilla.org/zh-CN/docs/Learn/CSS/%E4%B8%BA%E6%96%87%E6%9C%AC%E6%B7%BB%E5%8A%A0%E6%A0%B7%E5%BC%8F/Web_%E5%AD%97%E4%BD%93">Web 字体</a></li>
-<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/@font-face">@font-face</a></li>
-<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/font-family">font-family</a></li>
-</ul>
-<p>所以icon-font，指的是使用自定义的字体展示图标。运用了上述介绍的web字体技术。</p>
-<h3 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h3><p>字体图标技术已经是web主流使用icon的一种方案了，很多UI库都内置提供了一套图标库供开发者使用，当然也可以独立使用开源的图标库，或者使用工具生成自定义的图标库。</p>
-<p>这里用常用的UI框架<code>elemment-ui</code>举例，其UI库提供了<a href="https://element.eleme.cn/#/zh-CN/component/icon">icon</a>组件，内置了图标库，使用方式也很简单。</p>
-<p><img src="/post/image/element-ui_icon.png"></p>
-<p>基本上，正确引用了icon-font，直接设置的类名即可展示对应的UI，那么我们究竟引用了什么东西呢？在<a href="https://element.eleme.cn/#/zh-CN/component/icon">icon</a>页面上，使用<code>F12</code>打开开发者工具、找到<code>element-ui-*.css</code>源码。</p>
-<p><img src="/post/image/element-ui-css.png"></p>
-<p> 独立的开源图标库有很多，名气比较大的有<a href="https://fontawesome.com/">Font Awesome</a>。使用方法也是类比UI库，引入相关的css源文件即可。css源文件也是类似<code>element-ui-*.css</code>的格式，引用外部资源、定义web字体、使用web字体，内置定义了<code>class</code>。直接在相关dom中使用class即可。</p>
-<p>实际项目中，这种开源的集成图标库往往不能满足需求设计稿，我们需要使用一些自定义图标。我们可以使用一些工具：<a href="https://www.iconfont.cn/">iconfont</a>、<a href="https://fontello.com/">fontello</a>、<a href="https://icomoon.io/">icomoon</a>，都是很优秀的在线生成图标库，具体使用方式网站也有介绍，不再累述。教程中引入的<code>css</code>，也是跟<code>element-ui-*.css</code>的格式类似。</p>
-<h3 id="特性-1"><a href="#特性-1" class="headerlink" title="特性"></a>特性</h3><p>icon-font最大的特性就是样式有更多的灵活性。<strong>我们可以像处理文字一样处理图标的样式。</strong>使用<code>font-size</code>控制图标的尺寸，<code>text-align</code>、<code>line-height</code>控制其居中方式，甚至是<code>color</code>为图标设置不同的样式。</p>
-<p>一般使用icon-font都是一套一套的使用，而不是一个一个独立使用，所以这对减少网络请求次数也有优势。</p>
-<p>矢量图形也意味着我们可以随意调整图标大小而不用担心其失真。</p>
-<p>不过icon-font只适用于纯色图标，当然渐变效果也可以使用css样式编写。</p>
-<h2 id="svg"><a href="#svg" class="headerlink" title="svg"></a>svg</h2><p><a href="https://en.wikipedia.org/wiki/Scalable_Vector_Graphics">svg</a>——可缩放矢量图形(Scalable Vector Graphics)，是一种文件格式， 用XML 的格式定义图像。我们可以使用代码编辑器编辑svg文件，使用浏览器可直接预览。</p>
-<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>svg</span> <span class="token attr-name">version</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>1.1<span class="token punctuation">"</span></span>
-  <span class="token attr-name">baseProfile</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>full<span class="token punctuation">"</span></span>
-  <span class="token attr-name">width</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>300<span class="token punctuation">"</span></span> <span class="token attr-name">height</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>200<span class="token punctuation">"</span></span>
-  <span class="token attr-name">xmlns</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>http://www.w3.org/2000/svg<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
-  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>rect</span> <span class="token attr-name">width</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>100%<span class="token punctuation">"</span></span> <span class="token attr-name">height</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>100%<span class="token punctuation">"</span></span> <span class="token attr-name">fill</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>red<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
-  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>circle</span> <span class="token attr-name">cx</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>150<span class="token punctuation">"</span></span> <span class="token attr-name">cy</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>100<span class="token punctuation">"</span></span> <span class="token attr-name">r</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>80<span class="token punctuation">"</span></span> <span class="token attr-name">fill</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>green<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
-  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>text</span> <span class="token attr-name">x</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>150<span class="token punctuation">"</span></span> <span class="token attr-name">y</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>125<span class="token punctuation">"</span></span> <span class="token attr-name">font-size</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>60<span class="token punctuation">"</span></span> <span class="token attr-name">text-anchor</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>middle<span class="token punctuation">"</span></span> <span class="token attr-name">fill</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>white<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>SVG<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>text</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>svg</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<blockquote>
-<p>可以先将其拷贝保存为x.svg，待会用到的 。</p>
-</blockquote>
-<p>将在浏览器中呈现…</p>
-<p><img src="/post/image/svg.png"></p>
-<h3 id="基本使用-1"><a href="#基本使用-1" class="headerlink" title="基本使用"></a>基本使用</h3><p>有几种使用方式，第一种是直接作为标签嵌入<code>HTML</code>源码中。</p>
-<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token doctype"><span class="token punctuation">&lt;!</span><span class="token doctype-tag">DOCTYPE</span> <span class="token name">html</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span> <span class="token attr-name">lang</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>en<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">></span></span>
-  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">charset</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>UTF-8<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
-  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>viewport<span class="token punctuation">"</span></span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>width=device-width, initial-scale=1.0<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
-  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">></span></span>Document<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">></span></span>
-
-  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>svg</span> <span class="token attr-name">version</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>1.1<span class="token punctuation">"</span></span>
-    <span class="token attr-name">baseProfile</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>full<span class="token punctuation">"</span></span>
-    <span class="token attr-name">width</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>300<span class="token punctuation">"</span></span> <span class="token attr-name">height</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>200<span class="token punctuation">"</span></span>
-    <span class="token attr-name">xmlns</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>http://www.w3.org/2000/svg<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>rect</span> <span class="token attr-name">width</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>100%<span class="token punctuation">"</span></span> <span class="token attr-name">height</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>100%<span class="token punctuation">"</span></span> <span class="token attr-name">fill</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>red<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>circle</span> <span class="token attr-name">cx</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>150<span class="token punctuation">"</span></span> <span class="token attr-name">cy</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>100<span class="token punctuation">"</span></span> <span class="token attr-name">r</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>80<span class="token punctuation">"</span></span> <span class="token attr-name">fill</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>green<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>text</span> <span class="token attr-name">x</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>150<span class="token punctuation">"</span></span> <span class="token attr-name">y</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>125<span class="token punctuation">"</span></span> <span class="token attr-name">font-size</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>60<span class="token punctuation">"</span></span> <span class="token attr-name">text-anchor</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>middle<span class="token punctuation">"</span></span> <span class="token attr-name">fill</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>white<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>SVG<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>text</span><span class="token punctuation">></span></span>
-  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>svg</span><span class="token punctuation">></span></span>
-
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>第二种是将svg代码保存为一个单独的文件，如同png，jpg，git等图片资源一样使用。</p>
-<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span><span class="token punctuation">></span></span>img svg<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>x.svg<span class="token punctuation">"</span></span> <span class="token attr-name">alt</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span><span class="token punctuation">></span></span>object svg<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>object</span> <span class="token attr-name">data</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>x.svg<span class="token punctuation">"</span></span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>object</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span><span class="token punctuation">></span></span>iframe svg<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>iframe</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>x.svg<span class="token punctuation">"</span></span> <span class="token attr-name">frameborder</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>0<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>iframe</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>背景图片也是可以的。</p>
-<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>div-svg<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>style</span><span class="token punctuation">></span></span><span class="token style"><span class="token language-css">
-  <span class="token selector">#div-svg</span> <span class="token punctuation">&#123;</span>
-    <span class="token property">width</span><span class="token punctuation">:</span> 300px<span class="token punctuation">;</span>
-    <span class="token property">height</span><span class="token punctuation">:</span> 200px<span class="token punctuation">;</span>
-    <span class="token property">background</span><span class="token punctuation">:</span> <span class="token url"><span class="token function">url</span><span class="token punctuation">(</span><span class="token string url">'./x.svg'</span><span class="token punctuation">)</span></span><span class="token punctuation">;</span>
-  <span class="token punctuation">&#125;</span>
-</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>style</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h3 id="特性-2"><a href="#特性-2" class="headerlink" title="特性"></a>特性</h3><p>svg基于<code>XML</code>语法实现，可以用DOM选择器获取该DOM对象。前提是用第一种方式直接将svg嵌入<code>HTML</code>。</p>
-<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token comment">&lt;!-- 先给刚才的svg加上id属性 --></span>
-  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>svg</span>
-    <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>dom-svg<span class="token punctuation">"</span></span>
-    <span class="token attr-name">...</span><span class="token punctuation">></span></span>
-    ...
-  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>svg</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">const</span> domSvg <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">'#dom-svg'</span><span class="token punctuation">)</span>
-console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>domSvg<span class="token punctuation">)</span> <span class="token comment">// &lt;svg id="dom-svg" version="1.1" baseProfile="full" width="300" height="200" xmlns="http://www.w3.org/2000/svg"></span>
-console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>domSvg<span class="token punctuation">.</span>childNodes<span class="token punctuation">)</span> <span class="token comment">// NodeList(7) [ #text, rect, #text, circle, #text, text, #text ]</span>
-<span class="token keyword">const</span> divSvg <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">'#div-svg'</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>如果有用过<code>icon-font</code>，会知道我们可以用多个svg制作成一套字体图标库。虽然字体图标然比传统的<code>img</code>，<code>background</code>方式有着更好的css样式灵活性，可终究直接使用的时候是纯色的。而svg有着更好的色彩表现能力，同样也是矢量图形，且可以进行DOM操作，这也意味着我们可以<strong>随时动态地改变图片的结构</strong>。<strong>而且svg不仅仅可以制作成字体图标库，也可以转换成png、jpg等传统图片格式甚至是<code>canvas</code>。</strong></p>
-<blockquote>
-<p> svg文件格式现在已经是主流web开发图片使用方案了，而且是目前最灵活的图片文件格式。</p>
-</blockquote>
-<h2 id="webpack-与-img"><a href="#webpack-与-img" class="headerlink" title="webpack 与 img"></a>webpack 与 img</h2><p><a href="https://webpack.js.org/">webpack</a>是一个前端打包工具，前端项目的每个静态资源都是一个单独的模块，<code>webpack</code>内部会<strong>自动管理这些依赖关系</strong>，编译源码时会自动根据这些依赖关系进行打开，最终生成<em>bundle</em>。其特点是拥有<strong>模块化机制</strong>、<strong>loader</strong>可以对各种类型的模块加载时运动不同的任务、<strong>插件化</strong>更是令其可以跟其他的构建工具（<code>grunt</code>、<code>gulp</code>等）结合使用、*<em>模块热替换</em>***更是大大加大了开发速度，模块的更新无需重新加载整个页面。</p>
-<p><code>webpack</code>功能多样且强大，我们本次将重点放在webpack是如何处理图片资源的。<code>webpack</code>一般是跟<code>vue</code>或者<code>react</code>框架集成使用，当然也可以独立使用。原理都差不多，框架的脚手架会基于<code>webpack</code>进行对框架场景的适合或者说扩展。为了方便，这里以<code>vue</code>为例。</p>
-<h3 id="基本使用-2"><a href="#基本使用-2" class="headerlink" title="基本使用"></a>基本使用</h3><p><a href="https://cli.vuejs.org/zh/guide/html-and-static-assets.html#%E5%A4%84%E7%90%86%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90">vue-cli</a>已有相关介绍，简单来说，就是在<code>template</code>中，还有在js中有不同的使用图片方式。</p>
-<p>原生<code>html</code> 跟<code>vue</code>的<code>template</code>语法是一样的。</p>
-<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>./image.png<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p><code>script</code> 或者叫<code>js</code>中是这样使用的。</p>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">imgURL <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'./image.png'</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">:src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>require('./image.png')<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p><code>background</code>也类同<code>&lt;img&gt;</code>。</p>
-<h3 id="裂图-x2F-空图"><a href="#裂图-x2F-空图" class="headerlink" title="裂图&#x2F;空图"></a>裂图&#x2F;空图</h3><p>裂图：指定的图片资源地址不存在，或者加载失败（404），此时界面出现一张小的占位“裂图”；</p>
-<p>空图：不指定图片资源地址，如果样式有设置尺寸大小，会根据img&#x2F;background的原生特性占位。</p>
-<p>裂图一般是bug，我们需要根据bug的场景去解决。</p>
-<p>空图也有其使用的场景：如，初始img标签，动态加载不同的图片资源地址，默认占位。</p>
-<p>实现空图也很简单，<code>src=&quot;&quot;</code> <code>:src=&quot;null&quot;</code> 即可，也可以直接不使用<code>src</code>属性。</p>
-<p>有意思的是，当<code>src</code>的属性值为空时，chrome 和 firefox 渲染的DOM略有差异。</p>
-<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token comment">&lt;!-- chrome --></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">src(unknown)</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-
-<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token comment">&lt;!-- firefox --></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-
-<h3 id="小图自动转成base64"><a href="#小图自动转成base64" class="headerlink" title="小图自动转成base64"></a>小图自动转成base64</h3><p>有时候我们会发现<code>webpack</code>自动把一些小内存的图片自动转换成<code>databas64</code>格式的编码。在<code>vue-cli</code>也有相关的资料介绍 —— <a href="https://cli.vuejs.org/zh/guide/html-and-static-assets.html#%E4%BB%8E%E7%9B%B8%E5%AF%B9%E8%B7%AF%E5%BE%84%E5%AF%BC%E5%85%A5">从相对路径导入</a>。</p>
-<p>我们知道<code>vue-cli</code>是一个集成了<code>webpack</code>常用的功能实现的<code>vue</code>脚手架，为了是配置管理<code>vue</code>项目更加方便快捷，内置静默配置了<code>webpack</code>的常用功能。</p>
-<blockquote>
-<p> 究其原因还是使用了<code>webpack</code>的<code>file-loader</code>处理资源最终引用的路径。<code>url-loader</code>将小于<strong>指定大小</strong>的资源转成内联（这里包括<code>css</code>、<code>javascript</code>、图片字体等静态资源），<code>css</code> <code>javascript</code> 都拥有html对用的标签，图片资源则是处理成<code>base64</code>格式。为了是节约 HTTP 请求数量。</p>
-</blockquote>
-<p><code>vue-cli</code>可以使用<code>chainWebpack</code>设置指定大小，如果是单独使用<code>webpack</code>，则应该配置<code>url-loader</code>，以下是参考的<code>url-loader</code>配置。</p>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token literal-property property">module</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
-　　loaders<span class="token operator">:</span> <span class="token punctuation">[</span>
-　　　　<span class="token punctuation">&#123;</span>
-　　　　　　test<span class="token operator">:</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">\.(png|jpg)$</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">,</span>
-　　　　　　loader<span class="token operator">:</span> <span class="token string">'url-loader?limit=8192'</span>
-　　　　<span class="token punctuation">&#125;</span>
-　　<span class="token punctuation">]</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h2 id="base64"><a href="#base64" class="headerlink" title="base64"></a>base64</h2><p><a href="https://zh.wikipedia.org/wiki/Base64">base64</a>是一种编码的方法，可以用来表示<strong>二进制</strong>数据。所以图片也可以被编码成<code>base64</code>，形成一条字符串。</p>
-<p><em>试试将下面的这串字符复制在浏览器地址栏直接访问，看看是本文的出现的哪张图片。</em></p>
-<pre class="line-numbers language-none"><code class="language-none">data:image&#x2F;png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAABACAIAAACC1lByAAAABnRSTlMAAAAAAABupgeRAAAACXBIWXMAAAsTAAALEwEAmpwYAAAOjUlEQVR42iXWS6+t2VXe8WeMMed7W7d9OfvsOuUqW3YZ28GWLIgUJJAQNDBCIEXp5ZOELp8njdCnGymNRIJEGBxju27nfmrf1l57rfcy5xgPjfoK&#x2F;8ZPf&#x2F;lvf&#x2F;t30ZBOMHyp8zKNT&#x2F;O71+&#x2F;effmuy&#x2F;ZHf&#x2F;0nV88uCDVqzdVgmakmT6IKHceRnq2PnHqNZIlUq3UWBsAkphYuWj2EiS8uP3k6PN7e3lOEGrpISDaZK1VEQPVUFQmAizd9FmgSkwTNOs+LRNQyQ5T0JAAkBUQgSfJq6Dfb9Xq3279&#x2F;XJ4eHW6yhBpDNESkShhBGAW2zGVZpq5paOhcUD3lpgBmOh2LhglJC6GVfmim&#x2F;dP9uw9tkr&#x2F;6L38xbLYlkosaFRqAgwyIgQQB18TNqltthufXl7ltrc2pbbphEFGzULKKuGsok1c&#x2F;POy9BBemLv35X&#x2F;1ZzgVQKkTMVavwdDoeR3doqZVVmpR7bWKcoe7V57LMsz8eH8ZlSiKUSKqlgkrxOPm8FGmiJhnSZ9c&#x2F;ur29&#x2F;bDfb1e7zWb48PbdzYfb+TheXT9LJldX17Q6lnu3pmRQaNDj8QFaXUtSkUiLEBBErV5lmk95dZaa8fTwtF8d7u7vvvn6A4Hzi+18mp8eRmtTmcfn3&#x2F;vOetciqpimPrWWl&#x2F;Ak1q8MVEanFI1Q+KqpKSLGaRpP8&#x2F;F4nOZlrn775vb1569LyBLFAx&#x2F;&#x2F;8NPNs1VuxaxR0fCScpKmJxLVQJ3nERTST+NTMlCgtFNQ1FWAZRznaWyHVdO3+6e7ftPOx&#x2F;nF1bNPPvvBZz&#x2F;65Hi7H7bb7WZo+46lmmKyYqIaUMQ4L&#x2F;NUxqd9breJYSKJMrsCzrzaXgzd7vo7Neb5VFbr3dnVdbe26+cvrl9cbjfrH&#x2F;&#x2F;8J+3Q9+shwQSV4zydDkKlpToe6MWybXdnJppgAbgQVsFkbZfGw1KX07Dph9Ua1xTTH3z&#x2F;e0lks15Jk37v93+4fzw0bU5iyihdw9MBQuES4iIwiqhUMhE01iJz0pZqNqy71So1lttWRc+252M5RURerzQ3gA+rnlB4FTVIaJNTNopOx3FZFlGCAaBORZWZKsY2VCGiOfWrVW47hW63Z3lourZ&#x2F;Op1MNSWAAkmiomaKyJLW66HpV&#x2F;Ay1xESwhDJVBn6PilYASrIaqB7nmpcnq9h&#x2F;Nd&#x2F;&#x2F;uU88qMX59vd9i41w6cfNWbui8&#x2F;z0+Mx5Xx2sUqazne7rx&#x2F;upuUoESEh0SaURXJygYgZ4OGkOQpctWuuXzz&#x2F;3&#x2F;&#x2F;zn375j78+X7c&#x2F;&#x2F;vlPq&#x2F;Pq+cXZ2e71q7d&#x2F;&#x2F;9&#x2F;&#x2F;x7TwP3z2gz&#x2F;9yz8209Ph+L&#x2F;+4f9M09GQPRaBOkMUCSJSoyaqGhcH6DqNx7HU+MV&#x2F;&#x2F;sV2s&#x2F;7q81dlnubTXJ0e&#x2F;vbLr81rM+Oz3&#x2F;t+bhtV++rl61e&#x2F;ebWMozTBohSnG9STeRVVEY0IFfUwuh8eD&#x2F;ubu2fPr&#x2F;76v&#x2F;7N5&#x2F;&#x2F;2u89&#x2F;9VtNctjvV33z3R9+7+Lqclh3u4tdn5uIuH91iwTA5iIpIlDpDmqKBGEAIqhMWSIUUk7z&#x2F;u4hNSl3tttu1tt1VJmnSVWurp73Xdf0bdsYhGWa85B&#x2F;9h9&#x2F;onQqUaGmCrpEgoRQCYOqUEQtwRZdnh5P55e+TGV&#x2F;&#x2F;5Capp4eseym47T7eAfxAEkj+Prt+2HVNN99RoEABJQSikYiESkg5vDkacmeqiSTmqF8OhymeSqTG9J4GuvD6bh+4IvrnDv3WnypxW9u3kaeM7NLVWnCZkhuA4AnKCEoqE1YtVBnaq1r8+K1LCFSc2OizbPrnxw&#x2F;3H60G2qpSxQRBGOap2msSZJkJSC+JGSgqJJoEggXz1VobljR62l&#x2F;3Fyuu94kQsKgAbFpXEaR&#x2F;cOodt80mlQg7LuutTRDKa5MakElkAJIUKUWBZnULYMFGWLx&#x2F;v3d4&#x2F;4pqj8c97c396fTodb5&#x2F;GJDWQ77h9N4nGs1a5NhWK1MIKImITQBiEgEAkkjXFxdjGyalSaeWMdvTof7hy8ex3n0p8Nhd3Hxs&#x2F;&#x2F;0Ixua5X7fdSvrcj+ImJhZt27kG1EWCRAIVEESIBQpmDQ8JDQLM5PkfisfNe3h8Wjd1Nf5ojkfhv7weLy43l4+&#x2F;yiZ9X3fNX1OirA2DwCERmqYmJsgUykaSd1FRNTNe7XERjft2q2mnCSlae8GfufTjzbrfrvZtKlJpikLEEIV0912m7RdWKssClDt2+5gSiEhkZSqneYcwW&#x2F;xa0&#x2F;vl&#x2F;Lyi+n2prGcfvy9i+cXbc6qpsksJUuAiEKtSZZFWBMpc6U1IlApgaThBECJgKbcrtaDJrU27x9u5PChwyjz6fDF5yZKESSYMiELzNRg3rZJFVIDzioKd7K4AKJKR9TiYcIiwb7rNttNlJif9kIVUVpMh6emaZKaBUhQwgBGrSUipO3WoaFUJIaRoiKqnJUeEZXhlW5i0ACRcsrtKiSUIlG7YQivIgpIQExUoABUKFLbrgGTA+YwUQgDDqgynBDSvXpliVLDq2Vdn1&#x2F;6sHKGZH3+wx9ECSGCNYFmoMDdw0Mg634QmkSI1IBImIZCkIgF0RBE8XkuzQQzN+ezq&#x2F;P29&#x2F;9Aj&#x2F;vu8nz78QsXEROlJGsJiLiaqalPPmz6ZLa4gn0ojQnhrp6iZlFXNpHrsvg8PwmqZTPl9cfX691PSkyqzEr32qSUkhmgUELpEERuvt0CQsLCICWUgGllcY8aYymT18UDEbVOtY5LJRafzYzOsjAqkzZmCqSgECRImFhOmhwOVtABb1wtQqO6u6OG09wZdaGHKFJOqmTAxOalqlnTNJaEQQ+nOCQACNiY5cYUDlKCEVEUBDXczYUEa6BGKVHDwys96OHz9PR0kBIKNwUEAVdQSaOQhIgohs1aAHoCSEDIYFVElIgIKFPEUotHIQhRpQpEylgqUUsJJ1QEpIqoBhAsEiTj&#x2F;Oyi789MECEaKeDGTt2DdEjKZhRVhhqookAwmj4TNVjnuYazlqoqphoUMsJLSDFLbdeknAOgzIJKUlC1SKlRVAmhmBBJGFJcu5SpQqSsAiAhOHspQXefvJZvhVAYgJxaU6EGRCkQ0BGqrspk0keohpMlXGhmYov7NI7rzWYYOi&#x2F;VXasv4aE0iKmpqoopxCxhtVml1DCEDvEsYeoeYYSFipCmtKKRcq5LQFiqNu26zW1WmabJa4AAtMtt02SzLCICUqAi4U4QAKSSoR5BF3VVJAGJUIqqpTYLRLVGnTWr5maajrXGtwcACRETmIYRoUjLUhCEB4OoFkIFoSFQEVOBQcIrUqNNl9uh7ftegGWcWGnITWoASZZFFeFkeITCcmO73aaoRwhDii2kJndQqkuhZYIRVsIFKTdNNgtSm3Z6fETKKTVQNTOVCGcQdEIrIBopDZ2hcUxCiItoVQ+v1S3EmEwahGNepnlU0dS0uU8KLo7pOKmEiAoIKIJeSzDEBa4exUQ8HLCAk1pZtVQPRghVKqW6Yym+jEcGm9S1ab1&#x2F;PJ3G0RlqbcrJzAQAtCzV3aswogql79ZD16h4EAEnWv3w8iiu6hokRNx9GZd5LF5cDE2Thcvp8QAoJNyreyVQa51Oo5MMhYIAvQa0kgIYoKzar+XpcCjLUrkoQlQr6vG4HI&#x2F;HiKqJlvrT8RS+SFBVVaGSDscH1yoigiADHvcPD9N4EGcA7hnIenmx06a9edzPU0RkEarEcTyeDsdaKqi505QbYQpAxCAK8dPhKFRBuItXd&#x2F;L4dCgupAbJCHpJxcfXX950fbPqhiY1mqWKxFyXpSzzFDG0qWdUiJhYo2qmp+mkggRElRAPFxHOU415ISFMlBKAfniz3z88PB5Oh&#x2F;1+PI0sFJfA8nC3Px3mqGGteVSRUJVQqqTj4RGplSRBeiUZHpWmSzgCoAhUQtPbr1+HGLHcfPOobQ5hMvOIw+P+9DSOc1lvNs1mZ0bLpqJGOU3jqlsFjSji9Aj3Op8mqUKJUBdUCtPs1qih+u3N41I8FtnsGlou8+n29m59vh761bBqKCk3aqYBmqokAyRq8UpA9ofDzZs3dSnRqFUEFCZJDZZzMpnnU7ldVHwpl5tNB9rD3cP6m2F7frbut01KObVNbiRpCERIMujjab49PH35qy&#x2F;vXn+jjuBS3brVsPv0me3Wz+GEsm1bFT+dxlJF1YDKQNfms7NdahPJzXY39D0Z7z+8b9tOQIC&#x2F;&#x2F;uLdb3&#x2F;9BirSZmaTOp+Oy7BedbtevYYos+ZxPs0TLDdPh4ebd3dl5lSfHk&#x2F;7+&#x2F;3dZr2uUWqd5mUK4WaziigKPT6V+7vDaqWIZX4c728ef&#x2F;XbD6WW9fkFZySAdSmLtV58tUHbmFd6nbsht5ZiYSkVdFM8PNyXsrStDW0&#x2F;jsdI9f7wgKj1cTo9Pr599y7medvky+uraNXn2TbdFZI6Fgpy2yyz1xJN1hBvunaz3mxWfagnS69evhJLSs1tC9H72&#x2F;svP395+PD+&#x2F;v7xzcv3eVw+++Tq+sWz4fn54fDU9pZCaUov0rcJ1ZfC3KdTqcdXt6c5rj6+ki6t15u2ax72jw83DwLZnG2mUv&#x2F;l&#x2F;&#x2F;7m8Wa&#x2F;fzoe7u5Sma8vL07TfP1sM0LaVvvGbDN8FEuoEhI1iIhGc6kzi5fjGMKr5xeXz66c9eUXb&#x2F;Z3p65vk+nLl2++&#x2F;t2r+&#x2F;vD&#x2F;sN9N6eL3dZNR8fmk4&#x2F;HMl6st9NxSgoJq4ROhT2USSOcNSzlMH39u7f&#x2F;L7XfvLq7uX+6+eb+O9&#x2F;9dB6Xz&#x2F;&#x2F;&#x2F;6y8&#x2F;&#x2F;8pjPuyfLmxYXwzFQIn1xZlKs+6aw+kYXpKp5Nx5eJ2mmXljic4whFUjqw9ffPH6n3&#x2F;5b1i0265&#x2F;+oc&#x2F;Pd3cffHVa&#x2F;dQk&#x2F;PzYdWtLGXxGOnb5xfH+XG7zrfvH7a7jZ2fX8MBImgIR9bV2a7MBWIIkqHWd20DUTE53N9&#x2F;9du3ZZ5Lmc5WQ9+027MNBhVhNwyXnz57&#x2F;bt39Hp+tSZzqgWgB0FWUIiy2q0BnMYjAgAjlm4zrJ+fa07Z7Nm2h2q23LfSt7vRZ5HUDd3588vjzen+zf3Z7sWmWz+U+d8BxLQ80KidgBcAAAAASUVORK5CYII&#x3D;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>这条字符串有特定的格式的，这种格式叫<a href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/data_URIs"><strong>Data URL scheme</strong></a>，意为data协议（类同http协议）。base64编码不仅仅可以表示图片，也可以表示其他类型的数据。</p>
-<pre class="line-numbers language-none"><code class="language-none">data:[&lt;mediatype&gt;][;base64],&lt;data&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p><strong>再次区别：base64是一种编码方法。Data URL表示一个文件，可以是图片，也可以是其他格式的文件。base64对其来说更是一种可选的编码方法。</strong></p>
-<h3 id="特性-3"><a href="#特性-3" class="headerlink" title="特性"></a>特性</h3><ol>
-<li>体积会比原来大1&#x2F;3</li>
-<li>不需要请求服务器资源，减少HTTP请求次数</li>
-<li>编码、解码方便，算法可逆，不适用于私密信息通信</li>
-<li>无法缓存，不建议使用在改动频繁的地方</li>
-</ol>
-<p>js创建<code>base64</code>的方法：</p>
-<ol>
-<li><p><code>canvas</code> 将图片转化为 <code>base64</code> 编码</p>
-</li>
-<li><p><code>FileReader</code> 将图片转化<code>base64</code>格式</p>
-</li>
-</ol>
-<h3 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h3><p><code>base64</code>的使用场景比较少，个人之前的工作经历是img url 有token认证机制，直接使用<code>&lt;img src=&quot;https://HOST/xx.jpg&quot;&gt;</code>，接口状态码返回403。而后端整个api系统都是有token认证的机制，不太好改，img标签又不支持添加HTTP请求头。最后用js发起http请求，设置token请求头。</p>
-<ol>
-<li>使用XHR发送http请求，设置响应类型 <code>xhr.responseType = &#39;blob&#39;</code></li>
-<li>构建 <code>new FileReader()</code>实例，实例事件 <code>onloadend</code>获取<code>base64</code></li>
-<li>将<code>base64 </code>赋值给<code>&lt;img&gt;</code>标签的<code>src</code>属性</li>
-</ol>
-<p>其他常见的编码格式</p>
-<ul>
-<li>Unicode</li>
-<li>UTF-8</li>
-<li>URL12</li>
-<li>Unix时间戳</li>
-<li>Ascii&#x2F;Native</li>
-<li>Hex</li>
-<li>Html</li>
-</ul>
-<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>我们介绍了从各个话题介绍了浏览器中使用的图片，现在是时候来一波总结了。</p>
-<ol>
-<li><code>img</code> &#x2F; <code>background</code> - 原生<code>html</code>、<code>css</code>实现，分别作为<strong>内容主体</strong>、<strong>样式装饰</strong>功能</li>
-<li><code>CSS Sprites</code> （技术方案） - 一种优化图片方案，有不同的实现方式</li>
-<li><code>icon-font</code> - 基于<code>h5</code>的<code>web-font</code>特性实现，使用在线工具可生成一套矢量图片库，样式控制灵活</li>
-<li><code>svg</code> - 一种很灵活的图片格式，浏览器原生支持，可转换成传统图片格式或者制作成<code>icon-font</code></li>
-<li><code>webpack</code>中使用<code>img</code> - img在工程化中的简单实现</li>
-<li><code>base64</code> - 一种编码方式，格式为Data URL scheme， 可表示图片等二进制文件流</li>
-</ol>
-<h2 id="结尾"><a href="#结尾" class="headerlink" title="结尾"></a>结尾</h2><p>此本从开发者拿到一张图片素材开始。以在不同场景在，选择最合适的实现方式。尽管写得比较长，可还是少了一点东西。比如<code>canvas</code>没有讲，不过一般<code>canvas</code>用于脚本绘制渲染可视化数据多一些，当然能渲染成img，场景少，就没在这里讨论。本意也是觉得一张图片在浏览器上有多种使用方式，就整理了一下，写下以上内容，算是个人的知识总结回顾吧。</p>
-]]></content>
-      <tags>
-        <tag>web</tag>
       </tags>
   </entry>
 </search>
