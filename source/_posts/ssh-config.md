@@ -51,7 +51,7 @@ Generating public/private rsa key pair.
 Enter file in which to save the key (/Users/wu/.ssh/id_rsa): [ssh-key-name]
 
 # 复制指定ssh密钥到服务器，以后登录的时候就不需要输入密码了
-ssh-copy-id -i ~/.ssh/id_rsa.pub root@$SERVER
+ssh-copy-id -i ~/.ssh/id_rsa.pub -p 22 root@$SERVER
 
 # 登录远端服务器
 ssh root@$SERVER
@@ -62,6 +62,18 @@ exit
 ssh -T root@$SERVER
 ```
 
+# 非root用户，如何配置免密码登录
+
+```
+# 用非root用户登录到服务器，比如normal: ssh normal@$SERVER
+sudo mkdir ~/.ssh
+sudo chown $(whoami) ~/.ssh
+sudo touch ~/.ssh/authorized_keys
+sudo chown $(whoami)  ~/.ssh/authorized_keys
+sudo chmod 600 ~/.ssh/authorized_keys
+ls -l ~/.ssh/authorized_keys
+# -rw------- 1 zsuser root 0 May 23 15:09 /home/zsuser/.ssh/authorized_keys
+```
 # 结尾
 
 - [Using the SSH Config File | Linuxize](https://linuxize.com/post/using-the-ssh-config-file/)
